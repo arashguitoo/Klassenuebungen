@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Situation 1 · Bürobedarf bestellen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBDChXlm34Kr7Gg0Dw458GiiwoLnWJAnxM",
+  authDomain: "lern-deutsch-arash.firebaseapp.com",
+  databaseURL: "https://lern-deutsch-arash-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "lern-deutsch-arash",
+  storageBucket: "lern-deutsch-arash.firebasestorage.app",
+  messagingSenderId: "845503292114",
+  appId: "1:845503292114:web:f76ab5fcde1e978d00c30b"
+};
+</script>
+
+<style>
+:root{
+  --ink:#1a1410;--paper:#f6f1e7;--paper-2:#efe7d6;--card:#fffdf8;--line:#d8cdb8;
+  --rust:#b5451f;--rust-dk:#8f3414;--olive:#5c6b3a;--gold:#c08a2d;--teal:#1f6b6b;
+  --shadow:0 1px 0 #fff inset,0 10px 30px -12px rgba(40,28,15,.35);--r:14px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{font-family:'Outfit',system-ui,sans-serif;color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased;
+  background:radial-gradient(1200px 600px at 80% -10%,#fff8ec 0%,transparent 55%),radial-gradient(900px 500px at -10% 110%,#f0e6d2 0%,transparent 50%),var(--paper);background-attachment:fixed;}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:18px 16px 90px}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.1;margin:0}
+.eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--rust);font-weight:600}
+.topbar{display:flex;align-items:center;gap:12px;padding:14px 16px;margin-bottom:18px;
+  background:linear-gradient(180deg,#fffefb,#f7f0e2);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);position:sticky;top:8px;z-index:30;}
+.brand{display:flex;flex-direction:column;gap:1px;flex:1;min-width:0}
+.brand h1{font-size:1.1rem;display:flex;align-items:center;gap:8px}.brand small{color:#7a6a52;font-size:.72rem}
+.status{display:flex;align-items:center;gap:6px;font-size:.7rem;font-weight:600;padding:5px 9px;border-radius:99px;white-space:nowrap}
+.status.live{background:#e6f2ec;color:#1d6b46}.status.err{background:#f7e3dc;color:#a8401f}
+.dot{width:7px;height:7px;border-radius:99px;background:currentColor;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.home{display:inline-flex;align-items:center;gap:5px;font-size:.78rem;font-weight:600;color:#7a6a52;text-decoration:none;padding:6px 10px;border:1px solid var(--line);border-radius:99px;background:var(--card)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-bottom:14px;box-shadow:var(--shadow);}
+.card h2{font-size:1.32rem;margin-bottom:4px}.card .sub{color:#7a6a52;font-size:.86rem;margin-bottom:14px}
+.btn{font-family:'Outfit';font-weight:600;font-size:.92rem;cursor:pointer;padding:11px 18px;border-radius:11px;border:1px solid transparent;transition:.16s;display:inline-flex;align-items:center;gap:7px;justify-content:center;}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--rust);color:#fff;box-shadow:0 6px 16px -8px var(--rust)}.btn-primary:hover{background:var(--rust-dk)}
+.btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}.btn-ghost:hover{background:var(--paper-2)}
+.btn-sm{padding:7px 12px;font-size:.8rem;border-radius:9px}.btn-block{width:100%}
+input,select,textarea{font-family:'Outfit';font-size:.95rem;width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:#fffdf8;color:var(--ink);outline:none;transition:.16s;}
+input:focus,select:focus{border-color:var(--rust);box-shadow:0 0 0 3px rgba(181,69,31,.12)}
+label{display:block;font-size:.78rem;font-weight:600;color:#6b5c44;margin:0 0 5px 2px}
+.field{margin-bottom:12px}
+.role-pick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.role-card{border:1px solid var(--line);border-radius:13px;padding:16px;text-align:center;cursor:pointer;background:var(--card);transition:.16s;}
+.role-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.role-card .ico{font-size:1.8rem}.role-card b{font-family:'Fraunces';display:block;margin-top:6px;font-size:1.05rem}.role-card span{font-size:.76rem;color:#7a6a52}
+.team-banner{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.team-pill{font-size:.74rem;font-weight:600;padding:5px 10px;border-radius:99px;color:#fff}
+.divider{height:1px;background:var(--line);margin:16px 0;border:none}
+.note{font-size:.8rem;color:#7a6a52;background:var(--paper-2);padding:10px 12px;border-radius:9px;margin-top:10px}
+.hidden{display:none!important}
+.flex-between{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.pill-toggle{display:flex;gap:4px;background:var(--paper-2);padding:4px;border-radius:11px}
+.pill-toggle button{flex:1;border:none;background:none;padding:8px;border-radius:8px;font-family:'Outfit';font-weight:600;font-size:.82rem;cursor:pointer;color:#7a6a52}
+.pill-toggle button.on{background:#fff;color:var(--ink);box-shadow:0 2px 6px -3px rgba(0,0,0,.2)}
+.kunde-card{border:2px solid var(--teal);border-radius:16px;overflow:hidden;background:#fff;margin-bottom:14px;box-shadow:var(--shadow);}
+.kc-head{background:linear-gradient(135deg,#1f6b6b,#15514f);color:#fff;padding:14px 16px}
+.kc-head .who{font-family:'Fraunces';font-size:1.15rem}.kc-head .firma{font-size:.82rem;opacity:.85}
+.kc-body{padding:14px 16px}
+.budget{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}.budget b{font-family:'Fraunces';font-size:1.6rem;color:var(--rust)}
+.req{background:#f3f6ee;border-left:3px solid var(--olive);padding:9px 12px;border-radius:0 8px 8px 0;font-size:.85rem;margin-bottom:8px}.req b{color:var(--olive)}
+.need-list{list-style:none;padding:0;margin:8px 0 0}.need-list li{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed var(--line);font-size:.9rem}.need-list li:last-child{border:none}
+.katalog{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:14px;background:#fff;box-shadow:var(--shadow)}
+.kat-head{padding:13px 16px;color:#fff;display:flex;justify-content:space-between;align-items:center}
+.kat-head.disc{background:linear-gradient(135deg,#5c6b3a,#46512c)}.kat-head.prem{background:linear-gradient(135deg,#8f3414,#6e2810)}
+.kat-head b{font-family:'Fraunces';font-size:1.1rem}.kat-head .slogan{font-size:.72rem;opacity:.85}
+.spielraum{font-size:.78rem;padding:10px 16px;background:#fbf5e8;border-bottom:1px solid var(--line);color:#7a5a1a}.spielraum b{color:var(--gold)}
+.prod{display:flex;justify-content:space-between;align-items:center;padding:9px 16px;border-bottom:1px solid #f0e9da;font-size:.88rem}.prod:last-child{border:none}
+.prod .pname{flex:1}.prod .pprice{font-weight:700;font-family:'Fraunces';color:var(--ink);white-space:nowrap}.prod .pq{font-size:.72rem;color:#9a8a70;display:block}
+.shop-row{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--line)}
+.shop-row input[type=checkbox]{width:20px;height:20px;accent-color:var(--rust)}
+.shop-row .si-name input{padding:6px 8px;font-size:.82rem;margin-top:3px}
+.shop-row .si-cost{width:78px}.shop-row .si-cost input{padding:6px 8px;text-align:right;font-size:.85rem}
+.total-bar{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding:12px 14px;background:var(--ink);color:#fdf8ee;border-radius:11px}
+.total-bar .lbl{font-size:.82rem;opacity:.8}.total-bar .amt{font-family:'Fraunces';font-size:1.3rem}
+.total-bar .amt.over{color:#ff9a7a}.total-bar .amt.ok{color:#9fe0b0}
+@media(max-width:560px){.role-pick{grid-template-columns:1fr}}
+.footer{text-align:center;font-size:.74rem;color:#9a8a70;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand"><h1>📞 Situation 1 · Bürobedarf</h1><small>Telefonische Bestellung beim Kundenservice</small></div>
+    <a class="home" href="index.html">🏠 Index</a>
+  </div>
+
+  <div id="teamInfo" class="card" style="padding:13px 16px">
+    <div class="flex-between">
+      <span class="eyebrow">Eingeteilte Teams <span id="teamSrc" style="color:#9a8a70;text-transform:none;letter-spacing:0;font-weight:500"></span></span>
+      <span id="connStatus" class="status err"><span class="dot"></span>…</span>
+    </div>
+    <div class="team-banner" id="teamBanner"></div>
+  </div>
+
+  <!-- HOME -->
+  <div id="spielHome" class="card">
+    <span class="eyebrow">Rolle wählen</span>
+    <h2>Wer bist du?</h2>
+    <p class="sub">2 Teams verkaufen Bürobedarf, 2 Teams richten als Einkäufer ihre Räume ein.</p>
+    <div class="role-pick">
+      <div class="role-card" onclick="openRole('verkauf')"><div class="ico">🛍️</div><b>Verkäufer</b><span>Katalog · Rabatte · Beratung</span></div>
+      <div class="role-card" onclick="openRole('einkauf')"><div class="ico">📞</div><b>Einkäufer</b><span>Kundenkarte · Budget · Bestellliste</span></div>
+    </div>
+    <hr class="divider">
+    <div class="note">Ablauf: Jedes Team öffnet diese Seite auf einem Handy und wählt seine Rolle. Einkäufer wählen ihre Kundenkarte (1–10), Verkäufer ihr Geschäft. Dann wird telefoniert.</div>
+  </div>
+
+  <!-- VERKÄUFER -->
+  <div id="verkaufView" class="hidden">
+    <div class="card">
+      <div class="flex-between"><div><span class="eyebrow">Verkäufer</span><h2 style="font-size:1.25rem">Dein Sortiment</h2></div>
+        <button class="btn btn-ghost btn-sm" onclick="backHome()">← Zurück</button></div>
+      <p class="sub">Wähle dein Geschäft. Beachte den Handlungsspielraum bei Rabatten!</p>
+      <div class="pill-toggle" id="shopToggle">
+        <button class="on" data-shop="disc">🟢 SparBüro (Discounter)</button>
+        <button data-shop="prem">🔴 KontorPlus (Premium)</button>
+      </div>
+    </div>
+    <div id="katalogMount"></div>
+    <div class="card"><span class="eyebrow">Sprachhilfe</span><h3 style="font-size:1.05rem;margin:6px 0 8px">Redemittel Kundenservice</h3><div id="redemittel"></div></div>
+  </div>
+
+  <!-- EINKÄUFER -->
+  <div id="einkaufView" class="hidden">
+    <div class="card">
+      <div class="flex-between"><div><span class="eyebrow">Einkäufer</span><h2 style="font-size:1.25rem">Eure Kundenkarte</h2></div>
+        <button class="btn btn-ghost btn-sm" onclick="backHome()">← Zurück</button></div>
+      <div class="field"><label>Kundenkarte wählen (1–10)</label><select id="kundenWahl" onchange="renderKunde()"></select></div>
+    </div>
+    <div id="kundeMount"></div>
+    <div class="card">
+      <span class="eyebrow">Bestellliste</span><h3 style="font-size:1.1rem;margin:6px 0 4px">Was habt ihr wo gekauft?</h3>
+      <p class="sub">Abhaken, Anbieter wählen, Menge & Preis eintragen.</p>
+      <div id="shopRows"></div>
+      <button class="btn btn-ghost btn-sm btn-block" style="margin-top:10px" onclick="addShopRow()">＋ Position hinzufügen</button>
+      <div class="total-bar"><div><div class="lbl">Ausgegeben</div></div><div class="amt ok" id="totalSpent">0 €</div></div>
+      <div class="total-bar" style="background:var(--paper-2);color:var(--ink);margin-top:8px"><div class="lbl">Budget übrig</div><div class="amt" id="budgetLeft" style="color:var(--olive)">–</div></div>
+      <button class="btn btn-primary btn-block" style="margin-top:12px" onclick="window.print()">🖨️ Bestellung drucken / als PDF</button>
+    </div>
+  </div>
+
+  <div class="footer">Lern Deutsch mit Arash · Situation 1</div>
+</div>
+
+<script data-goatcounter="https://aguitoo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<script>
+/* ===== local-only state for THIS team's shopping list ===== */
+let shopList=[], selectedKunde=1;
+let db=null;
+
+/* ===== Firebase: READ shared teams ===== */
+function initFirebase(){
+  try{
+    firebase.initializeApp(firebaseConfig);
+    db=firebase.database();
+    db.ref('moderation/shared').on('value', snap=>{
+      const v=snap.val();
+      setStatus('live');
+      renderTeamBanner(v);
+    }, err=>{ console.warn(err); setStatus('err'); renderTeamBanner(null); });
+  }catch(e){ console.warn(e); setStatus('err'); renderTeamBanner(null); }
+}
+function setStatus(kind){
+  const el=document.getElementById('connStatus');
+  if(kind==='live'){el.className='status live';el.innerHTML='<span class="dot"></span>live';}
+  else{el.className='status err';el.innerHTML='<span class="dot"></span>offline';}
+}
+const TEAM_COLORS=['#5c6b3a','#b5451f','#1f6b6b','#c08a2d','#7a4ea0','#2d6ba0'];
+const TEAM_NAMES=['Team Mond','Team Sonne','Team Stern','Team Ozean','Team Komet','Team Galaxie'];
+function renderTeamBanner(shared){
+  const el=document.getElementById('teamBanner'); const src=document.getElementById('teamSrc');
+  if(shared && shared.mode==='1v1' && shared.duels && shared.duels.length){
+    src.textContent='(1 gegen 1)';
+    el.innerHTML = shared.duels.map((d,i)=>`<span class="team-pill" style="background:${TEAM_COLORS[i%6]}">R${i+1}: ${esc(d[0])} ⚔ ${esc(d[1])}</span>`).join('');
+    return;
+  }
+  if(shared && shared.teams && shared.teams.some(t=>t&&t.length)){
+    src.textContent='(aus dem Index)';
+    el.innerHTML = shared.teams.map((t,i)=> t&&t.length ? `<span class="team-pill" style="background:${TEAM_COLORS[i]}">${TEAM_NAMES[i]||('Team '+(i+1))}: ${t.map(esc).join(', ')}</span>`:'').join('');
+  }else{
+    src.textContent=''; el.innerHTML='<span style="font-size:.8rem;color:#9a8a70">Noch keine Teams im Index eingeteilt. Öffne den 🏠 Index, um Teams zu bilden.</span>';
+  }
+}
+
+/* ===== ROLE NAV ===== */
+function backHome(){document.getElementById('spielHome').classList.remove('hidden');document.getElementById('verkaufView').classList.add('hidden');document.getElementById('einkaufView').classList.add('hidden');}
+function openRole(role){
+  document.getElementById('spielHome').classList.add('hidden');
+  if(role==='verkauf'){document.getElementById('verkaufView').classList.remove('hidden');renderKatalog('disc');renderRedemittel();}
+  else{document.getElementById('einkaufView').classList.remove('hidden');fillKundenWahl();renderKunde();renderShopRows();}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ===== KATALOGE ===== */
+const KATALOGE={
+  disc:{name:'SparBüro',slogan:'Günstig. Schnell. Praktisch.',cls:'disc',
+    spielraum:'Handlungsspielraum: Ab 200 € Bestellwert 5 % Rabatt. Versand kostenlos ab 150 € (sonst 9,90 €). KEINE Verhandlung über Einzelpreise. Lieferzeit 5–7 Tage. Keine 2-Jahres-Garantie auf Möbel.',
+    items:[{n:'Bürostuhl "Basic" (ohne Armlehne)',q:'einfache Polsterung',p:39},{n:'Bürostuhl "Komfort" (verstellbar)',q:'Wippmechanik',p:79},{n:'Schreibtisch 120×60 cm',q:'Spanplatte',p:59},{n:'Rollcontainer 3 Schubladen',q:'abschließbar',p:34},{n:'Aktenregal 5 Fächer',q:'Metall',p:49},{n:'Schreibtischlampe LED',q:'kein Dimmer',p:12},{n:'Kopierpapier A4 (500 Blatt)',q:'80 g',p:4},{n:'Druckerpatronen-Set',q:'kompatibel',p:19},{n:'Kugelschreiber (50 Stück)',q:'Großpackung',p:9},{n:'Whiteboard 90×60 cm',q:'Basis',p:24},{n:'Mülleimer 15 L',q:'Kunststoff',p:6},{n:'Garderobenständer',q:'Metall',p:18}]},
+  prem:{name:'KontorPlus',slogan:'Qualität, die man spürt.',cls:'prem',
+    spielraum:'Handlungsspielraum: Bis 10 % Rabatt verhandelbar ab 500 €, bis 15 % ab 1000 €. Express-Lieferung 48 h möglich (+ Aufpreis). 5 Jahre Garantie auf alle Möbel. Beratung & Aufbau-Service inklusive ab 800 €.',
+    items:[{n:'Ergonomischer Bürostuhl "Profi"',q:'Lordosenstütze, 5 J. Garantie',p:189},{n:'Chefsessel Leder "Direktor"',q:'echtes Leder',p:349},{n:'Höhenverstellbarer Schreibtisch (elektr.)',q:'Memory-Funktion',p:399},{n:'Schreibtisch Massivholz 140×70',q:'Eiche',p:229},{n:'Rollcontainer Massivholz',q:'Soft-Close',p:119},{n:'Design-Aktenschrank abschließbar',q:'pulverbeschichtet',p:179},{n:'Schreibtischlampe (dimmbar, Touch)',q:'Farbtemperatur einstellbar',p:49},{n:'Premium-Kopierpapier A4 (500)',q:'100 g, hochweiß',p:8},{n:'Original-Druckerpatronen-Set',q:'Hersteller',p:59},{n:'Markenkugelschreiber (10 Stück)',q:'Metallgehäuse',p:34},{n:'Glas-Whiteboard magnetisch 120×90',q:'rahmenlos',p:99},{n:'Design-Mülleimer Edelstahl',q:'Sensor',p:39},{n:'Design-Garderobe Holz/Metall',q:'',p:64}]}
+};
+function renderKatalog(which){
+  const k=KATALOGE[which];
+  document.getElementById('katalogMount').innerHTML=`<div class="katalog">
+    <div class="kat-head ${k.cls}"><div><b>${k.name}</b><div class="slogan">${k.slogan}</div></div><div style="font-size:1.5rem">${which==='disc'?'🟢':'🔴'}</div></div>
+    <div class="spielraum"><b>ℹ️ </b>${k.spielraum}</div>
+    ${k.items.map(it=>`<div class="prod"><div class="pname">${esc(it.n)}<span class="pq">${esc(it.q)}</span></div><div class="pprice">${it.p} €</div></div>`).join('')}</div>`;
+}
+document.querySelectorAll('#shopToggle button').forEach(b=>{b.onclick=()=>{document.querySelectorAll('#shopToggle button').forEach(x=>x.classList.remove('on'));b.classList.add('on');renderKatalog(b.dataset.shop);};});
+function renderRedemittel(){
+  document.getElementById('redemittel').innerHTML=`
+    <div class="req"><b>Begrüßung:</b> „Bürobedarf …, mein Name ist …, was kann ich für Sie tun?"</div>
+    <div class="req"><b>Nachfragen:</b> „Für wie viele Arbeitsplätze brauchen Sie das?" / „Darf es etwas Hochwertigeres sein?"</div>
+    <div class="req"><b>Rabatt anbieten:</b> „Bei dieser Menge kann ich Ihnen … % entgegenkommen."</div>
+    <div class="req"><b>Abschluss:</b> „Ich fasse zusammen: Sie bestellen … Die Lieferung erfolgt in …"</div>`;
+}
+
+/* ===== KUNDENKARTEN ===== */
+const KUNDEN=[
+  {id:1,who:'Frau Berger',firma:'Start-up "PixelWerk" (Webdesign)',budget:1200,req:['Modernes, kreatives Büro – Image zählt!','Stühle MÜSSEN ergonomisch sein (viel Bildschirmarbeit) – hier NICHT sparen.','5 Arbeitsplätze einrichten.'],needs:['5× Bürostuhl (ergonomisch!)','3× Schreibtisch','1× Whiteboard','Kopierpapier','Lampen']},
+  {id:2,who:'Herr Yılmaz',firma:'Steuerkanzlei Yılmaz',budget:1500,req:['Seriös & repräsentativ (Kundenkontakt).','Abschließbarer Aktenschrank Pflicht (Datenschutz!).','Chefsessel fürs Besprechungszimmer.'],needs:['1× Chefsessel','3× Bürostuhl','2× abschließbarer Schrank','Schreibtische','Kopierpapier (viel)']},
+  {id:3,who:'Frau Novak',firma:'Verein "Hand in Hand" (gemeinnützig)',budget:500,req:['Jeder Euro zählt – möglichst günstig!','Funktional, kein Luxus.','Für 4 Ehrenamtliche.'],needs:['4× Bürostuhl (Basic ok)','2× Schreibtisch','1× Aktenregal','Kugelschreiber','Mülleimer']},
+  {id:4,who:'Dr. Klein',firma:'Arztpraxis Dr. Klein',budget:1000,req:['Empfang muss ordentlich wirken.','Rollcontainer abschließbar (Patientendaten).','Gute Lampen fürs Lesen.'],needs:['3× Bürostuhl','2× Rollcontainer (abschließbar)','3× Lampe (dimmbar bevorzugt)','Garderobe']},
+  {id:5,who:'Herr Schäfer',firma:'Handwerksbetrieb Schäfer GmbH',budget:700,req:['Robust & langlebig wichtiger als schön.','1 Büro für die Buchhaltung.','Großes Whiteboard für Planung.'],needs:['2× Bürostuhl','2× Schreibtisch (robust)','1× großes Whiteboard','Aktenregal','Kopierpapier']},
+  {id:6,who:'Frau Costa',firma:'Café & Co-Working "Bohne"',budget:900,req:['Gemütlich & stylisch – Gäste sehen es!','Design zählt, Garderobe schön.','Flexibel für wechselnde Nutzer.'],needs:['4× Bürostuhl (Komfort)','2× Schreibtisch','1× Design-Garderobe','Lampen','Whiteboard']},
+  {id:7,who:'Herr Adeyemi',firma:'Logistik-Büro "FastWay"',budget:1100,req:['Höhenverstellbarer Tisch gewünscht (Rücken!).','Effizient, viel Stauraum.','3 Schichtarbeitsplätze.'],needs:['1× höhenverstellbarer Schreibtisch','3× Bürostuhl (ergonomisch)','3× Rollcontainer','Druckerpatronen']},
+  {id:8,who:'Frau Petrova',firma:'Sprachschule "Lingua"',budget:600,req:['Mehrere Whiteboards für Unterricht.','Günstige, viele Stühle.','Sparsam einkaufen.'],needs:['6× Bürostuhl (Basic)','2× Whiteboard','2× Schreibtisch','Kopierpapier (viel)','Kugelschreiber']},
+  {id:9,who:'Herr Wagner',firma:'Architekturbüro Wagner',budget:1800,req:['Hochwertig & repräsentativ – Premium erlaubt.','Große Schreibtische für Pläne.','NICHT am Stuhl sparen.'],needs:['4× ergonomischer Stuhl','3× großer Schreibtisch (Massivholz)','1× Glas-Whiteboard','Design-Lampen']},
+  {id:10,who:'Frau Demir',firma:'Online-Shop "DemirTex"',budget:800,req:['Mischung ok: wo nötig sparen, wo wichtig investieren.','Drucker läuft viel – Patronen wichtig.','3 Arbeitsplätze.'],needs:['3× Bürostuhl','3× Schreibtisch','Druckerpatronen (Original)','Kopierpapier','Rollcontainer']}
+];
+function fillKundenWahl(){document.getElementById('kundenWahl').innerHTML=KUNDEN.map(k=>`<option value="${k.id}">Karte ${k.id} · ${k.who} (${k.budget} €)</option>`).join('');document.getElementById('kundenWahl').value=selectedKunde;}
+function renderKunde(){
+  selectedKunde=parseInt(document.getElementById('kundenWahl').value);
+  const k=KUNDEN.find(x=>x.id===selectedKunde);
+  document.getElementById('kundeMount').innerHTML=`<div class="kunde-card">
+    <div class="kc-head"><div class="who">${k.who}</div><div class="firma">${k.firma}</div></div>
+    <div class="kc-body"><div class="budget"><span>Budget:</span><b>${k.budget} €</b></div>
+    ${k.req.map(r=>`<div class="req"><b>✔ </b>${esc(r)}</div>`).join('')}
+    <span class="eyebrow" style="display:block;margin-top:10px">Bedarfsliste</span>
+    <ul class="need-list">${k.needs.map(n=>`<li><span>${esc(n)}</span></li>`).join('')}</ul></div></div>`;
+  updateTotals();
+}
+/* ===== BESTELLLISTE (lokal pro Gerät) ===== */
+function renderShopRows(){
+  if(!shopList.length) shopList=[{name:'',shop:'disc',qty:1,cost:0,done:false}];
+  document.getElementById('shopRows').innerHTML=shopList.map((r,i)=>`
+    <div class="shop-row"><input type="checkbox" ${r.done?'checked':''} onchange="updRow(${i},'done',this.checked)">
+      <div class="si-name"><input value="${escq(r.name)}" placeholder="Artikel" onchange="updRow(${i},'name',this.value)">
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <select onchange="updRow(${i},'shop',this.value)" style="padding:4px 6px;font-size:.74rem;flex:1"><option value="disc" ${r.shop==='disc'?'selected':''}>🟢 SparBüro</option><option value="prem" ${r.shop==='prem'?'selected':''}>🔴 KontorPlus</option></select>
+          <input type="number" min="1" value="${r.qty}" onchange="updRow(${i},'qty',this.value)" style="width:54px;padding:4px 6px;font-size:.78rem" title="Menge"></div></div>
+      <div class="si-cost"><input type="number" min="0" value="${r.cost}" onchange="updRow(${i},'cost',this.value)" placeholder="€"><div style="font-size:.62rem;text-align:right;color:#9a8a70;margin-top:2px">€ gesamt</div></div></div>`).join('');
+  updateTotals();
+}
+function addShopRow(){shopList.push({name:'',shop:'disc',qty:1,cost:0,done:false});renderShopRows();}
+function updRow(i,key,val){if(key==='cost'||key==='qty')val=parseFloat(val)||0;shopList[i][key]=val;updateTotals();}
+function updateTotals(){
+  const total=shopList.reduce((s,r)=>s+(parseFloat(r.cost)||0),0);
+  const el=document.getElementById('totalSpent'); if(el)el.textContent=total.toFixed(0)+' €';
+  const k=KUNDEN.find(x=>x.id===selectedKunde); const leftEl=document.getElementById('budgetLeft');
+  if(k&&leftEl){const left=k.budget-total;leftEl.textContent=left.toFixed(0)+' €';leftEl.style.color=left<0?'#b5451f':'var(--olive)';if(el)el.className='amt '+(left<0?'over':'ok');}
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function escq(s){return String(s).replace(/'/g,"\\'").replace(/"/g,'&quot;');}
+initFirebase();
+</script>
+</body>
+</html>

@@ -8,20 +8,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyBDChXlm34Kr7Gg0Dw458GiiwoLnWJAnxM",
-  authDomain: "lern-deutsch-arash.firebaseapp.com",
-  databaseURL: "https://lern-deutsch-arash-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "lern-deutsch-arash",
-  storageBucket: "lern-deutsch-arash.firebasestorage.app",
-  messagingSenderId: "845503292114",
-  appId: "1:845503292114:web:f76ab5fcde1e978d00c30b"
-};
-</script>
-
 <style>
 :root{
   --ink:#1a1410;--paper:#f6f1e7;--paper-2:#efe7d6;--card:#fffdf8;--line:#d8cdb8;
@@ -104,11 +90,10 @@ label{display:block;font-size:.78rem;font-weight:600;color:#6b5c44;margin:0 0 5p
   </div>
 
   <div id="teamInfo" class="card" style="padding:13px 16px">
-    <div class="flex-between">
-      <span class="eyebrow">Eingeteilte Teams <span id="teamSrc" style="color:#9a8a70;text-transform:none;letter-spacing:0;font-weight:500"></span></span>
-      <span id="connStatus" class="status err"><span class="dot"></span>…</span>
+    <span class="eyebrow">Ablauf</span>
+    <div class="team-banner" id="teamBanner">
+      <span style="font-size:.82rem;color:#7a6a52">Die Teams werden im 🏠 Index ausgelost. Jedes Team öffnet diese Seite und wählt unten seine Rolle.</span>
     </div>
-    <div class="team-banner" id="teamBanner"></div>
   </div>
 
   <!-- HOME -->
@@ -166,41 +151,6 @@ label{display:block;font-size:.78rem;font-weight:600;color:#6b5c44;margin:0 0 5p
 <script>
 /* ===== local-only state for THIS team's shopping list ===== */
 let shopList=[], selectedKunde=1;
-let db=null;
-
-/* ===== Firebase: READ shared teams ===== */
-function initFirebase(){
-  try{
-    firebase.initializeApp(firebaseConfig);
-    db=firebase.database();
-    db.ref('moderation/shared').on('value', snap=>{
-      const v=snap.val();
-      setStatus('live');
-      renderTeamBanner(v);
-    }, err=>{ console.warn(err); setStatus('err'); renderTeamBanner(null); });
-  }catch(e){ console.warn(e); setStatus('err'); renderTeamBanner(null); }
-}
-function setStatus(kind){
-  const el=document.getElementById('connStatus');
-  if(kind==='live'){el.className='status live';el.innerHTML='<span class="dot"></span>live';}
-  else{el.className='status err';el.innerHTML='<span class="dot"></span>offline';}
-}
-const TEAM_COLORS=['#5c6b3a','#b5451f','#1f6b6b','#c08a2d','#7a4ea0','#2d6ba0'];
-const TEAM_NAMES=['Team Mond','Team Sonne','Team Stern','Team Ozean','Team Komet','Team Galaxie'];
-function renderTeamBanner(shared){
-  const el=document.getElementById('teamBanner'); const src=document.getElementById('teamSrc');
-  if(shared && shared.mode==='1v1' && shared.duels && shared.duels.length){
-    src.textContent='(1 gegen 1)';
-    el.innerHTML = shared.duels.map((d,i)=>`<span class="team-pill" style="background:${TEAM_COLORS[i%6]}">R${i+1}: ${esc(d[0])} ⚔ ${esc(d[1])}</span>`).join('');
-    return;
-  }
-  if(shared && shared.teams && shared.teams.some(t=>t&&t.length)){
-    src.textContent='(aus dem Index)';
-    el.innerHTML = shared.teams.map((t,i)=> t&&t.length ? `<span class="team-pill" style="background:${TEAM_COLORS[i]}">${TEAM_NAMES[i]||('Team '+(i+1))}: ${t.map(esc).join(', ')}</span>`:'').join('');
-  }else{
-    src.textContent=''; el.innerHTML='<span style="font-size:.8rem;color:#9a8a70">Noch keine Teams im Index eingeteilt. Öffne den 🏠 Index, um Teams zu bilden.</span>';
-  }
-}
 
 /* ===== ROLE NAV ===== */
 function backHome(){document.getElementById('spielHome').classList.remove('hidden');document.getElementById('verkaufView').classList.add('hidden');document.getElementById('einkaufView').classList.add('hidden');}
@@ -283,7 +233,7 @@ function updateTotals(){
 }
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 function escq(s){return String(s).replace(/'/g,"\\'").replace(/"/g,'&quot;');}
-initFirebase();
+
 </script>
 </body>
 </html>

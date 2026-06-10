@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Am Apparat – Telefonberatung Agentur für Arbeit</title>
+<script data-goatcounter="https://aguitoo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<style>
+  :root{
+    --ink:#1b2733;
+    --ink-soft:#46586b;
+    --paper:#eef1f4;
+    --card:#ffffff;
+    --line:#d4dbe2;
+    --aa:#0b6b5e;        /* Agentur-Petrol */
+    --aa-soft:#e3f2ef;
+    --kunde:#b5531d;     /* Kunde-Kupfer */
+    --kunde-soft:#fbeadf;
+    --dial:#f4b942;      /* Wählscheibe-Gelb */
+    --alert:#b3261e;
+    --shadow:0 1px 2px rgba(27,39,51,.08),0 8px 24px rgba(27,39,51,.10);
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:'Segoe UI',Calibri,system-ui,sans-serif;
+    background:
+      radial-gradient(circle at 12% -5%, #ffffff 0%, transparent 40%),
+      var(--paper);
+    color:var(--ink);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:18px 16px 64px}
+
+  /* ---------- Header ---------- */
+  header.top{
+    display:flex;align-items:center;gap:14px;
+    padding:18px 20px;margin-bottom:18px;
+    background:var(--card);border-radius:var(--radius);
+    box-shadow:var(--shadow);border:1px solid var(--line);
+    position:relative;overflow:hidden;
+  }
+  header.top::before{
+    content:"";position:absolute;right:-30px;top:-30px;
+    width:150px;height:150px;border-radius:50%;
+    background:repeating-radial-gradient(circle at center,
+      transparent 0 9px, rgba(11,107,94,.05) 9px 10px);
+  }
+  .dialwheel{
+    flex:0 0 auto;width:54px;height:54px;border-radius:50%;
+    background:radial-gradient(circle at 50% 50%, #fff 0 8px, var(--dial) 8px 100%);
+    border:3px solid var(--ink);position:relative;
+  }
+  .dialwheel span{
+    position:absolute;width:8px;height:8px;border-radius:50%;
+    background:var(--ink);
+  }
+  .dialwheel span:nth-child(1){top:5px;left:23px}
+  .dialwheel span:nth-child(2){top:12px;right:8px}
+  .dialwheel span:nth-child(3){bottom:10px;right:9px}
+  .dialwheel span:nth-child(4){bottom:5px;left:23px}
+  .dialwheel span:nth-child(5){bottom:11px;left:9px}
+  .dialwheel span:nth-child(6){top:12px;left:8px}
+  header.top h1{font-size:1.38rem;margin:0;letter-spacing:-.3px}
+  header.top p{margin:2px 0 0;color:var(--ink-soft);font-size:.9rem}
+
+  /* ---------- Tabs ---------- */
+  nav.tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+  nav.tabs button{
+    border:1px solid var(--line);background:var(--card);
+    color:var(--ink-soft);padding:10px 16px;border-radius:999px;
+    font-size:.92rem;font-weight:600;cursor:pointer;transition:.15s;
+  }
+  nav.tabs button:hover{border-color:var(--aa);color:var(--aa)}
+  nav.tabs button[aria-selected="true"]{
+    background:var(--ink);color:#fff;border-color:var(--ink);
+  }
+
+  .panel{display:none;animation:fade .25s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:20px;margin-bottom:16px;
+  }
+  .card h2{margin:0 0 4px;font-size:1.1rem}
+  .card .hint{color:var(--ink-soft);font-size:.88rem;margin:0 0 16px}
+
+  /* ---------- Konsole: TN eintragen ---------- */
+  .addrow{display:flex;gap:8px;flex-wrap:wrap}
+  .addrow input{
+    flex:1 1 200px;padding:11px 14px;border:1px solid var(--line);
+    border-radius:10px;font-size:1rem;font-family:inherit;
+  }
+  .addrow input:focus{outline:2px solid var(--aa);border-color:var(--aa)}
+  .btn{
+    border:none;border-radius:10px;padding:11px 18px;font-size:.95rem;
+    font-weight:700;cursor:pointer;font-family:inherit;transition:.15s;
+  }
+  .btn-primary{background:var(--aa);color:#fff}
+  .btn-primary:hover{background:#08544a}
+  .btn-dark{background:var(--ink);color:#fff}
+  .btn-dark:hover{background:#0d1620}
+  .btn-ghost{background:var(--paper);color:var(--ink-soft);border:1px solid var(--line)}
+  .btn-ghost:hover{color:var(--ink)}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+
+  ul.tnlist{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+  ul.tnlist li{
+    display:flex;align-items:center;gap:8px;
+    background:var(--aa-soft);color:var(--aa);
+    border:1px solid #bfe0da;border-radius:999px;
+    padding:6px 8px 6px 14px;font-weight:600;font-size:.9rem;
+  }
+  ul.tnlist li button{
+    border:none;background:rgba(11,107,94,.18);color:var(--aa);
+    width:22px;height:22px;border-radius:50%;cursor:pointer;
+    font-size:.95rem;line-height:1;font-weight:700;
+  }
+  ul.tnlist li button:hover{background:var(--aa);color:#fff}
+  .count-badge{font-size:.82rem;color:var(--ink-soft);margin-left:6px}
+
+  .controlrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;align-items:center}
+  .mode-toggle{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .mode-toggle button{
+    border:none;background:#fff;padding:10px 16px;font-weight:600;
+    font-size:.9rem;cursor:pointer;color:var(--ink-soft);
+  }
+  .mode-toggle button[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+  /* ---------- Paarungs-Ergebnis ---------- */
+  .pairings{margin-top:20px;display:grid;gap:14px}
+  .pair{
+    border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;background:#fff;
+  }
+  .pair-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:10px 16px;background:var(--ink);color:#fff;font-size:.85rem;
+    letter-spacing:.5px;text-transform:uppercase;
+  }
+  .pair-head .round-no{opacity:.7;font-weight:700}
+  .pair-body{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line)}
+  @media(max-width:560px){.pair-body{grid-template-columns:1fr}}
+  .seat{padding:16px;background:#fff}
+  .seat .role{
+    display:inline-block;font-size:.72rem;font-weight:800;
+    text-transform:uppercase;letter-spacing:.6px;
+    padding:3px 10px;border-radius:999px;margin-bottom:8px;
+  }
+  .seat.aa .role{background:var(--aa-soft);color:var(--aa)}
+  .seat.kunde .role{background:var(--kunde-soft);color:var(--kunde)}
+  .seat .name{font-size:1.12rem;font-weight:700;margin-bottom:2px}
+  .seat .sub{font-size:.85rem;color:var(--ink-soft)}
+  .seat.kunde .show-card{
+    margin-top:10px;font-size:.85rem;font-weight:700;color:var(--kunde);
+    background:none;border:1px dashed var(--kunde);border-radius:8px;
+    padding:6px 12px;cursor:pointer;
+  }
+  .seat.kunde .show-card:hover{background:var(--kunde-soft)}
+  .sit-out{
+    background:var(--dial);color:var(--ink);border-radius:var(--radius);
+    padding:12px 16px;font-weight:700;font-size:.9rem;
+  }
+
+  /* ---------- Rollenkarten-Galerie ---------- */
+  .cardgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px}
+  .rolecard{
+    border:1px solid var(--line);border-radius:var(--radius);
+    background:#fff;box-shadow:var(--shadow);overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  .rolecard .rc-top{
+    background:linear-gradient(135deg,var(--kunde),#8d3e12);
+    color:#fff;padding:14px 16px;
+  }
+  .rolecard .rc-top .job{font-size:.74rem;text-transform:uppercase;letter-spacing:.6px;opacity:.85}
+  .rolecard .rc-top .nm{font-size:1.15rem;font-weight:800;margin-top:2px}
+  .rolecard .rc-body{padding:14px 16px;font-size:.9rem;flex:1}
+  .rolecard .rc-body dt{font-weight:700;color:var(--kunde);font-size:.78rem;text-transform:uppercase;letter-spacing:.4px;margin-top:10px}
+  .rolecard .rc-body dt:first-child{margin-top:0}
+  .rolecard .rc-body dd{margin:2px 0 0}
+  dl{margin:0}
+
+  /* ---------- Sprachbausteine ---------- */
+  .bausteine-switch{display:flex;gap:8px;margin-bottom:16px}
+  .bausteine-switch button{
+    flex:1;border:1px solid var(--line);background:#fff;border-radius:10px;
+    padding:12px;font-weight:700;cursor:pointer;font-size:.95rem;
+  }
+  .bausteine-switch button[aria-pressed="true"][data-side="aa"]{background:var(--aa);color:#fff;border-color:var(--aa)}
+  .bausteine-switch button[aria-pressed="true"][data-side="kunde"]{background:var(--kunde);color:#fff;border-color:var(--kunde)}
+  .phase{margin-bottom:18px}
+  .phase h3{
+    display:flex;align-items:center;gap:8px;font-size:.95rem;margin:0 0 8px;
+  }
+  .phase h3 .ph-num{
+    flex:0 0 auto;width:24px;height:24px;border-radius:50%;
+    background:var(--ink);color:#fff;font-size:.78rem;font-weight:800;
+    display:grid;place-items:center;
+  }
+  .phrase{
+    display:block;background:var(--paper);border-left:3px solid var(--line);
+    padding:9px 13px;border-radius:0 8px 8px 0;margin-bottom:6px;font-size:.95rem;
+  }
+  .bausteine[data-active="aa"] .phrase{border-left-color:var(--aa)}
+  .bausteine[data-active="kunde"] .phrase{border-left-color:var(--kunde)}
+  .phrase .lk{color:var(--ink-soft);font-style:italic}
+
+  footer.foot{text-align:center;color:var(--ink-soft);font-size:.8rem;margin-top:30px}
+  .empty{color:var(--ink-soft);font-style:italic;padding:8px 0}
+
+  /* Modal */
+  .modal-bg{
+    position:fixed;inset:0;background:rgba(27,39,51,.55);
+    display:none;place-items:center;padding:18px;z-index:50;
+  }
+  .modal-bg.open{display:grid}
+  .modal{max-width:420px;width:100%;animation:fade .2s}
+  .modal .rolecard{box-shadow:0 20px 50px rgba(0,0,0,.3)}
+  .modal .closebar{text-align:right;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="dialwheel"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div style="flex:1">
+      <h1>Am Apparat</h1>
+      <p>Telefonische Beratung bei der Agentur für Arbeit · Rollenspiel B1/B2</p>
+    </div>
+    <a href="index.html" style="flex:0 0 auto;text-decoration:none;font-size:.82rem;font-weight:700;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:7px 13px;background:var(--paper);white-space:nowrap">🏠 Index</a>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="konsole">🎛️ Moderationskonsole</button>
+    <button role="tab" aria-selected="false" data-tab="karten">🪪 Rollenkarten</button>
+    <button role="tab" aria-selected="false" data-tab="bausteine">💬 Sprachbausteine</button>
+  </nav>
+
+  <!-- ============ KONSOLE ============ -->
+  <section class="panel active" id="tab-konsole">
+    <div class="card">
+      <h2>Teilnehmende eintragen</h2>
+      <p class="hint">Namen einzeln hinzufügen. Es werden zufällig Paare gebildet – eine Person ist <strong>Agentur für Arbeit</strong>, eine ist <strong>Kund:in</strong> mit Rollenkarte.</p>
+      <div class="addrow">
+        <input id="tnInput" type="text" placeholder="Name der/des Teilnehmenden…" autocomplete="off">
+        <button class="btn btn-primary" id="addBtn">Hinzufügen</button>
+      </div>
+      <ul class="tnlist" id="tnList"></ul>
+      <div class="empty" id="tnEmpty">Noch keine Teilnehmenden eingetragen.</div>
+
+      <div class="controlrow">
+        <div class="mode-toggle" role="group" aria-label="Modus">
+          <button id="mode11" aria-pressed="true">1:1 Paare</button>
+          <button id="modeRot" aria-pressed="false">Rotation</button>
+        </div>
+        <span id="rotControls" style="display:none;align-items:center;gap:6px">
+          <label style="font-size:.88rem;color:var(--ink-soft)">Runden:</label>
+          <input id="roundCount" type="number" min="1" max="8" value="3"
+                 style="width:62px;padding:8px;border:1px solid var(--line);border-radius:8px;font-size:.95rem">
+        </span>
+        <button class="btn btn-dark" id="drawBtn" style="margin-left:auto">🎲 Auslosen</button>
+        <button class="btn btn-ghost" id="clearBtn">Liste leeren</button>
+      </div>
+    </div>
+
+    <div id="pairWrap"></div>
+  </section>
+
+  <!-- ============ ROLLENKARTEN ============ -->
+  <section class="panel" id="tab-karten">
+    <div class="card">
+      <h2>Kunden-Rollenkarten</h2>
+      <p class="hint">Nicht-akademische Berufe & realistische Anliegen. Die Kund:in spielt verdeckt – die Agentur-Seite kennt die Karte nicht vorab.</p>
+      <div class="cardgrid" id="cardGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ SPRACHBAUSTEINE ============ -->
+  <section class="panel" id="tab-bausteine">
+    <div class="card">
+      <h2>Sprachbausteine</h2>
+      <p class="hint">Redemittel für das Telefongespräch – nach Gesprächsphasen geordnet. Seite umschalten.</p>
+      <div class="bausteine-switch" role="group" aria-label="Seite wählen">
+        <button data-side="aa" aria-pressed="true">📞 Agentur für Arbeit</button>
+        <button data-side="kunde" aria-pressed="false">🙋 Kund:in</button>
+      </div>
+      <div class="bausteine" id="bausteineBox" data-active="aa"></div>
+    </div>
+  </section>
+
+  <footer class="foot">Lern Deutsch mit Arash · Telefonberatung Agentur für Arbeit</footer>
+</div>
+
+<!-- Modal für Kartenanzeige aus Paarung -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <div id="modalCard"></div>
+    <div class="closebar"><button class="btn btn-ghost" id="modalClose">Schließen</button></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DATEN: Kunden-Rollenkarten (nicht-akademische Berufe)
+   ============================================================ */
+const ROLES = [
+  {
+    job:"Gelernte Friseurin", name:"Yasmin Khoury",
+    situation:"Der Salon hat geschlossen, sie ist seit zwei Wochen arbeitslos.",
+    anliegen:"Sie möchte Arbeitslosengeld beantragen und weiß nicht, welche Unterlagen sie braucht.",
+    detail:"Sie hat den Kündigungsbrief, aber keine Arbeitsbescheinigung. Sie ist nervös und spricht schnell.",
+    ziel:"Herausfinden: Welche Dokumente? Wie hoch ist das Geld ungefähr? Termin nötig?"
+  },
+  {
+    job:"Lkw-Fahrer", name:"Dragan Petrović",
+    situation:"Seine Firma geht insolvent. Er soll Ende des Monats gehen.",
+    anliegen:"Er fragt, ob er sich schon jetzt arbeitssuchend melden muss, obwohl er noch arbeitet.",
+    detail:"Er ärgert sich über die Situation und wird leicht laut. Er hat einen Termin nur abends frei.",
+    ziel:"Klären: Frist für die Meldung, drohende Sperrzeit vermeiden, Umschulung möglich?"
+  },
+  {
+    job:"Bäckereifachverkäuferin", name:"Renate Möller",
+    situation:"Mit 58 nach 30 Jahren betriebsbedingt gekündigt.",
+    anliegen:"Sie hat Angst, in ihrem Alter keine neue Stelle zu finden.",
+    detail:"Sie ist mit Computern unsicher und bittet, alles langsam zu erklären. Sie weint fast.",
+    ziel:"Beruhigen, nächste Schritte erklären, Vermittlung & Weiterbildung 50+ ansprechen."
+  },
+  {
+    job:"Maler & Lackierer", name:"Tomasz Nowak",
+    situation:"Saisonbedingt im Winter ohne Arbeit.",
+    anliegen:"Er will wissen, ob er Geld bekommt, bis die Saison wieder startet.",
+    detail:"Sein Deutsch ist einfach, er fragt oft nach. Höflich, aber ungeduldig.",
+    ziel:"Saisonale Arbeitslosigkeit erklären, Anspruch prüfen, Wiedereinstellung dokumentieren."
+  },
+  {
+    job:"Pflegehelferin", name:"Grace Adeyemi",
+    situation:"Befristeter Vertrag läuft in vier Wochen aus.",
+    anliegen:"Sie möchte eine Weiterbildung zur examinierten Pflegefachkraft machen.",
+    detail:"Sehr motiviert, stellt viele Fragen zur Finanzierung. Notiert alles mit.",
+    ziel:"Bildungsgutschein erklären, Voraussetzungen, Beratungstermin vereinbaren."
+  },
+  {
+    job:"Kfz-Mechatroniker", name:"Ali Demir",
+    situation:"Wegen Rückenproblemen kann er den Beruf nicht mehr ausüben.",
+    anliegen:"Er fragt nach einer Umschulung in einen körperlich leichteren Beruf.",
+    detail:"Etwas resigniert, glaubt nicht recht an seine Chancen. Braucht Ermutigung.",
+    ziel:"Reha/Umschulung thematisieren, ärztliches Attest, Beratungsangebot machen."
+  },
+  {
+    job:"Köchin", name:"Marta Silva",
+    situation:"Sie ist aus Portugal zugezogen, sucht erstmals in Deutschland Arbeit.",
+    anliegen:"Sie will sich als arbeitssuchend melden und ihren Lebenslauf anerkennen lassen.",
+    detail:"Spricht B1, manchmal fehlt das Wort. Freundlich und geduldig.",
+    ziel:"Registrierung erklären, Anerkennung Berufsabschluss, Stellenangebote Gastronomie."
+  },
+  {
+    job:"Lagerist", name:"Kevin Schulz",
+    situation:"In der Probezeit gekündigt worden.",
+    anliegen:"Er weiß nicht, ob ihm eine Sperrzeit droht.",
+    detail:"Locker, fast zu lässig. Nimmt es zunächst nicht ernst.",
+    ziel:"Sperrzeit-Regeln erklären, sofortige Meldung, neue Bewerbungen anstoßen."
+  },
+  {
+    job:"Erzieherin (Berufsfachschule)", name:"Aylin Yıldız",
+    situation:"Sie kehrt nach drei Jahren Elternzeit zurück.",
+    anliegen:"Sie sucht eine Teilzeitstelle und fragt nach Kinderbetreuung.",
+    detail:"Organisiert, aber zeitlich knapp. Fragt konkret nach Öffnungszeiten der Beratung.",
+    ziel:"Teilzeit-Vermittlung, Vereinbarkeit Familie/Beruf, passende Angebote."
+  },
+  {
+    job:"Elektroniker", name:"Hassan Karimi",
+    situation:"Sein ausländischer Abschluss ist noch nicht anerkannt.",
+    anliegen:"Er möchte wissen, wie er als Fachkraft arbeiten darf.",
+    detail:"Höflich und genau, möchte schriftliche Infos per Post. Gut vorbereitet.",
+    ziel:"Anerkennungsverfahren erklären, Beratungsstelle nennen, Brückenmaßnahme."
+  },
+  {
+    job:"Hotelfachfrau", name:"Beata Kowalczyk",
+    situation:"Nach der Pandemie wurde ihre Stelle gestrichen.",
+    anliegen:"Sie überlegt, die Branche zu wechseln, und braucht Orientierung.",
+    detail:"Unsicher, was sie will. Schwankt zwischen mehreren Ideen.",
+    ziel:"Berufliche Neuorientierung, Kompetenzen klären, Beratungstermin anbieten."
+  },
+  {
+    job:"Dachdecker", name:"Stefan Wagner",
+    situation:"Nach einem Arbeitsunfall sechs Monate krank, jetzt wieder fit.",
+    anliegen:"Er will zurück in den Job, sein alter Betrieb hat aber niemanden mehr frei.",
+    detail:"Stolz, will keine Almosen, nur eine faire Chance. Spricht knapp.",
+    ziel:"Vermittlung im Handwerk, Wiedereingliederung, evtl. Mobilitätshilfe."
+  },
+
+  /* ----- Junge Menschen / Azubis ----- */
+  {
+    job:"Schulabgänger (Realschule)", name:"Luca Brinkmann (17)",
+    situation:"Er hat gerade den Realschulabschluss gemacht und noch keinen Ausbildungsplatz.",
+    anliegen:"Er weiß nicht, welcher Beruf zu ihm passt, und braucht Orientierung.",
+    detail:"Schüchtern, antwortet kurz, sagt oft „keine Ahnung“. Braucht offene Fragen.",
+    ziel:"Berufsberatung anbieten, Stärken/Interessen klären, Termin im BIZ vereinbaren."
+  },
+  {
+    job:"Azubi Einzelhandel (1. Lehrjahr)", name:"Sophie Lange (18)",
+    situation:"Sie hat die Ausbildung nach drei Monaten abgebrochen, weil das Team schwierig war.",
+    anliegen:"Sie möchte einen neuen Ausbildungsplatz, hat aber Angst, dass das schlecht aussieht.",
+    detail:"Unsicher und etwas verlegen, redet leise. Braucht Ermutigung.",
+    ziel:"Ausbildungsvermittlung, Abbruch sachlich einordnen, neue Betriebe ansprechen."
+  },
+  {
+    job:"Azubi Anlagenmechaniker (2. Lehrjahr)", name:"Emre Aslan (19)",
+    situation:"Sein Ausbildungsbetrieb hat Insolvenz angemeldet.",
+    anliegen:"Er will wissen, ob er die Ausbildung woanders zu Ende machen kann.",
+    detail:"Sachlich, aber nervös wegen der Prüfung. Stellt konkrete Fragen.",
+    ziel:"Fortsetzung der Ausbildung klären, Kammer einbeziehen, schnelle Vermittlung."
+  },
+  {
+    job:"Schulabgängerin ohne Abschluss", name:"Jacqueline Voss (16)",
+    situation:"Sie hat die Schule ohne Abschluss verlassen.",
+    anliegen:"Sie fragt, ob sie trotzdem eine Ausbildung anfangen kann.",
+    detail:"Wirkt abweisend, traut sich wenig zu. Reagiert positiv auf Wertschätzung.",
+    ziel:"Berufsvorbereitung (BvB) erklären, Mut machen, niedrigschwelliges Angebot."
+  },
+  {
+    job:"FSJ-Absolvent", name:"Niklas Henning (19)",
+    situation:"Er hat ein Freiwilliges Soziales Jahr im Krankenhaus beendet.",
+    anliegen:"Er überlegt zwischen Ausbildung und Studium und braucht Beratung.",
+    detail:"Aufgeschlossen, redet viel, schweift ab. Muss freundlich fokussiert werden.",
+    ziel:"Optionen strukturieren, Bewerbungsfristen nennen, Beratungstermin anbieten."
+  },
+  {
+    job:"Azubi Friseurin (3. Lehrjahr)", name:"Melike Çetin (20)",
+    situation:"Sie steht kurz vor der Abschlussprüfung, der Betrieb übernimmt sie aber nicht.",
+    anliegen:"Sie möchte sich frühzeitig arbeitssuchend melden.",
+    detail:"Zielstrebig, gut vorbereitet, fragt nach Fristen. Etwas in Eile.",
+    ziel:"Frist zur Arbeitssuchend-Meldung erklären, Sperrzeit vermeiden, Stellen Friseurhandwerk."
+  },
+  {
+    job:"Junger Geflüchteter, sucht Ausbildung", name:"Amir Rahimi (18)",
+    situation:"Er hat einen Integrationskurs (B1) abgeschlossen und möchte eine Lehre beginnen.",
+    anliegen:"Er fragt, welche Ausbildung möglich ist und ob er gefördert wird.",
+    detail:"Sehr motiviert, manchmal fehlen Wörter. Bittet, langsam zu sprechen.",
+    ziel:"Einstiegsqualifizierung (EQ) erklären, Sprachförderung, passende Betriebe."
+  },
+  {
+    job:"Abiturient, Studienabbrecher", name:"Finn Petersen (21)",
+    situation:"Er hat das Studium nach zwei Semestern abgebrochen.",
+    anliegen:"Er sucht jetzt eine duale Ausbildung statt Uni.",
+    detail:"Reflektiert, aber etwas frustriert über sich selbst. Höflich.",
+    ziel:"Umstieg Studium→Ausbildung begleiten, Stärken nutzen, Betriebe vorschlagen."
+  }
+];
+
+/* ============================================================
+   DATEN: Sprachbausteine
+   ============================================================ */
+const BAUSTEINE = {
+  aa:[
+    {phase:"Begrüßung & Meldung", items:[
+      "Agentur für Arbeit Kiel, mein Name ist …, was kann ich für Sie tun?",
+      "Guten Tag, Sie sprechen mit … von der Agentur für Arbeit.",
+      "Schön, dass Sie anrufen. Worum geht es denn?"
+    ]},
+    {phase:"Anliegen klären", items:[
+      "Habe ich Sie richtig verstanden, dass …?",
+      "Können Sie mir das bitte etwas genauer beschreiben?",
+      "Seit wann sind Sie denn ohne Beschäftigung?",
+      "Darf ich kurz Ihre Daten aufnehmen?"
+    ]},
+    {phase:"Informieren & Erklären", items:[
+      "Dafür brauchen wir folgende Unterlagen: …",
+      "Grundsätzlich haben Sie Anspruch auf …, wenn …",
+      "Ich erkläre Ihnen das gern Schritt für Schritt.",
+      "Das lässt sich am besten in einem persönlichen Termin klären."
+    ]},
+    {phase:"Nachfragen & Rückversichern", items:[
+      "Ist das soweit verständlich für Sie?",
+      "Haben Sie dazu noch Fragen?",
+      "Soll ich das gern noch einmal langsamer wiederholen?"
+    ]},
+    {phase:"Termin & Abschluss", items:[
+      "Ich schlage Ihnen einen Termin am … vor. Passt das?",
+      "Ich schicke Ihnen die Informationen schriftlich zu.",
+      "Vielen Dank für Ihren Anruf. Auf Wiederhören!"
+    ]}
+  ],
+  kunde:[
+    {phase:"Anliegen vorbringen", items:[
+      "Guten Tag, ich rufe an, weil …",
+      "Mein Problem ist Folgendes: …",
+      "Ich bräuchte eine Information zu …",
+      "Ich weiß nicht genau, an wen ich mich wenden muss."
+    ]},
+    {phase:"Situation schildern", items:[
+      "Ich bin seit … arbeitslos / mir wurde gekündigt.",
+      "Ich arbeite als … und …",
+      "Mir ist nicht klar, ob ich Anspruch auf … habe."
+    ]},
+    {phase:"Nachfragen", items:[
+      "Entschuldigung, das habe ich nicht ganz verstanden.",
+      "Könnten Sie das bitte noch einmal wiederholen?",
+      "Was bedeutet das genau?",
+      "Welche Unterlagen brauche ich dafür?"
+    ]},
+    {phase:"Gefühle / Reaktion", items:[
+      "Ehrlich gesagt mache ich mir große Sorgen.",
+      "Das beruhigt mich, danke.",
+      "Das ärgert mich wirklich.",
+      "Können Sie mir da weiterhelfen?"
+    ]},
+    {phase:"Abschluss", items:[
+      "Wann hätten Sie denn einen Termin frei?",
+      "Können Sie mir das bitte schriftlich schicken?",
+      "Vielen Dank für Ihre Hilfe. Auf Wiederhören!"
+    ]}
+  ]
+};
+
+/* ============================================================
+   STATE & HELPERS
+   ============================================================ */
+let tns = [];
+let mode = "11"; // "11" | "rot"
+
+const $ = s => document.querySelector(s);
+const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+const esc = s => s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- Tabs ---------- */
+document.querySelectorAll('nav.tabs button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('nav.tabs button').forEach(b=>b.setAttribute('aria-selected','false'));
+    btn.setAttribute('aria-selected','true');
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    $('#tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* ---------- TN-Liste ---------- */
+function renderTns(){
+  const ul=$('#tnList'); ul.innerHTML='';
+  tns.forEach((n,i)=>{
+    const li=document.createElement('li');
+    li.innerHTML=`${esc(n)} <button aria-label="entfernen" data-i="${i}">×</button>`;
+    ul.appendChild(li);
+  });
+  $('#tnEmpty').style.display = tns.length? 'none':'block';
+  if(tns.length){
+    let badge=$('#tnEmpty');
+  }
+  $('#drawBtn').disabled = tns.length<2;
+}
+function addTn(){
+  const inp=$('#tnInput'); const v=inp.value.trim();
+  if(!v) return;
+  // split on commas to allow batch entry
+  v.split(',').map(x=>x.trim()).filter(Boolean).forEach(name=>tns.push(name));
+  inp.value=''; inp.focus(); renderTns();
+}
+$('#addBtn').addEventListener('click',addTn);
+$('#tnInput').addEventListener('keydown',e=>{ if(e.key==='Enter') addTn(); });
+$('#tnList').addEventListener('click',e=>{
+  if(e.target.tagName==='BUTTON'){ tns.splice(+e.target.dataset.i,1); renderTns(); }
+});
+$('#clearBtn').addEventListener('click',()=>{ tns=[]; $('#pairWrap').innerHTML=''; renderTns(); });
+
+/* ---------- Modus ---------- */
+$('#mode11').addEventListener('click',()=>setMode('11'));
+$('#modeRot').addEventListener('click',()=>setMode('rot'));
+function setMode(m){
+  mode=m;
+  $('#mode11').setAttribute('aria-pressed', m==='11');
+  $('#modeRot').setAttribute('aria-pressed', m==='rot');
+  $('#rotControls').style.display = m==='rot'? 'inline-flex':'none';
+}
+
+/* ---------- Auslosen ---------- */
+$('#drawBtn').addEventListener('click',()=>{
+  if(tns.length<2) return;
+  mode==='11' ? drawSingle() : drawRotation();
+});
+
+function makeSeatPair(aaName, kundeName, role){
+  return `
+    <div class="pair-body">
+      <div class="seat aa">
+        <span class="role">📞 Agentur für Arbeit</span>
+        <div class="name">${esc(aaName)}</div>
+        <div class="sub">berät · stellt Fragen · informiert</div>
+      </div>
+      <div class="seat kunde">
+        <span class="role">🙋 Kund:in</span>
+        <div class="name">${esc(kundeName)}</div>
+        <div class="sub">${esc(role.job)} · „${esc(role.name)}“</div>
+        <button class="show-card" data-role='${encodeURIComponent(JSON.stringify(role))}'>🪪 Rollenkarte anzeigen</button>
+      </div>
+    </div>`;
+}
+
+function drawSingle(){
+  const people=shuffle(tns);
+  const roles=shuffle(ROLES);
+  let html=''; let pairNo=0; let leftover=null;
+  for(let i=0;i+1<people.length;i+=2){
+    const role=roles[pairNo % roles.length];
+    pairNo++;
+    html+=`<div class="pair">
+      <div class="pair-head"><span>Gespräch ${pairNo}</span><span class="round-no">PAAR</span></div>
+      ${makeSeatPair(people[i],people[i+1],role)}
+    </div>`;
+  }
+  if(people.length%2===1){ leftover=people[people.length-1]; }
+  let out=`<div class="card"><h2>Ausgeloste Gespräche</h2><div class="pairings">${html}</div>`;
+  if(leftover) out+=`<div class="sit-out" style="margin-top:14px">⏳ Ungerade Zahl: <strong>${esc(leftover)}</strong> übernimmt diese Runde die Beobachtung (Feedback geben) oder bildet ein Dreierteam.</div>`;
+  out+='</div>';
+  $('#pairWrap').innerHTML=out;
+  $('#pairWrap').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function drawRotation(){
+  const rounds=Math.max(1,Math.min(8, parseInt($('#roundCount').value)||3));
+  let allHtml='';
+  for(let r=1;r<=rounds;r++){
+    const people=shuffle(tns);
+    const roles=shuffle(ROLES);
+    let html=''; let pairNo=0; let leftover=null;
+    for(let i=0;i+1<people.length;i+=2){
+      const role=roles[pairNo % roles.length]; pairNo++;
+      html+=`<div class="pair">
+        <div class="pair-head"><span>Gespräch ${pairNo}</span><span class="round-no">Runde ${r}</span></div>
+        ${makeSeatPair(people[i],people[i+1],role)}
+      </div>`;
+    }
+    if(people.length%2===1) leftover=people[people.length-1];
+    allHtml+=`<div class="card"><h2>Runde ${r}</h2><div class="pairings">${html}</div>`;
+    if(leftover) allHtml+=`<div class="sit-out" style="margin-top:14px">⏳ <strong>${esc(leftover)}</strong> beobachtet diese Runde und gibt anschließend Feedback.</div>`;
+    allHtml+='</div>';
+  }
+  $('#pairWrap').innerHTML=allHtml;
+  $('#pairWrap').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+/* ---------- Rollenkarte Modal ---------- */
+function cardHTML(role){
+  return `<div class="rolecard">
+    <div class="rc-top"><div class="job">${esc(role.job)}</div><div class="nm">${esc(role.name)}</div></div>
+    <div class="rc-body"><dl>
+      <dt>Situation</dt><dd>${esc(role.situation)}</dd>
+      <dt>Anliegen</dt><dd>${esc(role.anliegen)}</dd>
+      <dt>Spielhinweis</dt><dd>${esc(role.detail)}</dd>
+      <dt>Gesprächsziel</dt><dd>${esc(role.ziel)}</dd>
+    </dl></div></div>`;
+}
+$('#pairWrap').addEventListener('click',e=>{
+  const b=e.target.closest('.show-card');
+  if(!b) return;
+  const role=JSON.parse(decodeURIComponent(b.dataset.role));
+  $('#modalCard').innerHTML=cardHTML(role);
+  $('#modalBg').classList.add('open');
+});
+$('#modalClose').addEventListener('click',()=>$('#modalBg').classList.remove('open'));
+$('#modalBg').addEventListener('click',e=>{ if(e.target===$('#modalBg')) $('#modalBg').classList.remove('open'); });
+
+/* ---------- Rollenkarten-Galerie ---------- */
+function renderCards(){
+  $('#cardGrid').innerHTML = ROLES.map(cardHTML).join('');
+}
+
+/* ---------- Sprachbausteine ---------- */
+function renderBausteine(side){
+  const box=$('#bausteineBox'); box.dataset.active=side;
+  box.innerHTML = BAUSTEINE[side].map((p,i)=>`
+    <div class="phase">
+      <h3><span class="ph-num">${i+1}</span>${esc(p.phase)}</h3>
+      ${p.items.map(t=>`<span class="phrase">${esc(t)}</span>`).join('')}
+    </div>`).join('');
+}
+document.querySelectorAll('.bausteine-switch button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.bausteine-switch button').forEach(x=>x.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true');
+    renderBausteine(b.dataset.side);
+  });
+});
+
+/* ---------- Init ---------- */
+renderTns(); renderCards(); renderBausteine('aa');
+</script>
+</body>
+</html>

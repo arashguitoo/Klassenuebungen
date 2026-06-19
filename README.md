@@ -9,12 +9,17 @@ mit Filter nach Thema und Niveau.
 /  (Repo-Root)
 ├─ index.html                      ← Startseite (Spiele-Übersicht)
 ├─ situation-01-buerobedarf.html   ← Spiel: Bürobedarf bestellen
-└─ aa-telefon.html                 ← Spiel: Am Apparat (Agentur für Arbeit)
+├─ aa-telefon.html                 ← Spiel: Am Apparat (Agentur für Arbeit)
+└─ bewerbungsspiel.html            ← Spiel: Bewerbungsspiel (Mehrspieler/online)
 ```
 
 Jedes Spiel ist eine eigenständige HTML-Datei (kein Build, kein Server, keine
 Unterordner nötig). Goatcounter-Analytics ist überall eingebunden
 (aguitoo.goatcounter.com).
+
+Hinweis: Das **Bewerbungsspiel** nutzt Firebase für den Mehrspieler-Modus
+(Beitritt per Game-Code, Echtzeit-Sync) und benötigt daher eine Internetverbindung.
+Die anderen Spiele laufen vollständig lokal.
 
 ## Auf GitHub Pages veröffentlichen
 
@@ -37,7 +42,7 @@ Unterordner nötig). Goatcounter-Analytics ist überall eingebunden
   players:"Paare",             // z.B. Paare, Teams, Gruppe
   emoji:"🎲",
   color1:"#0d7268", color2:"#0a564f",  // Banner-Verlauf
-  added:"2026-06-10"           // neueste Spiele stehen oben
+  added:"2026-06-19"           // neueste Spiele stehen oben
 }
 ```
 
@@ -50,3 +55,4 @@ Unterordner nötig). Goatcounter-Analytics ist überall eingebunden
 |---|---|---|---|
 | Am Apparat (Agentur für Arbeit) | Beruf & Bewerbung | B1/B2 | Paare / Rotation |
 | Bürobedarf bestellen | Beruf & Bewerbung | B1/B2 | Teams |
+| Bewerbungsspiel | Beruf & Bewerbung | B1 | Gruppe (online) |

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bewerbungsspiel – Lern Deutsch mit Arash</title>
+<style>
+  :root{
+    --bg:#0f1724; --card:#1b2538; --card2:#243149; --accent:#4f9cf9;
+    --accent2:#27c498; --warn:#f0a93b; --danger:#ef5b6e; --text:#eef3fb;
+    --muted:#9fb0cb; --line:#33415c; --firma:#3b82f6; --bewerber:#27c498;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.5;-webkit-text-size-adjust:100%}
+  header{background:linear-gradient(135deg,#1b2538,#0f1724);padding:16px 20px;
+    border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+  header h1{margin:0;font-size:18px}
+  header .sub{color:var(--muted);font-size:12px;margin-top:2px}
+  .wrap{max-width:1100px;margin:0 auto;padding:18px}
+  .hidden{display:none!important}
+  button{font:inherit;cursor:pointer;border:none;border-radius:10px;padding:11px 16px;
+    background:var(--accent);color:#04122a;font-weight:600;transition:.15s;min-height:44px}
+  button:hover{filter:brightness(1.08)}
+  button:active{transform:translateY(1px)}
+  button.secondary{background:var(--card2);color:var(--text);border:1px solid var(--line)}
+  button.green{background:var(--accent2);color:#04231a}
+  button.warn{background:var(--warn);color:#2a1a00}
+  button.danger{background:var(--danger);color:#2a0008}
+  button.small{padding:7px 11px;font-size:13px;min-height:auto;border-radius:8px}
+  input,select,textarea{font:inherit;background:var(--card2);color:var(--text);
+    border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%;min-height:44px}
+  label{font-size:13px;color:var(--muted);display:block;margin:10px 0 4px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:18px;margin-bottom:16px}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+  .pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600}
+  .pill.firma{background:#16315e;color:#9cc4ff}
+  .pill.bewerber{background:#11342a;color:#83e9c8}
+  .pill.frei{background:#3a2a16;color:#f0c98a}
+  .tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+  .tab{background:var(--card2);border:1px solid var(--line);padding:9px 14px;border-radius:10px;font-weight:600;color:var(--muted)}
+  .tab.active{background:var(--accent);color:#04122a}
+  .muted{color:var(--muted)}
+  .big{font-size:15px}
+  .center{text-align:center}
+  .stat{font-size:28px;font-weight:700}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:9px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:12px}
+  .code-big{font-size:42px;font-weight:800;letter-spacing:6px;color:var(--accent);text-align:center;margin:10px 0}
+  .rollcard{background:linear-gradient(160deg,var(--card2),var(--card));border-radius:18px;
+    padding:22px;border:1px solid var(--line);max-width:520px;margin:0 auto}
+  .rollcard h2{margin:0 0 4px}
+  .rollcard .field{margin:12px 0}
+  .rollcard .field .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .rollcard .field .v{font-size:16px}
+  .badge-firma{border-top:6px solid var(--firma)}
+  .badge-bewerber{border-top:6px solid var(--bewerber)}
+  .toolbar{position:fixed;bottom:0;left:0;right:0;background:#121b2c;border-top:1px solid var(--line);
+    padding:10px;display:flex;gap:8px;justify-content:center;z-index:40}
+  .notice{background:#1a2942;border:1px solid var(--accent);border-radius:10px;padding:10px 12px;font-size:13px}
+  .err{background:#3a1820;border-color:var(--danger);color:#ffc4cd}
+  .ok{background:#13301f;border-color:var(--accent2);color:#9ff0cf}
+  a{color:var(--accent)}
+  .listitem{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:8px}
+  .flex-between{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+  @media(max-width:640px){.wrap{padding:12px}.code-big{font-size:34px}}
+</style>
+</head>
+<body>
+<header style="position:relative">
+  <h1>🎯 Bewerbungsspiel</h1>
+  <div class="sub">Lern Deutsch mit Arash · Niveau B1 · Firmen &amp; Bewerber:innen finden zusammen</div>
+  <a href="index.html" style="position:absolute;top:14px;right:16px;text-decoration:none;font-size:.8rem;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:6px 12px;background:rgba(255,255,255,.12);white-space:nowrap">🏠 Index</a>
+</header>
+
+<!-- ========== START / ROLLENAUSWAHL ========== -->
+<div id="screen-home" class="wrap">
+  <div class="card center">
+    <h2>Willkommen!</h2>
+    <p class="muted">Wähle, wie du teilnehmen möchtest.</p>
+    <div class="row" style="justify-content:center;margin-top:10px">
+      <button onclick="showJoin()">📱 Ich bin Teilnehmer:in</button>
+      <button class="secondary" onclick="showConsoleLogin()">🖥️ Moderationskonsole</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TEILNEHMER: BEITRETEN ========== -->
+<div id="screen-join" class="wrap hidden">
+  <div class="card">
+    <h2>📱 Spiel beitreten</h2>
+    <label>Spiel-Code (vom Moderator)</label>
+    <input id="join-code" maxlength="5" placeholder="z. B. 4827" style="text-transform:uppercase">
+    <label>Dein Name</label>
+    <input id="join-name" placeholder="Vorname genügt">
+    <div class="row" style="margin-top:14px">
+      <button class="green" onclick="joinGame()">Beitreten</button>
+      <button class="secondary" onclick="goHome()">Zurück</button>
+    </div>
+    <div id="join-msg" style="margin-top:12px"></div>
+  </div>
+</div>
+
+<!-- ========== TEILNEHMER: WARTEN / ROLLENKARTE ========== -->
+<div id="screen-player" class="wrap hidden">
+  <div id="player-waiting" class="card center">
+    <h2>Hallo <span id="pl-name"></span>! 👋</h2>
+    <p class="muted">Du bist im Spiel. Warte, bis der Moderator die Rollen verteilt …</p>
+    <div class="notice" style="margin-top:10px">Lege dein Handy noch nicht weg – gleich bekommst du deine Rollenkarte.</div>
+  </div>
+  <div id="player-card" class="hidden"></div>
+</div>
+
+<!-- ========== KONSOLE: LOGIN ========== -->
+<div id="screen-console-login" class="wrap hidden">
+  <div class="card">
+    <h2>🖥️ Moderationskonsole</h2>
+    <p class="muted">Erstelle ein neues Spiel oder öffne ein bestehendes mit dem Code.</p>
+    <div class="row">
+      <button class="green" onclick="createGame()">➕ Neues Spiel erstellen</button>
+    </div>
+    <label style="margin-top:16px">Bestehendes Spiel öffnen</label>
+    <div class="row">
+      <input id="console-code" maxlength="5" placeholder="Code" style="text-transform:uppercase;max-width:160px">
+      <button class="secondary" onclick="openGame()">Öffnen</button>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <button class="secondary" onclick="goHome()">Zurück</button>
+    </div>
+    <div id="console-login-msg" style="margin-top:12px"></div>
+  </div>
+</div>
+
+<!-- ========== KONSOLE: HAUPT ========== -->
+<div id="screen-console" class="wrap hidden" style="padding-bottom:90px">
+  <div class="card">
+    <div class="flex-between">
+      <div>
+        <div class="muted">Spiel-Code – an die Teilnehmer:innen geben:</div>
+        <div class="code-big" id="cs-code">----</div>
+      </div>
+      <div class="center">
+        <div class="stat" id="cs-count">0</div>
+        <div class="muted">Teilnehmer:innen</div>
+      </div>
+    </div>
+    <div class="notice">Beitreten unter: <b id="cs-url"></b> → „Teilnehmer:in" → Code <b id="cs-code2"></b></div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="tn" onclick="switchTab('tn')">👥 Teilnehmer</div>
+    <div class="tab" data-tab="verteilen" onclick="switchTab('verteilen')">🎲 Rollen verteilen</div>
+    <div class="tab" data-tab="uebersicht" onclick="switchTab('uebersicht')">📋 Übersicht</div>
+    <div class="tab" data-tab="matching" onclick="switchTab('matching')">🤝 Matching</div>
+    <div class="tab" data-tab="profile" onclick="switchTab('profile')">🗂️ Profile</div>
+  </div>
+
+  <!-- TAB: Teilnehmer -->
+  <div id="tab-tn">
+    <div class="card">
+      <h3>Teilnehmer:innen manuell hinzufügen</h3>
+      <p class="muted">TN können selbst per Code beitreten – oder du trägst sie hier ein.</p>
+      <div class="row">
+        <input id="add-tn-name" placeholder="Name" style="max-width:240px" onkeydown="if(event.key==='Enter')addTnManual()">
+        <button class="green" onclick="addTnManual()">+ Hinzufügen</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="flex-between"><h3>Liste (<span id="tn-list-count">0</span>)</h3>
+        <button class="danger small" onclick="clearAllTn()">Alle entfernen</button></div>
+      <div id="tn-list"></div>
+    </div>
+  </div>
+
+  <!-- TAB: Verteilen -->
+  <div id="tab-verteilen" class="hidden">
+    <div class="card">
+      <h3>🎲 Rollen automatisch verteilen</h3>
+      <p class="muted">Verteilt zufällig gemischte Firmen- und Bewerberrollen an alle Teilnehmer:innen.</p>
+      <label>Verhältnis Firmen : Bewerber</label>
+      <select id="ratio">
+        <option value="half">Ungefähr 50/50</option>
+        <option value="morebew">Mehr Bewerber:innen (mehr Konkurrenz)</option>
+        <option value="morefirma">Mehr Firmen (mehr Auswahl)</option>
+      </select>
+      <div class="row" style="margin-top:14px">
+        <button class="green" onclick="autoAssign()">🎲 Jetzt zufällig verteilen</button>
+        <button class="warn" onclick="resetRoles()">↺ Rollen zurücksetzen</button>
+      </div>
+      <div id="assign-msg" style="margin-top:12px"></div>
+    </div>
+    <div class="card">
+      <h3>✋ Manuell zuweisen</h3>
+      <p class="muted">Wähle für eine Person gezielt eine Rolle.</p>
+      <div id="manual-assign"></div>
+    </div>
+  </div>
+
+  <!-- TAB: Übersicht -->
+  <div id="tab-uebersicht" class="hidden">
+    <div class="card">
+      <div class="flex-between"><h3>Rollenübersicht</h3>
+        <button class="secondary small" onclick="window.print()">🖨️ Drucken</button></div>
+      <table><thead><tr><th>Name</th><th>Rolle</th><th>Profil</th></tr></thead>
+        <tbody id="overview-body"></tbody></table>
+    </div>
+  </div>
+
+  <!-- TAB: Matching -->
+  <div id="tab-matching" class="hidden">
+    <div class="card">
+      <h3>🤝 Matching-Phase</h3>
+      <p class="muted">Nach den Gesprächen: Jede Firma trägt ein, welche:n Bewerber:in sie einstellt. Du kannst die Treffer hier sammeln.</p>
+      <div class="row">
+        <button class="green" onclick="openMatching()">▶️ Matching für TN freischalten</button>
+        <button class="warn" onclick="closeMatching()">⏸️ Schließen</button>
+      </div>
+      <div id="matching-status" style="margin-top:10px"></div>
+    </div>
+    <div class="card">
+      <h3>Ergebnisse</h3>
+      <div id="matching-results"></div>
+    </div>
+  </div>
+
+  <!-- TAB: Profile -->
+  <div id="tab-profile" class="hidden">
+    <div class="card">
+      <h3>🏢 Firmenprofile (15)</h3>
+      <div class="grid" id="firma-grid"></div>
+    </div>
+    <div class="card">
+      <h3>🧑 Lebensläufe (15)</h3>
+      <div class="grid" id="bewerber-grid"></div>
+    </div>
+  </div>
+</div>
+
+<div id="console-toolbar" class="toolbar hidden">
+  <button class="secondary small" onclick="goHome()">🚪 Verlassen</button>
+  <span class="muted" style="align-self:center;font-size:13px">Live verbunden · Code <b id="tb-code"></b></span>
+</div>
+
+<!-- ===== Firebase ===== -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>
+/* ============================================================
+   FIREBASE KONFIGURATION  – >>> HIER DEINE DATEN EINTRAGEN <<<
+   ============================================================ */
+const firebaseConfig = {
+  apiKey: "AIzaSyBDChXlm34Kr7Gg0Dw458GiiwoLnWJAnxM",
+  authDomain: "lern-deutsch-arash.firebaseapp.com",
+  databaseURL: "https://lern-deutsch-arash-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "lern-deutsch-arash",
+  storageBucket: "lern-deutsch-arash.firebasestorage.app",
+  messagingSenderId: "845503292114",
+  appId: "1:845503292114:web:f76ab5fcde1e978d00c30b"
+};
+let db=null, fbReady=false;
+try{ firebase.initializeApp(firebaseConfig); db=firebase.database(); fbReady=true; }
+catch(e){ console.warn("Firebase nicht konfiguriert:",e); }
+
+/* ============================================================
+   PROFILDATEN (B1)
+   ============================================================ */
+const FIRMEN = [
+  {id:"f1",name:"Bäckerei Sonnenschein",branche:"Lebensmittel / Handwerk",stelle:"Verkäufer:in (Teilzeit)",ort:"Kiel",sucht:"freundlich, früh aufstehen, Erfahrung mit Kasse",bietet:"30 Std./Woche, Wochenende frei, nettes Team",gehalt:"2.100 € brutto",frage:"Können Sie morgens um 6 Uhr anfangen?"},
+  {id:"f2",name:"TechnoFix GmbH",branche:"IT / Technik",stelle:"IT-Support",ort:"Hamburg",sucht:"Computerkenntnisse, Geduld, gutes Deutsch",bietet:"Homeoffice möglich, Weiterbildung, 40 Std.",gehalt:"3.200 € brutto",frage:"Wie helfen Sie einem Kunden, der wütend ist?"},
+  {id:"f3",name:"Café Mokka",branche:"Gastronomie",stelle:"Barista",ort:"Lübeck",sucht:"freundlich, flexibel, Teamgeist",bietet:"Trinkgeld, kostenloser Kaffee, junges Team",gehalt:"2.000 € + Trinkgeld",frage:"Arbeiten Sie gern mit vielen Menschen?"},
+  {id:"f4",name:"GrünBau AG",branche:"Bau / Garten",stelle:"Gärtner:in",ort:"Plön",sucht:"körperlich fit, draußen arbeiten, Pünktlichkeit",bietet:"frische Luft, festes Team, Firmenwagen",gehalt:"2.600 € brutto",frage:"Macht Ihnen Arbeit bei Regen etwas aus?"},
+  {id:"f5",name:"Pflegehaus Lindenhof",branche:"Pflege / Soziales",stelle:"Pflegehelfer:in",ort:"Kiel",sucht:"Empathie, Schichtarbeit, Verantwortung",bietet:"sicherer Job, Zuschläge, Fortbildung",gehalt:"2.800 € brutto",frage:"Warum möchten Sie mit älteren Menschen arbeiten?"},
+  {id:"f6",name:"Modehaus Klein",branche:"Einzelhandel",stelle:"Verkaufsberater:in",ort:"Hamburg",sucht:"Stilgefühl, kommunikativ, Beratung",bietet:"Personalrabatt, Provision, Innenstadt",gehalt:"2.300 € brutto",frage:"Wie beraten Sie eine unentschlossene Kundin?"},
+  {id:"f7",name:"Logistik Nord",branche:"Logistik",stelle:"Lagermitarbeiter:in",ort:"Neumünster",sucht:"Zuverlässigkeit, Stapler-Schein von Vorteil",bietet:"Schichtzulage, unbefristet, Kantine",gehalt:"2.500 € brutto",frage:"Haben Sie schon einmal im Lager gearbeitet?"},
+  {id:"f8",name:"Kita Regenbogen",branche:"Bildung / Soziales",stelle:"Erzieher:in",ort:"Preetz",sucht:"Geduld, Kreativität, Liebe zu Kindern",bietet:"familiäres Team, 30 Tage Urlaub",gehalt:"3.000 € brutto",frage:"Welches Spiel würden Sie mit Kindern machen?"},
+  {id:"f9",name:"AutoService Meyer",branche:"Handwerk / Kfz",stelle:"Kfz-Mechaniker:in",ort:"Rendsburg",sucht:"Technikinteresse, Ausbildung, Genauigkeit",bietet:"moderne Werkstatt, Überstunden bezahlt",gehalt:"2.900 € brutto",frage:"Welche Reparatur fällt Ihnen leicht?"},
+  {id:"f10",name:"Hotel Seeblick",branche:"Hotel / Tourismus",stelle:"Rezeptionist:in",ort:"Eckernförde",sucht:"Englisch, freundlich, organisiert",bietet:"Blick aufs Meer, Trinkgeld, Schichten",gehalt:"2.400 € brutto",frage:"Wie begrüßen Sie einen internationalen Gast?"},
+  {id:"f11",name:"Reinigung Blitzblank",branche:"Dienstleistung",stelle:"Reinigungskraft",ort:"Kiel",sucht:"gründlich, selbstständig, früh oder spät",bietet:"feste Stunden, in der Nähe, freundlicher Chef",gehalt:"1.900 € brutto",frage:"Können Sie auch am frühen Morgen arbeiten?"},
+  {id:"f12",name:"Buchhandlung Lesezeit",branche:"Einzelhandel / Kultur",stelle:"Buchhändler:in",ort:"Lübeck",sucht:"liest gern, berät gut, ruhig",bietet:"ruhige Atmosphäre, Mitarbeiterrabatt",gehalt:"2.200 € brutto",frage:"Welches Buch würden Sie empfehlen?"},
+  {id:"f13",name:"Praxis Dr. Wagner",branche:"Gesundheit",stelle:"Medizinische:r Fachangestellte:r",ort:"Kiel",sucht:"organisiert, freundlich, diskret",bietet:"geregelte Zeiten, kein Wochenende",gehalt:"2.700 € brutto",frage:"Wie beruhigen Sie einen nervösen Patienten?"},
+  {id:"f14",name:"Restaurant Bella Italia",branche:"Gastronomie",stelle:"Kellner:in",ort:"Hamburg",sucht:"schnell, freundlich, abends verfügbar",bietet:"gutes Trinkgeld, Essen inklusive",gehalt:"2.100 € + Trinkgeld",frage:"Was machen Sie, wenn ein Gast sich beschwert?"},
+  {id:"f15",name:"SolarTech Energie",branche:"Energie / Technik",stelle:"Monteur:in für Solaranlagen",ort:"Schleswig",sucht:"keine Höhenangst, handwerklich, Führerschein",bietet:"Zukunftsbranche, gutes Gehalt, Team",gehalt:"3.100 € brutto",frage:"Arbeiten Sie gern auch in der Höhe?"}
+];
+const BEWERBER = [
+  {id:"b1",name:"Amina Hassan",alter:"28",beruf:"Verkäuferin",erfahrung:"3 Jahre im Supermarkt",staerken:"freundlich, schnell, Teamplayer",sprachen:"Arabisch, Deutsch (B1), etwas Englisch",sucht:"Stelle im Verkauf, gern Teilzeit",frage:"Gibt es feste Arbeitszeiten?"},
+  {id:"b2",name:"Tomasz Kowalski",alter:"35",beruf:"Lagerist",erfahrung:"5 Jahre Lager + Stapler-Schein",staerken:"zuverlässig, kräftig, pünktlich",sprachen:"Polnisch, Deutsch (B1)",sucht:"feste Stelle in Logistik oder Lager",frage:"Wird die Schichtarbeit extra bezahlt?"},
+  {id:"b3",name:"Fatima Yilmaz",alter:"24",beruf:"Köchin (Ausbildung)",erfahrung:"Praktikum in einem Café",staerken:"kreativ, lernt schnell, höflich",sprachen:"Türkisch, Deutsch (B1)",sucht:"Job in der Gastronomie",frage:"Bekomme ich auch das Trinkgeld?"},
+  {id:"b4",name:"Ahmed Karimi",alter:"31",beruf:"Elektriker",erfahrung:"6 Jahre, auch auf Baustellen",staerken:"handwerklich, keine Höhenangst, Führerschein",sprachen:"Dari, Deutsch (B1), Englisch",sucht:"technischer Job, gern draußen",frage:"Stellen Sie Arbeitskleidung?"},
+  {id:"b5",name:"Olena Petrenko",alter:"29",beruf:"Krankenschwester",erfahrung:"4 Jahre im Krankenhaus (Ukraine)",staerken:"empathisch, belastbar, verantwortungsvoll",sprachen:"Ukrainisch, Russisch, Deutsch (B1)",sucht:"Stelle in Pflege oder Gesundheit",frage:"Brauche ich eine Anerkennung meines Abschlusses?"},
+  {id:"b6",name:"Carlos Mendes",alter:"26",beruf:"Barista / Kellner",erfahrung:"2 Jahre in einer Bar",staerken:"freundlich, schnell, gut mit Menschen",sprachen:"Portugiesisch, Spanisch, Deutsch (B1)",sucht:"Job im Café oder Restaurant",frage:"Muss ich am Wochenende arbeiten?"},
+  {id:"b7",name:"Nguyen Thi Mai",alter:"33",beruf:"Reinigungskraft",erfahrung:"7 Jahre Erfahrung",staerken:"gründlich, selbstständig, zuverlässig",sprachen:"Vietnamesisch, Deutsch (A2-B1)",sucht:"feste Stelle, gern morgens",frage:"Wie viele Stunden pro Woche sind das?"},
+  {id:"b8",name:"Sara Nowak",alter:"22",beruf:"Studentin (sucht Nebenjob)",erfahrung:"Aushilfe im Einzelhandel",staerken:"kommunikativ, flexibel, motiviert",sprachen:"Polnisch, Deutsch (B1), Englisch (gut)",sucht:"Teilzeit oder Minijob",frage:"Kann ich die Schichten mit der Uni vereinbaren?"},
+  {id:"b9",name:"Mohammed Al-Sayed",alter:"40",beruf:"Kfz-Mechaniker",erfahrung:"15 Jahre eigene Werkstatt",staerken:"erfahren, genau, ruhig",sprachen:"Arabisch, Deutsch (B1)",sucht:"Stelle in einer Werkstatt",frage:"Kann ich mich weiterbilden?"},
+  {id:"b10",name:"Lucia Rossi",alter:"27",beruf:"Hotelfachfrau",erfahrung:"3 Jahre Rezeption",staerken:"organisiert, freundlich, mehrsprachig",sprachen:"Italienisch, Englisch, Deutsch (B1)",sucht:"Job an der Rezeption",frage:"Gibt es Schichtdienst?"},
+  {id:"b11",name:"Daniyar Abenov",alter:"30",beruf:"Gärtner",erfahrung:"4 Jahre im Garten- und Landschaftsbau",staerken:"fit, fleißig, arbeitet gern draußen",sprachen:"Kasachisch, Russisch, Deutsch (B1)",sucht:"Stelle im Garten- oder Baubereich",frage:"Arbeitet man auch im Winter draußen?"},
+  {id:"b12",name:"Grace Okafor",alter:"34",beruf:"Erzieherin",erfahrung:"5 Jahre in einer Kita",staerken:"geduldig, kreativ, herzlich",sprachen:"Englisch, Igbo, Deutsch (B1)",sucht:"Stelle in einer Kita",frage:"Wie groß ist die Gruppe der Kinder?"},
+  {id:"b13",name:"Reza Mohammadi",alter:"25",beruf:"IT-Helfer",erfahrung:"Umschulung + 1 Jahr Praktikum",staerken:"geduldig, technikbegeistert, lernwillig",sprachen:"Persisch, Deutsch (B1), Englisch",sucht:"Einstieg im IT-Support",frage:"Gibt es eine Einarbeitung?"},
+  {id:"b14",name:"Marija Jovanović",alter:"38",beruf:"Verkäuferin / Beraterin",erfahrung:"10 Jahre im Modehandel",staerken:"stilsicher, kommunikativ, freundlich",sprachen:"Serbisch, Deutsch (B1)",sucht:"Stelle in Beratung oder Verkauf",frage:"Gibt es eine Provision?"},
+  {id:"b15",name:"Samuel Tesfaye",alter:"23",beruf:"Helfer (vielseitig)",erfahrung:"Aushilfe in Bäckerei und Lager",staerken:"motiviert, pünktlich, lernt schnell",sprachen:"Amharisch, Deutsch (B1)",sucht:"Einstiegsjob, offen für alles",frage:"Kann ich mich zu einer Fachkraft entwickeln?"}
+];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let gameCode=null, role=null, myId=null, gameRef=null, unsub=null;
+
+/* ---------- Navigation ---------- */
+const S=id=>document.getElementById(id);
+function hideAll(){["screen-home","screen-join","screen-player","screen-console-login","screen-console"]
+  .forEach(s=>S(s).classList.add("hidden")); S("console-toolbar").classList.add("hidden");}
+function goHome(){ if(unsub&&gameRef){gameRef.off();} hideAll(); S("screen-home").classList.remove("hidden");
+  gameCode=null;role=null;myId=null;gameRef=null; }
+function showJoin(){hideAll();S("screen-join").classList.remove("hidden");}
+function showConsoleLogin(){hideAll();S("screen-console-login").classList.remove("hidden");
+  if(!fbReady)setMsg("console-login-msg","⚠️ Firebase ist noch nicht konfiguriert. Trage oben im Code deine firebaseConfig ein.","err");}
+
+function setMsg(id,txt,cls){const e=S(id);e.innerHTML=`<div class="notice ${cls||''}">${txt}</div>`;}
+function rand4(){return String(Math.floor(1000+Math.random()*9000));}
+function uid(){return "u"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+
+/* ============================================================
+   KONSOLE
+   ============================================================ */
+function createGame(){
+  if(!fbReady){setMsg("console-login-msg","⚠️ Firebase fehlt – bitte firebaseConfig eintragen.","err");return;}
+  const code=rand4();
+  const init={code,createdAt:Date.now(),phase:"lobby",matchingOpen:false,players:{},assignments:{}};
+  db.ref("games/"+code).set(init).then(()=>{gameCode=code;enterConsole();})
+    .catch(e=>setMsg("console-login-msg","Fehler: "+e.message,"err"));
+}
+function openGame(){
+  const code=S("console-code").value.trim().toUpperCase();
+  if(!code){setMsg("console-login-msg","Bitte Code eingeben.","err");return;}
+  db.ref("games/"+code).get().then(s=>{
+    if(!s.exists()){setMsg("console-login-msg","Kein Spiel mit diesem Code gefunden.","err");return;}
+    gameCode=code;enterConsole();
+  });
+}
+function enterConsole(){
+  hideAll();S("screen-console").classList.remove("hidden");S("console-toolbar").classList.remove("hidden");
+  S("cs-code").textContent=gameCode;S("cs-code2").textContent=gameCode;S("tb-code").textContent=gameCode;
+  S("cs-url").textContent=location.host+location.pathname;
+  gameRef=db.ref("games/"+gameCode);
+  gameRef.on("value",snap=>{renderConsole(snap.val()||{});});
+  renderProfiles();
+}
+let lastGame={};
+function renderConsole(g){
+  lastGame=g;
+  const players=g.players||{}, assignments=g.assignments||{};
+  const arr=Object.entries(players).map(([id,p])=>({id,...p}));
+  S("cs-count").textContent=arr.length;
+  S("tn-list-count").textContent=arr.length;
+
+  // TN-Liste
+  S("tn-list").innerHTML=arr.length?arr.map(p=>{
+    const a=assignments[p.id];
+    const tag=a?(a.type==="firma"?`<span class="pill firma">🏢 ${a.name}</span>`
+      :`<span class="pill bewerber">🧑 ${a.name}</span>`):`<span class="pill frei">noch keine Rolle</span>`;
+    return `<div class="listitem flex-between"><div><b>${esc(p.name)}</b> ${tag}</div>
+      <button class="danger small" onclick="removeTn('${p.id}')">✕</button></div>`;
+  }).join(""):`<p class="muted">Noch keine Teilnehmer:innen.</p>`;
+
+  // Manuell zuweisen
+  S("manual-assign").innerHTML=arr.length?arr.map(p=>{
+    const a=assignments[p.id];
+    return `<div class="listitem"><div class="flex-between" style="margin-bottom:6px"><b>${esc(p.name)}</b>
+      ${a?`<span class="muted">${a.type==="firma"?"🏢":"🧑"} ${esc(a.name)}</span>`:""}</div>
+      <select onchange="manualAssign('${p.id}',this.value)">
+        <option value="">— Rolle wählen —</option>
+        <optgroup label="🏢 Firmen">${FIRMEN.map(f=>`<option value="firma:${f.id}" ${a&&a.refId===f.id?'selected':''}>${f.name}</option>`).join("")}</optgroup>
+        <optgroup label="🧑 Bewerber:innen">${BEWERBER.map(b=>`<option value="bewerber:${b.id}" ${a&&a.refId===b.id?'selected':''}>${b.name}</option>`).join("")}</optgroup>
+      </select></div>`;
+  }).join(""):`<p class="muted">Noch keine Teilnehmer:innen.</p>`;
+
+  // Übersicht
+  S("overview-body").innerHTML=arr.map(p=>{
+    const a=assignments[p.id];
+    return `<tr><td>${esc(p.name)}</td><td>${a?(a.type==="firma"?"🏢 Firma":"🧑 Bewerber:in"):"—"}</td>
+      <td>${a?esc(a.name):"—"}</td></tr>`;
+  }).join("")||`<tr><td colspan="3" class="muted">Keine Daten.</td></tr>`;
+
+  // Matching
+  S("matching-status").innerHTML=g.matchingOpen
+    ?`<div class="notice ok">✅ Matching ist für Teilnehmer:innen geöffnet.</div>`
+    :`<div class="notice">Matching ist geschlossen.</div>`;
+  renderMatchingResults(g);
+}
+function renderMatchingResults(g){
+  const players=g.players||{}, assignments=g.assignments||{}, matches=g.matches||{};
+  const firmen=Object.entries(assignments).filter(([id,a])=>a.type==="firma");
+  if(!firmen.length){S("matching-results").innerHTML=`<p class="muted">Noch keine Firmenrollen verteilt.</p>`;return;}
+  S("matching-results").innerHTML=firmen.map(([pid,a])=>{
+    const pl=players[pid]; const m=matches[pid];
+    let chosen="—";
+    if(m&&m.bewerberPlayerId){const bp=players[m.bewerberPlayerId];const ba=assignments[m.bewerberPlayerId];
+      chosen=`${ba?esc(ba.name):"?"} <span class="muted">(gespielt von ${bp?esc(bp.name):"?"})</span>`;}
+    return `<div class="listitem"><b>🏢 ${esc(a.name)}</b> <span class="muted">– ${pl?esc(pl.name):""}</span><br>
+      stellt ein: <b>${chosen}</b></div>`;
+  }).join("");
+}
+
+function addTnManual(){
+  const name=S("add-tn-name").value.trim();if(!name)return;
+  const id=uid();
+  gameRef.child("players/"+id).set({name,joinedAt:Date.now(),manual:true});
+  S("add-tn-name").value="";
+}
+function removeTn(id){
+  gameRef.child("players/"+id).remove();
+  gameRef.child("assignments/"+id).remove();
+}
+function clearAllTn(){ if(confirm("Wirklich ALLE Teilnehmer:innen entfernen?")){
+  gameRef.child("players").remove();gameRef.child("assignments").remove();gameRef.child("matches").remove();}}
+
+/* ---------- Verteilen ---------- */
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function autoAssign(){
+  const players=Object.keys(lastGame.players||{});
+  if(!players.length){setMsg("assign-msg","Keine Teilnehmer:innen vorhanden.","err");return;}
+  const ratio=S("ratio").value;
+  const n=players.length;
+  let nFirma=Math.round(n/2);
+  if(ratio==="morebew")nFirma=Math.max(1,Math.round(n*0.4));
+  if(ratio==="morefirma")nFirma=Math.round(n*0.6);
+  nFirma=Math.min(nFirma,FIRMEN.length);
+  let nBew=n-nFirma;
+  if(nBew>BEWERBER.length){nBew=BEWERBER.length;nFirma=n-nBew;}
+  const firmaPool=shuffle(FIRMEN).slice(0,nFirma);
+  const bewPool=shuffle(BEWERBER).slice(0,nBew);
+  const roles=shuffle([
+    ...firmaPool.map(f=>({type:"firma",refId:f.id,name:f.name})),
+    ...bewPool.map(b=>({type:"bewerber",refId:b.id,name:b.name}))
+  ]);
+  const pl=shuffle(players);
+  const assignments={};
+  pl.forEach((pid,i)=>{ if(roles[i]) assignments[pid]=roles[i]; });
+  gameRef.child("assignments").set(assignments);
+  gameRef.child("matches").remove();
+  setMsg("assign-msg",`✅ Verteilt: ${nFirma} Firmen, ${nBew} Bewerber:innen.`,"ok");
+}
+function manualAssign(pid,val){
+  if(!val){gameRef.child("assignments/"+pid).remove();return;}
+  const [type,refId]=val.split(":");
+  const ref=(type==="firma"?FIRMEN:BEWERBER).find(x=>x.id===refId);
+  gameRef.child("assignments/"+pid).set({type,refId,name:ref.name});
+}
+function resetRoles(){if(confirm("Alle Rollen zurücksetzen?")){
+  gameRef.child("assignments").remove();gameRef.child("matches").remove();
+  setMsg("assign-msg","Rollen zurückgesetzt.","");}}
+
+/* ---------- Matching ---------- */
+function openMatching(){gameRef.child("matchingOpen").set(true);}
+function closeMatching(){gameRef.child("matchingOpen").set(false);}
+
+/* ---------- Profile-Tab ---------- */
+function renderProfiles(){
+  S("firma-grid").innerHTML=FIRMEN.map(f=>`<div class="card" style="margin:0">
+    <span class="pill firma">🏢 Firma</span><h4 style="margin:8px 0 2px">${f.name}</h4>
+    <div class="muted" style="font-size:13px">${f.branche} · ${f.ort}</div>
+    <div style="font-size:13px;margin-top:6px"><b>Stelle:</b> ${f.stelle}</div></div>`).join("");
+  S("bewerber-grid").innerHTML=BEWERBER.map(b=>`<div class="card" style="margin:0">
+    <span class="pill bewerber">🧑 Bewerber:in</span><h4 style="margin:8px 0 2px">${b.name}</h4>
+    <div class="muted" style="font-size:13px">${b.beruf} · ${b.alter} Jahre</div>
+    <div style="font-size:13px;margin-top:6px"><b>Sucht:</b> ${b.sucht}</div></div>`).join("");
+}
+function switchTab(t){
+  document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.tab===t));
+  ["tn","verteilen","uebersicht","matching","profile"].forEach(x=>
+    S("tab-"+x).classList.toggle("hidden",x!==t));
+}
+
+/* ============================================================
+   TEILNEHMER
+   ============================================================ */
+function joinGame(){
+  if(!fbReady){setMsg("join-msg","⚠️ Firebase ist nicht konfiguriert.","err");return;}
+  const code=S("join-code").value.trim().toUpperCase();
+  const name=S("join-name").value.trim();
+  if(!code||!name){setMsg("join-msg","Bitte Code und Name eingeben.","err");return;}
+  db.ref("games/"+code).get().then(s=>{
+    if(!s.exists()){setMsg("join-msg","Kein Spiel mit diesem Code gefunden.","err");return;}
+    gameCode=code;myId=uid();
+    db.ref("games/"+code+"/players/"+myId).set({name,joinedAt:Date.now()}).then(()=>{
+      enterPlayer(name);
+    });
+  });
+}
+function enterPlayer(name){
+  hideAll();S("screen-player").classList.remove("hidden");
+  S("pl-name").textContent=name;
+  gameRef=db.ref("games/"+gameCode);
+  gameRef.on("value",snap=>renderPlayer(snap.val()||{}));
+}
+function renderPlayer(g){
+  const a=(g.assignments||{})[myId];
+  if(!a){S("player-waiting").classList.remove("hidden");S("player-card").classList.add("hidden");return;}
+  S("player-waiting").classList.add("hidden");
+  const card=S("player-card");card.classList.remove("hidden");
+  if(a.type==="firma")card.innerHTML=firmaCard(a.refId,g);
+  else card.innerHTML=bewerberCard(a.refId,g);
+}
+function firmaCard(id,g){
+  const f=FIRMEN.find(x=>x.id===id);if(!f)return "";
+  return `<div class="rollcard badge-firma">
+    <span class="pill firma">🏢 Deine Rolle: FIRMA</span>
+    <h2 style="margin-top:10px">${f.name}</h2>
+    <div class="muted">${f.branche} · ${f.ort}</div>
+    ${field("Offene Stelle",f.stelle)}
+    ${field("Wir suchen jemanden, der …",f.sucht)}
+    ${field("Wir bieten",f.bietet)}
+    ${field("Gehalt",f.gehalt)}
+    ${field("Deine Frage im Gespräch",f.frage)}
+    <div class="notice" style="margin-top:14px">💬 <b>Deine Aufgabe:</b> Du suchst eine:n Mitarbeiter:in. Sprich mit den Bewerber:innen, stelle Fragen und finde die beste Person für deine Stelle!</div>
+    ${matchingBlock(g)}
+  </div>`;
+}
+function bewerberCard(id,g){
+  const b=BEWERBER.find(x=>x.id===id);if(!b)return "";
+  return `<div class="rollcard badge-bewerber">
+    <span class="pill bewerber">🧑 Deine Rolle: BEWERBER:IN</span>
+    <h2 style="margin-top:10px">${b.name}</h2>
+    <div class="muted">${b.beruf} · ${b.alter} Jahre</div>
+    ${field("Berufserfahrung",b.erfahrung)}
+    ${field("Meine Stärken",b.staerken)}
+    ${field("Sprachen",b.sprachen)}
+    ${field("Ich suche",b.sucht)}
+    ${field("Meine Frage im Gespräch",b.frage)}
+    <div class="notice" style="margin-top:14px">💬 <b>Deine Aufgabe:</b> Du suchst einen Job. Stelle dich bei den Firmen vor, erzähle von deiner Erfahrung und überzeuge sie!</div>
+  </div>`;
+}
+function field(k,v){return `<div class="field"><div class="k">${k}</div><div class="v">${esc(v)}</div></div>`;}
+
+function matchingBlock(g){
+  if(!g.matchingOpen)return `<div class="notice" style="margin-top:10px">⏳ Die Matching-Phase startet später. Führe erst deine Gespräche.</div>`;
+  const players=g.players||{}, assignments=g.assignments||{};
+  const bewerber=Object.entries(assignments).filter(([id,a])=>a.type==="bewerber")
+    .map(([id,a])=>({pid:id,name:a.name,player:players[id]?players[id].name:""}));
+  const m=(g.matches||{})[myId];
+  return `<div class="card" style="margin-top:14px;background:var(--card)">
+    <h3>🤝 Wen stellst du ein?</h3>
+    <p class="muted" style="font-size:13px">Wähle die Bewerber:in, die am besten passt.</p>
+    <select onchange="setMatch(this.value)">
+      <option value="">— wählen —</option>
+      ${bewerber.map(b=>`<option value="${b.pid}" ${m&&m.bewerberPlayerId===b.pid?'selected':''}>${esc(b.name)} (${esc(b.player)})</option>`).join("")}
+    </select>
+    ${m&&m.bewerberPlayerId?`<div class="notice ok" style="margin-top:10px">✅ Gespeichert!</div>`:""}
+  </div>`;
+}
+function setMatch(bpid){
+  if(!bpid){gameRef.child("matches/"+myId).remove();return;}
+  gameRef.child("matches/"+myId).set({bewerberPlayerId:bpid,at:Date.now()});
+}
+
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+
+/* Goatcounter */
+</script>
+<script data-goatcounter="https://aguitoo.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

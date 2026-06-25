@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wer wird Millionär: Mein Beruf – Lern Deutsch mit Arash</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<style>
+:root{
+  --bg:#0a1226;
+  --bg2:#111d3a;
+  --panel:#14213f;
+  --panel2:#1b2c52;
+  --line:#2c3f6b;
+  --ink:#eef3ff;
+  --ink-soft:#9fb0d4;
+  --gold:#f2c14e;
+  --gold-deep:#c8941f;
+  --teamA:#e8553d; --teamB:#3ec1a6; --teamC:#5b8def; --teamD:#c779d0;
+  --ok:#2fbf71; --err:#e74c3c;
+  --radius:16px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:'Segoe UI',Calibri,system-ui,sans-serif;
+  background:
+    radial-gradient(circle at 50% -10%, #1c2f5e 0%, transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(242,193,78,.08), transparent 45%),
+    var(--bg);
+  color:var(--ink);line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1000px;margin:0 auto;padding:16px 16px 70px}
+.wrap.beamer{max-width:1180px}
+.hidden{display:none!important}
+h1,h2,h3{margin:0}
+button{font-family:inherit}
+
+/* ---------- Header ---------- */
+header.top{
+  display:flex;align-items:center;gap:14px;padding:18px 0 22px;
+}
+.logo-coin{
+  flex:0 0 auto;width:52px;height:52px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #ffe9a8, var(--gold) 55%, var(--gold-deep));
+  border:2px solid #8a6510;display:grid;place-items:center;font-weight:900;color:#5b3d00;
+  font-size:1.3rem;box-shadow:0 4px 14px rgba(242,193,78,.3);
+}
+header.top h1{font-size:1.5rem;letter-spacing:-.4px;line-height:1.05}
+header.top .tag{color:var(--ink-soft);font-size:.85rem;margin-top:2px}
+header.top .home{
+  margin-left:auto;text-decoration:none;color:var(--ink-soft);font-size:.82rem;font-weight:700;
+  border:1px solid var(--line);border-radius:999px;padding:7px 13px;background:var(--panel);white-space:nowrap;
+}
+
+/* ---------- Cards & buttons ---------- */
+.card{
+  background:linear-gradient(180deg,var(--panel),var(--bg2));
+  border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:16px;
+  box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 14px 40px rgba(0,0,0,.3);
+}
+.card h2{font-size:1.18rem;margin-bottom:4px}
+.card .muted{color:var(--ink-soft);font-size:.9rem}
+.center{text-align:center}
+.btn{border:none;border-radius:12px;padding:13px 20px;font-size:1rem;font-weight:800;cursor:pointer;transition:.15s;color:#fff}
+.btn-gold{background:linear-gradient(180deg,var(--gold),var(--gold-deep));color:#3a2700;box-shadow:0 6px 18px rgba(242,193,78,.28)}
+.btn-gold:hover{filter:brightness(1.06)}
+.btn-blue{background:#2f4d8a}
+.btn-blue:hover{background:#3a5da3}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--ink-soft)}
+.btn-ghost:hover{color:var(--ink);border-color:var(--ink-soft)}
+.btn-danger{background:#7a2520;border:1px solid #a23}
+.btn-danger:hover{background:#8f2d27}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.small{padding:8px 13px;font-size:.85rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input,select{
+  padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:1rem;
+  background:var(--panel2);color:var(--ink);font-family:inherit;
+}
+input:focus,select:focus{outline:2px solid var(--gold);border-color:var(--gold)}
+.notice{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:.9rem;margin-top:10px}
+.notice.ok{border-color:var(--ok);color:#bff3d6}
+.notice.err{border-color:var(--err);color:#f7c9c4}
+
+/* ---------- Home role choose ---------- */
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+@media(max-width:560px){.role-grid{grid-template-columns:1fr}}
+.role-pick{
+  border:1px solid var(--line);background:var(--panel2);border-radius:var(--radius);
+  padding:22px;cursor:pointer;text-align:left;transition:.15s;color:var(--ink);
+}
+.role-pick:hover{border-color:var(--gold);transform:translateY(-2px)}
+.role-pick .ic{font-size:2rem;margin-bottom:8px}
+.role-pick h3{font-size:1.1rem;margin-bottom:4px}
+.role-pick p{color:var(--ink-soft);font-size:.86rem;margin:0}
+
+/* ---------- Team color dots ---------- */
+.tcolor{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;margin-right:6px}
+.team-0{background:var(--teamA)} .team-1{background:var(--teamB)}
+.team-2{background:var(--teamC)} .team-3{background:var(--teamD)}
+
+/* ---------- Ladder (beamer) ---------- */
+.stage{display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:start}
+@media(max-width:820px){.stage{grid-template-columns:1fr}}
+.ladder{display:flex;flex-direction:column-reverse;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:12px}
+.rung{display:flex;justify-content:space-between;padding:6px 12px;border-radius:8px;font-size:.86rem;color:var(--ink-soft)}
+.rung.safe{color:#fff;font-weight:700}
+.rung.safe .amt{color:var(--gold)}
+.rung.current{background:linear-gradient(90deg,var(--gold),var(--gold-deep));color:#3a2700;font-weight:900}
+.rung.current .amt{color:#3a2700}
+.rung .amt{font-weight:800;color:var(--ink)}
+
+/* ---------- Question display ---------- */
+.qbox{min-height:120px}
+.qmeta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.chip{font-size:.74rem;font-weight:800;padding:4px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.5px}
+.chip.diff1{background:#1f5135;color:#9be9bd}
+.chip.diff2{background:#5a4a16;color:#f4d97b}
+.chip.diff3{background:#5e2420;color:#f3b0a8}
+.chip.type{background:var(--panel2);color:var(--ink-soft);border:1px solid var(--line)}
+.qtext{font-size:1.45rem;font-weight:700;line-height:1.3;margin-bottom:16px}
+@media(max-width:560px){.qtext{font-size:1.2rem}}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:560px){.opts{grid-template-columns:1fr}}
+.opt{
+  display:flex;gap:12px;align-items:center;padding:14px 16px;border-radius:12px;cursor:pointer;
+  background:var(--panel2);border:1px solid var(--line);transition:.12s;color:var(--ink);font-size:1.02rem;text-align:left;width:100%;
+}
+.opt:hover:not(:disabled){border-color:var(--gold)}
+.opt .letter{flex:0 0 auto;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#22335f;font-weight:900;color:var(--gold)}
+.opt.chosen{border-color:var(--gold);background:#2a2410}
+.opt.correct{border-color:var(--ok);background:#15402a;color:#d6ffe7}
+.opt.wrong{border-color:var(--err);background:#3f1714;color:#ffd6d1}
+.opt:disabled{cursor:default}
+
+/* ---------- Timer ring ---------- */
+.timer{display:flex;align-items:center;gap:10px;font-weight:800}
+.timer .bar{flex:1;height:10px;border-radius:99px;background:var(--panel2);overflow:hidden;border:1px solid var(--line)}
+.timer .fill{height:100%;width:100%;background:linear-gradient(90deg,var(--ok),var(--gold));transition:width 1s linear}
+.timer.low .fill{background:linear-gradient(90deg,var(--err),#ff8a5b)}
+.timer .num{font-variant-numeric:tabular-nums;min-width:42px;text-align:right}
+
+/* ---------- Scoreboard ---------- */
+.scoreboard{display:flex;flex-direction:column;gap:8px}
+.score-row{display:flex;align-items:center;gap:10px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.score-row .nm{font-weight:700;flex:1}
+.score-row .pts{font-weight:900;color:var(--gold);font-variant-numeric:tabular-nums}
+.score-row .rank{font-weight:900;color:var(--ink-soft);width:24px}
+
+/* ---------- Wheel ---------- */
+.wheel-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;padding:8px 0}
+.wheel-stage{position:relative;width:300px;height:300px}
+.wheel-pointer{position:absolute;top:-6px;left:50%;transform:translateX(-50%);z-index:3;
+  width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:26px solid var(--gold);filter:drop-shadow(0 2px 3px rgba(0,0,0,.5))}
+#wheelCanvas{border-radius:50%;box-shadow:0 0 0 8px #0c1730, 0 0 0 10px var(--gold-deep), 0 18px 40px rgba(0,0,0,.5)}
+.wheel-result{font-size:1.2rem;font-weight:800;text-align:center;min-height:30px}
+
+/* ---------- Player task UI ---------- */
+.pill-status{display:inline-flex;gap:7px;align-items:center;font-size:.8rem;font-weight:700;color:var(--ink-soft)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--err)}
+.pill-status.live .dot{background:var(--ok)}
+.token{display:inline-block;padding:8px 13px;margin:4px;border-radius:10px;background:var(--panel2);border:1px solid var(--line);cursor:grab;font-size:1rem;user-select:none}
+.token.placed{opacity:.4}
+.slot{min-height:46px;border:1px dashed var(--line);border-radius:10px;padding:8px;margin:4px 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.bigcode{font-size:2.4rem;font-weight:900;letter-spacing:6px;color:var(--gold);text-align:center;margin:8px 0}
+
+/* utility */
+.flex-between{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:560px){.grid2{grid-template-columns:1fr}}
+footer{text-align:center;color:var(--ink-soft);font-size:.8rem;margin-top:34px}
+</style>
+</head>
+<body>
+
+<!-- ================= HOME ================= -->
+<div id="screen-home" class="wrap">
+  <header class="top">
+    <div class="logo-coin">€</div>
+    <div>
+      <h1>Wer wird Millionär: Mein Beruf</h1>
+      <div class="tag">Team-Quiz · Aspekte Beruf B2 · Lektion 1 + 2</div>
+    </div>
+    <a href="index.html" class="home">🏠 Index</a>
+  </header>
+
+  <div class="card">
+    <h2>Wie machst du mit?</h2>
+    <p class="muted">Die Lehrkraft öffnet die <b>Spielleitung</b> (am Beamer). Jedes Team tritt mit dem <b>Team-Gerät</b> über den Spielcode bei.</p>
+    <div class="role-grid">
+      <button class="role-pick" onclick="showConsoleLogin()">
+        <div class="ic">🎛️</div><h3>Spielleitung (Beamer)</h3>
+        <p>Spiel starten, Glücksrad drehen, Fragen steuern, Punkte sehen.</p>
+      </button>
+      <button class="role-pick" onclick="showJoin()">
+        <div class="ic">📱</div><h3>Team-Gerät</h3>
+        <p>Mit Spielcode beitreten und mitspielen.</p>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= JOIN (team) ================= -->
+<div id="screen-join" class="wrap hidden">
+  <header class="top">
+    <div class="logo-coin">€</div>
+    <div><h1>Team beitreten</h1><div class="tag">Spielcode und Teamname eingeben</div></div>
+    <a href="#" class="home" onclick="goHome();return false;">← zurück</a>
+  </header>
+  <div class="card">
+    <div class="row" style="margin-bottom:10px">
+      <input id="join-code" placeholder="Spielcode (z. B. 4821)" style="flex:1 1 160px;text-transform:uppercase">
+      <input id="join-name" placeholder="Teamname" style="flex:1 1 160px">
+    </div>
+    <p class="muted" style="margin-bottom:10px">Tipp: Tragt eure Mitglieder als Liste ein (mit Komma), dann kann die Mitmach-Runde reihum gehen.</p>
+    <input id="join-members" placeholder="Mitglieder, z. B. Ali, Sara, Tom (optional)" style="width:100%;margin-bottom:12px">
+    <button class="btn btn-gold" onclick="joinGame()">Beitreten</button>
+    <div id="join-msg"></div>
+  </div>
+</div>
+
+<!-- ================= CONSOLE LOGIN ================= -->
+<div id="screen-console-login" class="wrap hidden">
+  <header class="top">
+    <div class="logo-coin">€</div>
+    <div><h1>Spielleitung</h1><div class="tag">Neues Spiel starten</div></div>
+    <a href="#" class="home" onclick="goHome();return false;">← zurück</a>
+  </header>
+  <div class="card">
+    <h2>Neues Spiel</h2>
+    <p class="muted">Ein Spielcode wird erzeugt. Teilt ihn mit den Teams.</p>
+    <div class="row" style="margin-top:12px">
+      <button class="btn btn-gold" onclick="createGame()">🎬 Spiel erstellen</button>
+    </div>
+    <div id="console-login-msg"></div>
+  </div>
+</div>
+
+<!-- ================= CONSOLE (beamer) ================= -->
+<div id="screen-console" class="wrap beamer hidden">
+  <!-- filled by JS -->
+</div>
+
+<!-- ================= PLAYER (team device) ================= -->
+<div id="screen-player" class="wrap hidden">
+  <!-- filled by JS -->
+</div>
+
+<footer>Lern Deutsch mit Arash · Wer wird Millionär: Mein Beruf</footer>
+
+<script data-goatcounter="https://aguitoo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+/* ============================================================
+   FRAGEN- & AUFGABENPOOL  —  „Wer wird Millionär: Mein Beruf"
+   Aspekte Beruf B2 · Lektion 1 + 2
+   Schwierigkeit: 1 = leicht, 2 = mittel, 3 = schwer
+   type: mc | pairs | order | gap | scramble | match | mitmach
+   ============================================================ */
+const POOL = [
+
+/* ---------- MULTIPLE CHOICE: LEICHT ---------- */
+{type:"mc",diff:1,q:"Was bedeutet „befristet“ bei einer Stelle?",
+ opts:["für eine bestimmte Zeit","für immer","im Ausland","ohne Bezahlung"],correct:0,
+ hint:"befristet = zeitlich begrenzt."},
+{type:"mc",diff:1,q:"Wie endet ein formeller Brief höflich?",
+ opts:["Tschüss!","Mit freundlichen Grüßen","Bis bald","Mach’s gut"],correct:1,
+ hint:"Standard-Grußformel im formellen Brief."},
+{type:"mc",diff:1,q:"Was ist eine „Fachkraft“?",
+ opts:["eine Person ohne Ausbildung","eine gut ausgebildete Person in einem Beruf","ein Praktikant","ein neuer Kunde"],correct:1,
+ hint:"Fachkraft = qualifizierte, ausgebildete Person."},
+{type:"mc",diff:1,q:"Welches Wort ist ein Soft Skill?",
+ opts:["Führerschein","Excel-Kenntnisse","Teamfähigkeit","Schreibtisch"],correct:2,
+ hint:"Teamfähigkeit ist eine soziale Kompetenz."},
+{type:"mc",diff:1,q:"Was bedeutet „täglich“?",
+ opts:["selten","jeden Tag","manchmal","nie"],correct:1,
+ hint:"täglich = jeden Tag."},
+{type:"mc",diff:1,q:"Was ist ein „Lebenslauf“?",
+ opts:["eine Übersicht über Ausbildung und Beruf","ein Vertrag","eine Rechnung","ein Foto"],correct:0,
+ hint:"Der Lebenslauf zeigt den beruflichen Werdegang."},
+{type:"mc",diff:1,q:"Was bedeutet „Berufserfahrung erwünscht“ in einer Anzeige?",
+ opts:["Erfahrung ist verboten","Erfahrung wäre gut, ist aber kein Muss","Erfahrung ist Pflicht","Erfahrung ist egal"],correct:1,
+ hint:"„erwünscht“ = gern gesehen, nicht zwingend."},
+
+/* ---------- MULTIPLE CHOICE: MITTEL ---------- */
+{type:"mc",diff:2,q:"Ergänze: „Ich habe ___ über Jobportale ___ über Anzeigen gesucht.“",
+ opts:["sowohl … als auch","weder … noch","zwar … aber","je … desto"],correct:0,
+ hint:"Aufzählung beider Wege → sowohl … als auch."},
+{type:"mc",diff:2,q:"Welcher Satz hat die korrekte Wortstellung im Mittelfeld?",
+ opts:["Ich fahre nach Hamburg morgen mit dem Zug.","Ich fahre morgen mit dem Zug nach Hamburg.","Ich fahre mit dem Zug nach Hamburg morgen.","Morgen ich fahre mit dem Zug nach Hamburg."],correct:1,
+ hint:"temporal – modal – lokal (te-ka-mo-lo)."},
+{type:"mc",diff:2,q:"„Ich gehe zur Messe, ___ mich ___ informieren.“ (Ziel)",
+ opts:["um … zu","ohne … zu","anstatt … zu","weder … noch"],correct:0,
+ hint:"Ziel/Absicht → um … zu."},
+{type:"mc",diff:2,q:"Wie verneint man: „Ich habe Erfahrung.“?",
+ opts:["Ich habe nicht Erfahrung.","Ich habe keine Erfahrung.","Ich habe kein Erfahrung.","Ich habe nichts Erfahrung."],correct:1,
+ hint:"Vor einem Nomen mit unbestimmtem Artikel steht „kein-“."},
+{type:"mc",diff:2,q:"„Die Arbeit ist ___ anstrengend, ___ sie macht Spaß.“",
+ opts:["zwar … aber","sowohl … als auch","weder … noch","je … desto"],correct:0,
+ hint:"Einschränkung/Gegensatz → zwar … aber."},
+{type:"mc",diff:2,q:"Welcher Konnektor drückt eine „negative Aufzählung“ aus?",
+ opts:["sowohl … als auch","weder … noch","entweder … oder","nicht nur … sondern auch"],correct:1,
+ hint:"weder … noch = nicht A und nicht B."},
+{type:"mc",diff:2,q:"Wann benutzt man „damit“ statt „um … zu“?",
+ opts:["wenn das Subjekt gleich ist","wenn die Subjekte verschieden sind","immer","nie"],correct:1,
+ hint:"Verschiedene Subjekte → damit."},
+{type:"mc",diff:2,q:"Wo lernt man bei der dualen Ausbildung?",
+ opts:["nur an der Uni","im Betrieb und in der Berufsschule","nur zu Hause","nur im Ausland"],correct:1,
+ hint:"dual = Betrieb + Berufsschule."},
+{type:"mc",diff:2,q:"Was bedeutet „gez.“ vor einem Namen in einem Behördenbrief?",
+ opts:["gezeichnet (unterschrieben)","gezahlt","gezeigt","gezogen"],correct:0,
+ hint:"gez. = gezeichnet."},
+{type:"mc",diff:2,q:"Welche Formulierung ist am höflichsten?",
+ opts:["Sag mir den Termin!","Ich will den Termin wissen.","Könnten Sie mir bitte den Termin nennen?","Termin, sofort!"],correct:2,
+ hint:"Konjunktiv II + „bitte“ wirkt höflich."},
+
+/* ---------- MULTIPLE CHOICE: SCHWER ---------- */
+{type:"mc",diff:3,q:"„Je mehr Erfahrung man hat, ___ leichter findet man eine Stelle.“",
+ opts:["desto","als","sondern","noch"],correct:0,
+ hint:"je …, desto … – zwei Dinge ändern sich zusammen."},
+{type:"mc",diff:3,q:"Welche Modalverben passen NICHT zu „um zu“ / „damit“?",
+ opts:["können und müssen","wollen und sollen","dürfen und mögen","wollen und können"],correct:1,
+ hint:"wollen/sollen passen nicht zu Ziel-Konstruktionen."},
+{type:"mc",diff:3,q:"„Er ging zur Messe, ___ ein Ticket ___ kaufen.“ (er hatte kein Ticket)",
+ opts:["um … zu","ohne … zu","anstatt … zu","damit"],correct:1,
+ hint:"etwas fehlt/passiert nicht → ohne … zu."},
+{type:"mc",diff:3,q:"Welcher Satz beginnt korrekt mit einer betonten Zeitangabe?",
+ opts:["Ich bin letztes Jahr umgezogen.","Letztes Jahr bin ich umgezogen.","Ich bin umgezogen letztes Jahr.","Umgezogen ich bin letztes Jahr."],correct:1,
+ hint:"Angabe auf Position 1, Verb auf Position 2."},
+{type:"mc",diff:3,q:"Wo steht „nicht“ bei der Verneinung des ganzen Satzes meistens?",
+ opts:["am Satzanfang","direkt nach dem Subjekt","am Satzende, vor einem zweiten Verbteil","vor dem Subjekt"],correct:2,
+ hint:"Satznegation steht in der Regel am Ende."},
+{type:"mc",diff:3,q:"„Anstatt nur im Internet zu recherchieren, frage ich einen Berater.“ Was drückt der Satz aus?",
+ opts:["ein Ziel","eine fehlende Handlung","eine Alternative / einen Gegensatz","einen Grund"],correct:2,
+ hint:"anstatt zu = etwas anderes statt der ersten Sache."},
+{type:"mc",diff:3,q:"Welcher Satz ist korrekt verneint?",
+ opts:["Ich habe nicht Zeit.","Ich habe keine Zeit.","Ich habe kein Zeit.","Ich habe Zeit nicht."],correct:1,
+ hint:"„Zeit“ ohne Artikel → Verneinung mit „keine“."},
+{type:"mc",diff:3,q:"In welcher Reihenfolge gibt man Stellen im Lebenslauf üblicherweise an?",
+ opts:["älteste Stelle zuerst","neueste Stelle zuerst","alphabetisch","nach Gehalt"],correct:1,
+ hint:"antichronologisch: neueste Stelle oben."},
+{type:"mc",diff:3,q:"Welcher Satz hat verschiedene Subjekte und braucht „damit“?",
+ opts:["Ich spare, … ich ein Auto kaufen kann.","Die Eltern sparen, … die Kinder studieren können.","Ich lese, … ich mich informiere.","Er übt, … er besser wird."],correct:1,
+ hint:"Eltern – Kinder = verschiedene Subjekte → damit."},
+{type:"mc",diff:3,q:"Welcher Satz ist korrekt?",
+ opts:["Der Mann, den ich über rede, …","Der Mann, über den ich rede, …","Der Mann, über dem ich rede, …","Der Mann, ich über den rede, …"],correct:1,
+ hint:"reden über + Akkusativ; Präposition vor dem Relativpronomen."},
+
+/* ---------- WORTPAARE (pairs): Begriff ↔ Definition ---------- */
+{type:"pairs",diff:1,q:"Ordne die Begriffe ihren Erklärungen zu.",
+ pairs:[["Lebenslauf","Übersicht über Ausbildung und Beruf"],
+        ["Anschreiben","Brief mit der Bewerbung"],
+        ["Zeugnis","Bewertung einer Leistung"],
+        ["Vorstellungsgespräch","persönliches Gespräch mit der Firma"]],
+ hint:"Denke an die Bewerbungsmappe."},
+{type:"pairs",diff:2,q:"Ordne Konnektor und Bedeutung zu.",
+ pairs:[["sowohl … als auch","beides zusammen"],
+        ["weder … noch","keines von beiden"],
+        ["zwar … aber","Einschränkung"],
+        ["je … desto","gemeinsame Veränderung"]],
+ hint:"Achte auf positive und negative Aufzählung."},
+{type:"pairs",diff:2,q:"Ordne Abkürzung und volle Form zu.",
+ pairs:[["gez.","gezeichnet"],["z. Hd.","zu Händen"],["i. A.","im Auftrag"],["u. a.","unter anderem"]],
+ hint:"Formelle Brief- und Behördensprache."},
+{type:"pairs",diff:3,q:"Ordne Beruf und Tätigkeit zu.",
+ pairs:[["Pflegefachkraft","Menschen versorgen und betreuen"],
+        ["Mechatroniker:in","Maschinen bauen und reparieren"],
+        ["Einzelhandelskaufmann/-frau","Waren verkaufen und beraten"],
+        ["Anlagenmechaniker:in","Heizungen und Rohre installieren"]],
+ hint:"Welche Aufgabe gehört zu welchem Ausbildungsberuf?"},
+
+/* ---------- REIHENFOLGE (order): Satz/Schritte ordnen ---------- */
+{type:"order",diff:1,q:"Bring die Schritte einer Bewerbung in die richtige Reihenfolge.",
+ items:["Stellenanzeige lesen","Unterlagen vorbereiten","Bewerbung abschicken","Zum Vorstellungsgespräch gehen"],
+ hint:"Vom Finden der Stelle bis zum Gespräch."},
+{type:"order",diff:2,q:"Ordne die Wörter zu einem korrekten Satz (te-ka-mo-lo).",
+ items:["Ich fahre","morgen","mit dem Zug","nach Hamburg."],
+ hint:"temporal – modal – lokal."},
+{type:"order",diff:2,q:"Ordne zu einem korrekten Finalsatz.",
+ items:["Ich gehe zur Messe,","um","mich","zu informieren."],
+ hint:"um … zu am Ende mit Infinitiv."},
+{type:"order",diff:3,q:"Ordne den Relativsatz korrekt.",
+ items:["Der Mann,","über den","ich","rede,","ist Berater."],
+ hint:"Präposition steht vor dem Relativpronomen."},
+
+/* ---------- LÜCKENTEXT (gap): Wort eintippen ---------- */
+{type:"gap",diff:1,q:"Ergänze das fehlende Wort:",
+ sentence:"Mit freundlichen ___, Ihre Anna Berg",answers:["Grüßen","Gruessen"],
+ hint:"Grußformel am Briefende."},
+{type:"gap",diff:2,q:"Ergänze den Konnektor (zwei Wörter, mit Auslassung):",
+ sentence:"___ ich studiere, ___ arbeite ich nebenbei.",answers:["zwar aber","zwar … aber"],
+ hint:"Einschränkung: zwar … aber."},
+{type:"gap",diff:2,q:"Ergänze das Verneinungswort:",
+ sentence:"Ich habe leider ___ Erfahrung in diesem Bereich.",answers:["keine"],
+ hint:"Nomen ohne Artikel → kein-."},
+{type:"gap",diff:3,q:"Ergänze die Präposition:",
+ sentence:"Der Beruf, ___ den ich mich bewerbe, ist spannend.",answers:["für"],
+ hint:"sich bewerben um/für."},
+
+/* ---------- WORTSALAT (scramble): durcheinander → Wort ---------- */
+{type:"scramble",diff:1,q:"Setze die Buchstaben zum richtigen Wort zusammen.",
+ word:"BEWERBUNG",hint:"Das schickt man an eine Firma."},
+{type:"scramble",diff:2,q:"Setze die Buchstaben zum richtigen Wort zusammen.",
+ word:"VORSTELLUNGSGESPRÄCH",hint:"Persönliches Treffen mit der Firma."},
+{type:"scramble",diff:2,q:"Setze die Buchstaben zum richtigen Wort zusammen.",
+ word:"TEAMFÄHIGKEIT",hint:"Wichtige soziale Kompetenz."},
+{type:"scramble",diff:3,q:"Setze die Buchstaben zum richtigen Wort zusammen.",
+ word:"BERUFSERFAHRUNG",hint:"Das bekommt man durch Arbeiten."},
+
+/* ---------- TEXT-ZUORDNUNG (match): Aussage → Kategorie ---------- */
+{type:"match",diff:2,q:"Soft Skill oder Hard Skill? Ordne zu.",
+ cats:["Soft Skill","Hard Skill"],
+ items:[["Teamfähigkeit",0],["Programmierkenntnisse",1],["Pünktlichkeit",0],["Schweißerschein",1],["Kommunikation",0],["Buchführung",1]],
+ hint:"Soft = sozial/persönlich, Hard = fachlich/messbar."},
+{type:"match",diff:3,q:"Welcher Satz drückt ein Ziel, welcher einen Gegensatz aus?",
+ cats:["Ziel (um…zu/damit)","Gegensatz (anstatt/ohne)"],
+ items:[["Ich lerne, um die Prüfung zu bestehen.",0],
+        ["Anstatt zu lernen, sieht er fern.",1],
+        ["Sie spart, damit die Kinder studieren.",0],
+        ["Er ging, ohne sich zu verabschieden.",1]],
+ hint:"um…zu / damit = Ziel; anstatt / ohne = Gegensatz."},
+
+/* ---------- MITMACH (mitmach): jedes Teammitglied einzeln ---------- */
+{type:"mitmach",diff:1,q:"Kettenrunde: Jedes Teammitglied nennt ein anderes Wort zum Thema Beruf.",
+ prompt:"Nenne ein deutsches Wort rund um Arbeit/Beruf (jede Person ein NEUES Wort).",
+ mode:"each-word",hint:"Kein Wort darf doppelt sein."},
+{type:"mitmach",diff:2,q:"Blitzrunde: Jede Person bildet einen Satz mit „weil“.",
+ prompt:"Bilde einen Satz mit „weil“ zum Thema Bewerbung (jede Person ein eigener Satz).",
+ mode:"each-sentence",hint:"Nebensatz: Verb am Ende."},
+{type:"mitmach",diff:2,q:"Reihum: Jede Person nennt einen Soft Skill und begründet kurz.",
+ prompt:"Nenne einen Soft Skill und sage in einem Satz, warum er wichtig ist.",
+ mode:"each-sentence",hint:"z. B. Teamfähigkeit, Pünktlichkeit, Geduld."},
+{type:"mitmach",diff:3,q:"Staffel: Gemeinsam einen formellen Brief mündlich aufbauen.",
+ prompt:"Jede Person sagt EINEN Teil: Anrede → Grund → Bitte → Gruß (in dieser Reihenfolge).",
+ mode:"relay",hint:"Sehr geehrte … / Ich schreibe Ihnen, weil … / Könnten Sie … / Mit freundlichen Grüßen."}
+
+];
+
+/* Geldleiter (Punktestufen) */
+const LADDER = [50,100,200,300,500,1000,2000,4000,8000,16000,32000,64000,125000,500000,1000000];
+const SAFE_STEPS = [4,9]; // Indizes der Sicherheitsstufen (500, 16000)
+
+/* Glücksrad-Felder: Effekt pro Runde */
+const WHEEL = [
+  {label:"Doppelte Punkte",effect:"x2",color:"#e8b923"},
+  {label:"Normalrunde",effect:"normal",color:"#3a7d6e"},
+  {label:"Mitmach-Runde",effect:"mitmach",color:"#b5451f"},
+  {label:"Tempo-Bonus",effect:"speed",color:"#4a6fa5"},
+  {label:"Joker geschenkt",effect:"joker",color:"#7a4ea0"},
+  {label:"Normalrunde",effect:"normal",color:"#3a7d6e"},
+  {label:"Risiko: x3 oder 0",effect:"risk",color:"#c0392b"},
+  {label:"Mitmach-Runde",effect:"mitmach",color:"#b5451f"}
+];
+
+/* ============================================================
+   WER WIRD MILLIONÄR: MEIN BERUF — Engine
+   Rollen: console (Beamer) + player (Team-Gerät), Firebase-Sync
+   ============================================================ */
+const firebaseConfig = {
+  apiKey: "AIzaSyBDChXlm34Kr7Gg0Dw458GiiwoLnWJAnxM",
+  authDomain: "lern-deutsch-arash.firebaseapp.com",
+  databaseURL: "https://lern-deutsch-arash-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "lern-deutsch-arash",
+  storageBucket: "lern-deutsch-arash.firebasestorage.app",
+  messagingSenderId: "845503292114",
+  appId: "1:845503292114:web:f76ab5fcde1e978d00c30b"
+};
+let db=null, fbReady=false;
+try{ firebase.initializeApp(firebaseConfig); db=firebase.database(); fbReady=true; }
+catch(e){ console.warn("Firebase nicht konfiguriert:",e); }
+
+/* ---------- State ---------- */
+let role=null, gameCode=null, gameRef=null, myId=null, lastGame=null;
+let countdownTimer=null;
+
+const TEAM_LIMIT=4;
+const S=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function rand4(){return String(Math.floor(1000+Math.random()*9000));}
+function uid(){return "u"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function setMsg(id,txt,cls){const e=S(id);if(e)e.innerHTML=`<div class="notice ${cls||''}">${txt}</div>`;}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function norm(s){return String(s||"").toLowerCase().replace(/[\s.,;:!?„“"'’\-…]/g,"").replace(/ß/g,"ss").replace(/ä/g,"a").replace(/ö/g,"o").replace(/ü/g,"u");}
+
+/* ---------- Screen nav ---------- */
+function hideAll(){["screen-home","screen-join","screen-player","screen-console-login","screen-console"].forEach(s=>S(s).classList.add("hidden"));}
+function goHome(){ if(gameRef){gameRef.off();} hideAll(); S("screen-home").classList.remove("hidden"); role=null;gameCode=null;gameRef=null;myId=null;lastGame=null; }
+function showJoin(){hideAll();S("screen-join").classList.remove("hidden");}
+function showConsoleLogin(){hideAll();S("screen-console-login").classList.remove("hidden");
+  if(!fbReady)setMsg("console-login-msg","⚠️ Firebase ist nicht konfiguriert.","err");}
+
+/* ---------- Device id (stable reconnect) ---------- */
+function getDeviceId(code){
+  const key="wwm_pid_"+code;
+  try{ let v=localStorage.getItem(key); if(!v){v=uid();localStorage.setItem(key,v);} return v; }
+  catch(e){ return uid(); }
+}
+
+/* ============================================================
+   CONSOLE (Spielleitung / Beamer)
+   ============================================================ */
+function createGame(){
+  if(!fbReady){setMsg("console-login-msg","⚠️ Firebase fehlt.","err");return;}
+  const code=rand4();
+  const init={
+    createdAt:Date.now(),
+    phase:"lobby",            // lobby | wheel | question | reveal | scores | end
+    round:0,
+    ladderIdx:0,
+    wheelResult:null,
+    current:null,             // current task object (sanitized: no answer for players? -> we keep answer server-side too, reveal toggles)
+    teams:{}                  // teamId -> {name, members[], score, lastAnswer, answeredAt, correct}
+  };
+  db.ref("games/"+code).set(init).then(()=>{ gameCode=code; role="console"; enterConsole(); });
+}
+function enterConsole(){
+  hideAll();S("screen-console").classList.remove("hidden");
+  gameRef=db.ref("games/"+gameCode);
+  gameRef.on("value",snap=>{ lastGame=snap.val()||{}; renderConsole(lastGame); });
+}
+
+function renderConsole(g){
+  const teams=g.teams||{};
+  const arr=Object.entries(teams).map(([id,t])=>({id,...t})).sort((a,b)=>(a.joinedAt||0)-(b.joinedAt||0));
+  const phase=g.phase||"lobby";
+
+  let body=`
+  <header class="top">
+    <div class="logo-coin">€</div>
+    <div><h1>Spielleitung</h1><div class="tag">Spielcode unten · Phase: ${esc(phaseLabel(phase))}</div></div>
+    <a href="#" class="home" onclick="if(confirm('Spiel verlassen?'))goHome();return false;">← beenden</a>
+  </header>
+
+  <div class="card center">
+    <div class="muted">Spielcode für die Teams</div>
+    <div class="bigcode">${esc(gameCode)}</div>
+    <div class="muted">${arr.length} Team(s) verbunden${arr.length>TEAM_LIMIT?' · max. '+TEAM_LIMIT+' empfohlen':''}</div>
+  </div>`;
+
+  // Team management always visible
+  body+=`<div class="card">
+    <div class="flex-between"><h2>Teams</h2>
+      ${arr.length?`<button class="btn btn-danger small" onclick="clearAllTeams()">Alle entfernen</button>`:""}</div>
+    <div class="scoreboard" style="margin-top:12px">
+      ${arr.length?arr.map((t,i)=>`
+        <div class="score-row">
+          <span class="tcolor team-${i%4}"></span>
+          <span class="nm">${esc(t.name)} ${t.members&&t.members.length?`<span class="muted">(${t.members.map(esc).join(", ")})</span>`:""}</span>
+          <span class="pts">${t.score||0}</span>
+          <button class="btn btn-danger small" onclick="removeTeam('${t.id}')">✕</button>
+        </div>`).join(""):`<p class="muted">Noch keine Teams. Teilt den Spielcode!</p>`}
+    </div>
+  </div>`;
+
+  // Phase-specific controls
+  if(phase==="lobby"){
+    body+=`<div class="card center">
+      <h2>Bereit?</h2>
+      <p class="muted">Wenn alle Teams da sind, dreht zuerst das Glücksrad – es bestimmt die Runde.</p>
+      <button class="btn btn-gold" ${arr.length<1?'disabled':''} onclick="goToWheel()">🎡 Zum Glücksrad</button>
+    </div>`;
+  }
+  else if(phase==="wheel"){
+    body+=`<div class="card">
+      <h2>Glücksrad</h2>
+      <div class="wheel-wrap">
+        <div class="wheel-stage">
+          <div class="wheel-pointer"></div>
+          <canvas id="wheelCanvas" width="300" height="300"></canvas>
+        </div>
+        <div class="wheel-result" id="wheelResult">${g.wheelResult?wheelEffectLabel(g.wheelResult):"Dreh das Rad!"}</div>
+        <div class="row">
+          <button class="btn btn-gold" id="spinBtn" onclick="spinWheel()">🎡 Drehen</button>
+          <button class="btn btn-blue" id="afterWheelBtn" onclick="startQuestion()" ${g.wheelResult?'':'disabled'}>Frage stellen →</button>
+        </div>
+      </div>
+    </div>`;
+  }
+  else if(phase==="question" || phase==="reveal"){
+    body+=renderConsoleQuestion(g);
+  }
+  else if(phase==="end"){
+    body+=renderEnd(g,arr);
+  }
+
+  S("screen-console").innerHTML=body;
+
+  // draw wheel if present
+  if(phase==="wheel"){ drawWheel(g.wheelResult?wheelIndexOf(g.wheelResult):null); }
+  if(phase==="question"){ startConsoleTimer(g); }
+}
+
+function phaseLabel(p){return {lobby:"Lobby",wheel:"Glücksrad",question:"Frage läuft",reveal:"Auflösung",end:"Ende"}[p]||p;}
+
+/* ---------- Wheel ---------- */
+function wheelIndexOf(effect){ return WHEEL.findIndex(w=>w.effect===effect); }
+function wheelEffectLabel(effect){ const w=WHEEL.find(x=>x.effect===effect); return w?("🎯 "+w.label):effect; }
+function drawWheel(highlightIdx, rotation=0){
+  const c=S("wheelCanvas"); if(!c)return; const ctx=c.getContext("2d");
+  const n=WHEEL.length, cx=150,cy=150,r=145, seg=(Math.PI*2)/n;
+  ctx.clearRect(0,0,300,300);
+  ctx.save();ctx.translate(cx,cy);ctx.rotate(rotation);
+  for(let i=0;i<n;i++){
+    ctx.beginPath();ctx.moveTo(0,0);
+    ctx.arc(0,0,r,i*seg,(i+1)*seg);ctx.closePath();
+    ctx.fillStyle=WHEEL[i].color; ctx.fill();
+    ctx.strokeStyle="rgba(0,0,0,.25)";ctx.lineWidth=2;ctx.stroke();
+    // label
+    ctx.save();ctx.rotate(i*seg+seg/2);ctx.textAlign="right";ctx.fillStyle="#fff";
+    ctx.font="bold 12px Segoe UI, sans-serif";
+    const words=WHEEL[i].label.split(" ");
+    words.forEach((w,wi)=>ctx.fillText(w, r-12, 4+(wi-(words.length-1)/2)*13));
+    ctx.restore();
+  }
+  ctx.restore();
+  // hub
+  ctx.beginPath();ctx.arc(cx,cy,20,0,Math.PI*2);ctx.fillStyle="#0c1730";ctx.fill();
+  ctx.strokeStyle="#c8941f";ctx.lineWidth=3;ctx.stroke();
+}
+function spinWheel(){
+  const btn=S("spinBtn"); if(btn)btn.disabled=true;
+  const n=WHEEL.length, seg=(Math.PI*2)/n;
+  const target=Math.floor(Math.random()*n);
+  // pointer at top (-90°). We want segment center under pointer.
+  const turns=5+Math.floor(Math.random()*3);
+  const finalRot = turns*Math.PI*2 + (Math.PI*1.5 - (target*seg+seg/2));
+  const dur=3600, t0=performance.now();
+  function frame(now){
+    const p=Math.min(1,(now-t0)/dur);
+    const ease=1-Math.pow(1-p,3);
+    drawWheel(null, finalRot*ease);
+    if(p<1){requestAnimationFrame(frame);}
+    else{
+      const effect=WHEEL[target].effect;
+      S("wheelResult").textContent=wheelEffectLabel(effect);
+      gameRef.update({wheelResult:effect});
+      const ab=S("afterWheelBtn"); if(ab)ab.disabled=false;
+    }
+  }
+  requestAnimationFrame(frame);
+}
+function goToWheel(){ gameRef.update({phase:"wheel",wheelResult:null}); }
+
+/* ---------- Question selection ---------- */
+function pickTask(g){
+  const effect=g.wheelResult;
+  let candidates=POOL.slice();
+  if(effect==="mitmach"){ candidates=POOL.filter(t=>t.type==="mitmach"); }
+  // difficulty rises with ladder
+  const idx=g.ladderIdx||0;
+  let wantDiff = idx<5?1 : idx<10?2 : 3;
+  let pool=candidates.filter(t=>t.diff===wantDiff);
+  if(!pool.length) pool=candidates;
+  // avoid repeating used tasks
+  const used=(g.usedTasks||{});
+  let fresh=pool.filter(t=>!used[taskKey(t)]);
+  if(!fresh.length) fresh=pool;
+  return fresh[Math.floor(Math.random()*fresh.length)];
+}
+function taskKey(t){ return t.type+"|"+(t.q||t.word||"").slice(0,40); }
+
+function startQuestion(){
+  const g=lastGame; const task=pickTask(g);
+  const cur=buildCurrent(task);
+  const used=Object.assign({},g.usedTasks||{}); used[taskKey(task)]=true;
+  // reset team answers
+  const teams=g.teams||{}; const updates={};
+  Object.keys(teams).forEach(id=>{ updates["teams/"+id+"/lastAnswer"]=null; updates["teams/"+id+"/answeredAt"]=null; updates["teams/"+id+"/correct"]=null; });
+  updates["phase"]="question";
+  updates["round"]=(g.round||0)+1;
+  updates["current"]=cur;
+  updates["usedTasks"]=used;
+  updates["qStart"]=Date.now();
+  gameRef.update(updates);
+}
+
+/* Build the current-task object that is synced to players.
+   We DO include the solution but players' UI doesn't show it until reveal. */
+function buildCurrent(t){
+  const base={type:t.type,diff:t.diff,q:t.q||"",hint:t.hint||"",timer:timerFor(t)};
+  if(t.type==="mc"){
+    const order=shuffle(t.opts.map((o,i)=>({o,i})));
+    base.opts=order.map(x=>x.o);
+    base.correct=order.findIndex(x=>x.i===t.correct);
+  }else if(t.type==="pairs"){
+    base.left=t.pairs.map(p=>p[0]);
+    base.right=shuffle(t.pairs.map(p=>p[1]));
+    base.solution=t.pairs.map(p=>p[1]); // correct right-order aligned to left
+  }else if(t.type==="order"){
+    base.items=shuffle(t.items); base.solution=t.items.slice();
+  }else if(t.type==="gap"){
+    base.sentence=t.sentence; base.answers=t.answers;
+  }else if(t.type==="scramble"){
+    base.letters=shuffle(t.word.split("")); base.word=t.word;
+  }else if(t.type==="match"){
+    base.cats=t.cats; base.items=shuffle(t.items.map(it=>({txt:it[0],cat:it[1]})));
+  }else if(t.type==="mitmach"){
+    base.prompt=t.prompt; base.mode=t.mode;
+  }
+  return base;
+}
+function timerFor(t){ return {mc:30,pairs:75,order:60,gap:45,scramble:45,match:75,mitmach:120}[t.type]||45; }
+
+/* ---------- Console question view ---------- */
+function renderConsoleQuestion(g){
+  const c=g.current||{}; const teams=g.teams||{};
+  const arr=Object.entries(teams).map(([id,t])=>({id,...t})).sort((a,b)=>(a.joinedAt||0)-(b.joinedAt||0));
+  const answered=arr.filter(t=>t.lastAnswer!=null||t.correct!=null).length;
+  const isReveal=g.phase==="reveal";
+  const mult = g.wheelResult==="x2"?"×2": g.wheelResult==="risk"?"×3/0": g.wheelResult==="speed"?"+Tempo": "";
+
+  let qhtml=`<div class="card qbox">
+    <div class="qmeta">
+      <span class="chip diff${c.diff}">${["","leicht","mittel","schwer"][c.diff]||""}</span>
+      <span class="chip type">${typeLabel(c.type)}</span>
+      ${mult?`<span class="chip" style="background:#5a4a16;color:#f4d97b">${mult}</span>`:""}
+      ${!isReveal?`<span style="margin-left:auto"></span>
+        <div class="timer" id="csTimer" style="min-width:160px"><div class="bar"><div class="fill" id="csFill"></div></div><span class="num" id="csNum">–</span></div>`:""}
+    </div>
+    <div class="qtext">${esc(c.q)}</div>`;
+
+  if(c.type==="mc"){
+    qhtml+=`<div class="opts">${c.opts.map((o,i)=>{
+      let cls="opt"; if(isReveal){ if(i===c.correct)cls+=" correct"; }
+      return `<div class="${cls}" style="pointer-events:none"><span class="letter">${"ABCD"[i]}</span> ${esc(o)}</div>`;
+    }).join("")}</div>`;
+  }else if(c.type==="scramble"){
+    qhtml+=`<div class="center" style="font-size:1.6rem;letter-spacing:6px;font-weight:800;color:var(--gold)">${esc(c.letters.join(" "))}</div>`;
+    if(isReveal)qhtml+=`<div class="center" style="margin-top:10px">Lösung: <b>${esc(c.word)}</b></div>`;
+  }else if(c.type==="gap"){
+    qhtml+=`<div class="center" style="font-size:1.3rem">${esc(c.sentence)}</div>`;
+    if(isReveal)qhtml+=`<div class="center" style="margin-top:10px">Lösung: <b>${esc(c.answers[0])}</b></div>`;
+  }else if(c.type==="order"){
+    qhtml+=`<div class="muted">Teams ordnen am Gerät.</div>`;
+    if(isReveal)qhtml+=`<div style="margin-top:10px">Lösung: <b>${c.solution.map(esc).join(" · ")}</b></div>`;
+  }else if(c.type==="pairs"){
+    qhtml+=`<div class="grid2"><div><b>Begriffe</b><br>${c.left.map(esc).join("<br>")}</div><div><b>Erklärungen</b><br>${c.right.map(esc).join("<br>")}</div></div>`;
+    if(isReveal)qhtml+=`<div style="margin-top:10px">Lösung:<br>${c.left.map((l,i)=>esc(l)+" → "+esc(c.solution[i])).join("<br>")}</div>`;
+  }else if(c.type==="match"){
+    qhtml+=`<div class="muted">Teams ordnen jede Aussage einer Kategorie zu: ${c.cats.map(esc).join(" / ")}</div>`;
+    if(isReveal)qhtml+=`<div style="margin-top:10px">${c.items.map(it=>esc(it.txt)+" → <b>"+esc(c.cats[it.cat])+"</b>").join("<br>")}</div>`;
+  }else if(c.type==="mitmach"){
+    qhtml+=`<div class="notice ok" style="font-size:1.05rem">🙋 Mitmach-Runde: ${esc(c.prompt)}</div>
+      <p class="muted">Jedes Teammitglied ist einzeln dran. Die Lehrkraft bewertet mündlich und vergibt Punkte pro Team.</p>`;
+  }
+
+  // status + controls
+  qhtml+=`<div style="margin-top:16px" class="flex-between">
+    <span class="muted">${answered}/${arr.length} Teams haben geantwortet</span>
+    <div class="row">
+      ${!isReveal?`<button class="btn btn-blue" onclick="revealAnswer()">Auflösen</button>`:""}
+      ${isReveal?`<button class="btn btn-gold" onclick="nextRound()">Weiter →</button>
+                  <button class="btn btn-blue" onclick="endGame()">Spiel beenden</button>`:""}
+    </div>
+  </div></div>`;
+
+  // live answers (reveal) + manual scoring for mitmach/non-auto
+  qhtml+=`<div class="card"><h2>Antworten & Punkte</h2><div class="scoreboard" style="margin-top:10px">
+    ${arr.map((t,i)=>{
+      const status = t.correct===true?'<span style="color:var(--ok);font-weight:800">✓ richtig</span>'
+                   : t.correct===false?'<span style="color:var(--err);font-weight:800">✗ falsch</span>'
+                   : (t.lastAnswer!=null?'<span class="muted">geantwortet…</span>':'<span class="muted">wartet…</span>');
+      return `<div class="score-row">
+        <span class="tcolor team-${i%4}"></span>
+        <span class="nm">${esc(t.name)}</span>
+        <span>${status}</span>
+        <span class="pts">${t.score||0}</span>
+        ${(isReveal||c.type==="mitmach")?`<button class="btn small btn-ghost" onclick="award('${t.id}',1)">+</button>
+          <button class="btn small btn-ghost" onclick="award('${t.id}',-1)">−</button>`:""}
+      </div>`;
+    }).join("")}
+  </div>
+  ${c.type==="mitmach"?`<p class="muted" style="margin-top:8px">Tipp: pro korrekt mitmachendem Mitglied +1 Punkt vergeben.</p>`:""}
+  </div>`;
+
+  return qhtml;
+}
+function typeLabel(t){return {mc:"Multiple Choice",pairs:"Wortpaare",order:"Reihenfolge",gap:"Lückentext",scramble:"Wortsalat",match:"Zuordnung",mitmach:"Mitmach-Runde"}[t]||t;}
+
+/* ---------- Console timer ---------- */
+function startConsoleTimer(g){
+  clearInterval(countdownTimer);
+  const total=(g.current&&g.current.timer)||30;
+  const start=g.qStart||Date.now();
+  function tick(){
+    const el=S("csFill"),num=S("csNum"),wrap=S("csTimer"); if(!el)return clearInterval(countdownTimer);
+    const elapsed=(Date.now()-start)/1000; const left=Math.max(0,total-elapsed);
+    el.style.width=(100*left/total)+"%"; num.textContent=Math.ceil(left)+"s";
+    wrap.classList.toggle("low",left<=10);
+    if(left<=0){clearInterval(countdownTimer);}
+  }
+  tick(); countdownTimer=setInterval(tick,250);
+}
+
+/* ---------- Scoring ---------- */
+function award(teamId,delta){
+  const t=(lastGame.teams||{})[teamId]; if(!t)return;
+  gameRef.child("teams/"+teamId+"/score").set(Math.max(0,(t.score||0)+delta));
+}
+function revealAnswer(){
+  clearInterval(countdownTimer);
+  const g=lastGame, c=g.current||{}, teams=g.teams||{};
+  const effect=g.wheelResult;
+  // auto-grade objective types; assign points
+  const order=Object.entries(teams).map(([id,t])=>({id,...t}))
+    .filter(t=>t.answeredAt).sort((a,b)=>a.answeredAt-b.answeredAt);
+  let speedRank=0;
+  const updates={phase:"reveal"};
+  Object.entries(teams).forEach(([id,t])=>{
+    if(c.type==="mitmach"){ return; } // manual scoring only
+    const correct=gradeAnswer(c,t.lastAnswer);
+    updates["teams/"+id+"/correct"]=correct;
+    if(correct){
+      let pts=basePoints(c.diff);
+      if(effect==="x2")pts*=2;
+      if(effect==="risk")pts*=3;
+      // speed bonus: fastest correct gets +50%, ranking
+      updates["teams/"+id+"/score"]=(t.score||0)+pts;
+    }else{
+      if(effect==="risk"){ /* risk: wrong = 0 added (already) */ }
+    }
+  });
+  // speed bonus pass (effect speed or always small)
+  if(c.type!=="mitmach"){
+    const correctOrder=order.filter(t=>gradeAnswer(c,t.lastAnswer));
+    correctOrder.forEach((t,idx)=>{
+      let bonus = effect==="speed" ? [30,20,10,5][idx]||0 : [15,10,5,0][idx]||0;
+      if(bonus){ const cur=updates["teams/"+t.id+"/score"]; updates["teams/"+t.id+"/score"]=(cur!=null?cur:(t.score||0))+bonus; }
+    });
+  }
+  gameRef.update(updates);
+}
+function basePoints(diff){ return {1:100,2:200,3:300}[diff]||100; }
+function gradeAnswer(c,ans){
+  if(ans==null)return false;
+  if(c.type==="mc") return ans===c.correct;
+  if(c.type==="scramble") return norm(ans)===norm(c.word);
+  if(c.type==="gap") return (c.answers||[]).some(a=>norm(a)===norm(ans));
+  if(c.type==="order") return Array.isArray(ans)&&ans.join("|")===c.solution.join("|");
+  if(c.type==="pairs") return Array.isArray(ans)&&ans.join("|")===c.solution.join("|");
+  if(c.type==="match") return Array.isArray(ans)&&c.items.every((it,i)=>ans[i]===it.cat);
+  return false;
+}
+function nextRound(){
+  const g=lastGame;
+  const newIdx=Math.min(LADDER.length-1,(g.ladderIdx||0)+1);
+  gameRef.update({phase:"wheel",wheelResult:null,ladderIdx:newIdx});
+}
+function endGame(){ gameRef.update({phase:"end"}); }
+
+function renderEnd(g,arr){
+  const ranked=arr.slice().sort((a,b)=>(b.score||0)-(a.score||0));
+  return `<div class="card center">
+    <h2>🏆 Endstand</h2>
+    <div class="scoreboard" style="margin-top:14px;text-align:left">
+      ${ranked.map((t,i)=>`<div class="score-row">
+        <span class="rank">${i+1}.</span><span class="nm">${esc(t.name)}</span><span class="pts">${t.score||0}</span></div>`).join("")}
+    </div>
+    <div class="row" style="justify-content:center;margin-top:16px">
+      <button class="btn btn-gold" onclick="gameRef.update({phase:'lobby',round:0,ladderIdx:0,wheelResult:null,current:null,usedTasks:null})">Neue Runde</button>
+      <button class="btn btn-ghost" onclick="goHome()">Beenden</button>
+    </div>
+  </div>`;
+}
+function removeTeam(id){ gameRef.child("teams/"+id).remove(); }
+function clearAllTeams(){ if(confirm("Wirklich alle Teams entfernen?")) gameRef.child("teams").remove(); }
+
+/* ============================================================
+   PLAYER (Team-Gerät)
+   ============================================================ */
+function joinGame(){
+  if(!fbReady){setMsg("join-msg","⚠️ Firebase ist nicht konfiguriert.","err");return;}
+  const code=S("join-code").value.trim().toUpperCase();
+  const name=S("join-name").value.trim();
+  const members=S("join-members").value.split(",").map(x=>x.trim()).filter(Boolean);
+  if(!code||!name){setMsg("join-msg","Bitte Spielcode und Teamname eingeben.","err");return;}
+  db.ref("games/"+code).get().then(s=>{
+    if(!s.exists()){setMsg("join-msg","Kein Spiel mit diesem Code gefunden.","err");return;}
+    gameCode=code; role="player"; myId=getDeviceId(code);
+    const existing=(s.val().teams||{})[myId]||{};
+    const data={name,members,joinedAt:existing.joinedAt||Date.now(),score:existing.score||0};
+    db.ref("games/"+code+"/teams/"+myId).update(data).then(()=>enterPlayer());
+  });
+}
+function enterPlayer(){
+  hideAll();S("screen-player").classList.remove("hidden");
+  gameRef=db.ref("games/"+gameCode);
+  gameRef.on("value",snap=>{ lastGame=snap.val()||{}; renderPlayer(lastGame); });
+}
+
+let playerLocal={}; // transient answer-building state
+function renderPlayer(g){
+  const me=(g.teams||{})[myId];
+  if(!me){ // removed by console
+    S("screen-player").innerHTML=`<header class="top"><div class="logo-coin">€</div>
+      <div><h1>Team-Gerät</h1><div class="tag">Verbindung</div></div></header>
+      <div class="card center"><h2>Du wurdest entfernt</h2><p class="muted">Die Spielleitung hat dieses Team entfernt.</p>
+      <button class="btn btn-gold" onclick="rejoinFresh()">Neu beitreten</button></div>`;
+    return;
+  }
+  const phase=g.phase||"lobby";
+  let body=`<header class="top">
+    <div class="logo-coin">€</div>
+    <div><h1>${esc(me.name)}</h1><div class="tag pill-status live"><span class="dot"></span> verbunden · ${me.score||0} Punkte</div></div>
+    <a href="#" class="home" onclick="if(confirm('Spiel verlassen?'))goHome();return false;">←</a>
+  </header>`;
+
+  if(phase==="lobby"){
+    body+=`<div class="card center"><h2>Bereit! 🎉</h2><p class="muted">Wartet auf die Spielleitung. Das Glücksrad beginnt gleich.</p>
+      ${me.members&&me.members.length?`<p class="muted">Mitglieder: ${me.members.map(esc).join(", ")}</p>`:""}</div>`;
+  }else if(phase==="wheel"){
+    body+=`<div class="card center"><h2>🎡 Glücksrad dreht…</h2>
+      <p class="muted">${g.wheelResult?wheelEffectLabel(g.wheelResult):"Gleich seht ihr, welche Runde kommt."}</p></div>`;
+  }else if(phase==="question"){
+    body+=renderPlayerTask(g,me);
+  }else if(phase==="reveal"){
+    body+=renderPlayerReveal(g,me);
+  }else if(phase==="end"){
+    const ranked=Object.values(g.teams||{}).sort((a,b)=>(b.score||0)-(a.score||0));
+    const place=ranked.findIndex(t=>t.name===me.name)+1;
+    body+=`<div class="card center"><h2>🏁 Spiel vorbei</h2>
+      <p style="font-size:1.2rem">Platz <b>${place}</b> mit <b>${me.score||0}</b> Punkten</p></div>`;
+  }
+  S("screen-player").innerHTML=body;
+  attachPlayerHandlers(g,me);
+}
+
+function renderPlayerTask(g,me){
+  const c=g.current||{}; const answered=me.lastAnswer!=null;
+  let h=`<div class="card">
+    <div class="qmeta"><span class="chip diff${c.diff}">${["","leicht","mittel","schwer"][c.diff]||""}</span>
+      <span class="chip type">${typeLabel(c.type)}</span>
+      <div class="timer" id="plTimer" style="margin-left:auto;min-width:130px"><div class="bar"><div class="fill" id="plFill"></div></div><span class="num" id="plNum">–</span></div>
+    </div>
+    <div class="qtext" style="font-size:1.15rem">${esc(c.q)}</div>`;
+
+  if(answered && c.type!=="mitmach"){
+    h+=`<div class="notice ok">✅ Antwort gesendet! Wartet auf die Auflösung.</div></div>`;
+    return h;
+  }
+
+  if(c.type==="mc"){
+    h+=`<div class="opts">${c.opts.map((o,i)=>`<button class="opt" data-mc="${i}"><span class="letter">${"ABCD"[i]}</span> ${esc(o)}</button>`).join("")}</div>`;
+  }else if(c.type==="scramble"){
+    h+=`<div class="center" style="margin-bottom:10px">${c.letters.map(l=>`<span class="token" style="cursor:default">${esc(l)}</span>`).join("")}</div>
+      <input id="plScramble" placeholder="Wort eintippen" style="width:100%;text-transform:uppercase">
+      <button class="btn btn-gold" style="margin-top:10px;width:100%" data-submit="scramble">Antwort senden</button>`;
+  }else if(c.type==="gap"){
+    h+=`<div class="center" style="font-size:1.15rem;margin-bottom:10px">${esc(c.sentence)}</div>
+      <input id="plGap" placeholder="Lösung eintippen" style="width:100%">
+      <button class="btn btn-gold" style="margin-top:10px;width:100%" data-submit="gap">Antwort senden</button>`;
+  }else if(c.type==="order"){
+    h+=`<p class="muted">Tippe die Teile in der richtigen Reihenfolge an:</p>
+      <div id="orderSlots" class="slot"></div>
+      <div id="orderTokens">${c.items.map((it,i)=>`<button class="token" data-order="${i}">${esc(it)}</button>`).join("")}</div>
+      <button class="btn btn-gold" style="margin-top:10px;width:100%" data-submit="order">Antwort senden</button>
+      <button class="btn btn-ghost small" style="margin-top:6px" data-reset="order">Zurücksetzen</button>`;
+  }else if(c.type==="pairs"){
+    h+=`<p class="muted">Wähle für jeden Begriff die passende Erklärung:</p>`;
+    h+=c.left.map((l,i)=>`<div style="margin-bottom:8px"><b>${esc(l)}</b>
+      <select data-pair="${i}" style="width:100%;margin-top:4px"><option value="">— wählen —</option>
+      ${c.right.map((r,j)=>`<option value="${j}">${esc(r)}</option>`).join("")}</select></div>`).join("");
+    h+=`<button class="btn btn-gold" style="margin-top:6px;width:100%" data-submit="pairs">Antwort senden</button>`;
+  }else if(c.type==="match"){
+    h+=`<p class="muted">Ordne jede Aussage einer Kategorie zu:</p>`;
+    h+=c.items.map((it,i)=>`<div style="margin-bottom:8px">${esc(it.txt)}
+      <select data-match="${i}" style="width:100%;margin-top:4px"><option value="">— wählen —</option>
+      ${c.cats.map((cat,j)=>`<option value="${j}">${esc(cat)}</option>`).join("")}</select></div>`).join("");
+    h+=`<button class="btn btn-gold" style="margin-top:6px;width:100%" data-submit="match">Antwort senden</button>`;
+  }else if(c.type==="mitmach"){
+    h+=`<div class="notice ok" style="font-size:1.05rem">🙋 ${esc(c.prompt)}</div>
+      <p class="muted">Reihum! Jedes Mitglied ist einzeln dran. Die Spielleitung vergibt die Punkte.</p>
+      ${me.members&&me.members.length?`<div class="grid2">${me.members.map(m=>`<div class="notice">${esc(m)}</div>`).join("")}</div>`:""}`;
+  }
+  h+=`</div>`;
+  return h;
+}
+
+function renderPlayerReveal(g,me){
+  const c=g.current||{};
+  const correct=me.correct;
+  let verdict = c.type==="mitmach" ? `<div class="notice">Punkte werden von der Spielleitung vergeben.</div>`
+    : correct===true?`<div class="notice ok">✅ Richtig!</div>`
+    : correct===false?`<div class="notice err">❌ Leider falsch.</div>`
+    : `<div class="notice">Keine Antwort gewertet.</div>`;
+  let sol="";
+  if(c.type==="mc")sol=`Richtig: <b>${"ABCD"[c.correct]}) ${esc(c.opts[c.correct])}</b>`;
+  else if(c.type==="scramble")sol=`Lösung: <b>${esc(c.word)}</b>`;
+  else if(c.type==="gap")sol=`Lösung: <b>${esc(c.answers[0])}</b>`;
+  else if(c.type==="order")sol=`Lösung: <b>${c.solution.map(esc).join(" · ")}</b>`;
+  else if(c.type==="pairs")sol=c.left.map((l,i)=>esc(l)+" → "+esc(c.solution[i])).join("<br>");
+  else if(c.type==="match")sol=c.items.map(it=>esc(it.txt)+" → <b>"+esc(c.cats[it.cat])+"</b>").join("<br>");
+  return `<div class="card"><div class="qtext" style="font-size:1.1rem">${esc(c.q)}</div>
+    ${verdict}
+    ${sol?`<div class="notice" style="margin-top:8px">${sol}</div>`:""}
+    ${c.hint?`<p class="muted" style="margin-top:8px">💡 ${esc(c.hint)}</p>`:""}
+    <p class="muted">Punkte: <b>${me.score||0}</b> · weiter geht’s gleich.</p></div>`;
+}
+
+/* ---------- Player interaction ---------- */
+function submitAnswer(ans){
+  gameRef.child("teams/"+myId).update({lastAnswer:ans,answeredAt:Date.now()});
+}
+function attachPlayerHandlers(g,me){
+  const c=g.current||{};
+  // MC: instant submit
+  document.querySelectorAll("[data-mc]").forEach(b=>b.onclick=()=>{
+    document.querySelectorAll("[data-mc]").forEach(x=>x.classList.remove("chosen"));
+    b.classList.add("chosen"); submitAnswer(parseInt(b.dataset.mc));
+  });
+  // order builder
+  if(c.type==="order"){
+    playerLocal.order=[];
+    const slots=S("orderSlots"), tokens=S("orderTokens");
+    const refresh=()=>{ if(slots)slots.innerHTML=playerLocal.order.map(i=>`<span class="token">${esc(c.items[i])}</span>`).join("")||'<span class="muted">hier erscheint deine Reihenfolge</span>';
+      document.querySelectorAll("[data-order]").forEach(t=>t.classList.toggle("placed",playerLocal.order.includes(parseInt(t.dataset.order)))); };
+    document.querySelectorAll("[data-order]").forEach(t=>t.onclick=()=>{const i=parseInt(t.dataset.order);if(playerLocal.order.includes(i))return;playerLocal.order.push(i);refresh();});
+    const rb=document.querySelector('[data-reset="order"]'); if(rb)rb.onclick=()=>{playerLocal.order=[];refresh();};
+    refresh();
+  }
+  // submit buttons
+  document.querySelectorAll("[data-submit]").forEach(b=>b.onclick=()=>{
+    const kind=b.dataset.submit;
+    if(kind==="scramble")submitAnswer((S("plScramble").value||"").trim());
+    else if(kind==="gap")submitAnswer((S("plGap").value||"").trim());
+    else if(kind==="order")submitAnswer(playerLocal.order.map(i=>c.items[i]));
+    else if(kind==="pairs"){const a=c.left.map((_,i)=>{const sel=document.querySelector(`[data-pair="${i}"]`);return sel&&sel.value!==""?c.right[parseInt(sel.value)]:null;});submitAnswer(a);}
+    else if(kind==="match"){const a=c.items.map((_,i)=>{const sel=document.querySelector(`[data-match="${i}"]`);return sel&&sel.value!==""?parseInt(sel.value):null;});submitAnswer(a);}
+  });
+  // timer
+  if(g.phase==="question"){
+    clearInterval(countdownTimer);
+    const total=(c.timer)||30, start=g.qStart||Date.now();
+    const tick=()=>{const el=S("plFill"),num=S("plNum"),wrap=S("plTimer");if(!el)return clearInterval(countdownTimer);
+      const left=Math.max(0,total-(Date.now()-start)/1000);el.style.width=(100*left/total)+"%";num.textContent=Math.ceil(left)+"s";
+      wrap.classList.toggle("low",left<=10);if(left<=0)clearInterval(countdownTimer);};
+    tick();countdownTimer=setInterval(tick,250);
+  }
+}
+function rejoinFresh(){ try{localStorage.removeItem("wwm_pid_"+gameCode);}catch(e){} goHome(); showJoin(); }
+
+/* ---------- Init ---------- */
+goHome();
+
+</script>
+</body>
+</html>

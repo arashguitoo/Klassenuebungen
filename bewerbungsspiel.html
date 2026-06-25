@@ -483,11 +483,28 @@ function joinGame(){
   if(!code||!name){setMsg("join-msg","Bitte Code und Name eingeben.","err");return;}
   db.ref("games/"+code).get().then(s=>{
     if(!s.exists()){setMsg("join-msg","Kein Spiel mit diesem Code gefunden.","err");return;}
-    gameCode=code;myId=uid();
-    db.ref("games/"+code+"/players/"+myId).set({name,joinedAt:Date.now()}).then(()=>{
+    gameCode=code;
+    // Stabile Geräte-ID pro Spiel: bei Reconnect derselbe Spieler.
+    myId=getDeviceId(code);
+    const existing=(s.val().players||{})[myId];
+    const data={name,joinedAt:(existing&&existing.joinedAt)||Date.now()};
+    if(existing&&existing.manual) data.manual=true; // ggf. vorhandenes Flag behalten
+    db.ref("games/"+code+"/players/"+myId).update(data).then(()=>{
       enterPlayer(name);
     });
   });
+}
+/* Geräte- und spielgebundene Spieler-ID: bleibt über Reconnects hinweg gleich. */
+function getDeviceId(code){
+  const key="bw_pid_"+code;
+  try{
+    let v=localStorage.getItem(key);
+    if(!v){ v=uid(); localStorage.setItem(key,v); }
+    return v;
+  }catch(e){
+    // localStorage nicht verfügbar (z. B. privater Modus): Fallback auf flüchtige ID
+    return uid();
+  }
 }
 function enterPlayer(name){
   hideAll();S("screen-player").classList.remove("hidden");

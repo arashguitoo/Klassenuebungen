@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neu in der Firma – Lern Deutsch mit Arash</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<style>
+:root{
+  --bg:#eaf1f7;
+  --card:#ffffff;
+  --ink:#16242f;
+  --ink-soft:#5a6b78;
+  --line:#d3dde6;
+  --blue:#2f6cb0;        /* Aspekte-Blau */
+  --blue-deep:#1f4f86;
+  --blue-soft:#e4eef8;
+  --green:#3a9d6e;
+  --amber:#e0a32e;
+  --rose:#c45d4a;
+  --radius:16px;
+  --shadow:0 1px 2px rgba(22,36,47,.06),0 10px 28px rgba(22,36,47,.10);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',Calibri,system-ui,sans-serif;color:var(--ink);line-height:1.55;
+  background:radial-gradient(circle at 90% -10%, #fff 0%, transparent 40%),var(--bg);-webkit-font-smoothing:antialiased;}
+.wrap{max-width:1000px;margin:0 auto;padding:16px 16px 70px}
+.wrap.beamer{max-width:1180px}
+.hidden{display:none!important}
+h1,h2,h3{margin:0}
+button{font-family:inherit}
+
+header.top{display:flex;align-items:center;gap:14px;padding:18px 0 20px}
+.badge-firma{flex:0 0 auto;width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--blue-deep));
+  display:grid;place-items:center;color:#fff;font-size:1.6rem;box-shadow:0 6px 16px rgba(47,108,176,.3)}
+header.top h1{font-size:1.5rem;letter-spacing:-.4px;line-height:1.05;color:var(--blue-deep)}
+header.top .tag{color:var(--ink-soft);font-size:.85rem;margin-top:2px}
+header.top .home{margin-left:auto;text-decoration:none;color:var(--ink-soft);font-size:.82rem;font-weight:700;
+  border:1px solid var(--line);border-radius:999px;padding:7px 13px;background:var(--card);white-space:nowrap}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:var(--shadow)}
+.card h2{font-size:1.18rem;margin-bottom:4px;color:var(--blue-deep)}
+.muted{color:var(--ink-soft);font-size:.9rem}
+.center{text-align:center}
+.btn{border:none;border-radius:12px;padding:13px 20px;font-size:1rem;font-weight:800;cursor:pointer;transition:.15s;color:#fff}
+.btn-blue{background:linear-gradient(180deg,var(--blue),var(--blue-deep))}
+.btn-blue:hover{filter:brightness(1.05)}
+.btn-green{background:var(--green)}
+.btn-ghost{background:var(--blue-soft);color:var(--blue-deep);border:1px solid var(--line)}
+.btn-ghost:hover{filter:brightness(.98)}
+.btn-danger{background:#fbe6e2;color:#9c3724;border:1px solid #efc4bb}
+.btn-danger:hover{background:#f7d9d2}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.small{padding:8px 13px;font-size:.85rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input,select{padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:#fff;color:var(--ink);font-family:inherit}
+input:focus,select:focus{outline:2px solid var(--blue);border-color:var(--blue)}
+.notice{background:var(--blue-soft);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:.9rem;margin-top:10px}
+.notice.ok{background:#e3f5ec;border-color:#b6e3cb;color:#1d6e46}
+.notice.err{background:#fbe6e2;border-color:#efc4bb;color:#9c3724}
+
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+@media(max-width:560px){.role-grid{grid-template-columns:1fr}}
+.role-pick{border:1px solid var(--line);background:var(--blue-soft);border-radius:var(--radius);padding:22px;cursor:pointer;text-align:left;transition:.15s;color:var(--ink)}
+.role-pick:hover{border-color:var(--blue);transform:translateY(-2px)}
+.role-pick .ic{font-size:2rem;margin-bottom:8px}
+.role-pick h3{font-size:1.1rem;margin-bottom:4px;color:var(--blue-deep)}
+.role-pick p{color:var(--ink-soft);font-size:.86rem;margin:0}
+
+.bigcode{font-size:2.4rem;font-weight:900;letter-spacing:6px;color:var(--blue-deep);text-align:center;margin:8px 0}
+.flex-between{display:flex;justify-content:space-between;align-items:center;gap:10px}
+
+.mode-toggle{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.mode-toggle button{border:none;background:#fff;padding:10px 15px;font-weight:700;font-size:.88rem;cursor:pointer;color:var(--ink-soft)}
+.mode-toggle button[aria-pressed="true"]{background:var(--blue);color:#fff}
+
+.list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.list-item{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.list-item .nm{font-weight:700;flex:1}
+.pill{display:inline-block;font-size:.74rem;font-weight:800;padding:4px 10px;border-radius:999px}
+.pill.dept{background:var(--blue-soft);color:var(--blue-deep)}
+.pill.neu{background:#fdeccd;color:#9a6a12}
+.pill.frei{background:#eef2f5;color:var(--ink-soft)}
+.pill.done{background:#e3f5ec;color:#1d6e46}
+
+/* department card */
+.deptcard{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;box-shadow:var(--shadow)}
+.deptcard .dc-top{background:linear-gradient(135deg,var(--blue),var(--blue-deep));color:#fff;padding:16px 18px}
+.deptcard .dc-top .role-eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.7px;opacity:.85}
+.deptcard .dc-top .dc-name{font-size:1.5rem;font-weight:800;margin-top:2px}
+.deptcard .dc-body{padding:16px 18px}
+.deptcard dt{font-weight:800;color:var(--blue-deep);font-size:.76rem;text-transform:uppercase;letter-spacing:.4px;margin-top:12px}
+.deptcard dt:first-child{margin-top:0}
+.deptcard dd{margin:3px 0 0}
+dl{margin:0}
+
+.cardgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+
+.phrase-group{margin-bottom:14px}
+.phrase-group h3{font-size:.95rem;color:var(--blue-deep);margin-bottom:6px}
+.phrase{display:block;background:var(--blue-soft);border-left:3px solid var(--blue);padding:9px 13px;border-radius:0 8px 8px 0;margin-bottom:6px;font-size:.96rem}
+
+/* talk counter */
+.counter-wrap{display:flex;align-items:center;gap:14px;justify-content:center;margin:10px 0}
+.dots{display:flex;gap:8px}
+.dot-big{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);background:#fff;cursor:pointer;display:grid;place-items:center;font-weight:800;color:var(--ink-soft);transition:.12s}
+.dot-big.on{background:var(--green);border-color:var(--green);color:#fff}
+.counter-num{font-size:1.6rem;font-weight:900;color:var(--blue-deep)}
+
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tabs button{border:1px solid var(--line);background:#fff;color:var(--ink-soft);padding:9px 15px;border-radius:999px;font-size:.9rem;font-weight:700;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--blue-deep);color:#fff;border-color:var(--blue-deep)}
+.panel{display:none}.panel.active{display:block}
+
+footer{text-align:center;color:var(--ink-soft);font-size:.8rem;margin-top:34px}
+.pill-status{display:inline-flex;gap:7px;align-items:center;font-size:.8rem;font-weight:700;color:var(--ink-soft)}
+.sdot{width:8px;height:8px;border-radius:50%;background:var(--rose)}
+.pill-status.live .sdot{background:var(--green)}
+</style>
+</head>
+<body>
+
+<!-- ================= HOME ================= -->
+<div id="screen-home" class="wrap">
+  <header class="top">
+    <div class="badge-firma">🏢</div>
+    <div><h1>Neu in der Firma</h1><div class="tag">Rollenspiel · Aspekte Beruf B2 · „Abteilungen kennenlernen"</div></div>
+    <a href="index.html" class="home">🏠 Index</a>
+  </header>
+  <div class="card">
+    <h2>Wie machst du mit?</h2>
+    <p class="muted">Die Lehrkraft öffnet die <b>Spielleitung</b> (am Beamer). Alle anderen treten am eigenen Gerät mit dem <b>Spielcode</b> bei und bekommen eine Abteilung.</p>
+    <div class="role-grid">
+      <button class="role-pick" onclick="showConsoleLogin()">
+        <div class="ic">🎛️</div><h3>Spielleitung (Beamer)</h3>
+        <p>Spiel starten, Abteilungen zulosen, Fortschritt sehen, Teilnehmende entfernen.</p>
+      </button>
+      <button class="role-pick" onclick="showJoin()">
+        <div class="ic">📱</div><h3>Mitspielen</h3>
+        <p>Mit Spielcode beitreten und eine Abteilung erhalten.</p>
+      </button>
+    </div>
+  </div>
+  <div class="card">
+    <h2>So läuft das Spiel</h2>
+    <ol class="muted" style="margin:6px 0 0;padding-left:20px;line-height:1.7">
+      <li>Alle treten bei und bekommen per Zufall eine <b>Abteilung</b> (z. B. die Logistik).</li>
+      <li>Aufgabe: durch den Raum gehen, dem Gegenüber das eigene <b>Aufgabengebiet</b> beschreiben und <b>nachfragen</b>.</li>
+      <li>Ziel: mit <b>mindestens 5 Personen</b> sprechen und die Gespräche abhaken.</li>
+      <li>Sprachbausteine und die eigene Karte sind immer auf dem Gerät sichtbar.</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ================= JOIN ================= -->
+<div id="screen-join" class="wrap hidden">
+  <header class="top">
+    <div class="badge-firma">🏢</div>
+    <div><h1>Beitreten</h1><div class="tag">Spielcode und Name eingeben</div></div>
+    <a href="#" class="home" onclick="goHome();return false;">← zurück</a>
+  </header>
+  <div class="card">
+    <div class="row" style="margin-bottom:12px">
+      <input id="join-code" placeholder="Spielcode (z. B. 4821)" style="flex:1 1 160px;text-transform:uppercase">
+      <input id="join-name" placeholder="Dein Name" style="flex:1 1 160px">
+    </div>
+    <button class="btn btn-blue" onclick="joinGame()">Beitreten</button>
+    <div id="join-msg"></div>
+  </div>
+</div>
+
+<!-- ================= CONSOLE LOGIN ================= -->
+<div id="screen-console-login" class="wrap hidden">
+  <header class="top">
+    <div class="badge-firma">🏢</div>
+    <div><h1>Spielleitung</h1><div class="tag">Neues Spiel starten</div></div>
+    <a href="#" class="home" onclick="goHome();return false;">← zurück</a>
+  </header>
+  <div class="card">
+    <h2>Neues Spiel</h2>
+    <p class="muted">Ein Spielcode wird erzeugt. Teilt ihn mit dem Kurs.</p>
+    <div class="row" style="margin-top:12px"><button class="btn btn-blue" onclick="createGame()">🎬 Spiel erstellen</button></div>
+    <div id="console-login-msg"></div>
+  </div>
+</div>
+
+<!-- ================= CONSOLE ================= -->
+<div id="screen-console" class="wrap beamer hidden"></div>
+
+<!-- ================= PLAYER ================= -->
+<div id="screen-player" class="wrap hidden"></div>
+
+<footer>Lern Deutsch mit Arash · Neu in der Firma</footer>
+
+<script data-goatcounter="https://aguitoo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+/* ============================================================
+   DATEN: Abteilungen (aus Aspekte Beruf B2, S. 40, 1a)
+   ============================================================ */
+const DEPARTMENTS = [
+  {name:"der Kundenservice", area:"Kundinnen und Kunden bei Fragen und Problemen helfen",
+   tasks:"Anrufe und E-Mails beantworten, Beschwerden bearbeiten, Lösungen anbieten",
+   contact:"wenn Sie eine Frage zu Ihrer Bestellung oder eine Beschwerde haben"},
+  {name:"das Marketing", area:"das Unternehmen und seine Produkte bekannt machen",
+   tasks:"Werbung planen, Social Media betreuen, Kampagnen entwickeln",
+   contact:"wenn es um Werbung, die Website oder unseren Auftritt nach außen geht"},
+  {name:"der Vertrieb", area:"die Produkte verkaufen und neue Kunden gewinnen",
+   tasks:"Angebote erstellen, Verkaufsgespräche führen, Kundenkontakte pflegen",
+   contact:"wenn Sie ein Angebot brauchen oder etwas verkaufen möchten"},
+  {name:"die Personalabteilung", area:"sich um die Mitarbeiterinnen und Mitarbeiter kümmern",
+   tasks:"Bewerbungen prüfen, Verträge, Urlaub, Krankmeldungen, Gehalt",
+   contact:"wenn Sie Fragen zu Vertrag, Urlaub, Arbeitszeit oder Gehalt haben"},
+  {name:"die Buchhaltung", area:"alle Zahlungen und Rechnungen verwalten",
+   tasks:"Rechnungen schreiben und prüfen, Zahlungen kontrollieren, Belege buchen",
+   contact:"wenn es um Rechnungen, Belege oder Zahlungen geht"},
+  {name:"die Produktion", area:"die Produkte herstellen",
+   tasks:"Maschinen bedienen, Waren fertigen, auf Qualität achten",
+   contact:"wenn Sie wissen wollen, wie und wann etwas hergestellt wird"},
+  {name:"die IT-Abteilung", area:"Computer, Netzwerk und Programme am Laufen halten",
+   tasks:"Zugänge einrichten, bei technischen Problemen helfen, Passwörter, Geräte",
+   contact:"wenn Ihr Computer, Login, E-Mail oder Drucker nicht funktioniert"},
+  {name:"die Forschung und Entwicklung", area:"neue Produkte und Ideen entwickeln",
+   tasks:"Ideen testen, Prototypen bauen, Produkte verbessern",
+   contact:"wenn es um neue Produkte oder technische Verbesserungen geht"},
+  {name:"die Rechtsabteilung", area:"das Unternehmen rechtlich absichern",
+   tasks:"Verträge prüfen, rechtliche Fragen klären, Risiken vermeiden",
+   contact:"wenn Sie einen Vertrag prüfen lassen oder eine rechtliche Frage haben"},
+  {name:"die Logistik", area:"den Transport und die Lieferung der Waren organisieren",
+   tasks:"Lieferungen planen, Transportwege koordinieren, Termine einhalten",
+   contact:"wenn es um Lieferungen, Transport oder Liefertermine geht"},
+  {name:"das Controlling", area:"dafür sorgen, dass das Unternehmen wirtschaftlich arbeitet",
+   tasks:"Budgetpläne erstellen, Kosten kontrollieren, Zahlen analysieren",
+   contact:"wenn Sie Zahlen, Budgets oder Kostenfragen klären müssen"},
+  {name:"die Geschäftsleitung", area:"das Unternehmen führen und wichtige Entscheidungen treffen",
+   tasks:"Strategie festlegen, Ziele setzen, das Team leiten",
+   contact:"wenn es um große Entscheidungen oder die Richtung der Firma geht"},
+  {name:"das Lager", area:"Waren lagern und für den Versand bereitstellen",
+   tasks:"Waren annehmen, einräumen, Bestände prüfen, Bestellungen zusammenstellen",
+   contact:"wenn Sie wissen wollen, ob eine Ware da ist oder abgeholt werden kann"}
+];
+
+/* Sprachbausteine (Sprechblasen S. 40, 2b + Begrüßung/Abschied + duzen/siezen) */
+const PHRASES = [
+  {group:"Begrüßung & Vorstellung", items:[
+    "Guten Tag, ich bin neu hier. Darf ich mich kurz vorstellen?",
+    "Hallo, ich arbeite in der … Und Sie? In welcher Abteilung sind Sie?",
+    "Freut mich, Sie kennenzulernen."]},
+  {group:"Das eigene Aufgabengebiet beschreiben", items:[
+    "Ich bin verantwortlich für …",
+    "Mein Aufgabengebiet umfasst …",
+    "Zu meinen Aufgaben gehört …",
+    "Bei uns geht es vor allem um …"]},
+  {group:"Nachfragen & Verstehen sichern", items:[
+    "Habe ich Sie richtig verstanden, dass …?",
+    "Könnten Sie das noch mal wiederholen, bitte?",
+    "Was bedeutet das genau?",
+    "An wen wende ich mich, wenn …?"]},
+  {group:"Zuständigkeit klären", items:[
+    "Wenden Sie sich an mich, wenn …",
+    "Dafür ist eher die Abteilung … zuständig.",
+    "Da kann ich Ihnen weiterhelfen."]},
+  {group:"Verabschiedung", items:[
+    "Vielen Dank für die Informationen!",
+    "Schön, dass wir gesprochen haben. Bis später!",
+    "Wir sehen uns sicher noch."]},
+  {group:"duzen oder siezen? (KiB)", items:[
+    "Sollen wir uns duzen? – Gern, ich bin …",
+    "Bei uns sagen alle „du“. – Dann gern auch bei mir.",
+    "Ich bleibe lieber beim „Sie“, wenn das in Ordnung ist."]}
+];
+
+const TALK_GOAL=5;
+</script>
+<script>
+/* ============================================================
+   ENGINE  —  Firebase, Konsole (Beamer) + Spieler (Gerät)
+   ============================================================ */
+const firebaseConfig = {
+  apiKey: "AIzaSyBDChXlm34Kr7Gg0Dw458GiiwoLnWJAnxM",
+  authDomain: "lern-deutsch-arash.firebaseapp.com",
+  databaseURL: "https://lern-deutsch-arash-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "lern-deutsch-arash",
+  storageBucket: "lern-deutsch-arash.firebasestorage.app",
+  messagingSenderId: "845503292114",
+  appId: "1:845503292114:web:f76ab5fcde1e978d00c30b"
+};
+let db=null, fbReady=false;
+try{ firebase.initializeApp(firebaseConfig); db=firebase.database(); fbReady=true; }
+catch(e){ console.warn("Firebase nicht konfiguriert:",e); }
+
+let role=null, gameCode=null, gameRef=null, myId=null, lastGame=null, playerTab="karte";
+const S=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function rand4(){return String(Math.floor(1000+Math.random()*9000));}
+function uid(){return "u"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function setMsg(id,t,c){const e=S(id);if(e)e.innerHTML=`<div class="notice ${c||''}">${t}</div>`;}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function hideAll(){["screen-home","screen-join","screen-player","screen-console-login","screen-console"].forEach(s=>S(s).classList.add("hidden"));}
+function goHome(){ if(gameRef){gameRef.off();} hideAll(); S("screen-home").classList.remove("hidden"); role=null;gameCode=null;gameRef=null;myId=null;lastGame=null; }
+function showJoin(){hideAll();S("screen-join").classList.remove("hidden");}
+function showConsoleLogin(){hideAll();S("screen-console-login").classList.remove("hidden");
+  if(!fbReady)setMsg("console-login-msg","⚠️ Firebase ist nicht konfiguriert.","err");}
+function getDeviceId(code){const key="nidf_pid_"+code;try{let v=localStorage.getItem(key);if(!v){v=uid();localStorage.setItem(key,v);}return v;}catch(e){return uid();}}
+
+/* ---------------- CONSOLE ---------------- */
+function createGame(){
+  if(!fbReady){setMsg("console-login-msg","⚠️ Firebase fehlt.","err");return;}
+  const code=rand4();
+  const init={createdAt:Date.now(),phase:"lobby",mode:"mingle",cardMode:"profil",players:{}};
+  db.ref("games_nidf/"+code).set(init).then(()=>{gameCode=code;role="console";enterConsole();});
+}
+function enterConsole(){
+  hideAll();S("screen-console").classList.remove("hidden");
+  gameRef=db.ref("games_nidf/"+gameCode);
+  gameRef.on("value",snap=>{lastGame=snap.val()||{};renderConsole(lastGame);});
+}
+function renderConsole(g){
+  const players=g.players||{};
+  const arr=Object.entries(players).map(([id,p])=>({id,...p})).sort((a,b)=>(a.joinedAt||0)-(b.joinedAt||0));
+  const phase=g.phase||"lobby", mode=g.mode||"mingle", cardMode=g.cardMode||"profil";
+  const assigned=arr.filter(p=>p.dept!=null).length;
+
+  let body=`<header class="top">
+    <div class="badge-firma">🏢</div>
+    <div><h1>Spielleitung</h1><div class="tag">Phase: ${esc(phaseLabel(phase))} · ${arr.length} Teilnehmende</div></div>
+    <a href="#" class="home" onclick="if(confirm('Spiel verlassen?'))goHome();return false;">← beenden</a>
+  </header>
+
+  <div class="card center">
+    <div class="muted">Spielcode für den Kurs</div>
+    <div class="bigcode">${esc(gameCode)}</div>
+  </div>
+
+  <div class="card">
+    <h2>Einstellungen</h2>
+    <div class="row" style="margin-top:8px">
+      <div>
+        <div class="muted" style="margin-bottom:4px">Spielart</div>
+        <div class="mode-toggle">
+          <button aria-pressed="${mode==='mingle'}" onclick="setMode('mingle')">Herumgehen (alle)</button>
+          <button aria-pressed="${mode==='groups'}" onclick="setMode('groups')">Zwei Gruppen</button>
+        </div>
+      </div>
+      <div>
+        <div class="muted" style="margin-bottom:4px">Karten</div>
+        <div class="mode-toggle">
+          <button aria-pressed="${cardMode==='profil'}" onclick="setCardMode('profil')">Mit Profil</button>
+          <button aria-pressed="${cardMode==='offen'}" onclick="setCardMode('offen')">Nur Stichworte</button>
+        </div>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:10px">${mode==='mingle'
+      ? 'Alle bekommen eine Abteilung und gehen gemischt herum (wie Aufgabe 2b).'
+      : 'Eine Gruppe spielt die Abteilungen (Station), die andere sind die Neuankömmlinge, die herumgehen.'}</p>
+  </div>`;
+
+  // Teilnehmer-Verwaltung (immer mit Entfernen)
+  body+=`<div class="card">
+    <div class="flex-between"><h2>Teilnehmende</h2>
+      ${arr.length?`<button class="btn btn-danger small" onclick="clearAll()">Alle entfernen</button>`:""}</div>
+    <div class="list">
+      ${arr.length?arr.map(p=>{
+        const d = p.dept!=null?DEPARTMENTS[p.dept]:null;
+        const tag = mode==='groups' && p.side==='neu'
+          ? `<span class="pill neu">🙋 Neu</span>`
+          : d?`<span class="pill dept">🏢 ${esc(d.name)}</span>`:`<span class="pill frei">noch keine Rolle</span>`;
+        return `<div class="list-item"><span class="nm">${esc(p.name)}</span>${tag}
+          <button class="btn btn-danger small" onclick="removePlayer('${p.id}')">✕</button></div>`;
+      }).join(""):`<p class="muted">Noch niemand da. Teilt den Spielcode!</p>`}
+    </div>
+  </div>`;
+
+  // Phasensteuerung
+  if(phase==="lobby"){
+    body+=`<div class="card center">
+      <h2>Rollen verteilen</h2>
+      <p class="muted">${mode==='mingle'?'Jede Person bekommt zufällig eine Abteilung.':'Etwa die Hälfte wird „Neu", die andere Hälfte bekommt Abteilungen.'}</p>
+      <div class="row" style="justify-content:center;margin-top:10px">
+        <button class="btn btn-blue" ${arr.length<1?'disabled':''} onclick="assignRoles()">🎲 Abteilungen zulosen</button>
+        ${assigned>0?`<button class="btn btn-green" onclick="startRound()">Spiel starten →</button>`:""}
+      </div>
+    </div>`;
+  } else if(phase==="round"){
+    const done=arr.filter(p=>(p.talks||0)>=TALK_GOAL).length;
+    body+=`<div class="card">
+      <div class="flex-between"><h2>Gespräche laufen</h2>
+        <span class="muted">${done}/${arr.length} haben ${TALK_GOAL} Gespräche geschafft</span></div>
+      <div class="list" style="margin-top:10px">
+        ${arr.map(p=>{
+          const d=p.dept!=null?DEPARTMENTS[p.dept]:null;
+          const t=p.talks||0; const ok=t>=TALK_GOAL;
+          return `<div class="list-item">
+            <span class="nm">${esc(p.name)} ${mode==='groups'&&p.side==='neu'?'<span class="pill neu">Neu</span>':d?`<span class="pill dept">${esc(d.name)}</span>`:''}</span>
+            <span class="pill ${ok?'done':'frei'}">${t}/${TALK_GOAL} Gespräche</span>
+            <button class="btn btn-danger small" onclick="removePlayer('${p.id}')">✕</button>
+          </div>`;
+        }).join("")}
+      </div>
+      <div class="row" style="margin-top:14px">
+        <button class="btn btn-blue" onclick="reassign()">Neu zulosen</button>
+        <button class="btn btn-ghost" onclick="backToLobby()">Zurück zur Lobby</button>
+      </div>
+    </div>`;
+  }
+
+  S("screen-console").innerHTML=body;
+}
+function phaseLabel(p){return {lobby:"Lobby",round:"Gespräche"}[p]||p;}
+function setMode(m){gameRef.update({mode:m});}
+function setCardMode(m){gameRef.update({cardMode:m});}
+
+function assignRoles(){
+  const g=lastGame, players=g.players||{}, mode=g.mode||"mingle";
+  const ids=Object.keys(players); const updates={};
+  const depts=shuffle(DEPARTMENTS.map((_,i)=>i));
+  if(mode==="mingle"){
+    shuffle(ids).forEach((id,i)=>{ updates["players/"+id+"/dept"]=depts[i%depts.length]; updates["players/"+id+"/side"]="dept"; updates["players/"+id+"/talks"]=0; });
+  }else{
+    const sh=shuffle(ids); const half=Math.ceil(sh.length/2);
+    sh.forEach((id,i)=>{
+      if(i<half){ updates["players/"+id+"/side"]="dept"; updates["players/"+id+"/dept"]=depts[i%depts.length]; }
+      else{ updates["players/"+id+"/side"]="neu"; updates["players/"+id+"/dept"]=null; }
+      updates["players/"+id+"/talks"]=0;
+    });
+  }
+  gameRef.update(updates);
+}
+function reassign(){ assignRoles(); }
+function startRound(){ gameRef.update({phase:"round"}); }
+function backToLobby(){ gameRef.update({phase:"lobby"}); }
+function removePlayer(id){ gameRef.child("players/"+id).remove(); }
+function clearAll(){ if(confirm("Wirklich ALLE Teilnehmenden entfernen?")) gameRef.child("players").remove(); }
+
+/* ---------------- PLAYER ---------------- */
+function joinGame(){
+  if(!fbReady){setMsg("join-msg","⚠️ Firebase ist nicht konfiguriert.","err");return;}
+  const code=S("join-code").value.trim().toUpperCase();
+  const name=S("join-name").value.trim();
+  if(!code||!name){setMsg("join-msg","Bitte Spielcode und Namen eingeben.","err");return;}
+  db.ref("games_nidf/"+code).get().then(s=>{
+    if(!s.exists()){setMsg("join-msg","Kein Spiel mit diesem Code gefunden.","err");return;}
+    gameCode=code;role="player";myId=getDeviceId(code);
+    const ex=(s.val().players||{})[myId]||{};
+    const data={name,joinedAt:ex.joinedAt||Date.now()};
+    if(ex.dept!=null)data.dept=ex.dept; if(ex.side)data.side=ex.side; if(ex.talks!=null)data.talks=ex.talks;
+    db.ref("games_nidf/"+code+"/players/"+myId).update(data).then(enterPlayer);
+  });
+}
+function enterPlayer(){
+  hideAll();S("screen-player").classList.remove("hidden");
+  gameRef=db.ref("games_nidf/"+gameCode);
+  gameRef.on("value",snap=>{lastGame=snap.val()||{};renderPlayer(lastGame);});
+}
+function renderPlayer(g){
+  const me=(g.players||{})[myId];
+  if(!me){
+    S("screen-player").innerHTML=`<header class="top"><div class="badge-firma">🏢</div>
+      <div><h1>Mitspielen</h1><div class="tag">Verbindung</div></div></header>
+      <div class="card center"><h2>Du wurdest entfernt</h2><p class="muted">Die Spielleitung hat dich entfernt.</p>
+      <button class="btn btn-blue" onclick="rejoinFresh()">Neu beitreten</button></div>`;
+    return;
+  }
+  const phase=g.phase||"lobby", mode=g.mode||"mingle", cardMode=g.cardMode||"profil";
+  let body=`<header class="top">
+    <div class="badge-firma">🏢</div>
+    <div><h1>${esc(me.name)}</h1><div class="tag pill-status live"><span class="sdot"></span> verbunden</div></div>
+    <a href="#" class="home" onclick="if(confirm('Spiel verlassen?'))goHome();return false;">←</a>
+  </header>`;
+
+  if(phase==="lobby"){
+    body+=`<div class="card center"><h2>Bereit! 🎉</h2><p class="muted">Warte auf die Spielleitung. Gleich bekommst du deine Abteilung.</p></div>`;
+    S("screen-player").innerHTML=body; return;
+  }
+
+  // round phase
+  const isNeu = mode==="groups" && me.side==="neu";
+  const dept = me.dept!=null?DEPARTMENTS[me.dept]:null;
+
+  body+=`<div class="tabs">
+    <button aria-selected="${playerTab==='karte'}" onclick="setTab('karte')">${isNeu?'🙋 Deine Aufgabe':'🪪 Deine Karte'}</button>
+    <button aria-selected="${playerTab==='bausteine'}" onclick="setTab('bausteine')">💬 Sprachbausteine</button>
+  </div>`;
+
+  // KARTE panel
+  body+=`<div class="panel ${playerTab==='karte'?'active':''}">`;
+  if(isNeu){
+    body+=`<div class="deptcard"><div class="dc-top"><div class="role-eyebrow">Deine Rolle</div><div class="dc-name">🙋 Neu in der Firma</div></div>
+      <div class="dc-body"><dl>
+        <dt>Deine Aufgabe</dt><dd>Geh durch den Raum und lerne die Abteilungen kennen. Frage nach, was die Leute machen und wofür sie zuständig sind.</dd>
+        <dt>Finde heraus</dt><dd>Wer macht was? An wen wendest du dich, wenn du ein Problem hast (z. B. mit dem Computer, mit dem Vertrag, mit einer Lieferung)?</dd>
+        <dt>Ziel</dt><dd>Sprich mit mindestens ${TALK_GOAL} Personen und hake jedes Gespräch unten ab.</dd>
+      </dl></div></div>`;
+  }else if(dept){
+    body+=`<div class="deptcard"><div class="dc-top"><div class="role-eyebrow">Deine Abteilung</div><div class="dc-name">${esc(dept.name)}</div></div>
+      <div class="dc-body"><dl>`;
+    if(cardMode==="profil"){
+      body+=`<dt>Aufgabengebiet</dt><dd>${esc(dept.area)}</dd>
+        <dt>Zu deinen Aufgaben gehört</dt><dd>${esc(dept.tasks)}</dd>
+        <dt>Wende dich an mich,</dt><dd>${esc(dept.contact)}.</dd>`;
+    }else{
+      body+=`<dt>Beschreibe selbst</dt><dd>Was macht ${esc(dept.name)}? Überlege dir 2–3 Sätze zu deinem Aufgabengebiet und deinen Aufgaben.</dd>
+        <dt>Leitfragen</dt><dd>Wofür bist du verantwortlich? Wobei hilfst du anderen? Wann wenden sich Kolleg:innen an dich?</dd>`;
+    }
+    body+=`</dl></div></div>`;
+  }else{
+    body+=`<div class="card center"><p class="muted">Warte auf deine Abteilung…</p></div>`;
+  }
+
+  // talk counter (everyone tracks their own 5 conversations)
+  const talks=me.talks||0;
+  body+=`<div class="card center">
+    <h2>Gespräche</h2>
+    <p class="muted">Tippe nach jedem Gespräch einen Punkt an.</p>
+    <div class="counter-wrap">
+      <span class="counter-num">${talks}/${TALK_GOAL}</span>
+    </div>
+    <div class="dots" style="justify-content:center">
+      ${Array.from({length:TALK_GOAL}).map((_,i)=>`<button class="dot-big ${i<talks?'on':''}" onclick="setTalks(${i+1},${talks})">${i+1}</button>`).join("")}
+    </div>
+    ${talks>=TALK_GOAL?`<div class="notice ok" style="margin-top:12px">✅ Geschafft! Du hast mit ${TALK_GOAL} Personen gesprochen.</div>`:""}
+    <div style="margin-top:10px"><button class="btn btn-ghost small" onclick="setTalks(0,${talks})">zurücksetzen</button></div>
+  </div></div>`;
+
+  // BAUSTEINE panel
+  body+=`<div class="panel ${playerTab==='bausteine'?'active':''}">
+    <div class="card">${PHRASES.map(g=>`<div class="phrase-group"><h3>${esc(g.group)}</h3>
+      ${g.items.map(p=>`<span class="phrase">${esc(p)}</span>`).join("")}</div>`).join("")}</div>
+  </div>`;
+
+  S("screen-player").innerHTML=body;
+}
+function setTab(t){playerTab=t;renderPlayer(lastGame);}
+function setTalks(n,current){
+  // tapping the same highest dot toggles it off
+  const val = (n===current)?n-1:n;
+  gameRef.child("players/"+myId+"/talks").set(Math.max(0,val));
+}
+function rejoinFresh(){try{localStorage.removeItem("nidf_pid_"+gameCode);}catch(e){}goHome();showJoin();}
+
+/* init */
+goHome();
+</script>
+</body>
+</html>

@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forumsbeitrag-Werkstatt · Klassenspiel</title>
+
+<!-- ============================================================
+     FIREBASE (Projekt: lern-deutsch-arash) – fest eingebaut.
+     Teams & Antworten werden live geteilt.
+     ============================================================ -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<style>
+:root{
+  --accent:#0d9488; --accent-deep:#0b6e66; --paper:#e7f4f2;
+  --ink:#1f2730; --muted:#5d6b78; --bg:#f1f7f6; --card:#fff;
+  --ok:#2e8b57; --bad:#c0392b; --line:#d6e6e3;
+  --pro:#2e7d57; --pro-soft:#e3f3ea; --con:#b5532f; --con-soft:#f8e8e1;
+  --warn:#b8841a;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Calibri,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.55;padding:0 0 60px}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+header{background:linear-gradient(135deg,var(--accent),var(--accent-deep));
+  color:#fff;padding:22px 16px;text-align:center;position:relative}
+header h1{font-size:1.3rem;margin-bottom:2px}
+header p{opacity:.92;font-size:.86rem}
+.home{position:absolute;top:14px;left:14px;color:#fff;text-decoration:none;font-size:1.3rem}
+.btn{background:var(--accent);color:#fff;border:none;border-radius:10px;
+  padding:11px 18px;font-size:.95rem;font-weight:600;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn.small{padding:6px 12px;font-size:.82rem}
+.btn.danger{background:var(--bad)}
+.btn.warn{background:var(--warn)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:18px;box-shadow:0 2px 10px rgba(11,110,102,.06);margin-top:16px}
+.card h2{color:var(--accent-deep);font-size:1.1rem;margin-bottom:10px}
+.card h3{color:var(--accent);font-size:.98rem;margin:14px 0 6px}
+input,select{padding:11px;border:1px solid var(--line);border-radius:10px;font-size:.95rem;width:100%;font-family:inherit}
+label{font-size:.85rem;color:var(--muted);font-weight:600;display:block;margin:10px 0 4px}
+.row{display:flex;gap:8px;align-items:center}
+.hide{display:none!important}
+.pill{display:inline-block;background:var(--paper);color:var(--accent-deep);
+  font-size:.74rem;padding:4px 10px;border-radius:20px;font-weight:700;margin:2px}
+.codebig{font-family:monospace;font-size:2.2rem;font-weight:800;letter-spacing:4px;
+  color:var(--accent-deep);text-align:center;background:var(--paper);border-radius:12px;padding:14px;margin:10px 0}
+/* role chooser */
+.choose{display:grid;gap:14px;margin-top:24px}
+.choosebtn{background:var(--card);border:2px solid var(--line);border-radius:16px;
+  padding:22px;text-align:center;cursor:pointer;transition:.15s;font-size:1.05rem;font-weight:600;color:var(--ink)}
+.choosebtn:hover{border-color:var(--accent);transform:translateY(-2px)}
+.choosebtn .ic{font-size:2rem;display:block;margin-bottom:6px}
+.choosebtn small{display:block;font-weight:400;color:var(--muted);font-size:.84rem;margin-top:4px}
+/* tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.tab{padding:8px 14px;border-radius:20px;background:var(--card);border:1px solid var(--line);
+  cursor:pointer;font-size:.85rem;font-weight:600;color:var(--muted)}
+.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+/* participant list */
+.plist{display:grid;gap:8px;margin-top:10px}
+.pitem{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);
+  border-radius:10px;background:#fff}
+.pitem .nm{flex:1;font-weight:600}
+.pitem .team{font-size:.76rem;padding:2px 8px;border-radius:12px;background:var(--paper);color:var(--accent-deep);font-weight:700}
+.pitem .dot{width:9px;height:9px;border-radius:50%;background:#bbb;flex:none}
+.pitem .dot.on{background:var(--ok)}
+.empty{color:var(--muted);font-size:.88rem;text-align:center;padding:18px}
+/* tasks */
+.task{margin-top:14px}
+.qtype{font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--accent);font-weight:700;margin-bottom:6px}
+.qtext{font-size:1.02rem;font-weight:500;margin-bottom:12px}
+.reading{background:var(--paper);border-radius:12px;padding:14px;margin-bottom:14px;font-size:.94rem;line-height:1.6;white-space:pre-line}
+.opts{display:grid;gap:9px}
+.opt{padding:12px 14px;border:1.5px solid var(--line);border-radius:11px;cursor:pointer;background:#fff;font-size:.95rem;text-align:left;transition:.15s}
+.opt:hover{border-color:var(--accent)}
+.opt.sel{border-color:var(--accent);background:var(--paper)}
+.opt.ok{border-color:var(--ok);background:#e8f6ee}
+.opt.bad{border-color:var(--bad);background:#fbeae8}
+.orderlist{display:grid;gap:8px;margin-bottom:8px}
+.orderitem{padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;
+  font-size:.92rem;display:flex;align-items:center;gap:10px}
+.orderitem .num{min-width:26px;height:26px;border-radius:50%;background:var(--paper);color:var(--accent-deep);
+  display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex:none}
+.orderitem.chosen{border-color:var(--accent);background:var(--paper)}
+.bins{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.bin{border:1.5px dashed var(--line);border-radius:12px;padding:10px;min-height:60px}
+.bin.pro{border-color:var(--pro);background:var(--pro-soft)}
+.bin.con{border-color:var(--con);background:var(--con-soft)}
+.bin h4{font-size:.85rem;margin-bottom:6px}
+.bin.pro h4{color:var(--pro)} .bin.con h4{color:var(--con)}
+.chip{display:inline-block;padding:8px 11px;margin:3px;border-radius:9px;background:#fff;border:1.5px solid var(--line);
+  font-size:.88rem;cursor:pointer}
+.chip.sel{border-color:var(--accent);background:var(--paper)}
+.feedback{margin-top:12px;padding:12px;border-radius:11px;font-size:.9rem;display:none}
+.feedback.show{display:block}
+.feedback.good{background:#e8f6ee;color:#1d6b41}
+.feedback.wrong{background:#fbeae8;color:#922}
+.progress{height:8px;background:var(--line);border-radius:8px;overflow:hidden;margin:14px 0}
+.progress>i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.scoreboard{display:grid;gap:8px;margin-top:10px}
+.scorerow{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:#fff;border:1px solid var(--line)}
+.scorerow .rank{font-weight:800;color:var(--accent);min-width:26px}
+.scorerow .nm{flex:1;font-weight:600}
+.scorerow .pts{font-weight:800;color:var(--accent-deep)}
+.banner{background:var(--paper);border-radius:12px;padding:12px;margin-top:12px;font-size:.9rem;color:var(--accent-deep)}
+footer{text-align:center;color:var(--muted);font-size:.76rem;margin-top:34px}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;
+  padding:10px 18px;border-radius:10px;font-size:.88rem;opacity:0;transition:.3s;pointer-events:none;z-index:50}
+.toast.show{opacity:1}
+.statusline{font-size:.8rem;color:var(--muted);margin-top:8px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <a class="home" href="index.html" title="Zur Spielübersicht">🏠</a>
+  <h1>Forumsbeitrag-Werkstatt</h1>
+  <p>Struktur &amp; Argumente eines Forumsbeitrags · Teamspiel B2</p>
+</header>
+
+<div class="wrap">
+
+  <!-- ROLE CHOOSER -->
+  <div id="chooser">
+    <div class="choose">
+      <div class="choosebtn" onclick="goMod()">
+        <span class="ic">🖥️</span> Moderationskonsole
+        <small>für die Lehrkraft · Spiel erstellen &amp; Teams verwalten</small>
+      </div>
+      <div class="choosebtn" onclick="goPlay()">
+        <span class="ic">📱</span> Teilnehmen
+        <small>für Lernende · mit Code beitreten</small>
+      </div>
+    </div>
+    <footer>Lern Deutsch mit Arash · Klassenspiel</footer>
+  </div>
+
+  <!-- ============ MODERATOR ============ -->
+  <div id="mod" class="hide">
+    <div id="mod-create" class="card">
+      <h2>🖥️ Moderationskonsole</h2>
+      <p style="font-size:.9rem;color:var(--muted)">Erstelle ein neues Spiel. Die Lernenden treten mit dem Code bei.</p>
+      <div style="margin-top:14px"><button class="btn" onclick="createGame()">➕ Neues Spiel erstellen</button></div>
+      <label style="margin-top:16px">… oder bestehenden Code öffnen</label>
+      <div class="row">
+        <input id="reopen" placeholder="z. B. ABCD" maxlength="4" style="text-transform:uppercase">
+        <button class="btn ghost small" onclick="reopenGame()">Öffnen</button>
+      </div>
+    </div>
+
+    <div id="mod-panel" class="hide">
+      <div class="card">
+        <h2>Spielcode</h2>
+        <div class="codebig" id="gamecode">––––</div>
+        <div class="statusline">Die Lernenden öffnen dieselbe Seite → „📱 Teilnehmen" → Code eingeben.</div>
+      </div>
+
+      <div class="tabs">
+        <div class="tab active" data-tab="tn" onclick="modTab('tn')">👥 Teilnehmer</div>
+        <div class="tab" data-tab="teams" onclick="modTab('teams')">🧩 Teams</div>
+        <div class="tab" data-tab="phase" onclick="modTab('phase')">▶️ Ablauf</div>
+        <div class="tab" data-tab="score" onclick="modTab('score')">🏆 Punkte</div>
+      </div>
+
+      <!-- TN -->
+      <div id="t-tn" class="card">
+        <h2>Teilnehmer <span class="pill" id="tncount">0</span></h2>
+        <div class="statusline" style="text-align:left;margin-bottom:6px">Grüner Punkt = gerade aktiv. Entferne, wer den Kurs verlassen hat.</div>
+        <div class="plist" id="tnlist"><div class="empty">Noch niemand beigetreten.</div></div>
+        <div style="margin-top:12px" class="row">
+          <button class="btn warn small" onclick="cleanInactive()">🧹 Inaktive entfernen</button>
+          <button class="btn danger small" onclick="removeAllTN()">Alle entfernen</button>
+        </div>
+      </div>
+
+      <!-- TEAMS -->
+      <div id="t-teams" class="card hide">
+        <h2>Teams bilden</h2>
+        <label>Wie viele Teams?</label>
+        <div class="row">
+          <select id="teamcount">
+            <option value="2">2 Teams</option>
+            <option value="3">3 Teams</option>
+            <option value="4" selected>4 Teams</option>
+            <option value="5">5 Teams</option>
+            <option value="6">6 Teams</option>
+          </select>
+          <button class="btn small" onclick="autoTeams()">🎲 Zufällig verteilen</button>
+        </div>
+        <div class="statusline" style="text-align:left;margin-top:6px">Oder unten pro Person ein Team wählen.</div>
+        <div class="plist" id="teamassign" style="margin-top:10px"></div>
+      </div>
+
+      <!-- PHASE -->
+      <div id="t-phase" class="card hide">
+        <h2>Ablauf steuern</h2>
+        <p style="font-size:.9rem;color:var(--muted)">Alle Geräte folgen deiner Auswahl.</p>
+        <div style="display:grid;gap:8px;margin-top:12px">
+          <button class="btn ghost" onclick="setPhase('lobby')">⏸️ Lobby (warten)</button>
+          <button class="btn" onclick="setPhase('play')">▶️ Übungen starten</button>
+          <button class="btn ghost" onclick="setPhase('write')">✍️ Schreibphase (Forumsbeitrag)</button>
+          <button class="btn ghost" onclick="setPhase('done')">🏁 Auswertung zeigen</button>
+        </div>
+        <div class="banner" id="phasenow">Aktuelle Phase: Lobby</div>
+      </div>
+
+      <!-- SCORE -->
+      <div id="t-score" class="card hide">
+        <h2>Punktestand (Teams)</h2>
+        <div class="scoreboard" id="scoreboard"><div class="empty">Noch keine Punkte.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PARTICIPANT ============ -->
+  <div id="play" class="hide">
+    <!-- join -->
+    <div id="p-join" class="card">
+      <h2>📱 Mitspielen</h2>
+      <label>Spielcode</label>
+      <input id="joincode" placeholder="z. B. ABCD" maxlength="4" style="text-transform:uppercase">
+      <label>Dein Name</label>
+      <input id="joinname" placeholder="Vorname" maxlength="24">
+      <div style="margin-top:14px"><button class="btn" onclick="joinGame()">Beitreten</button></div>
+      <div class="statusline" id="joinmsg"></div>
+    </div>
+
+    <!-- waiting -->
+    <div id="p-wait" class="card hide">
+      <h2>Hallo <span id="p-name"></span>! 👋</h2>
+      <div class="banner" id="p-status">Warte auf den Start durch die Lehrkraft …</div>
+      <div id="p-teaminfo" style="margin-top:10px"></div>
+    </div>
+
+    <!-- task area -->
+    <div id="p-taskarea" class="hide">
+      <div class="card">
+        <div class="row" style="justify-content:space-between">
+          <span class="pill" id="p-team2">Team</span>
+          <span class="pill" id="p-progress">Aufgabe 1</span>
+        </div>
+        <div class="progress"><i id="p-bar"></i></div>
+        <div id="p-host"></div>
+      </div>
+    </div>
+
+    <!-- write phase -->
+    <div id="p-write" class="card hide">
+      <h2>✍️ Jetzt schreiben</h2>
+      <div id="p-writetask"></div>
+    </div>
+
+    <!-- done -->
+    <div id="p-done" class="card hide">
+      <h2>🏁 Geschafft!</h2>
+      <div id="p-result"></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- Goatcounter -->
+<script data-goatcounter="https://aguitoo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<script>
+/* ===================== FIREBASE ===================== */
+const firebaseConfig = {
+  apiKey: "AIzaSyBDChXlm34Kr7Gg0Dw458GiiwoLnWJAnxM",
+  authDomain: "lern-deutsch-arash.firebaseapp.com",
+  databaseURL: "https://lern-deutsch-arash-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "lern-deutsch-arash",
+  storageBucket: "lern-deutsch-arash.firebasestorage.app",
+  messagingSenderId: "845503292114",
+  appId: "1:845503292114:web:f76ab5fcde1e978d00c30b"
+};
+let db=null, fbOK=false;
+try{ firebase.initializeApp(firebaseConfig); db=firebase.database(); fbOK=true; }
+catch(e){ console.warn("Firebase init:",e); }
+
+const ROOT="forumwerkstatt";
+function gref(code,sub){ return db.ref(ROOT+"/"+code+(sub?("/"+sub):"")); }
+
+/* ===================== INHALTE ===================== */
+/* Doppelthema (neu, nicht aus dem Buch): Homeoffice vs. Vier-Tage-Woche */
+const THEMA = {
+  A:{ titel:"Homeoffice-Tage frei wählen",
+      text:"In Ihrer Firma sollen alle Mitarbeitenden künftig selbst entscheiden, an welchen Tagen sie im Homeoffice arbeiten. Die Anwesenheit im Büro wird nicht mehr kontrolliert." },
+  B:{ titel:"Vier-Tage-Woche im Betrieb",
+      text:"Ihre Firma überlegt, eine Vier-Tage-Woche einzuführen. Alle arbeiten dann an vier statt fünf Tagen, bei gleichem Gehalt, müssen die Stunden aber auf vier Tage verteilen." }
+};
+
+/* Aufgaben – Verständnis & Struktur, kein Grammatikfokus. Kein Texteingabe-Quiz. */
+const TASKS = [
+  { type:"reading", text:"So ist ein guter Forumsbeitrag aufgebaut:\n\n1) Anrede & Einleitung – worum geht es?\n2) eigene Meinung – klar Position beziehen\n3) Argument + Beispiel – die Meinung begründen\n4) Gegenargument – die andere Seite kurz nennen\n5) Schluss – Fazit und Frage an die anderen\n\nLies das und löse dann die Aufgaben im Team." },
+
+  { type:"order", qtype:"Struktur ordnen",
+    q:"Bring die Teile eines Forumsbeitrags in die typische Reihenfolge:",
+    items:[
+      "Liebe Kolleginnen und Kollegen, habt ihr schon von der neuen Regelung gehört?",
+      "Ich finde diese Idee insgesamt sehr gut.",
+      "Denn wer flexibel arbeitet, ist oft motivierter – bei mir war das jedenfalls so.",
+      "Natürlich gibt es auch Nachteile, zum Beispiel weniger persönlichen Kontakt.",
+      "Wie seht ihr das? Ich freue mich auf eure Meinungen!"
+    ],
+    exp:"Anrede/Einleitung → Meinung → Argument+Beispiel → Gegenargument → Schluss mit Frage." },
+
+  { type:"bin", qtype:"Einleitung oder Schluss?",
+    q:"Gehört der Satz in die EINLEITUNG oder in den SCHLUSS?",
+    leftLabel:"Einleitung", rightLabel:"Schluss",
+    items:[
+      {t:"Habt ihr schon gehört, dass wir bald flexibler arbeiten dürfen?", bin:0},
+      {t:"Eben habe ich gelesen, dass sich etwas ändern soll.", bin:0},
+      {t:"Was sagt ihr denn dazu? Viele Grüße!", bin:1},
+      {t:"Das ist aber nur meine Meinung – wie seht ihr das?", bin:1}
+    ],
+    exp:"Einleitung führt ins Thema ein; der Schluss fasst zusammen und fragt die anderen." },
+
+  { type:"mc", qtype:"Funktion erkennen",
+    q:"„Ich bin der Meinung, dass die Vier-Tage-Woche eine gute Idee ist.\u201C – Welche Funktion hat dieser Satz?",
+    opts:["Einleitung","eigene Meinung / Position","Gegenargument","Schluss"], correct:1,
+    exp:"„Ich bin der Meinung, dass …\u201C beziehst du klar Position." },
+
+  { type:"mc", qtype:"Funktion erkennen",
+    q:"Welcher Satz nennt ein BEISPIEL zur Begründung?",
+    opts:[
+      "Zum Beispiel konnte ich neulich mein Kind selbst von der Kita abholen.",
+      "Ich finde die Idee gut.",
+      "Liebe Kolleginnen und Kollegen,",
+      "Wie seht ihr das?"
+    ], correct:0,
+    exp:"„Zum Beispiel …\u201C leitet ein konkretes Beispiel ein." },
+
+  { type:"mc", qtype:"Gegenargument",
+    q:"Welcher Satz leitet ein GEGENARGUMENT ein?",
+    opts:[
+      "Außerdem spart man viel Fahrzeit.",
+      "Natürlich gibt es auch Nachteile, …",
+      "Ich bin absolut dafür.",
+      "Deshalb finde ich die Idee super."
+    ], correct:1,
+    exp:"„Natürlich gibt es auch Nachteile …\u201C zeigt die andere Seite." },
+
+  { type:"bin", qtype:"Pro oder Contra? (Homeoffice)",
+    q:"Thema A „Homeoffice frei wählen\u201C: Ist das ein Argument DAFÜR oder DAGEGEN?",
+    leftLabel:"Dafür (+)", rightLabel:"Dagegen (–)",
+    items:[
+      {t:"Man spart jeden Tag viel Zeit für den Arbeitsweg.", bin:0},
+      {t:"Man kann konzentrierter arbeiten, weil es zu Hause ruhiger ist.", bin:0},
+      {t:"Der Kontakt zu den Kolleginnen und Kollegen wird weniger.", bin:1},
+      {t:"Manche trennen Arbeit und Freizeit zu Hause schlechter.", bin:1}
+    ],
+    exp:"Zeit sparen und Ruhe sind Vorteile; weniger Kontakt und schlechtere Trennung sind Nachteile." },
+
+  { type:"bin", qtype:"Pro oder Contra? (Vier-Tage-Woche)",
+    q:"Thema B „Vier-Tage-Woche\u201C: Ist das ein Argument DAFÜR oder DAGEGEN?",
+    leftLabel:"Dafür (+)", rightLabel:"Dagegen (–)",
+    items:[
+      {t:"Man hat einen Tag mehr Zeit für Familie und Erholung.", bin:0},
+      {t:"Viele arbeiten an vier Tagen motivierter und effektiver.", bin:0},
+      {t:"Die einzelnen Arbeitstage werden länger und anstrengender.", bin:1},
+      {t:"Für Kundinnen und Kunden ist man einen Tag weniger erreichbar.", bin:1}
+    ],
+    exp:"Mehr Freizeit und Motivation sprechen dafür; längere Tage und Erreichbarkeit dagegen." },
+
+  { type:"pair", qtype:"Redemittel zuordnen",
+    q:"Ordne Redemittel und Funktion zu:",
+    pairs:[
+      {l:"Ich bin der Meinung, dass …", r:"Meinung sagen"},
+      {l:"Zum Beispiel …", r:"Beispiel geben"},
+      {l:"Natürlich gibt es auch Nachteile, …", r:"Gegenargument"},
+      {l:"Wie seht ihr das?", r:"Schlussfrage"}
+    ],
+    exp:"Feste Redemittel für die Teile eines Beitrags." },
+
+  { type:"mc", qtype:"Stil im Forum",
+    q:"Wie schreibt man in einem Mitarbeiterforum normalerweise?",
+    opts:["streng formell wie in einem Amtsbrief","eher locker, aber höflich","in Stichwörtern ohne Sätze","ganz ohne Anrede"], correct:1,
+    exp:"Ein Forum ist halb-formell: locker, aber höflich und in ganzen Sätzen." },
+
+  { type:"order", qtype:"Argument aufbauen",
+    q:"Bring ein vollständiges Argument in die logische Reihenfolge:",
+    items:[
+      "Ich bin dafür, weil man flexibler planen kann.",
+      "So konnte ich letzte Woche einen Arzttermin ohne Stress wahrnehmen.",
+      "Dadurch ist man insgesamt zufriedener bei der Arbeit.",
+      "Deshalb sollten wir die neue Regelung ausprobieren."
+    ],
+    exp:"Behauptung → Beispiel → Folge → Schlussfolgerung." },
+
+  { type:"mc", qtype:"Aufgabe verstehen",
+    q:"In der Prüfungsaufgabe sollst du einen Forumsbeitrag schreiben. Was ist besonders wichtig?",
+    opts:[
+      "möglichst viele Fremdwörter benutzen",
+      "die Meinung begründen und Beispiele nennen",
+      "nur Vorteile aufzählen, keine Nachteile",
+      "den Text nicht in Abschnitte gliedern"
+    ], correct:1,
+    exp:"Meinung begründen, Beispiele nennen und sinnvoll gliedern – genau das wird bewertet." }
+];
+
+const WRITE_PROMPT = {
+  intro:"Wählt im Team EIN Thema und schreibt gemeinsam einen Forumsbeitrag (100–150 Wörter). Nutzt die Struktur aus den Übungen.",
+  checklist:[
+    "Anrede & Einleitung (worum geht es?)",
+    "klare eigene Meinung",
+    "mindestens ein Argument MIT Beispiel",
+    "ein Gegenargument (andere Seite)",
+    "Schluss mit Frage an die anderen"
+  ]
+};
+
+/* ===================== STATE ===================== */
+let role=null, code=null, myId=null, myName=null, myTeam=null;
+let gameData={}, modTabCur="tn";
+let pIdx=0, pAnswered=false, pScore=0, pOrderChosen=[], pBinPick=null, pSelPair={l:null,r:null}, pPairsDone=0;
+
+function toast(msg){ const t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1800); }
+function rndCode(){ const c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; let s=""; for(let i=0;i<4;i++)s+=c[Math.floor(Math.random()*c.length)]; return s; }
+
+/* ===================== ROUTING ===================== */
+function goMod(){ document.getElementById("chooser").classList.add("hide"); document.getElementById("mod").classList.remove("hide"); }
+function goPlay(){ document.getElementById("chooser").classList.add("hide"); document.getElementById("play").classList.remove("hide"); }
+
+/* ===================== MODERATOR ===================== */
+function createGame(){
+  if(!fbOK){ toast("Firebase nicht erreichbar"); return; }
+  code=rndCode();
+  gref(code).set({
+    created:Date.now(), phase:"lobby", teamCount:4,
+    participants:{}, meta:{game:"forumwerkstatt"}
+  }).then(()=>openPanel());
+}
+function reopenGame(){
+  const c=(document.getElementById("reopen").value||"").trim().toUpperCase();
+  if(c.length!==4){ toast("Bitte 4-stelligen Code"); return; }
+  gref(c).get().then(s=>{ if(!s.exists()){ toast("Code nicht gefunden"); return;} code=c; openPanel(); });
+}
+function openPanel(){
+  document.getElementById("mod-create").classList.add("hide");
+  document.getElementById("mod-panel").classList.remove("hide");
+  document.getElementById("gamecode").textContent=code;
+  gref(code).on("value",snap=>{ gameData=snap.val()||{}; renderMod(); });
+}
+function modTab(t){
+  modTabCur=t;
+  document.querySelectorAll("#mod .tab").forEach(x=>x.classList.toggle("active",x.dataset.tab===t));
+  ["tn","teams","phase","score"].forEach(k=>document.getElementById("t-"+k).classList.toggle("hide",k!==t));
+  renderMod();
+}
+function participantsArr(){
+  const p=gameData.participants||{};
+  return Object.keys(p).map(id=>({id,...p[id]}));
+}
+function renderMod(){
+  const arr=participantsArr();
+  document.getElementById("tncount").textContent=arr.length;
+  // phase banner
+  const phaseNames={lobby:"Lobby (warten)",play:"Übungen laufen",write:"Schreibphase",done:"Auswertung"};
+  const pn=document.getElementById("phasenow"); if(pn) pn.textContent="Aktuelle Phase: "+(phaseNames[gameData.phase]||"Lobby");
+  if(modTabCur==="tn") renderTNList(arr);
+  if(modTabCur==="teams") renderTeamAssign(arr);
+  if(modTabCur==="score") renderScore(arr);
+}
+function renderTNList(arr){
+  const box=document.getElementById("tnlist");
+  if(!arr.length){ box.innerHTML='<div class="empty">Noch niemand beigetreten.</div>'; return; }
+  const now=Date.now();
+  box.innerHTML="";
+  arr.sort((a,b)=>(a.name||"").localeCompare(b.name||"")).forEach(p=>{
+    const active=(now-(p.lastSeen||0))<20000;
+    const div=document.createElement("div"); div.className="pitem";
+    div.innerHTML=`<span class="dot ${active?'on':''}"></span>
+      <span class="nm">${esc(p.name||"?")}</span>
+      ${p.team?`<span class="team">Team ${p.team}</span>`:""}
+      <button class="btn danger small" onclick="removeTN('${p.id}')">✕</button>`;
+    box.appendChild(div);
+  });
+}
+function removeTN(id){
+  gref(code,"participants/"+id).remove();
+  toast("Teilnehmer entfernt");
+}
+function removeAllTN(){
+  if(!confirm("Wirklich ALLE Teilnehmer entfernen?")) return;
+  gref(code,"participants").remove();
+}
+function cleanInactive(){
+  const now=Date.now(); let n=0;
+  participantsArr().forEach(p=>{ if((now-(p.lastSeen||0))>=20000){ gref(code,"participants/"+p.id).remove(); n++; } });
+  toast(n?`${n} inaktive entfernt`:"Keine inaktiven gefunden");
+}
+function renderTeamAssign(arr){
+  const box=document.getElementById("teamassign");
+  if(!arr.length){ box.innerHTML='<div class="empty">Noch niemand da.</div>'; return; }
+  const tc=parseInt(document.getElementById("teamcount").value||"4");
+  box.innerHTML="";
+  arr.sort((a,b)=>(a.name||"").localeCompare(b.name||"")).forEach(p=>{
+    let opts='<option value="">–</option>';
+    for(let i=1;i<=tc;i++) opts+=`<option value="${i}" ${String(p.team)===String(i)?"selected":""}>Team ${i}</option>`;
+    const div=document.createElement("div"); div.className="pitem";
+    div.innerHTML=`<span class="nm">${esc(p.name||"?")}</span>
+      <select style="width:auto" onchange="setTeam('${p.id}',this.value)">${opts}</select>`;
+    box.appendChild(div);
+  });
+}
+function setTeam(id,t){ gref(code,"participants/"+id+"/team").set(t?parseInt(t):null); }
+function autoTeams(){
+  const tc=parseInt(document.getElementById("teamcount").value||"4");
+  gref(code,"teamCount").set(tc);
+  const arr=participantsArr();
+  const shuffled=arr.map(a=>a).sort(()=>Math.random()-0.5);
+  const upd={};
+  shuffled.forEach((p,i)=>{ upd["participants/"+p.id+"/team"]=(i%tc)+1; });
+  gref(code).update(upd).then(()=>toast("Teams zufällig verteilt"));
+}
+function setPhase(ph){
+  gref(code,"phase").set(ph);
+  if(ph==="play") gref(code,"taskIdx").set(0);
+  toast("Phase: "+ph);
+}
+function renderScore(arr){
+  const box=document.getElementById("scoreboard");
+  const teams={};
+  arr.forEach(p=>{ if(p.team){ teams[p.team]=(teams[p.team]||0)+(p.score||0); } });
+  const rows=Object.keys(teams).map(t=>({team:t,pts:teams[t]})).sort((a,b)=>b.pts-a.pts);
+  if(!rows.length){ box.innerHTML='<div class="empty">Noch keine Punkte.</div>'; return; }
+  box.innerHTML="";
+  rows.forEach((r,i)=>{
+    const div=document.createElement("div"); div.className="scorerow";
+    div.innerHTML=`<span class="rank">${i+1}.</span><span class="nm">Team ${r.team}</span><span class="pts">${r.pts} P</span>`;
+    box.appendChild(div);
+  });
+}
+
+/* ===================== PARTICIPANT ===================== */
+function joinGame(){
+  if(!fbOK){ toast("Firebase nicht erreichbar"); return; }
+  const c=(document.getElementById("joincode").value||"").trim().toUpperCase();
+  const nm=(document.getElementById("joinname").value||"").trim();
+  if(c.length!==4){ document.getElementById("joinmsg").textContent="Bitte 4-stelligen Code eingeben."; return; }
+  if(!nm){ document.getElementById("joinmsg").textContent="Bitte Namen eingeben."; return; }
+  gref(c).get().then(s=>{
+    if(!s.exists()){ document.getElementById("joinmsg").textContent="❌ Code nicht gefunden."; return; }
+    code=c; myName=nm; myId="p_"+Date.now()+"_"+Math.floor(Math.random()*9999);
+    const me={name:nm, joined:Date.now(), lastSeen:Date.now(), team:null, score:0, idx:0};
+    gref(code,"participants/"+myId).set(me).then(()=>{
+      // presence: clear on disconnect
+      gref(code,"participants/"+myId).onDisconnect().remove();
+      document.getElementById("p-join").classList.add("hide");
+      document.getElementById("p-wait").classList.remove("hide");
+      document.getElementById("p-name").textContent=nm;
+      startHeartbeat();
+      gref(code).on("value",snap=>{ gameData=snap.val()||{}; renderPlay(); });
+    });
+  });
+}
+function startHeartbeat(){
+  setInterval(()=>{ if(code&&myId) gref(code,"participants/"+myId+"/lastSeen").set(Date.now()); },8000);
+}
+function myRec(){ return (gameData.participants&&gameData.participants[myId])||null; }
+function renderPlay(){
+  const me=myRec();
+  if(!me){ // removed by teacher
+    document.getElementById("play").innerHTML='<div class="card"><h2>Du wurdest entfernt</h2><p style="color:var(--muted)">Die Lehrkraft hat dich aus dem Spiel genommen. Lade die Seite neu, um wieder beizutreten.</p><div style="margin-top:14px"><button class="btn" onclick="location.reload()">Neu laden</button></div></div>';
+    return;
+  }
+  myTeam=me.team;
+  const phase=gameData.phase||"lobby";
+  // toggle sections
+  document.getElementById("p-wait").classList.toggle("hide", phase!=="lobby");
+  document.getElementById("p-taskarea").classList.toggle("hide", phase!=="play");
+  document.getElementById("p-write").classList.toggle("hide", phase!=="write");
+  document.getElementById("p-done").classList.toggle("hide", phase!=="done");
+
+  if(phase==="lobby"){
+    document.getElementById("p-teaminfo").innerHTML = myTeam?`<span class="pill">Du bist in Team ${myTeam}</span>`:`<span class="pill">Team folgt …</span>`;
+  }
+  if(phase==="play"){
+    document.getElementById("p-team2").textContent = myTeam?("Team "+myTeam):"Kein Team";
+    if(!pStarted){ pStarted=true; pIdx=me.idx||0; pScore=me.score||0; renderTask(); }
+  }
+  if(phase==="write"){ renderWrite(); }
+  if(phase==="done"){ renderDone(); }
+}
+let pStarted=false;
+
+function renderWrite(){
+  let html=`<p style="font-size:.94rem">${WRITE_PROMPT.intro}</p>`;
+  html+=`<div style="margin-top:10px"><b>Thema A:</b> ${THEMA.A.titel}<br><span style="color:var(--muted);font-size:.9rem">${THEMA.A.text}</span></div>`;
+  html+=`<div style="margin-top:10px"><b>Thema B:</b> ${THEMA.B.titel}<br><span style="color:var(--muted);font-size:.9rem">${THEMA.B.text}</span></div>`;
+  html+=`<h3>Checkliste</h3><div>`;
+  WRITE_PROMPT.checklist.forEach(c=>html+=`<div style="margin:4px 0">☐ ${c}</div>`);
+  html+=`</div><div class="banner" style="margin-top:12px">Schreibt gemeinsam auf Papier oder im Dokument. Eure Lehrkraft sammelt die Beiträge ein.</div>`;
+  document.getElementById("p-writetask").innerHTML=html;
+}
+function renderDone(){
+  const me=myRec()||{};
+  document.getElementById("p-result").innerHTML=
+    `<div class="banner">Dein Punktestand: <b>${me.score||0} Punkte</b>${myTeam?` · Team ${myTeam}`:""}</div>
+     <p style="margin-top:10px;font-size:.92rem;color:var(--muted)">Danke fürs Mitmachen! Die Team-Auswertung seht ihr vorne auf dem Beamer.</p>`;
+}
+
+/* -------- task rendering (participant) -------- */
+function curTask(){ return TASKS[pIdx]; }
+function renderTask(){
+  pAnswered=false; pOrderChosen=[]; pBinPick=null; pSelPair={l:null,r:null}; pPairsDone=0;
+  const host=document.getElementById("p-host");
+  const total=TASKS.length;
+  document.getElementById("p-bar").style.width=Math.round(pIdx/total*100)+"%";
+  document.getElementById("p-progress").textContent=`Aufgabe ${Math.min(pIdx+1,total)} / ${total}`;
+  if(pIdx>=total){ finishTasks(); return; }
+  const t=curTask();
+  let html=`<div class="task"><div class="qtype">${t.qtype||typeName(t.type)}</div>`;
+  if(t.type==="reading"){
+    html+=`<div class="reading">${t.text}</div><div class="actions"><button class="btn" style="width:100%" onclick="nextTask()">Los geht's →</button></div></div>`;
+    host.innerHTML=html; return;
+  }
+  html+=`<div class="qtext">${t.q}</div>`;
+  if(t.type==="mc"){
+    html+=`<div class="opts" id="opts">`;
+    shuffleIdx(t.opts).forEach(i=>{ html+=`<button class="opt" data-i="${i}" onclick="pickMC(this,${i})">${t.opts[i]}</button>`; });
+    html+=`</div>`;
+  }
+  if(t.type==="order"){
+    html+=`<div class="orderlist" id="orderlist"></div>
+      <div class="row"><button class="btn ghost small" onclick="resetOrder()">Zurücksetzen</button>
+      <button class="btn small" onclick="checkOrder()">Prüfen</button></div>`;
+  }
+  if(t.type==="bin"){
+    html+=`<div id="binchips"></div>
+      <div class="bins">
+        <div class="bin pro" id="bin0" onclick="dropBin(0)"><h4>${t.leftLabel}</h4><div id="bin0c"></div></div>
+        <div class="bin con" id="bin1" onclick="dropBin(1)"><h4>${t.rightLabel}</h4><div id="bin1c"></div></div>
+      </div>
+      <div class="row"><button class="btn ghost small" onclick="resetBin()">Zurücksetzen</button>
+      <button class="btn small" onclick="checkBin()">Prüfen</button></div>`;
+  }
+  if(t.type==="pair"){
+    html+=`<div class="pairwrap" id="pairwrap"></div>`;
+  }
+  html+=`<div class="feedback" id="fb"></div><div id="cont"></div></div>`;
+  host.innerHTML=html;
+
+  if(t.type==="order"){
+    const list=document.getElementById("orderlist");
+    shuffleIdx(t.items).forEach(i=>{
+      const d=document.createElement("div"); d.className="orderitem"; d.dataset.orig=i;
+      d.innerHTML=`<span class="num"></span><span>${t.items[i]}</span>`;
+      d.onclick=()=>pickOrder(d); list.appendChild(d);
+    });
+  }
+  if(t.type==="bin"){
+    renderBinChips();
+  }
+  if(t.type==="pair"){
+    const wrap=document.getElementById("pairwrap");
+    const left=t.pairs.map((p,idx)=>({txt:p.l,idx}));
+    const right=t.pairs.map((p,idx)=>({txt:p.r,idx})).sort(()=>Math.random()-0.5);
+    let lh='<div class="paircol">', rh='<div class="paircol">';
+    left.forEach(x=>lh+=`<div class="pairitem" data-side="l" data-idx="${x.idx}" onclick="pickPair('l',${x.idx},this)">${x.txt}</div>`);
+    right.forEach(x=>rh+=`<div class="pairitem" data-side="r" data-idx="${x.idx}" onclick="pickPair('r',${x.idx},this)">${x.txt}</div>`);
+    wrap.innerHTML=lh+'</div>'+rh+'</div>';
+  }
+}
+function typeName(t){return{reading:"Lesen",mc:"Auswahl",order:"Reihenfolge",bin:"Zuordnen",pair:"Zuordnen"}[t]||t;}
+function shuffleIdx(arr){ return arr.map((_,i)=>i).sort(()=>Math.random()-0.5); }
+
+/* MC */
+function pickMC(el,i){
+  if(pAnswered)return; pAnswered=true;
+  const t=curTask();
+  document.querySelectorAll("#opts .opt").forEach(b=>{
+    const bi=parseInt(b.dataset.i);
+    if(bi===t.correct)b.classList.add("ok");
+    if(b===el&&bi!==t.correct)b.classList.add("bad");
+    b.style.pointerEvents="none";
+  });
+  finishOne(i===t.correct, t.exp);
+}
+/* ORDER */
+function pickOrder(el){
+  if(pAnswered)return;
+  const o=parseInt(el.dataset.orig);
+  if(el.classList.contains("chosen")){ pOrderChosen=pOrderChosen.filter(x=>x!==o); el.classList.remove("chosen"); }
+  else{ pOrderChosen.push(o); el.classList.add("chosen"); }
+  document.querySelectorAll("#orderlist .orderitem").forEach(it=>{
+    const oo=parseInt(it.dataset.orig); const pos=pOrderChosen.indexOf(oo);
+    it.querySelector(".num").textContent=pos>=0?(pos+1):"";
+  });
+}
+function resetOrder(){ if(pAnswered)return; pOrderChosen=[]; document.querySelectorAll("#orderlist .orderitem").forEach(it=>{it.classList.remove("chosen");it.querySelector(".num").textContent="";}); }
+function checkOrder(){
+  if(pAnswered)return; const t=curTask();
+  if(pOrderChosen.length!==t.items.length){ showFb(false,"Bitte zuerst alle Teile ordnen."); return; }
+  pAnswered=true;
+  const ok=pOrderChosen.every((v,i)=>v===i);
+  document.querySelectorAll("#orderlist .orderitem").forEach(it=>it.style.pointerEvents="none");
+  finishOne(ok, t.exp);
+}
+/* BIN */
+function renderBinChips(){
+  const t=curTask(); const box=document.getElementById("binchips"); box.innerHTML="";
+  t._placed=t._placed||{};
+  t.items.forEach((it,i)=>{
+    if(t._placed[i]!==undefined) return;
+    const c=document.createElement("span"); c.className="chip"+(pBinPick===i?" sel":""); c.textContent=it.t;
+    c.onclick=()=>{ if(pAnswered)return; pBinPick=(pBinPick===i?null:i); renderBinChips(); };
+    box.appendChild(c);
+  });
+}
+function dropBin(bin){
+  if(pAnswered||pBinPick===null)return;
+  const t=curTask(); t._placed=t._placed||{}; t._placed[pBinPick]=bin;
+  const cont=document.getElementById("bin"+bin+"c");
+  const c=document.createElement("span"); c.className="chip"; c.textContent=t.items[pBinPick].t;
+  cont.appendChild(c); pBinPick=null; renderBinChips();
+}
+function resetBin(){ if(pAnswered)return; const t=curTask(); t._placed={}; pBinPick=null;
+  document.getElementById("bin0c").innerHTML=""; document.getElementById("bin1c").innerHTML=""; renderBinChips(); }
+function checkBin(){
+  if(pAnswered)return; const t=curTask(); t._placed=t._placed||{};
+  if(Object.keys(t._placed).length!==t.items.length){ showFb(false,"Bitte alle Sätze einsortieren."); return; }
+  pAnswered=true;
+  let ok=true; t.items.forEach((it,i)=>{ if(t._placed[i]!==it.bin)ok=false; });
+  finishOne(ok, t.exp);
+}
+/* PAIR */
+function pickPair(side,idx,el){
+  if(el.classList.contains("ok"))return;
+  document.querySelectorAll(`.pairitem[data-side="${side}"]`).forEach(x=>{if(!x.classList.contains("ok"))x.classList.remove("sel");});
+  pSelPair[side]=idx; el.classList.add("sel");
+  if(pSelPair.l!==null&&pSelPair.r!==null){
+    const t=curTask(); const ok=pSelPair.l===pSelPair.r;
+    const lEl=document.querySelector(`.pairitem[data-side="l"][data-idx="${pSelPair.l}"]`);
+    const rEl=document.querySelector(`.pairitem[data-side="r"][data-idx="${pSelPair.r}"]`);
+    if(ok){ [lEl,rEl].forEach(e=>{e.classList.remove("sel");e.classList.add("ok");e.style.pointerEvents="none";});
+      pPairsDone++; if(pPairsDone===t.pairs.length){ pAnswered=true; finishOne(true,t.exp); } }
+    else{ [lEl,rEl].forEach(e=>e.classList.add("bad")); setTimeout(()=>[lEl,rEl].forEach(e=>e.classList.remove("bad","sel")),550); }
+    pSelPair={l:null,r:null};
+  }
+}
+/* feedback + flow */
+function showFb(ok,msg){ const fb=document.getElementById("fb"); fb.className="feedback show "+(ok?"good":"wrong"); fb.innerHTML=msg; }
+function finishOne(ok,exp){
+  showFb(ok,(ok?"✅ Richtig! ":"❌ Nicht ganz. ")+(exp||""));
+  if(ok){ pScore+=10; if(myId) gref(code,"participants/"+myId+"/score").set(pScore); }
+  const cont=document.getElementById("cont");
+  cont.innerHTML=`<div class="actions"><button class="btn" style="width:100%" onclick="nextTask()">Weiter →</button></div>`;
+}
+function nextTask(){
+  pIdx++; if(myId) gref(code,"participants/"+myId+"/idx").set(pIdx);
+  if(pIdx>=TASKS.length) finishTasks(); else renderTask();
+}
+function finishTasks(){
+  document.getElementById("p-bar").style.width="100%";
+  document.getElementById("p-progress").textContent="Fertig";
+  document.getElementById("p-host").innerHTML=
+    `<div class="banner"><b>Stark!</b> Du hast alle Übungen geschafft – ${pScore} Punkte.</div>
+     <p style="margin-top:10px;font-size:.92rem;color:var(--muted)">Wartet auf die Schreibphase. Eure Lehrkraft schaltet sie gleich frei.</p>`;
+  if(window.goatcounter&&window.goatcounter.count){ try{window.goatcounter.count({path:"forumwerkstatt-tasks-done",title:"Forumwerkstatt Übungen fertig",event:true});}catch(_){} }
+}
+
+function esc(s){return String(s).replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));}
+
+/* pair layout helper css injected */
+const st=document.createElement("style");
+st.textContent=".pairwrap{display:grid;grid-template-columns:1fr 1fr;gap:14px}.paircol{display:grid;gap:8px}";
+document.head.appendChild(st);
+</script>
+</body>
+</html>

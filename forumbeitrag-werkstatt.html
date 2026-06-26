@@ -418,7 +418,7 @@ const WRITE_PROMPT = {
 /* ===================== STATE ===================== */
 let role=null, code=null, myId=null, myName=null, myTeam=null;
 let gameData={}, modTabCur="tn";
-let pIdx=0, pAnswered=false, pScore=0, pOrderChosen=[], pBinPick=null, pSelPair={l:null,r:null}, pPairsDone=0;
+let pIdx=0, pAnswered=false, pScore=0, pOrderChosen=[], pBinPick=null, pSelPair={l:null,r:null}, pPairsDone=0, pBinPlaced={};
 
 function toast(msg){ const t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1800); }
 function rndCode(){ const c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; let s=""; for(let i=0;i<4;i++)s+=c[Math.floor(Math.random()*c.length)]; return s; }
@@ -455,7 +455,8 @@ function modTab(t){
 }
 function participantsArr(){
   const p=gameData.participants||{};
-  return Object.keys(p).map(id=>({id,...p[id]}));
+  // Nur echte Teilnehmende mit Namen; namenlose „Geister"-Einträge ignorieren
+  return Object.keys(p).map(id=>({id,...p[id]})).filter(x=>x.name&&String(x.name).trim());
 }
 function renderMod(){
   const arr=participantsArr();
@@ -561,7 +562,14 @@ function joinGame(){
   });
 }
 function startHeartbeat(){
-  setInterval(()=>{ if(code&&myId) gref(code,"participants/"+myId+"/lastSeen").set(Date.now()); },8000);
+  setInterval(()=>{
+    if(!code||!myId) return;
+    // Nur aktualisieren, wenn der Datensatz noch existiert – sonst würde ein
+    // namenloser „?"-Eintrag neu angelegt, falls die Moderation uns entfernt hat.
+    gref(code,"participants/"+myId).get().then(s=>{
+      if(s.exists()){ gref(code,"participants/"+myId+"/lastSeen").set(Date.now()); }
+    }).catch(()=>{});
+  },8000);
 }
 function myRec(){ return (gameData.participants&&gameData.participants[myId])||null; }
 function renderPlay(){
@@ -609,7 +617,7 @@ function renderDone(){
 /* -------- task rendering (participant) -------- */
 function curTask(){ return TASKS[pIdx]; }
 function renderTask(){
-  pAnswered=false; pOrderChosen=[]; pBinPick=null; pSelPair={l:null,r:null}; pPairsDone=0;
+  pAnswered=false; pOrderChosen=[]; pBinPick=null; pSelPair={l:null,r:null}; pPairsDone=0; pBinPlaced={};
   const host=document.getElementById("p-host");
   const total=TASKS.length;
   document.getElementById("p-bar").style.width=Math.round(pIdx/total*100)+"%";
@@ -706,9 +714,8 @@ function checkOrder(){
 /* BIN */
 function renderBinChips(){
   const t=curTask(); const box=document.getElementById("binchips"); box.innerHTML="";
-  t._placed=t._placed||{};
   t.items.forEach((it,i)=>{
-    if(t._placed[i]!==undefined) return;
+    if(pBinPlaced[i]!==undefined) return;
     const c=document.createElement("span"); c.className="chip"+(pBinPick===i?" sel":""); c.textContent=it.t;
     c.onclick=()=>{ if(pAnswered)return; pBinPick=(pBinPick===i?null:i); renderBinChips(); };
     box.appendChild(c);
@@ -716,18 +723,18 @@ function renderBinChips(){
 }
 function dropBin(bin){
   if(pAnswered||pBinPick===null)return;
-  const t=curTask(); t._placed=t._placed||{}; t._placed[pBinPick]=bin;
+  const t=curTask(); pBinPlaced[pBinPick]=bin;
   const cont=document.getElementById("bin"+bin+"c");
   const c=document.createElement("span"); c.className="chip"; c.textContent=t.items[pBinPick].t;
   cont.appendChild(c); pBinPick=null; renderBinChips();
 }
-function resetBin(){ if(pAnswered)return; const t=curTask(); t._placed={}; pBinPick=null;
+function resetBin(){ if(pAnswered)return; pBinPlaced={}; pBinPick=null;
   document.getElementById("bin0c").innerHTML=""; document.getElementById("bin1c").innerHTML=""; renderBinChips(); }
 function checkBin(){
-  if(pAnswered)return; const t=curTask(); t._placed=t._placed||{};
-  if(Object.keys(t._placed).length!==t.items.length){ showFb(false,"Bitte alle Sätze einsortieren."); return; }
+  if(pAnswered)return; const t=curTask();
+  if(Object.keys(pBinPlaced).length!==t.items.length){ showFb(false,"Bitte alle Sätze einsortieren."); return; }
   pAnswered=true;
-  let ok=true; t.items.forEach((it,i)=>{ if(t._placed[i]!==it.bin)ok=false; });
+  let ok=true; t.items.forEach((it,i)=>{ if(pBinPlaced[i]!==it.bin)ok=false; });
   finishOne(ok, t.exp);
 }
 /* PAIR */

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Die große Messe – Lern Deutsch mit Arash</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<style>
+:root{
+  --bg:#0e1b2a; --bg2:#132539; --card:#16293f; --card2:#1d3350;
+  --ink:#eaf1f8; --ink-soft:#93a7bf; --line:#2a4463;
+  --gold:#e7b93d; --gold-deep:#c2971f;
+  --teal:#2fa389; --teal-deep:#1f7d68;
+  --rose:#e0654a;
+  --radius:16px; --shadow:0 1px 2px rgba(0,0,0,.2),0 12px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',Calibri,system-ui,sans-serif;color:var(--ink);line-height:1.55;
+  background:radial-gradient(circle at 50% -8%, #1c3555 0%, transparent 55%),var(--bg);-webkit-font-smoothing:antialiased;}
+.wrap{max-width:1000px;margin:0 auto;padding:16px 16px 70px}
+.wrap.beamer{max-width:1180px}
+.hidden{display:none!important}
+h1,h2,h3{margin:0}
+button{font-family:inherit}
+
+header.top{display:flex;align-items:center;gap:14px;padding:18px 0 20px}
+.logo{flex:0 0 auto;width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--teal),var(--teal-deep));
+  display:grid;place-items:center;color:#fff;font-size:1.6rem;box-shadow:0 6px 16px rgba(47,163,137,.35)}
+header.top h1{font-size:1.5rem;letter-spacing:-.4px;line-height:1.05}
+header.top .tag{color:var(--ink-soft);font-size:.85rem;margin-top:2px}
+header.top .home{margin-left:auto;text-decoration:none;color:var(--ink-soft);font-size:.82rem;font-weight:700;
+  border:1px solid var(--line);border-radius:999px;padding:7px 13px;background:var(--card);white-space:nowrap}
+
+.card{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:var(--shadow)}
+.card h2{font-size:1.18rem;margin-bottom:4px}
+.muted{color:var(--ink-soft);font-size:.9rem}
+.center{text-align:center}
+.btn{border:none;border-radius:12px;padding:13px 20px;font-size:1rem;font-weight:800;cursor:pointer;transition:.15s;color:#fff}
+.btn-teal{background:linear-gradient(180deg,var(--teal),var(--teal-deep))}
+.btn-teal:hover{filter:brightness(1.06)}
+.btn-gold{background:linear-gradient(180deg,var(--gold),var(--gold-deep));color:#3a2a00}
+.btn-gold:hover{filter:brightness(1.06)}
+.btn-ghost{background:var(--card2);color:var(--ink-soft);border:1px solid var(--line)}
+.btn-ghost:hover{color:var(--ink)}
+.btn-danger{background:#7a2520;border:1px solid #a23}
+.btn-danger:hover{background:#8f2d27}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.small{padding:8px 13px;font-size:.85rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input,select{padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--card2);color:var(--ink);font-family:inherit}
+input:focus,select:focus{outline:2px solid var(--teal);border-color:var(--teal)}
+.notice{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:.9rem;margin-top:10px}
+.notice.ok{border-color:var(--teal);color:#b8ecdd}
+.notice.err{border-color:var(--rose);color:#f7cbc0}
+
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+@media(max-width:560px){.role-grid{grid-template-columns:1fr}}
+.role-pick{border:1px solid var(--line);background:var(--card2);border-radius:var(--radius);padding:22px;cursor:pointer;text-align:left;transition:.15s;color:var(--ink)}
+.role-pick:hover{border-color:var(--teal);transform:translateY(-2px)}
+.role-pick .ic{font-size:2rem;margin-bottom:8px}
+.role-pick h3{font-size:1.1rem;margin-bottom:4px}
+.role-pick p{color:var(--ink-soft);font-size:.86rem;margin:0}
+
+.bigcode{font-size:2.4rem;font-weight:900;letter-spacing:6px;color:var(--gold);text-align:center;margin:8px 0}
+.flex-between{display:flex;justify-content:space-between;align-items:center;gap:10px}
+
+.mode-toggle{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.mode-toggle button{border:none;background:var(--card);padding:10px 15px;font-weight:700;font-size:.88rem;cursor:pointer;color:var(--ink-soft)}
+.mode-toggle button[aria-pressed="true"]{background:var(--teal);color:#fff}
+
+.list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.list-item{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;flex-wrap:wrap}
+.list-item .nm{font-weight:700;flex:1;min-width:90px}
+.assign-sel{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:.82rem;max-width:210px}
+.assign-sel:focus{outline:2px solid var(--teal);border-color:var(--teal)}
+.pill{display:inline-block;font-size:.74rem;font-weight:800;padding:4px 10px;border-radius:999px}
+.pill.stand{background:#123a33;color:#7fe0c6}
+.pill.visit{background:#3a2f12;color:#f2d489}
+.pill.frei{background:#22344b;color:var(--ink-soft)}
+.pill.done{background:#123a33;color:#7fe0c6}
+
+.standcard{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--card);box-shadow:var(--shadow)}
+.standcard .sc-top{background:linear-gradient(135deg,var(--teal),var(--teal-deep));color:#fff;padding:14px 16px}
+.standcard .sc-top .brand{font-size:.72rem;text-transform:uppercase;letter-spacing:.8px;opacity:.9}
+.standcard .sc-top .prod{font-size:1.4rem;font-weight:800;margin-top:2px}
+.standcard .sc-body{padding:14px 16px}
+.standcard dt{font-weight:800;color:#7fe0c6;font-size:.74rem;text-transform:uppercase;letter-spacing:.4px;margin-top:10px}
+.standcard dt:first-child{margin-top:0}
+.standcard dd{margin:2px 0 0}
+dl{margin:0}
+
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tabs button{border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:9px 15px;border-radius:999px;font-size:.9rem;font-weight:700;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--gold);color:#3a2a00;border-color:var(--gold)}
+.panel{display:none}.panel.active{display:block}
+
+.taskrow{display:flex;align-items:center;gap:12px;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px;cursor:pointer;transition:.12s}
+.taskrow:hover{border-color:var(--teal)}
+.taskrow.done{background:#12332c;border-color:var(--teal)}
+.checkbox{flex:0 0 auto;width:26px;height:26px;border-radius:7px;border:2px solid var(--line);display:grid;place-items:center;font-weight:900;color:transparent}
+.taskrow.done .checkbox{background:var(--teal);border-color:var(--teal);color:#fff}
+.taskrow .ttxt{flex:1;font-size:.98rem}
+.taskrow.done .ttxt{color:#bff0e2}
+.progress-line{font-size:1.4rem;font-weight:900;color:var(--gold);text-align:center;margin:6px 0}
+
+.phrase-group{margin-bottom:14px}
+.phrase-group h3{font-size:.95rem;color:var(--gold);margin-bottom:6px}
+.phrase{display:block;background:var(--card2);border-left:3px solid var(--teal);padding:9px 13px;border-radius:0 8px 8px 0;margin-bottom:6px;font-size:.96rem}
+
+.round-banner{background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#3a2a00;border-radius:12px;padding:14px 16px;font-weight:800;text-align:center;margin-bottom:14px;font-size:1.05rem}
+.pill-status{display:inline-flex;gap:7px;align-items:center;font-size:.8rem;font-weight:700;color:var(--ink-soft)}
+.sdot{width:8px;height:8px;border-radius:50%;background:var(--rose)}
+.pill-status.live .sdot{background:var(--teal)}
+footer{text-align:center;color:var(--ink-soft);font-size:.8rem;margin-top:34px}
+.scoreboard{display:flex;flex-direction:column;gap:8px}
+.score-row{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.score-row .nm{font-weight:700;flex:1}.score-row .pts{font-weight:900;color:var(--gold)}
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div id="screen-home" class="wrap">
+  <header class="top">
+    <div class="logo">🎪</div>
+    <div><h1>Die große Messe</h1><div class="tag">Rollenspiel · Messebesuch &amp; Produktpräsentation · B1/B2</div></div>
+    <a href="index.html" class="home">🏠 Index</a>
+  </header>
+  <div class="card">
+    <h2>Wie machst du mit?</h2>
+    <p class="muted">Die Lehrkraft öffnet die <b>Spielleitung</b> (Beamer). Alle anderen treten am Handy mit dem <b>Spielcode</b> bei und bekommen einen Messestand mit Produkt.</p>
+    <div class="role-grid">
+      <button class="role-pick" onclick="showConsoleLogin()">
+        <div class="ic">🎛️</div><h3>Spielleitung (Beamer)</h3>
+        <p>Spiel starten, Stände zulosen, Runden steuern, Teilnehmende entfernen.</p>
+      </button>
+      <button class="role-pick" onclick="showJoin()">
+        <div class="ic">📱</div><h3>Mitspielen</h3>
+        <p>Mit Spielcode beitreten, Stand erhalten, Aufgaben abhaken.</p>
+      </button>
+    </div>
+  </div>
+  <div class="card">
+    <h2>So läuft die Messe</h2>
+    <ol class="muted" style="margin:6px 0 0;padding-left:20px;line-height:1.7">
+      <li>Jede:r bekommt einen <b>Messestand</b> mit erfundenem Produkt (Rollenkarte auf dem Handy).</li>
+      <li>In jeder <b>Runde</b> ist die eine Hälfte <b>am Stand</b> (präsentiert), die andere <b>besucht</b> die Messe und stellt Fragen. Dann wird gewechselt.</li>
+      <li>Auf dem Handy hakst du deine <b>Aufgaben</b> ab (präsentieren, Fragen stellen, Angebote sammeln, Kontakte knüpfen).</li>
+      <li>Am Ende: Wer hat die meisten Aufgaben geschafft? Welcher Stand war der beste?</li>
+    </ol>
+  </div>
+</div>
+
+<!-- JOIN -->
+<div id="screen-join" class="wrap hidden">
+  <header class="top"><div class="logo">🎪</div>
+    <div><h1>Beitreten</h1><div class="tag">Spielcode und Name eingeben</div></div>
+    <a href="#" class="home" onclick="goHome();return false;">← zurück</a></header>
+  <div class="card">
+    <div class="row" style="margin-bottom:12px">
+      <input id="join-code" placeholder="Spielcode" style="flex:1 1 160px;text-transform:uppercase">
+      <input id="join-name" placeholder="Dein Name" style="flex:1 1 160px">
+    </div>
+    <button class="btn btn-teal" onclick="joinGame()">Beitreten</button>
+    <div id="join-msg"></div>
+  </div>
+</div>
+
+<!-- CONSOLE LOGIN -->
+<div id="screen-console-login" class="wrap hidden">
+  <header class="top"><div class="logo">🎪</div>
+    <div><h1>Spielleitung</h1><div class="tag">Neues Spiel starten</div></div>
+    <a href="#" class="home" onclick="goHome();return false;">← zurück</a></header>
+  <div class="card">
+    <h2>Neues Spiel</h2>
+    <p class="muted">Ein Spielcode wird erzeugt. Teilt ihn mit dem Kurs.</p>
+    <div class="row" style="margin-top:12px"><button class="btn btn-teal" onclick="createGame()">🎬 Spiel erstellen</button></div>
+    <div id="console-login-msg"></div>
+  </div>
+</div>
+
+<div id="screen-console" class="wrap beamer hidden"></div>
+<div id="screen-player" class="wrap hidden"></div>
+
+<footer>Lern Deutsch mit Arash · Die große Messe</footer>
+
+<script data-goatcounter="https://aguitoo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+/* ============ DATEN: Messestände (erfundene Produkte) ============ */
+const STANDS = [
+  /* ===== ECHTE FIRMEN (aus den Präsentationen der TN) ===== */
+  {real:true, brand:"Apple (USA)", product:"iPhone, iPad, Mac, Apple Watch, AirPods",
+   what:"Technik-Konzern: Design und Software aus Kalifornien, Geräte werden in China produziert",
+   plus:"modern, bekanntes Ökosystem, hohe Qualität – „Designed by Apple in California“",
+   price:"AirTag ab ca. 35 $, Mac Pro / Vision Pro bis über 7.000 $",
+   target:"Privatkund:innen, Firmen, Studierende",
+   facts:"Gegründet 1976 in Kalifornien (Steve Jobs & Steve Wozniak) · erstes Produkt: Apple I · iPhone seit 2007 · Umsatz fast 400 Mrd. $"},
+  {real:true, brand:"Ferrero – Nutella (Italien)", product:"Nutella, Nutella Biscuits, B-ready, Nutella & GO!",
+   what:"Haselnuss-Nougat-Creme und Süßwaren der Firma Ferrero",
+   plus:"hohe Qualität, guter Geschmack, weltweit bekannt, gute Werbung",
+   price:"Glas Nutella je nach Größe; Handelsware",
+   target:"Familien, Supermärkte, Gastronomie",
+   facts:"Marke Nutella seit 1964 · Gründer Pietro Ferrero · Hauptsitz Alba, Italien · Idee nach dem Krieg: Haselnüsse statt teurem Kakao"},
+  {real:true, brand:"BRIO (Schweden)", product:"Holz-Eisenbahn, Kinderspielzeug aus Holz",
+   what:"umweltfreundliches Kinderspielzeug aus Holz, bekannt für die Holz-Eisenbahn",
+   plus:"sicher, umweltfreundlich, große Auswahl, Sets kompatibel, ausgezeichnete Qualität",
+   price:"Holzeisenbahn-Sets im Handel",
+   target:"Familien, Spielzeugläden, Kitas",
+   facts:"Gegründet 1884, Gründer Ivar Bengtsson · Name = „Bröderna Ivarsson i Osby“ · Hauptsitz Malmö · seit 2015 zu Ravensburger"},
+  {real:true, brand:"Louis Vuitton (Frankreich)", product:"Handtaschen, Koffer, Kleidung, Schuhe, Schmuck, Accessoires",
+   what:"französische Luxusmarke für hochwertige Mode und Lederwaren",
+   plus:"Qualität, Eleganz, Luxus, weltbekannt",
+   price:"Luxus-Preissegment",
+   target:"Luxus-Kund:innen, Mode-Boutiquen",
+   facts:"Gegründet 1854 von Louis Vuitton · Hauptsitz Paris · gehört zu Moët Hennessy / LVMH (Bernard Arnault)"},
+  {real:true, brand:"Ray-Ban (USA/Italien)", product:"Sonnenbrillen & Korrekturbrillen (Aviator, Wayfarer)",
+   what:"Brillenmarke, bekannt für die Modelle „Aviator“ und „Wayfarer“",
+   plus:"schützen sehr gut vor der Sonne, ikonisches Design, meistverkaufte Brillenmarke",
+   price:"Sonnenbrillen im mittleren bis höheren Segment",
+   target:"Privatkund:innen, Optiker, Modehandel",
+   facts:"Gegründet 1936 in den USA (Brillen für Piloten) · seit 1999 zu Luxottica (Mailand) · durch „Top Gun“ berühmt"},
+  {real:true, brand:"Uhlsport (Deutschland)", product:"Torwarthandschuhe, Fußbälle, Trikots, Schienbeinschoner",
+   what:"Sportartikelhersteller, spezialisiert auf Torhüter und Fußballausrüstung",
+   plus:"Spezialist für Torhüter, hochwertige Materialien, Innovation (z. B. Fangmaschine)",
+   price:"Torwarthandschuhe je nach Modell",
+   target:"Vereine, Torhüter, Sporthandel",
+   facts:"Gegründet 1948 von Karl Uhl in Balingen · in über 80 Ländern · Partner: Kevin Trapp, Koen Casteels u. a."},
+  {real:true, brand:"Patagonia (USA)", product:"Outdoor- & Kletterbekleidung, Fleece",
+   what:"Outdoor-Marke mit Fokus auf Umweltschutz und Langlebigkeit",
+   plus:"nachhaltig, „WornWear“-Reparaturprogramm, 98 % recycelte/nachwachsende Rohstoffe",
+   price:"höheres Outdoor-Segment",
+   target:"Outdoor-Fans, Kletterer, umweltbewusste Kund:innen",
+   facts:"Marke seit 1973 (Yvon Chouinard) · Hauptsitz Ventura, Kalifornien · 2022 Firma an Umweltstiftung übertragen"},
+  {real:true, brand:"Shiseido / SK-II (Japan)", product:"Hautpflege, Seren (Ultimune, Facial Treatment Essence)",
+   what:"japanische Kosmetik: Shiseido und die Premium-Marke SK-II",
+   plus:"Wissenschaft + Ästhetik, Wirkstoff PITERA, strahlende Haut",
+   price:"Seren ca. 50–200 €",
+   target:"Kosmetik-Kund:innen, Parfümerien, Beauty-Handel",
+   facts:"Shiseido gegründet 1872 in Tokio · in rund 120 Ländern · SK-II gehört zu Procter & Gamble"},
+  {real:true, brand:"Hugo Boss (Deutschland)", product:"Mode: Marke BOSS (elegant) und HUGO (lässig)",
+   what:"deutsches Modeunternehmen mit zwei Hauptmarken",
+   plus:"exzellente Qualität, perfekter Sitz, weltweit bekannt, wird nachhaltiger",
+   price:"gehobenes Mode-Segment",
+   target:"Büro/Business, junge Trendsetter, Modehandel",
+   facts:"Gegründet 1924 in Metzingen · BOSS = klassisch/elegant, HUGO = lässig/jung · Ziel: mehr recycelte Materialien"},
+
+  /* ===== ZUSATZ-ROLLEN (erfundene Firmen, für TN ohne Präsentation) ===== */
+  {real:false, brand:"GreenGrip GmbH", product:"Öko-Fahrradhelm „AirLeaf“",
+   what:"ein leichter Fahrradhelm aus recyceltem Material mit LED-Rücklicht",
+   plus:"sehr leicht, umweltfreundlich, gut sichtbar im Dunkeln", price:"79 € / Stück, ab 50 Stück 15 % Rabatt",
+   target:"Fahrradläden, Städte, Lieferdienste"},
+  {real:false, brand:"KüchenProfi AG", product:"Smart-Kochplatte „HeatWise“",
+   what:"eine tragbare Induktionskochplatte mit App-Steuerung",
+   plus:"spart Strom, per Handy steuerbar, sehr sicher", price:"129 €, Mengenrabatt auf Anfrage",
+   target:"Gastronomie, Catering, Büros"},
+  {real:false, brand:"MoveOn Logistics", product:"Lager-Roboter „Pick-It“",
+   what:"ein kleiner Roboter, der im Lager Waren transportiert",
+   plus:"spart Zeit, arbeitet 24 h, leicht zu bedienen", price:"ab 4.900 € oder Miete 199 €/Monat",
+   target:"Lager, Versandhäuser, Produktion"},
+  {real:false, brand:"AquaPure", product:"Wasserfilter-Flasche „ClearOne“",
+   what:"eine Trinkflasche mit eingebautem Wasserfilter",
+   plus:"sauberes Wasser überall, wiederverwendbar, spart Plastik", price:"24 €, ab 100 Stück 20 % Rabatt",
+   target:"Fitnessstudios, Schulen, Reisebüros"},
+  {real:false, brand:"SafeHands", product:"Arbeitshandschuh „FlexPro“",
+   what:"ein schnittfester Handschuh mit Touchscreen-Fingern",
+   plus:"sehr sicher, bequem, Handy bedienbar ohne Ausziehen", price:"12 € / Paar, Staffelpreise",
+   target:"Handwerk, Bau, Produktion, Lager"},
+  {real:false, brand:"BrightOffice", product:"Schreibtischlampe „FocusLite“",
+   what:"eine LED-Lampe, die das Licht an die Tageszeit anpasst",
+   plus:"schont die Augen, spart Strom, modernes Design", price:"59 €, ab 20 Stück Rabatt",
+   target:"Büros, Coworking, Homeoffice"},
+  {real:false, brand:"FreshBox", product:"Mehrweg-Lunchbox „EcoMeal“",
+   what:"eine auslaufsichere Lunchbox mit mehreren Fächern",
+   plus:"spart Verpackungsmüll, spülmaschinenfest, dicht", price:"18 €, ab 200 Stück 25 % Rabatt",
+   target:"Kantinen, Catering, Firmen mit Mittagsservice"},
+  {real:false, brand:"WarmStep", product:"Beheizbare Einlegesohle „ToastyFeet“",
+   what:"eine Schuheinlage, die sich per Akku erwärmt",
+   plus:"warme Füße im Winter, per App regelbar, aufladbar", price:"39 € / Paar, Staffelpreise",
+   target:"Outdoor-Läden, Bau, Sicherheitsdienste"}
+];
+
+/* Aufgaben – variieren je nach Rolle in der Runde */
+const TASKS_STAND = [
+  "Präsentiere dein Produkt einer Besucherin / einem Besucher (kurz, klar).",
+  "Nenne mindestens 2 Vorteile deines Produkts.",
+  "Beantworte 2 Fragen zu Preis oder Lieferung.",
+  "Mach einem Interessenten ein konkretes Angebot (mit Rabatt).",
+  "Tausche mit einer Person Kontaktdaten für später."
+];
+const TASKS_VISIT = [
+  "Besuche mindestens 3 verschiedene Stände.",
+  "Stelle an jedem Stand mindestens 1 Frage.",
+  "Frage an einem Stand gezielt nach dem Preis und einem Rabatt.",
+  "Vergleiche 2 Produkte und sag, welches besser passt und warum.",
+  "Sammle 2 Angebote (notiere Produkt + Preis)."
+];
+
+/* Redemittel */
+const PHRASES = [
+  {group:"Am Stand: begrüßen & anbieten", items:[
+    "Guten Tag, herzlich willkommen an unserem Stand!",
+    "Kann ich Ihnen unser Produkt kurz vorstellen?",
+    "Interessieren Sie sich für …?"]},
+  {group:"Am Stand: präsentieren", items:[
+    "Das Besondere an unserem Produkt ist …",
+    "Der größte Vorteil ist, dass …",
+    "Im Vergleich zu anderen Produkten ist unseres …",
+    "Unser Produkt eignet sich besonders für …"]},
+  {group:"Am Stand: Preis & Angebot", items:[
+    "Der Preis liegt bei … pro Stück.",
+    "Ab … Stück bekommen Sie … Prozent Rabatt.",
+    "Ich kann Ihnen ein besonderes Angebot machen: …",
+    "Die Lieferung dauert etwa …"]},
+  {group:"Als Besucher:in: fragen", items:[
+    "Können Sie mir das Produkt genauer erklären?",
+    "Was kostet das? Gibt es einen Mengenrabatt?",
+    "Worin unterscheidet sich das von anderen Produkten?",
+    "Wie lange dauert die Lieferung?"]},
+  {group:"Als Besucher:in: Interesse & vergleichen", items:[
+    "Das klingt interessant. Haben Sie eine Broschüre?",
+    "Ich überlege noch – ich schaue mich erst um.",
+    "Ihr Produkt gefällt mir besser als …, weil …",
+    "Könnten wir Kontaktdaten austauschen?"]},
+  {group:"Höflich verabschieden", items:[
+    "Vielen Dank für die Informationen!",
+    "Ich melde mich bei Ihnen. Auf Wiedersehen!",
+    "Schön, dass wir gesprochen haben."]}
+];
+</script>
+<script>
+/* ============ ENGINE ============ */
+const firebaseConfig = {
+  apiKey: "AIzaSyBDChXlm34Kr7Gg0Dw458GiiwoLnWJAnxM",
+  authDomain: "lern-deutsch-arash.firebaseapp.com",
+  databaseURL: "https://lern-deutsch-arash-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "lern-deutsch-arash",
+  storageBucket: "lern-deutsch-arash.firebasestorage.app",
+  messagingSenderId: "845503292114",
+  appId: "1:845503292114:web:f76ab5fcde1e978d00c30b"
+};
+let db=null, fbReady=false;
+try{ firebase.initializeApp(firebaseConfig); db=firebase.database(); fbReady=true; }
+catch(e){ console.warn("Firebase nicht konfiguriert:",e); }
+
+let role=null, gameCode=null, gameRef=null, myId=null, lastGame=null, playerTab="stand";
+const S=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function rand4(){return String(Math.floor(1000+Math.random()*9000));}
+function uid(){return "u"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function setMsg(id,t,c){const e=S(id);if(e)e.innerHTML=`<div class="notice ${c||''}">${t}</div>`;}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function hideAll(){["screen-home","screen-join","screen-player","screen-console-login","screen-console"].forEach(s=>S(s).classList.add("hidden"));}
+function goHome(){ if(gameRef){gameRef.off();} hideAll(); S("screen-home").classList.remove("hidden"); role=null;gameCode=null;gameRef=null;myId=null;lastGame=null; }
+function showJoin(){hideAll();S("screen-join").classList.remove("hidden");}
+function showConsoleLogin(){hideAll();S("screen-console-login").classList.remove("hidden");
+  if(!fbReady)setMsg("console-login-msg","⚠️ Firebase ist nicht konfiguriert.","err");}
+function getDeviceId(code){const k="messe_pid_"+code;try{let v=localStorage.getItem(k);if(!v){v=uid();localStorage.setItem(k,v);}return v;}catch(e){return uid();}}
+
+/* -------- CONSOLE -------- */
+function createGame(){
+  if(!fbReady){setMsg("console-login-msg","⚠️ Firebase fehlt.","err");return;}
+  const code=rand4();
+  db.ref("games_messe/"+code).set({createdAt:Date.now(),phase:"lobby",round:0,group:"A",players:{}})
+    .then(()=>{gameCode=code;role="console";enterConsole();});
+}
+function enterConsole(){
+  hideAll();S("screen-console").classList.remove("hidden");
+  gameRef=db.ref("games_messe/"+gameCode);
+  gameRef.on("value",snap=>{lastGame=snap.val()||{};renderConsole(lastGame);});
+}
+function renderConsole(g){
+  const players=g.players||{};
+  const arr=Object.entries(players).map(([id,p])=>({id,...p})).sort((a,b)=>(a.joinedAt||0)-(b.joinedAt||0));
+  const phase=g.phase||"lobby", round=g.round||0, group=g.group||"A";
+
+  let body=`<header class="top">
+    <div class="logo">🎪</div>
+    <div><h1>Spielleitung</h1><div class="tag">Phase: ${esc(phaseLabel(phase))} · ${arr.length} Teilnehmende</div></div>
+    <a href="#" class="home" onclick="if(confirm('Spiel verlassen?'))goHome();return false;">← beenden</a>
+  </header>
+  <div class="card center"><div class="muted">Spielcode für den Kurs</div><div class="bigcode">${esc(gameCode)}</div></div>`;
+
+  body+=`<div class="card">
+    <div class="flex-between"><h2>Teilnehmende</h2>
+      ${arr.length?`<button class="btn btn-danger small" onclick="clearAll()">Alle entfernen</button>`:""}</div>
+    <p class="muted" style="margin-top:0">Über das Auswahlfeld kannst du jeder Person manuell einen Stand zuweisen (z. B. wenn jemand rausflog und neu beitritt). Mit ✕ entfernst du eine Person.</p>
+    <div class="list">
+      ${arr.length?arr.map(p=>{
+        const roleTag = phase!=="lobby" ? (p.group===group?`<span class="pill stand">🎪 am Stand</span>`:`<span class="pill visit">🚶 besucht</span>`) : "";
+        const done=(p.doneTasks?Object.values(p.doneTasks).filter(Boolean).length:0);
+        return `<div class="list-item"><span class="nm">${esc(p.name)}</span>
+          <select class="assign-sel" onchange="setStand('${p.id}',this.value)">${standOptions(p.stand)}</select>
+          ${roleTag}
+          ${phase!=="lobby"?`<span class="pill done">${done} ✓</span>`:""}
+          <button class="btn btn-danger small" onclick="removePlayer('${p.id}')">✕</button></div>`;
+      }).join(""):`<p class="muted">Noch niemand da. Teilt den Spielcode!</p>`}
+    </div>
+  </div>`;
+
+  if(phase==="lobby"){
+    body+=`<div class="card center">
+      <h2>Stände zulosen &amp; starten</h2>
+      <p class="muted">Jede Person bekommt ein Produkt. Die Gruppe wird in zwei Hälften geteilt (Stand / Besuch).</p>
+      <div class="row" style="justify-content:center;margin-top:10px">
+        <button class="btn btn-teal" ${arr.length<2?'disabled':''} onclick="assignStands()">🎲 Stände zulosen</button>
+        ${arr.some(p=>p.stand!=null)?`<button class="btn btn-gold" onclick="startRound(1)">Runde 1 starten →</button>`:""}
+      </div>
+    </div>`;
+  } else if(phase==="round"){
+    body+=`<div class="card center">
+      <div class="round-banner" style="color:#3a2a00">Runde ${round} läuft · <b>Gruppe ${group}</b> ist am Stand, die andere besucht</div>
+      <p class="muted">Wenn die Runde vorbei ist, wird gewechselt: Die Besucher werden Aussteller.</p>
+      <div class="row" style="justify-content:center;margin-top:8px">
+        <button class="btn btn-gold" onclick="switchRound()">🔄 Rollen wechseln (Runde ${round+1})</button>
+        <button class="btn btn-teal" onclick="showResults()">🏁 Auswertung</button>
+      </div>
+    </div>`;
+  } else if(phase==="results"){
+    const ranked=arr.slice().sort((a,b)=>tasksDone(b)-tasksDone(a));
+    body+=`<div class="card">
+      <h2 class="center">🏆 Auswertung</h2>
+      <div class="scoreboard" style="margin-top:12px">
+        ${ranked.map((p,i)=>`<div class="score-row"><span style="width:22px;font-weight:900;color:var(--ink-soft)">${i+1}.</span>
+          <span class="nm">${esc(p.name)} <span class="muted">${p.stand!=null?'· '+esc(STANDS[p.stand].product):''}</span></span>
+          <span class="pts">${tasksDone(p)} Aufgaben</span></div>`).join("")}
+      </div>
+      <div class="row" style="justify-content:center;margin-top:14px">
+        <button class="btn btn-gold" onclick="startRound(1)">Neue Runde 1</button>
+        <button class="btn btn-ghost" onclick="backToLobby()">Zur Lobby</button>
+      </div>
+    </div>`;
+  }
+  S("screen-console").innerHTML=body;
+}
+function phaseLabel(p){return {lobby:"Lobby",round:"Messe läuft",results:"Auswertung"}[p]||p;}
+function tasksDone(p){ return p.doneTasks?Object.values(p.doneTasks).filter(Boolean).length:0; }
+
+function assignStands(){
+  const g=lastGame, players=g.players||{}; const ids=Object.keys(players);
+  // Echte Firmen zuerst (gemischt), dann die erfundenen Zusatz-Rollen (gemischt).
+  const realIdx=shuffle(STANDS.map((s,i)=>({s,i})).filter(x=>x.s.real).map(x=>x.i));
+  const otherIdx=shuffle(STANDS.map((s,i)=>({s,i})).filter(x=>!x.s.real).map(x=>x.i));
+  const stands=realIdx.concat(otherIdx);
+  const sh=shuffle(ids); const half=Math.ceil(sh.length/2);
+  const updates={};
+  sh.forEach((id,i)=>{
+    updates["players/"+id+"/stand"]=stands[i%stands.length];
+    updates["players/"+id+"/group"]=(i<half)?"A":"B";
+    updates["players/"+id+"/doneTasks"]=null;
+  });
+  gameRef.update(updates);
+}
+function startRound(n){ gameRef.update({phase:"round",round:n,group:"A"}); }
+function switchRound(){
+  const g=lastGame; const next=(g.group==="A")?"B":"A";
+  gameRef.update({group:next,round:(g.round||1)+1});
+}
+function showResults(){ gameRef.update({phase:"results"}); }
+function backToLobby(){ gameRef.update({phase:"lobby",round:0}); }
+function removePlayer(id){ gameRef.child("players/"+id).remove(); }
+function clearAll(){ if(confirm("Wirklich ALLE Teilnehmenden entfernen?")) gameRef.child("players").remove(); }
+function standOptions(sel){
+  let o=`<option value="" ${sel==null?'selected':''}>— kein Stand —</option>`;
+  const real=STANDS.map((s,i)=>({s,i})).filter(x=>x.s.real);
+  const other=STANDS.map((s,i)=>({s,i})).filter(x=>!x.s.real);
+  o+=`<optgroup label="Echte Firmen">`+real.map(x=>`<option value="${x.i}" ${sel===x.i?'selected':''}>⭐ ${esc(x.s.brand)}</option>`).join("")+`</optgroup>`;
+  o+=`<optgroup label="Zusatz-Firmen">`+other.map(x=>`<option value="${x.i}" ${sel===x.i?'selected':''}>${esc(x.s.product)}</option>`).join("")+`</optgroup>`;
+  return o;
+}
+function setStand(id,val){
+  if(val===""||val==null){ gameRef.child("players/"+id+"/stand").remove(); }
+  else { gameRef.child("players/"+id+"/stand").set(Number(val)); }
+}
+
+/* -------- PLAYER -------- */
+function joinGame(){
+  if(!fbReady){setMsg("join-msg","⚠️ Firebase ist nicht konfiguriert.","err");return;}
+  const code=S("join-code").value.trim().toUpperCase();
+  const name=S("join-name").value.trim();
+  if(!code||!name){setMsg("join-msg","Bitte Spielcode und Namen eingeben.","err");return;}
+  db.ref("games_messe/"+code).get().then(s=>{
+    if(!s.exists()){setMsg("join-msg","Kein Spiel mit diesem Code gefunden.","err");return;}
+    gameCode=code;role="player";myId=getDeviceId(code);
+    const ex=(s.val().players||{})[myId]||{};
+    const data={name,joinedAt:ex.joinedAt||Date.now()};
+    if(ex.stand!=null)data.stand=ex.stand; if(ex.group)data.group=ex.group;
+    db.ref("games_messe/"+code+"/players/"+myId).update(data).then(enterPlayer);
+  });
+}
+function enterPlayer(){
+  hideAll();S("screen-player").classList.remove("hidden");
+  gameRef=db.ref("games_messe/"+gameCode);
+  gameRef.on("value",snap=>{lastGame=snap.val()||{};renderPlayer(lastGame);});
+}
+function renderPlayer(g){
+  const me=(g.players||{})[myId];
+  if(!me){
+    S("screen-player").innerHTML=`<header class="top"><div class="logo">🎪</div>
+      <div><h1>Mitspielen</h1><div class="tag">Verbindung</div></div></header>
+      <div class="card center"><h2>Du wurdest entfernt</h2><p class="muted">Die Spielleitung hat dich entfernt.</p>
+      <button class="btn btn-teal" onclick="rejoinFresh()">Neu beitreten</button></div>`;
+    return;
+  }
+  const phase=g.phase||"lobby", group=g.group||"A";
+  let body=`<header class="top"><div class="logo">🎪</div>
+    <div><h1>${esc(me.name)}</h1><div class="tag pill-status live"><span class="sdot"></span> verbunden</div></div>
+    <a href="#" class="home" onclick="if(confirm('Spiel verlassen?'))goHome();return false;">←</a></header>`;
+
+  if(phase==="lobby"){
+    body+=`<div class="card center"><h2>Bereit! 🎉</h2><p class="muted">Warte auf die Spielleitung. Gleich bekommst du deinen Messestand.</p></div>`;
+    S("screen-player").innerHTML=body; return;
+  }
+  if(phase==="results"){
+    body+=`<div class="card center"><h2>🏁 Messe vorbei</h2>
+      <p style="font-size:1.15rem">Du hast <b>${tasksDone(me)}</b> Aufgaben geschafft.</p>
+      <p class="muted">Danke fürs Mitmachen!</p></div>`;
+    S("screen-player").innerHTML=body; return;
+  }
+
+  // round phase
+  const atStand = me.group===group;
+  const st = me.stand!=null?STANDS[me.stand]:null;
+  const tasks = atStand?TASKS_STAND:TASKS_VISIT;
+  const done = me.doneTasks||{};
+
+  body+=`<div class="round-banner">${atStand?'🎪 Du bist AM STAND – präsentiere dein Produkt!':'🚶 Du BESUCHST die Messe – geh herum und frag nach!'}</div>`;
+
+  body+=`<div class="tabs">
+    <button aria-selected="${playerTab==='stand'}" onclick="setTab('stand')">🪪 Dein Stand</button>
+    <button aria-selected="${playerTab==='aufgaben'}" onclick="setTab('aufgaben')">✅ Aufgaben</button>
+    <button aria-selected="${playerTab==='bausteine'}" onclick="setTab('bausteine')">💬 Redemittel</button>
+  </div>`;
+
+  // STAND panel
+  body+=`<div class="panel ${playerTab==='stand'?'active':''}">`;
+  if(st){
+    body+=`<div class="standcard"><div class="sc-top"><div class="brand">${esc(st.brand)}${st.real?' · echte Firma':''}</div><div class="prod">${esc(st.product)}</div></div>
+      <div class="sc-body"><dl>
+        <dt>Das ist es</dt><dd>${esc(st.what)}</dd>
+        <dt>Vorteile</dt><dd>${esc(st.plus)}</dd>
+        <dt>Preis</dt><dd>${esc(st.price)}</dd>
+        <dt>Zielgruppe</dt><dd>${esc(st.target)}</dd>
+        ${st.facts?`<dt>Kurz-Infos (Gründung usw.)</dt><dd>${esc(st.facts)}</dd>`:''}
+      </dl></div></div>
+      ${st.real
+        ? `<div class="notice ok">⭐ Das ist deine vorbereitete Firma! ${atStand?'Präsentiere sie mit deinen eigenen Folien/Notizen. Die Kurz-Infos oben helfen dir.':'Für die nächste Runde: Das ist dein Stand. Jetzt geh los und besuche andere!'}</div>`
+        : `<div class="notice">${atStand?'Präsentiere dieses Produkt den Besucher:innen an deinem Stand.':'Wenn du gerade besuchst: Das ist DEIN Stand für die nächste Runde. Jetzt geh los und besuche andere!'}</div>`}`;
+  }
+  body+=`</div>`;
+
+  // AUFGABEN panel
+  body+=`<div class="panel ${playerTab==='aufgaben'?'active':''}">
+    <div class="card">
+      <div class="progress-line">${Object.values(done).filter(Boolean).length}/${tasks.length}</div>
+      <p class="muted center" style="margin-top:0">Tippe eine Aufgabe an, wenn du sie geschafft hast.</p>
+      ${tasks.map((t,i)=>{
+        const key=(atStand?"S":"V")+i;
+        const on=!!done[key];
+        return `<div class="taskrow ${on?'done':''}" onclick="toggleTask('${key}')">
+          <span class="checkbox">✓</span><span class="ttxt">${esc(t)}</span></div>`;
+      }).join("")}
+      ${Object.values(done).filter(Boolean).length>=tasks.length?`<div class="notice ok">✅ Alle Aufgaben dieser Runde geschafft! Super.</div>`:""}
+    </div>
+  </div>`;
+
+  // BAUSTEINE panel
+  body+=`<div class="panel ${playerTab==='bausteine'?'active':''}">
+    <div class="card">${PHRASES.map(gp=>`<div class="phrase-group"><h3>${esc(gp.group)}</h3>
+      ${gp.items.map(p=>`<span class="phrase">${esc(p)}</span>`).join("")}</div>`).join("")}</div>
+  </div>`;
+
+  S("screen-player").innerHTML=body;
+}
+function setTab(t){playerTab=t;renderPlayer(lastGame);}
+function toggleTask(key){
+  const me=(lastGame.players||{})[myId]; if(!me)return;
+  const done=Object.assign({},me.doneTasks||{});
+  done[key]=!done[key];
+  gameRef.child("players/"+myId+"/doneTasks").set(done);
+}
+function rejoinFresh(){try{localStorage.removeItem("messe_pid_"+gameCode);}catch(e){}goHome();showJoin();}
+
+goHome();
+</script>
+</body>
+</html>

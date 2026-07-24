@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team-Puzzle: Die falsche Lieferung – Lern Deutsch mit Arash</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<style>
+:root{
+  --bg:#101a2b; --bg2:#152238; --card:#1a2b45; --card2:#213453;
+  --ink:#eaf1f8; --ink-soft:#93a7bf; --line:#2c4667;
+  --amber:#e0a32e; --amber-deep:#b57f14;
+  --violet:#7c6bd6; --violet-deep:#5a4bb0;
+  --rose:#e0654a; --green:#2fa389;
+  --radius:16px; --shadow:0 1px 2px rgba(0,0,0,.2),0 12px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',Calibri,system-ui,sans-serif;color:var(--ink);line-height:1.55;
+  background:radial-gradient(circle at 50% -8%, #23375c 0%, transparent 55%),var(--bg);-webkit-font-smoothing:antialiased;}
+.wrap{max-width:1000px;margin:0 auto;padding:16px 16px 70px}
+.wrap.beamer{max-width:1180px}
+.hidden{display:none!important}
+h1,h2,h3{margin:0}
+button{font-family:inherit}
+
+header.top{display:flex;align-items:center;gap:14px;padding:18px 0 20px}
+.logo{flex:0 0 auto;width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--violet),var(--violet-deep));
+  display:grid;place-items:center;color:#fff;font-size:1.6rem;box-shadow:0 6px 16px rgba(124,107,214,.35)}
+header.top h1{font-size:1.5rem;letter-spacing:-.4px;line-height:1.05}
+header.top .tag{color:var(--ink-soft);font-size:.85rem;margin-top:2px}
+header.top .home{margin-left:auto;text-decoration:none;color:var(--ink-soft);font-size:.82rem;font-weight:700;
+  border:1px solid var(--line);border-radius:999px;padding:7px 13px;background:var(--card);white-space:nowrap}
+
+.card{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:var(--shadow)}
+.card h2{font-size:1.18rem;margin-bottom:4px}
+.muted{color:var(--ink-soft);font-size:.9rem}
+.center{text-align:center}
+.btn{border:none;border-radius:12px;padding:13px 20px;font-size:1rem;font-weight:800;cursor:pointer;transition:.15s;color:#fff}
+.btn-violet{background:linear-gradient(180deg,var(--violet),var(--violet-deep))}
+.btn-violet:hover{filter:brightness(1.08)}
+.btn-amber{background:linear-gradient(180deg,var(--amber),var(--amber-deep));color:#3a2a00}
+.btn-amber:hover{filter:brightness(1.06)}
+.btn-ghost{background:var(--card2);color:var(--ink-soft);border:1px solid var(--line)}
+.btn-ghost:hover{color:var(--ink)}
+.btn-danger{background:#7a2520;border:1px solid #a23}
+.btn-danger:hover{background:#8f2d27}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.small{padding:8px 13px;font-size:.85rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input,select,textarea{padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--card2);color:var(--ink);font-family:inherit}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--violet);border-color:var(--violet)}
+textarea{width:100%;min-height:80px;resize:vertical}
+.notice{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:.9rem;margin-top:10px}
+.notice.ok{border-color:var(--green);color:#b8ecdd}
+.notice.err{border-color:var(--rose);color:#f7cbc0}
+.notice.warn{border-color:var(--amber);color:#f2d489}
+
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+@media(max-width:560px){.role-grid{grid-template-columns:1fr}}
+.role-pick{border:1px solid var(--line);background:var(--card2);border-radius:var(--radius);padding:22px;cursor:pointer;text-align:left;transition:.15s;color:var(--ink)}
+.role-pick:hover{border-color:var(--violet);transform:translateY(-2px)}
+.role-pick .ic{font-size:2rem;margin-bottom:8px}
+.role-pick h3{font-size:1.1rem;margin-bottom:4px}
+.role-pick p{color:var(--ink-soft);font-size:.86rem;margin:0}
+
+.bigcode{font-size:2.4rem;font-weight:900;letter-spacing:6px;color:var(--amber);text-align:center;margin:8px 0}
+.flex-between{display:flex;justify-content:space-between;align-items:center;gap:10px}
+
+.list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.list-item{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;flex-wrap:wrap}
+.list-item .nm{font-weight:700;flex:1;min-width:90px}
+.assign-sel{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:.82rem;max-width:230px}
+.assign-sel:focus{outline:2px solid var(--violet);border-color:var(--violet)}
+.pill{display:inline-block;font-size:.74rem;font-weight:800;padding:4px 10px;border-radius:999px}
+.pill.team{background:#2a2350;color:#c3b8f5}
+.pill.frei{background:#22344b;color:var(--ink-soft)}
+.pill.stoer{background:#3a2f12;color:#f2d489}
+.pill.done{background:#123a33;color:#7fe0c6}
+
+.infocard{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--card);box-shadow:var(--shadow);margin-bottom:10px}
+.infocard .ic-top{background:linear-gradient(135deg,var(--violet),var(--violet-deep));color:#fff;padding:10px 14px;font-size:.78rem;text-transform:uppercase;letter-spacing:.8px;font-weight:800}
+.infocard .ic-body{padding:14px 16px;font-size:1.05rem}
+
+.stoercard{border:2px dashed var(--amber);border-radius:var(--radius);background:#2a2210;padding:14px 16px;margin-bottom:10px}
+.stoercard h3{color:var(--amber);font-size:1rem;margin-bottom:4px}
+.stoercard p{margin:0;font-size:.96rem}
+
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tabs button{border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:9px 15px;border-radius:999px;font-size:.9rem;font-weight:700;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--amber);color:#3a2a00;border-color:var(--amber)}
+.panel{display:none}.panel.active{display:block}
+
+.phrase-group{margin-bottom:14px}
+.phrase-group h3{font-size:.95rem;color:var(--amber);margin-bottom:6px}
+.phrase{display:block;background:var(--card2);border-left:3px solid var(--violet);padding:9px 13px;border-radius:0 8px 8px 0;margin-bottom:6px;font-size:.96rem}
+
+.case-banner{background:linear-gradient(135deg,var(--violet),var(--violet-deep));color:#fff;border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.case-banner h2{font-size:1.15rem;margin-bottom:6px}
+.case-banner p{margin:0;font-size:.97rem;opacity:.95}
+.q-list{margin:8px 0 0;padding-left:20px}
+.q-list li{margin:4px 0}
+
+.pill-status{display:inline-flex;gap:7px;align-items:center;font-size:.8rem;font-weight:700;color:var(--ink-soft)}
+.sdot{width:8px;height:8px;border-radius:50%;background:var(--rose)}
+.pill-status.live .sdot{background:var(--green)}
+footer{text-align:center;color:var(--ink-soft);font-size:.8rem;margin-top:34px}
+.solution dt{font-weight:800;color:var(--amber);font-size:.78rem;text-transform:uppercase;letter-spacing:.4px;margin-top:12px}
+.solution dt:first-child{margin-top:0}
+.solution dd{margin:3px 0 0;font-size:1rem}
+.mode-toggle{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.mode-toggle button{border:none;background:var(--card);padding:10px 15px;font-weight:700;font-size:.88rem;cursor:pointer;color:var(--ink-soft)}
+.mode-toggle button[aria-pressed="true"]{background:var(--violet);color:#fff}
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div id="screen-home" class="wrap">
+  <header class="top">
+    <div class="logo">🧩</div>
+    <div><h1>Team-Puzzle: Die falsche Lieferung</h1><div class="tag">Teamfähigkeit &amp; Kommunikation · B1/B2</div></div>
+    <a href="index.html" class="home">🏠 Index</a>
+  </header>
+  <div class="card">
+    <h2>Wie machst du mit?</h2>
+    <p class="muted">Die Lehrkraft öffnet die <b>Spielleitung</b> (Beamer). Alle anderen treten am Handy bei und bekommen <b>Infokarten</b>. Niemand sieht die Karten der anderen – nur gemeinsam lässt sich der Fall lösen.</p>
+    <div class="role-grid">
+      <button class="role-pick" onclick="showConsoleLogin()">
+        <div class="ic">🎛️</div><h3>Spielleitung (Beamer)</h3>
+        <p>Spiel starten, Karten verteilen, Teams bilden, Störkarten zuschalten, Lösung zeigen.</p>
+      </button>
+      <button class="role-pick" onclick="showJoin()">
+        <div class="ic">📱</div><h3>Mitspielen</h3>
+        <p>Mit Spielcode beitreten, eigene Infokarten lesen, im Team lösen.</p>
+      </button>
+    </div>
+  </div>
+  <div class="card">
+    <h2>So geht das Spiel</h2>
+    <ol class="muted" style="margin:6px 0 0;padding-left:20px;line-height:1.7">
+      <li>Jede:r bekommt <b>1–2 Infokarten</b> auf das Handy. Zeigen ist verboten – nur <b>vorlesen und erzählen</b>.</li>
+      <li>Das Team muss vier Fragen beantworten: Wer? Wann? Warum? Was ändern?</li>
+      <li>Die Lösung steht auf <b>keiner einzelnen Karte</b>. Nur wenn alle ihre Infos einbringen, geht der Fall auf.</li>
+      <li>Optional Runde 2: Einige bekommen heimlich eine <b>Störkarte</b> – am Ende wird geraten, wer gestört hat.</li>
+    </ol>
+  </div>
+</div>
+
+<!-- JOIN -->
+<div id="screen-join" class="wrap hidden">
+  <header class="top"><div class="logo">🧩</div>
+    <div><h1>Beitreten</h1><div class="tag">Spielcode und Name eingeben</div></div>
+    <a href="#" class="home" onclick="goHome();return false;">← zurück</a></header>
+  <div class="card">
+    <div class="row" style="margin-bottom:12px">
+      <input id="join-code" placeholder="Spielcode" style="flex:1 1 160px;text-transform:uppercase">
+      <input id="join-name" placeholder="Dein Name" style="flex:1 1 160px">
+    </div>
+    <button class="btn btn-violet" onclick="joinGame()">Beitreten</button>
+    <div id="join-msg"></div>
+  </div>
+</div>
+
+<!-- CONSOLE LOGIN -->
+<div id="screen-console-login" class="wrap hidden">
+  <header class="top"><div class="logo">🧩</div>
+    <div><h1>Spielleitung</h1><div class="tag">Neues Spiel starten</div></div>
+    <a href="#" class="home" onclick="goHome();return false;">← zurück</a></header>
+  <div class="card">
+    <h2>Neues Spiel</h2>
+    <p class="muted">Ein Spielcode wird erzeugt. Teilt ihn mit dem Kurs.</p>
+    <div class="row" style="margin-top:12px"><button class="btn btn-violet" onclick="createGame()">🎬 Spiel erstellen</button></div>
+    <div id="console-login-msg"></div>
+  </div>
+</div>
+
+<div id="screen-console" class="wrap beamer hidden"></div>
+<div id="screen-player" class="wrap hidden"></div>
+
+<footer>Lern Deutsch mit Arash · Team-Puzzle</footer>
+
+<script data-goatcounter="https://aguitoo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+/* ============ DATEN ============ */
+const FALL = {
+  titel:"Die falsche Lieferung",
+  text:"Die Firma Nordlicht Büromöbel hat am Montag eine große Lieferung an einen Kunden geschickt – aber es kamen die falschen Möbel an. Der Kunde ist wütend. Die Geschäftsleitung will wissen: Wer hat den Fehler verursacht, und wie konnte das passieren?",
+  fragen:[
+    "Wer hat den Fehler verursacht?",
+    "An welchem Tag ist der Fehler passiert?",
+    "Was war der eigentliche Grund?",
+    "Was muss die Firma ändern, damit es nicht wieder passiert?"
+  ]
+};
+
+const KARTEN = [
+  "Der Kunde hat am Montag 30 schwarze Bürostühle bekommen. Bestellt hatte er graue.",
+  "Die Bestellung wurde ursprünglich am Dienstag aufgegeben.",
+  "Frau Bergmann arbeitet im Vertrieb. Sie nimmt Bestellungen telefonisch an.",
+  "Am Donnerstag rief die Kundin noch einmal an. Sie wollte etwas an der Bestellung ändern.",
+  "Frau Bergmann hat am Donnerstagnachmittag ihren Urlaub begonnen.",
+  "Herr Sander arbeitet im Lager. Er packt die Lieferungen zusammen.",
+  "Herr Sander hat die Lieferung am Freitag gepackt.",
+  "Im Lager wird immer nach der Liste aus dem Computersystem gepackt.",
+  "Die Änderung der Kundin war nicht im Computersystem eingetragen.",
+  "Frau Bergmann hat die Änderung auf einen gelben Zettel geschrieben.",
+  "Der gelbe Zettel lag am Freitag noch auf ihrem Schreibtisch.",
+  "Herr Sander war am Donnerstag nicht im Haus – er hatte einen Arzttermin.",
+  "Niemand hat Herrn Sander von dem Telefonat am Donnerstag erzählt.",
+  "Die Kundin sagt, sie habe die Änderung deutlich am Telefon durchgegeben.",
+  "Die Kundin wollte statt schwarzer Stühle graue Stühle.",
+  "Der Fahrer hat die Lieferung am Montagmorgen ausgeliefert.",
+  "Der Fahrer prüft nur die Anzahl der Kartons, nicht den Inhalt.",
+  "Herr Sander sagt: „Ich habe genau nach der Liste gepackt, die im System stand.“",
+  "Frau Bergmann sagt: „Ich hatte es mir doch aufgeschrieben.“",
+  "In der Firma gibt es keine feste Regel für die Übergabe vor dem Urlaub."
+];
+
+const LOESUNG = {
+  wer:"Genau genommen niemand allein – aber die Kette begann bei Frau Bergmann (Vertrieb). Herr Sander hat korrekt nach dem System gepackt.",
+  wann:"Die Änderung kam am Donnerstag. Falsch gepackt wurde am Freitag, geliefert am Montag.",
+  warum:"Frau Bergmann notierte die telefonische Änderung nur auf einem gelben Zettel und ging in den Urlaub, ohne sie ins System einzutragen. Herr Sander war am Donnerstag nicht da und packte am Freitag nach der alten Liste im System.",
+  aendern:"Änderungen sofort ins System eintragen (nicht auf Zettel). Feste Übergabe-Regel vor dem Urlaub. Der Fahrer oder das Lager sollte stichprobenartig den Inhalt prüfen."
+};
+
+const STOERKARTEN = [
+  {name:"Der Vielredner", tun:"Rede sehr viel. Unterbrich andere freundlich, aber oft."},
+  {name:"Die Schweigsame", tun:"Sag von dir aus nichts. Antworte nur, wenn dich jemand direkt fragt."},
+  {name:"Der Wiederholer", tun:"Wiederhole immer, was die Person vor dir gesagt hat, bevor du etwas Neues sagst."},
+  {name:"Die Zweiflerin", tun:"Zweifle an jeder Idee mindestens einmal: „Da bin ich mir nicht sicher …“"},
+  {name:"Der Abschweifer", tun:"Erzähle zwischendurch von etwas ganz anderem (Wetter, Essen, Wochenende)."},
+  {name:"Die Chefin", tun:"Versuche, alles allein zu entscheiden. Frag niemanden nach seiner Meinung."},
+  {name:"Der Zustimmer", tun:"Stimme immer sofort zu, auch wenn es falsch ist. Sag nie deine eigene Meinung."},
+  {name:"Die Ungeduldige", tun:"Dränge ständig zur Eile: „Wir haben keine Zeit, jetzt entscheidet euch!“"},
+  {name:"Der Flüsterer", tun:"Sprich sehr leise, sodass man dich kaum versteht."},
+  {name:"Die Perfektionistin", tun:"Bestehe darauf, dass jede Kleinigkeit noch einmal geprüft wird."}
+];
+
+const PHRASES = [
+  {group:"Eigene Info einbringen", items:[
+    "Ich habe hier eine Information dazu: …",
+    "Auf meiner Karte steht, dass …",
+    "Das passt zu dem, was … gesagt hat.",
+    "Ich glaube, meine Info ist wichtig für Frage 2."]},
+  {group:"Nachfragen & sichern", items:[
+    "Kannst du das bitte noch einmal sagen?",
+    "Habe ich richtig verstanden, dass …?",
+    "Was genau meinst du mit …?",
+    "Moment, wer war noch mal am Donnerstag da?"]},
+  {group:"Andere einbeziehen", items:[
+    "Was steht auf deiner Karte?",
+    "Hat jemand etwas zu Freitag?",
+    "Du hast noch nichts gesagt – hast du eine Info dazu?",
+    "Wollen wir der Reihe nach vorlesen?"]},
+  {group:"Ordnen & zusammenfassen", items:[
+    "Fassen wir mal zusammen: …",
+    "Wir wissen also bisher: …",
+    "Was fehlt uns noch?",
+    "Lass uns die Fragen der Reihe nach durchgehen."]},
+  {group:"Widersprechen & abwägen", items:[
+    "Das sehe ich anders, weil …",
+    "Das kann nicht sein, denn …",
+    "Vielleicht, aber wie erklärst du dann …?",
+    "Ich bin nicht sicher – lass uns das prüfen."]},
+  {group:"Entscheiden", items:[
+    "Sind wir uns einig, dass …?",
+    "Können wir das so festhalten?",
+    "Ich schlage vor, wir antworten: …"]}
+];
+</script>
+<script>
+/* ============ ENGINE ============ */
+const firebaseConfig = {
+  apiKey: "AIzaSyBDChXlm34Kr7Gg0Dw458GiiwoLnWJAnxM",
+  authDomain: "lern-deutsch-arash.firebaseapp.com",
+  databaseURL: "https://lern-deutsch-arash-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "lern-deutsch-arash",
+  storageBucket: "lern-deutsch-arash.firebasestorage.app",
+  messagingSenderId: "845503292114",
+  appId: "1:845503292114:web:f76ab5fcde1e978d00c30b"
+};
+let db=null, fbReady=false;
+try{ firebase.initializeApp(firebaseConfig); db=firebase.database(); fbReady=true; }
+catch(e){ console.warn("Firebase nicht konfiguriert:",e); }
+
+let role=null, gameCode=null, gameRef=null, myId=null, lastGame=null, playerTab="karten";
+const S=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function rand4(){return String(Math.floor(1000+Math.random()*9000));}
+function uid(){return "u"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function setMsg(id,t,c){const e=S(id);if(e)e.innerHTML=`<div class="notice ${c||''}">${t}</div>`;}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function hideAll(){["screen-home","screen-join","screen-player","screen-console-login","screen-console"].forEach(s=>S(s).classList.add("hidden"));}
+function goHome(){ if(gameRef){gameRef.off();} hideAll(); S("screen-home").classList.remove("hidden"); role=null;gameCode=null;gameRef=null;myId=null;lastGame=null; }
+function showJoin(){hideAll();S("screen-join").classList.remove("hidden");}
+function showConsoleLogin(){hideAll();S("screen-console-login").classList.remove("hidden");
+  if(!fbReady)setMsg("console-login-msg","⚠️ Firebase ist nicht konfiguriert.","err");}
+function getDeviceId(code){const k="tpz_pid_"+code;try{let v=localStorage.getItem(k);if(!v){v=uid();localStorage.setItem(k,v);}return v;}catch(e){return uid();}}
+
+/* -------- CONSOLE -------- */
+function createGame(){
+  if(!fbReady){setMsg("console-login-msg","⚠️ Firebase fehlt.","err");return;}
+  const code=rand4();
+  db.ref("games_tpz/"+code).set({createdAt:Date.now(),phase:"lobby",teams:1,stoer:false,players:{}})
+    .then(()=>{gameCode=code;role="console";enterConsole();});
+}
+function enterConsole(){
+  hideAll();S("screen-console").classList.remove("hidden");
+  gameRef=db.ref("games_tpz/"+gameCode);
+  gameRef.on("value",snap=>{lastGame=snap.val()||{};renderConsole(lastGame);});
+}
+function renderConsole(g){
+  const players=g.players||{};
+  const arr=Object.entries(players).map(([id,p])=>({id,...p})).sort((a,b)=>(a.joinedAt||0)-(b.joinedAt||0));
+  const phase=g.phase||"lobby", teams=g.teams||1, stoer=!!g.stoer;
+
+  let body=`<header class="top">
+    <div class="logo">🧩</div>
+    <div><h1>Spielleitung</h1><div class="tag">Phase: ${esc(phaseLabel(phase))} · ${arr.length} Teilnehmende</div></div>
+    <a href="#" class="home" onclick="if(confirm('Spiel verlassen?'))goHome();return false;">← beenden</a>
+  </header>
+  <div class="card center"><div class="muted">Spielcode für den Kurs</div><div class="bigcode">${esc(gameCode)}</div></div>`;
+
+  body+=`<div class="card">
+    <div class="flex-between"><h2>Teilnehmende</h2>
+      ${arr.length?`<button class="btn btn-danger small" onclick="clearAll()">Alle entfernen</button>`:""}</div>
+    <p class="muted" style="margin-top:0">Mit dem Auswahlfeld weist du eine Karte manuell zu (z. B. wenn jemand rausflog und neu beitritt). Mit ✕ entfernst du eine Person.</p>
+    <div class="list">
+      ${arr.length?arr.map(p=>{
+        const teamTag = p.team?`<span class="pill team">Team ${esc(p.team)}</span>`:"";
+        const stoerTag = (stoer&&p.stoer!=null)?`<span class="pill stoer">🎭 Störkarte</span>`:"";
+        return `<div class="list-item"><span class="nm">${esc(p.name)}</span>
+          <select class="assign-sel" onchange="setCard('${p.id}',this.value)">${cardOptions(p.card)}</select>
+          ${teamTag}${stoerTag}
+          <button class="btn btn-danger small" onclick="removePlayer('${p.id}')">✕</button></div>`;
+      }).join(""):`<p class="muted">Noch niemand da. Teilt den Spielcode!</p>`}
+    </div>
+  </div>`;
+
+  if(phase==="lobby"){
+    body+=`<div class="card center">
+      <h2>Karten verteilen &amp; starten</h2>
+      <p class="muted">Bei mehreren Teams bekommt jedes Team den kompletten Kartensatz – die Teams lösen den Fall parallel.</p>
+      <div class="row" style="justify-content:center;margin:12px 0">
+        <label class="muted">Anzahl Teams:</label>
+        <select class="assign-sel" id="teamCount" onchange="setTeams(this.value)">
+          ${[1,2,3,4].map(n=>`<option value="${n}" ${teams===n?'selected':''}>${n} Team${n>1?'s':''}</option>`).join("")}
+        </select>
+      </div>
+      <div class="row" style="justify-content:center">
+        <button class="btn btn-violet" ${arr.length<2?'disabled':''} onclick="dealCards()">🃏 Karten verteilen</button>
+        ${arr.some(p=>p.card!=null)?`<button class="btn btn-amber" onclick="startRound()">Spiel starten →</button>`:""}
+      </div>
+    </div>`;
+  } else if(phase==="round"){
+    body+=`<div class="card">
+      <h2 class="center">Der Fall läuft</h2>
+      <div class="case-banner" style="margin-top:10px">
+        <h2>${esc(FALL.titel)}</h2><p>${esc(FALL.text)}</p>
+        <ol class="q-list">${FALL.fragen.map(f=>`<li>${esc(f)}</li>`).join("")}</ol>
+      </div>
+      <div class="row" style="justify-content:center;margin-top:6px">
+        <div class="mode-toggle">
+          <button aria-pressed="${!stoer}" onclick="setStoer(false)">Ohne Störkarten</button>
+          <button aria-pressed="${stoer}" onclick="setStoer(true)">🎭 Mit Störkarten</button>
+        </div>
+      </div>
+      <p class="muted center" style="margin-top:8px">Störkarten werden an etwa ein Drittel der Gruppe verteilt – heimlich, nur auf deren Handy.</p>
+      <div class="row" style="justify-content:center;margin-top:10px">
+        <button class="btn btn-amber" onclick="showSolution()">🔍 Lösung zeigen</button>
+      </div>
+    </div>`;
+  } else if(phase==="solution"){
+    body+=`<div class="card">
+      <h2 class="center">🔍 Die Lösung</h2>
+      <dl class="solution" style="margin-top:12px">
+        <dt>Wer hat den Fehler verursacht?</dt><dd>${esc(LOESUNG.wer)}</dd>
+        <dt>Wann ist es passiert?</dt><dd>${esc(LOESUNG.wann)}</dd>
+        <dt>Was war der Grund?</dt><dd>${esc(LOESUNG.warum)}</dd>
+        <dt>Was muss die Firma ändern?</dt><dd>${esc(LOESUNG.aendern)}</dd>
+      </dl>
+      ${stoer?`<div class="notice warn" style="margin-top:14px">🎭 Störkarten waren aktiv. Fragt jetzt: Wer hat gestört – und wie? Wer hatte welche Rolle?</div>`:""}
+      <div class="row" style="justify-content:center;margin-top:14px">
+        <button class="btn btn-violet" onclick="backToRound()">← zurück zum Fall</button>
+        <button class="btn btn-ghost" onclick="backToLobby()">Neue Runde (Lobby)</button>
+      </div>
+    </div>`;
+  }
+  S("screen-console").innerHTML=body;
+}
+function phaseLabel(p){return {lobby:"Lobby",round:"Fall läuft",solution:"Lösung"}[p]||p;}
+
+function cardOptions(sel){
+  let o=`<option value="" ${sel==null?'selected':''}>— keine Karte —</option>`;
+  o+=KARTEN.map((k,i)=>`<option value="${i}" ${sel===i?'selected':''}>Karte ${i+1}: ${esc(k.slice(0,38))}…</option>`).join("");
+  return o;
+}
+function setCard(id,val){
+  if(val===""||val==null){ gameRef.child("players/"+id+"/card").remove(); }
+  else { gameRef.child("players/"+id+"/card").set(Number(val)); }
+}
+function setTeams(n){ gameRef.child("teams").set(Number(n)); }
+
+function dealCards(){
+  const g=lastGame, players=g.players||{}; const ids=shuffle(Object.keys(players));
+  const teams=g.teams||1;
+  const updates={};
+  // Pro Team: kompletter Kartensatz, gemischt auf die Teammitglieder verteilt
+  const perTeam={};
+  ids.forEach((id,i)=>{ const t=(i%teams)+1; (perTeam[t]=perTeam[t]||[]).push(id); });
+  Object.keys(perTeam).forEach(t=>{
+    const members=perTeam[t];
+    const deck=shuffle(KARTEN.map((_,i)=>i));
+    members.forEach((id,i)=>{
+      updates["players/"+id+"/team"]=Number(t);
+      updates["players/"+id+"/card"]=deck[i%deck.length];
+      updates["players/"+id+"/extra"]=null;
+      updates["players/"+id+"/stoer"]=null;
+    });
+    // Restkarten auf die Mitglieder verteilen (bei weniger TN als Karten)
+    if(members.length<deck.length){
+      const extras={};
+      let mi=0;
+      for(let k=members.length;k<deck.length;k++){
+        const id=members[mi%members.length];
+        (extras[id]=extras[id]||[]).push(deck[k]);
+        mi++;
+      }
+      Object.keys(extras).forEach(id=>{ updates["players/"+id+"/extra"]=extras[id]; });
+    }
+  });
+  gameRef.update(updates);
+}
+function startRound(){ gameRef.update({phase:"round"}); }
+function setStoer(on){
+  const g=lastGame, players=g.players||{};
+  const updates={stoer:!!on};
+  const ids=Object.keys(players);
+  if(on){
+    const n=Math.max(1,Math.round(ids.length/3));
+    const chosen=shuffle(ids).slice(0,n);
+    const deck=shuffle(STOERKARTEN.map((_,i)=>i));
+    ids.forEach(id=>{ updates["players/"+id+"/stoer"]=null; });
+    chosen.forEach((id,i)=>{ updates["players/"+id+"/stoer"]=deck[i%deck.length]; });
+  } else {
+    ids.forEach(id=>{ updates["players/"+id+"/stoer"]=null; });
+  }
+  gameRef.update(updates);
+}
+function showSolution(){ gameRef.update({phase:"solution"}); }
+function backToRound(){ gameRef.update({phase:"round"}); }
+function backToLobby(){ gameRef.update({phase:"lobby"}); }
+function removePlayer(id){ gameRef.child("players/"+id).remove(); }
+function clearAll(){ if(confirm("Wirklich ALLE Teilnehmenden entfernen?")) gameRef.child("players").remove(); }
+
+/* -------- PLAYER -------- */
+function joinGame(){
+  if(!fbReady){setMsg("join-msg","⚠️ Firebase ist nicht konfiguriert.","err");return;}
+  const code=S("join-code").value.trim().toUpperCase();
+  const name=S("join-name").value.trim();
+  if(!code||!name){setMsg("join-msg","Bitte Spielcode und Namen eingeben.","err");return;}
+  db.ref("games_tpz/"+code).get().then(s=>{
+    if(!s.exists()){setMsg("join-msg","Kein Spiel mit diesem Code gefunden.","err");return;}
+    gameCode=code;role="player";myId=getDeviceId(code);
+    const ex=(s.val().players||{})[myId]||{};
+    const data={name,joinedAt:ex.joinedAt||Date.now()};
+    if(ex.card!=null)data.card=ex.card;
+    if(ex.team!=null)data.team=ex.team;
+    db.ref("games_tpz/"+code+"/players/"+myId).update(data).then(enterPlayer);
+  });
+}
+function enterPlayer(){
+  hideAll();S("screen-player").classList.remove("hidden");
+  gameRef=db.ref("games_tpz/"+gameCode);
+  gameRef.on("value",snap=>{lastGame=snap.val()||{};renderPlayer(lastGame);});
+}
+function renderPlayer(g){
+  const me=(g.players||{})[myId];
+  if(!me){
+    S("screen-player").innerHTML=`<header class="top"><div class="logo">🧩</div>
+      <div><h1>Mitspielen</h1><div class="tag">Verbindung</div></div></header>
+      <div class="card center"><h2>Du wurdest entfernt</h2><p class="muted">Die Spielleitung hat dich entfernt.</p>
+      <button class="btn btn-violet" onclick="rejoinFresh()">Neu beitreten</button></div>`;
+    return;
+  }
+  const phase=g.phase||"lobby";
+  let body=`<header class="top"><div class="logo">🧩</div>
+    <div><h1>${esc(me.name)}</h1><div class="tag pill-status live"><span class="sdot"></span> verbunden${me.team?` · Team ${esc(me.team)}`:""}</div></div>
+    <a href="#" class="home" onclick="if(confirm('Spiel verlassen?'))goHome();return false;">←</a></header>`;
+
+  if(phase==="lobby"){
+    body+=`<div class="card center"><h2>Bereit! 🎉</h2><p class="muted">Warte auf die Spielleitung. Gleich bekommst du deine Infokarte(n).</p></div>`;
+    S("screen-player").innerHTML=body; return;
+  }
+  if(phase==="solution"){
+    body+=`<div class="card center"><h2>🔍 Lösung am Beamer</h2><p class="muted">Schaut gemeinsam nach vorne. Vergleicht eure Antworten!</p></div>`;
+    S("screen-player").innerHTML=body; return;
+  }
+
+  const cards=[];
+  if(me.card!=null) cards.push(KARTEN[me.card]);
+  if(Array.isArray(me.extra)) me.extra.forEach(i=>{ if(KARTEN[i]) cards.push(KARTEN[i]); });
+
+  body+=`<div class="tabs">
+    <button aria-selected="${playerTab==='karten'}" onclick="setTab('karten')">🃏 Deine Karten</button>
+    <button aria-selected="${playerTab==='fall'}" onclick="setTab('fall')">📋 Der Fall</button>
+    <button aria-selected="${playerTab==='bausteine'}" onclick="setTab('bausteine')">💬 Redemittel</button>
+  </div>`;
+
+  // KARTEN
+  body+=`<div class="panel ${playerTab==='karten'?'active':''}">`;
+  if(cards.length){
+    body+=cards.map((c,i)=>`<div class="infocard"><div class="ic-top">Infokarte ${i+1} von ${cards.length}</div>
+      <div class="ic-body">${esc(c)}</div></div>`).join("");
+    body+=`<div class="notice">🤐 Zeig dein Handy <b>niemandem</b>. Lies deine Info vor oder erzähl sie – nur so löst ihr den Fall.</div>`;
+  } else {
+    body+=`<div class="card center"><p class="muted">Du hast noch keine Karte. Die Spielleitung kann dir eine zuweisen.</p></div>`;
+  }
+  if(g.stoer && me.stoer!=null && STOERKARTEN[me.stoer]){
+    const s=STOERKARTEN[me.stoer];
+    body+=`<div class="stoercard"><h3>🎭 Geheime Störkarte: ${esc(s.name)}</h3><p>${esc(s.tun)}</p>
+      <p class="muted" style="margin-top:6px">Verrate deine Rolle nicht! Am Ende wird geraten.</p></div>`;
+  }
+  body+=`</div>`;
+
+  // FALL
+  body+=`<div class="panel ${playerTab==='fall'?'active':''}">
+    <div class="case-banner"><h2>${esc(FALL.titel)}</h2><p>${esc(FALL.text)}</p></div>
+    <div class="card"><h2>Diese Fragen müsst ihr beantworten</h2>
+      <ol class="q-list">${FALL.fragen.map(f=>`<li>${esc(f)}</li>`).join("")}</ol>
+    </div>
+  </div>`;
+
+  // REDEMITTEL
+  body+=`<div class="panel ${playerTab==='bausteine'?'active':''}">
+    <div class="card">${PHRASES.map(gp=>`<div class="phrase-group"><h3>${esc(gp.group)}</h3>
+      ${gp.items.map(p=>`<span class="phrase">${esc(p)}</span>`).join("")}</div>`).join("")}</div>
+  </div>`;
+
+  S("screen-player").innerHTML=body;
+}
+function setTab(t){playerTab=t;renderPlayer(lastGame);}
+function rejoinFresh(){try{localStorage.removeItem("tpz_pid_"+gameCode);}catch(e){}goHome();showJoin();}
+
+goHome();
+</script>
+</body>
+</html>

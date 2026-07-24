@@ -14,7 +14,8 @@ mit Filter nach Thema und Niveau.
 ├─ millionaer.html                 ← Wer wird Millionär: Mein Beruf (Team-Quiz/online)
 ├─ neu-in-der-firma.html           ← Neu in der Firma (Rollenspiel Abteilungen/online)
 ├─ forumbeitrag-werkstatt.html     ← Forumsbeitrag-Werkstatt (Team-Schreibspiel/online)
-└─ messe.html                      ← Die große Messe (Bewegungs-Rollenspiel/online)
+├─ messe.html                      ← Die große Messe (Bewegungs-Rollenspiel/online)
+└─ team-puzzle.html                ← Team-Puzzle: Die falsche Lieferung (Kooperationsspiel/online)
 ```
 
 Jedes Spiel ist eine eigenständige HTML-Datei (kein Build, kein Server, keine
@@ -75,6 +76,7 @@ Zuordnung und Mitmach-Runden (jedes Mitglied einzeln).
 | Wer wird Millionär: Mein Beruf | Spiel & Quiz | B2 | Teams (online) |
 | Neu in der Firma | Kommunikation | B1/B2 | Gruppe (online) |
 | Die große Messe | Kommunikation | B1/B2 | Gruppe (online) |
+| Team-Puzzle: Die falsche Lieferung | Kommunikation | B1/B2 | Teams (online) |
 | Forumsbeitrag-Werkstatt | Kommunikation | B2 | Teams (online) |
 | Bewerbungsspiel | Beruf & Bewerbung | B1 | Gruppe (online) |
 | Am Apparat (Agentur für Arbeit) | Beruf & Bewerbung | B1/B2 | Paare / Rotation |

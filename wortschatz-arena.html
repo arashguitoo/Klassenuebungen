@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wortschatz-Arena · Klassenspiel</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<style>
+:root{
+  --accent:#5b3fa0; --accent-deep:#3f2a72; --paper:#ece5f8;
+  --ink:#1f2730; --muted:#5d6b78; --bg:#f4f1fb; --card:#fff;
+  --ok:#2e8b57; --bad:#c0392b; --line:#ddd3f0; --gold:#c79a2e;
+  --team1:#5b3fa0; --team2:#2d6a6a; --team3:#b5532f; --team4:#a8791f; --team5:#5e8c4f; --team6:#b03060;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Calibri,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.55;padding:0 0 60px}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+header{background:linear-gradient(135deg,var(--accent),var(--accent-deep));color:#fff;padding:20px 16px;text-align:center;position:relative}
+header h1{font-size:1.3rem;margin-bottom:2px}
+header p{opacity:.9;font-size:.84rem}
+.home{position:absolute;top:14px;left:14px;color:#fff;text-decoration:none;font-size:1.3rem}
+.btn{background:var(--accent);color:#fff;border:none;border-radius:10px;padding:11px 18px;font-size:.95rem;font-weight:600;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn.small{padding:6px 12px;font-size:.82rem}
+.btn.danger{background:var(--bad)}
+.btn.warn{background:var(--gold)}
+.btn.gold{background:var(--gold)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.big{font-size:1.05rem;padding:15px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(63,42,114,.06);margin-top:16px}
+.card h2{color:var(--accent-deep);font-size:1.1rem;margin-bottom:10px}
+.card h3{color:var(--accent);font-size:.98rem;margin:14px 0 6px}
+input,select{padding:11px;border:1px solid var(--line);border-radius:10px;font-size:.95rem;width:100%;font-family:inherit}
+label{font-size:.85rem;color:var(--muted);font-weight:600;display:block;margin:10px 0 4px}
+.row{display:flex;gap:8px;align-items:center}
+.hide{display:none!important}
+.pill{display:inline-block;background:var(--paper);color:var(--accent-deep);font-size:.74rem;padding:4px 10px;border-radius:20px;font-weight:700;margin:2px}
+.codebig{font-family:monospace;font-size:2.2rem;font-weight:800;letter-spacing:4px;color:var(--accent-deep);text-align:center;background:var(--paper);border-radius:12px;padding:14px;margin:10px 0}
+.choose{display:grid;gap:14px;margin-top:24px}
+.choosebtn{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:22px;text-align:center;cursor:pointer;transition:.15s;font-size:1.05rem;font-weight:600;color:var(--ink)}
+.choosebtn:hover{border-color:var(--accent);transform:translateY(-2px)}
+.choosebtn .ic{font-size:2rem;display:block;margin-bottom:6px}
+.choosebtn small{display:block;font-weight:400;color:var(--muted);font-size:.84rem;margin-top:4px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.tab{padding:8px 14px;border-radius:20px;background:var(--card);border:1px solid var(--line);cursor:pointer;font-size:.85rem;font-weight:600;color:var(--muted)}
+.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.plist{display:grid;gap:8px;margin-top:10px}
+.pitem{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.pitem .nm{flex:1;font-weight:600}
+.pitem .sc{font-size:.8rem;color:var(--accent-deep);font-weight:700;background:var(--paper);padding:2px 8px;border-radius:10px}
+.pitem .team{font-size:.74rem;padding:2px 8px;border-radius:12px;color:#fff;font-weight:700}
+.pitem .dot{width:9px;height:9px;border-radius:50%;background:#bbb;flex:none}
+.pitem .dot.on{background:var(--ok)}
+.empty{color:var(--muted);font-size:.88rem;text-align:center;padding:18px}
+.modegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.modebtn{border:2px solid var(--line);border-radius:14px;padding:14px 10px;text-align:center;cursor:pointer;background:#fff;font-weight:600;font-size:.9rem;transition:.15s}
+.modebtn:hover{border-color:var(--accent)}
+.modebtn.sel{border-color:var(--accent);background:var(--paper)}
+.modebtn .mi{font-size:1.6rem;display:block;margin-bottom:4px}
+.modebtn small{display:block;font-weight:400;color:var(--muted);font-size:.78rem;margin-top:3px}
+.qtype{font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:var(--accent);font-weight:700;margin-bottom:8px}
+.qtext{font-size:1.1rem;font-weight:500;margin-bottom:16px}
+.qbig{font-size:1.35rem;font-weight:700;text-align:center;margin:8px 0 18px;color:var(--accent-deep)}
+.opts{display:grid;gap:9px}
+.opt{padding:13px 14px;border:1.5px solid var(--line);border-radius:11px;cursor:pointer;background:#fff;font-size:.98rem;text-align:left;transition:.15s}
+.opt:hover{border-color:var(--accent)}
+.opt.ok{border-color:var(--ok);background:#e8f6ee}
+.opt.bad{border-color:var(--bad);background:#fbeae8}
+.artbtns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:8px}
+.artbtn{padding:20px 10px;border:2px solid var(--line);border-radius:14px;background:#fff;font-size:1.3rem;font-weight:800;cursor:pointer;transition:.15s}
+.artbtn:hover{border-color:var(--accent)}
+.artbtn.ok{border-color:var(--ok);background:#e8f6ee}
+.artbtn.bad{border-color:var(--bad);background:#fbeae8}
+.memgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:10px}
+.memcard{aspect-ratio:3/4;border:1.5px solid var(--line);border-radius:9px;background:var(--accent);cursor:pointer;display:flex;align-items:center;justify-content:center;padding:4px;font-size:.72rem;text-align:center;color:#fff;transition:.2s;font-weight:600}
+.memcard.open{background:#fff;color:var(--ink);border-color:var(--accent)}
+.memcard.done{background:#e8f6ee;border-color:var(--ok);color:var(--ok);cursor:default}
+.feedback{margin-top:14px;padding:13px;border-radius:11px;font-size:.92rem;display:none}
+.feedback.show{display:block}
+.feedback.good{background:#e8f6ee;color:#1d6b41}
+.feedback.wrong{background:#fbeae8;color:#922}
+.progress{height:8px;background:var(--line);border-radius:8px;overflow:hidden;margin:14px 0}
+.progress>i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.scoreboard{display:grid;gap:8px;margin-top:10px}
+.scorerow{display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:10px;background:#fff;border:1px solid var(--line)}
+.scorerow.top{border-color:var(--gold);background:#fdf8ec}
+.scorerow .rank{font-weight:800;color:var(--accent);min-width:30px;font-size:1.1rem}
+.scorerow .nm{flex:1;font-weight:600}
+.scorerow .pts{font-weight:800;color:var(--accent-deep)}
+.banner{background:var(--paper);border-radius:12px;padding:12px;margin-top:12px;font-size:.92rem;color:var(--accent-deep)}
+.ladder{display:grid;gap:4px;margin:10px 0}
+.rung{display:flex;justify-content:space-between;padding:7px 12px;border-radius:8px;background:#fff;border:1px solid var(--line);font-size:.86rem}
+.rung.active{background:var(--gold);color:#fff;font-weight:700;border-color:var(--gold)}
+.rung.safe{border-color:var(--gold)}
+.rung.done{opacity:.5}
+.timer{font-size:.9rem;font-weight:700;color:var(--bad);text-align:center;margin:6px 0}
+.statusline{font-size:.8rem;color:var(--muted);margin-top:8px;text-align:center}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:10px;font-size:.88rem;opacity:0;transition:.3s;pointer-events:none;z-index:50}
+.toast.show{opacity:1}
+.big-word{font-size:1.5rem;font-weight:800;color:var(--accent-deep);text-align:center;margin:12px 0}
+footer{text-align:center;color:var(--muted);font-size:.76rem;margin-top:34px}
+</style>
+</head>
+<body>
+<header>
+  <a class="home" href="index.html" title="Zur Spielübersicht">🏠</a>
+  <h1>🏆 Wortschatz-Arena</h1>
+  <p>Aspekte Beruf B2 · Lektion 1–6 · Team-Spiel</p>
+</header>
+
+<div class="wrap">
+  <!-- ROLE CHOOSER -->
+  <div id="chooser">
+    <div class="choose">
+      <div class="choosebtn" onclick="goMod()"><span class="ic">🖥️</span> Moderationskonsole<small>für die Lehrkraft · Spiel &amp; Teams steuern</small></div>
+      <div class="choosebtn" onclick="goPlay()"><span class="ic">📱</span> Mitspielen<small>für Lernende · mit Code beitreten</small></div>
+    </div>
+    <footer>Lern Deutsch mit Arash · Klassenspiel</footer>
+  </div>
+
+  <!-- ============ MODERATOR ============ -->
+  <div id="mod" class="hide">
+    <div id="mod-create" class="card">
+      <h2>🖥️ Moderationskonsole</h2>
+      <p style="font-size:.9rem;color:var(--muted)">Erstelle ein Spiel. Die Lernenden treten mit dem Code bei.</p>
+      <div style="margin-top:14px"><button class="btn" onclick="createGame()">➕ Neues Spiel erstellen</button></div>
+      <label style="margin-top:16px">… oder bestehenden Code öffnen</label>
+      <div class="row"><input id="reopen" placeholder="z. B. ABCD" maxlength="4" style="text-transform:uppercase"><button class="btn ghost small" onclick="reopenGame()">Öffnen</button></div>
+    </div>
+
+    <div id="mod-panel" class="hide">
+      <div class="card">
+        <h2>Spielcode</h2>
+        <div class="codebig" id="gamecode">––––</div>
+        <div class="statusline">Lernende öffnen dieselbe Seite → „📱 Mitspielen" → Code eingeben.</div>
+      </div>
+
+      <div class="tabs">
+        <div class="tab active" data-tab="tn" onclick="modTab('tn')">👥 Teilnehmer</div>
+        <div class="tab" data-tab="teams" onclick="modTab('teams')">🧩 Teams</div>
+        <div class="tab" data-tab="game" onclick="modTab('game')">🎮 Spiel</div>
+        <div class="tab" data-tab="score" onclick="modTab('score')">🏆 Punkte</div>
+      </div>
+
+      <!-- TN -->
+      <div id="t-tn" class="card">
+        <h2>Teilnehmer <span class="pill" id="tncount">0</span></h2>
+        <div class="statusline" style="text-align:left;margin-bottom:6px">Grüner Punkt = aktiv. Entferne, wer weg ist.</div>
+        <div class="plist" id="tnlist"><div class="empty">Noch niemand beigetreten.</div></div>
+        <div style="margin-top:12px" class="row">
+          <button class="btn warn small" onclick="cleanInactive()">🧹 Inaktive entfernen</button>
+          <button class="btn danger small" onclick="removeAllTN()">Alle entfernen</button>
+          <button class="btn ghost small" onclick="resetScores()">Punkte auf 0</button>
+        </div>
+      </div>
+
+      <!-- TEAMS -->
+      <div id="t-teams" class="card hide">
+        <h2>Teams bilden</h2>
+        <label>Modus</label>
+        <div class="row">
+          <select id="teammode" onchange="onTeamModeChange()">
+            <option value="solo">Einzeln (jeder für sich)</option>
+            <option value="team">Teams</option>
+          </select>
+        </div>
+        <div id="teamopts" class="hide">
+          <label style="margin-top:10px">Wie viele Teams?</label>
+          <div class="row">
+            <select id="teamcount"><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option></select>
+            <button class="btn small" onclick="autoTeams()">🎲 Zufällig verteilen</button>
+          </div>
+          <div class="statusline" style="text-align:left;margin-top:6px">Oder unten pro Person ein Team wählen.</div>
+          <div class="plist" id="teamassign" style="margin-top:10px"></div>
+        </div>
+      </div>
+
+      <!-- GAME -->
+      <div id="t-game" class="card hide">
+        <h2>Spielmodus wählen</h2>
+        <div class="modegrid">
+          <div class="modebtn" data-mode="quiz" onclick="pickMode('quiz')"><span class="mi">⚡</span>Blitz-Quiz<small>Definition → Wort, Punkte &amp; Tempo</small></div>
+          <div class="modebtn" data-mode="memory" onclick="pickMode('memory')"><span class="mi">🃏</span>Memory<small>Wort &amp; Definition paaren</small></div>
+          <div class="modebtn" data-mode="artikel" onclick="pickMode('artikel')"><span class="mi">🎯</span>Artikel-Rennen<small>der / die / das</small></div>
+          <div class="modebtn" data-mode="millionaer" onclick="pickMode('millionaer')"><span class="mi">💰</span>Millionär<small>Team-Wettkampf, Risikoleiter</small></div>
+        </div>
+        <label style="margin-top:14px">Lektionen einbeziehen</label>
+        <div id="lekfilter" class="row" style="flex-wrap:wrap;gap:6px"></div>
+        <label style="margin-top:12px">Anzahl Fragen/Runden (Quiz &amp; Millionär)</label>
+        <select id="qcount"><option>8</option><option selected>12</option><option>15</option><option>20</option></select>
+        <div style="margin-top:16px;display:grid;gap:8px">
+          <button class="btn big" onclick="startRound()">▶️ Runde starten</button>
+          <button class="btn ghost" onclick="setPhase('lobby')">⏸️ Zurück in die Lobby</button>
+          <button class="btn ghost" onclick="setPhase('done')">🏁 Auswertung zeigen</button>
+        </div>
+        <div class="banner" id="gamestatus">Noch keine Runde gestartet.</div>
+        <div id="mill-console" class="hide" style="margin-top:12px"></div>
+      </div>
+
+      <!-- SCORE -->
+      <div id="t-score" class="card hide">
+        <h2>Punktestand</h2>
+        <div class="scoreboard" id="scoreboard"><div class="empty">Noch keine Punkte.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PARTICIPANT ============ -->
+  <div id="play" class="hide">
+    <div id="p-join" class="card">
+      <h2>📱 Mitspielen</h2>
+      <label>Spielcode</label>
+      <input id="joincode" placeholder="z. B. ABCD" maxlength="4" style="text-transform:uppercase">
+      <label>Dein Name</label>
+      <input id="joinname" placeholder="Vorname" maxlength="24">
+      <div style="margin-top:14px"><button class="btn" onclick="joinGame()">Beitreten</button></div>
+      <div class="statusline" id="joinmsg"></div>
+    </div>
+
+    <div id="p-wait" class="card hide">
+      <h2>Hallo <span id="p-name"></span>! 👋</h2>
+      <div class="banner" id="p-status">Warte auf den Start …</div>
+      <div id="p-teaminfo" style="margin-top:10px"></div>
+    </div>
+
+    <div id="p-game" class="hide">
+      <div class="card">
+        <div class="row" style="justify-content:space-between">
+          <span class="pill" id="p-team2">—</span>
+          <span class="pill" id="p-score2">0 Punkte</span>
+        </div>
+        <div class="progress"><i id="p-bar"></i></div>
+        <div id="p-host"></div>
+      </div>
+    </div>
+
+    <div id="p-done" class="card hide">
+      <h2>🏁 Runde beendet!</h2>
+      <div id="p-result"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script data-goatcounter="https://aguitoo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<script>
+/* ===================== FIREBASE ===================== */
+const firebaseConfig = {
+  apiKey: "AIzaSyBDChXlm34Kr7Gg0Dw458GiiwoLnWJAnxM",
+  authDomain: "lern-deutsch-arash.firebaseapp.com",
+  databaseURL: "https://lern-deutsch-arash-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "lern-deutsch-arash",
+  storageBucket: "lern-deutsch-arash.firebasestorage.app",
+  messagingSenderId: "845503292114",
+  appId: "1:845503292114:web:f76ab5fcde1e978d00c30b"
+};
+let db=null, fbOK=false;
+try{ firebase.initializeApp(firebaseConfig); db=firebase.database(); fbOK=true; }catch(e){ console.warn("Firebase init:",e); }
+const ROOT="wortschatzarena";
+function gref(code,sub){ return db.ref(ROOT+"/"+code+(sub?("/"+sub):"")); }
+
+/* ===================== WORTSCHATZ ===================== */
+const WORTSCHATZ = [
+  // ===== Lektion 1: Mein Beruf =====
+  {w:"pendeln", def:"regelmäßig eine längere Strecke zur Arbeit fahren", art:"-", lek:1},
+  {w:"die Entfernung", def:"der Abstand zwischen zwei Orten", art:"die", lek:1},
+  {w:"im Homeoffice arbeiten", def:"von zu Hause aus arbeiten", art:"-", lek:1},
+  {w:"das Netzwerk", def:"Kontakte, die beruflich nützlich sind", art:"das", lek:1},
+  {w:"die Behörde", def:"eine staatliche Stelle, z. B. das Amt", art:"die", lek:1},
+  {w:"arbeitssuchend", def:"auf der Suche nach einer Stelle", art:"-", lek:1},
+  {w:"die Unterlagen", def:"wichtige Dokumente und Papiere", art:"die", lek:1},
+  {w:"befristet", def:"nur für eine bestimmte Zeit gültig", art:"-", lek:1},
+  {w:"die Teamfähigkeit", def:"die Fähigkeit, gut mit anderen zusammenzuarbeiten", art:"die", lek:1},
+  {w:"die Eigenverantwortung", def:"selbst für die eigene Arbeit verantwortlich sein", art:"die", lek:1},
+  {w:"die Kompetenz", def:"eine Fähigkeit oder ein Können in einem Bereich", art:"die", lek:1},
+  {w:"vermitteln", def:"jemandem etwas beibringen oder weitergeben", art:"-", lek:1},
+  {w:"die Anerkennung", def:"die offizielle Bestätigung eines Abschlusses", art:"die", lek:1},
+  {w:"einen Antrag einreichen", def:"ein Formular offiziell abgeben", art:"-", lek:1},
+  {w:"erforderlich", def:"notwendig, unbedingt nötig", art:"-", lek:1},
+  {w:"das Herkunftsland", def:"das Land, aus dem man kommt", art:"das", lek:1},
+  {w:"das Zeugnis", def:"ein Dokument über Noten oder Leistungen", art:"das", lek:1},
+
+  // ===== Lektion 2: Mein Weg in den Beruf =====
+  {w:"die Stellenanzeige", def:"eine Anzeige, in der eine Firma jemanden sucht", art:"die", lek:2},
+  {w:"der Lebenslauf", def:"eine Übersicht über Ausbildung und Beruf", art:"der", lek:2},
+  {w:"die Bewerbung", def:"die Unterlagen, mit denen man sich um eine Stelle bemüht", art:"die", lek:2},
+  {w:"die Absage", def:"die negative Antwort auf eine Bewerbung", art:"die", lek:2},
+  {w:"die Herausforderung", def:"eine schwierige, aber interessante Aufgabe", art:"die", lek:2},
+  {w:"abwechslungsreich", def:"mit vielen verschiedenen Tätigkeiten, nicht monoton", art:"-", lek:2},
+  {w:"verhandlungssicher", def:"eine Sprache auf sehr hohem Niveau beherrschend", art:"-", lek:2},
+  {w:"die Muttersprache", def:"die Sprache, die man von Geburt an spricht", art:"die", lek:2},
+  {w:"die Weiterbildung", def:"ein zusätzlicher Kurs nach der Ausbildung", art:"die", lek:2},
+  {w:"das Praktikum", def:"eine befristete praktische Tätigkeit zum Lernen", art:"das", lek:2},
+  {w:"die duale Ausbildung", def:"Lernen im Betrieb und in der Berufsschule", art:"die", lek:2},
+  {w:"der Betrieb", def:"eine Firma oder ein Unternehmen", art:"der", lek:2},
+  {w:"das Gehalt", def:"das Geld, das man für die Arbeit bekommt", art:"das", lek:2},
+  {w:"das Anschreiben", def:"der Bewerbungsbrief zur Stelle", art:"das", lek:2},
+  {w:"verantwortungsvoll", def:"mit viel Verantwortung verbunden", art:"-", lek:2},
+
+  // ===== Lektion 3: Neu in der Firma =====
+  {w:"die Abteilung", def:"ein Bereich innerhalb einer Firma", art:"die", lek:3},
+  {w:"die Buchhaltung", def:"die Abteilung für Finanzen und Rechnungen", art:"die", lek:3},
+  {w:"der Vertrieb", def:"die Abteilung, die Produkte verkauft", art:"der", lek:3},
+  {w:"die Formalität", def:"eine offizielle, organisatorische Sache", art:"die", lek:3},
+  {w:"der Empfang", def:"der Ort, wo Besucher zuerst hinkommen", art:"der", lek:3},
+  {w:"die Krankmeldung", def:"die Mitteilung, dass man krank ist", art:"die", lek:3},
+  {w:"die Chipkarte", def:"eine Karte, z. B. zur Arbeitszeiterfassung", art:"die", lek:3},
+  {w:"gestattet", def:"erlaubt", art:"-", lek:3},
+  {w:"die Rücksprache", def:"das Nachfragen bei einer anderen Person", art:"die", lek:3},
+  {w:"der Small Talk", def:"ein lockeres Gespräch über einfache Themen", art:"der", lek:3},
+  {w:"der Blickkontakt", def:"sich beim Sprechen in die Augen sehen", art:"der", lek:3},
+  {w:"vermeiden", def:"etwas nicht tun, aus dem Weg gehen", art:"-", lek:3},
+  {w:"die Teamsitzung", def:"ein Treffen des Teams zur Besprechung", art:"die", lek:3},
+  {w:"die Tagesordnung", def:"die Liste der Themen einer Besprechung", art:"die", lek:3},
+  {w:"der Dienstplan", def:"ein Plan, wer wann arbeitet", art:"der", lek:3},
+  {w:"zeitnah", def:"bald, in kurzer Zeit", art:"-", lek:3},
+  {w:"einheitlich", def:"überall gleich, im selben Format", art:"-", lek:3},
+
+  // ===== Lektion 4: Zusammenarbeiten =====
+  {w:"das Meeting", def:"eine Besprechung, ein Treffen zur Arbeit", art:"das", lek:4},
+  {w:"die Videokonferenz", def:"ein Meeting online über Kamera", art:"die", lek:4},
+  {w:"die Agenda", def:"die Liste der Themen einer Besprechung", art:"die", lek:4},
+  {w:"stichpunktartig", def:"in kurzen Stichwörtern, nicht in ganzen Sätzen", art:"-", lek:4},
+  {w:"die Transparenz", def:"Klarheit und Offenheit, alles ist nachvollziehbar", art:"die", lek:4},
+  {w:"die Zuverlässigkeit", def:"man kann sich auf jemanden verlassen", art:"die", lek:4},
+  {w:"die Wertschätzung", def:"die Anerkennung für die Leistung eines anderen", art:"die", lek:4},
+  {w:"der Kompromiss", def:"eine Lösung, bei der beide Seiten nachgeben", art:"der", lek:4},
+  {w:"konstruktiv", def:"aufbauend und hilfreich, mit dem Ziel einer Lösung", art:"-", lek:4},
+  {w:"die Übergabe", def:"das Weitergeben von Aufgaben, z. B. vor dem Urlaub", art:"die", lek:4},
+  {w:"das Protokoll", def:"eine schriftliche Zusammenfassung einer Besprechung", art:"das", lek:4},
+  {w:"eine Entscheidung treffen", def:"sich für etwas entscheiden", art:"-", lek:4},
+  {w:"unter Druck stehen", def:"gestresst sein", art:"-", lek:4},
+  {w:"eine Rolle spielen", def:"wichtig oder relevant sein", art:"-", lek:4},
+  {w:"zur Verfügung stehen", def:"vorhanden und verfügbar sein", art:"-", lek:4},
+
+  // ===== Lektion 5: Kennen Sie schon ...? =====
+  {w:"das Firmenporträt", def:"eine Beschreibung, was eine Firma macht", art:"das", lek:5},
+  {w:"der Messestand", def:"der Platz einer Firma auf einer Messe", art:"der", lek:5},
+  {w:"die Durchsage", def:"eine öffentliche Ansage, z. B. per Lautsprecher", art:"die", lek:5},
+  {w:"die Produktpräsentation", def:"das Vorstellen eines Produkts", art:"die", lek:5},
+  {w:"die Kundenanfrage", def:"eine Frage eines Kunden an die Firma", art:"die", lek:5},
+  {w:"beraten", def:"jemandem mit Rat und Information helfen", art:"-", lek:5},
+  {w:"herstellen", def:"etwas produzieren, anfertigen", art:"-", lek:5},
+  {w:"die Kundschaft", def:"alle Kunden einer Firma zusammen", art:"die", lek:5},
+  {w:"die Leidenschaft", def:"eine starke Begeisterung für etwas", art:"die", lek:5},
+  {w:"sich spezialisieren auf", def:"sich auf einen bestimmten Bereich konzentrieren", art:"-", lek:5},
+
+  // ===== Lektion 6: Kommunikation ist alles =====
+  {w:"die Kritikfähigkeit", def:"Kritik annehmen können", art:"die", lek:6},
+  {w:"die Hilfsbereitschaft", def:"die Bereitschaft, anderen zu helfen", art:"die", lek:6},
+  {w:"das Arbeitsklima", def:"die Stimmung und Atmosphäre am Arbeitsplatz", art:"das", lek:6},
+  {w:"die Durchwahl", def:"die direkte Telefonnummer einer Person", art:"die", lek:6},
+  {w:"jemanden verbinden", def:"am Telefon zu einer anderen Person weiterleiten", art:"-", lek:6},
+  {w:"die Nachricht hinterlassen", def:"eine Mitteilung für jemanden dalassen", art:"-", lek:6},
+  {w:"das Teamevent", def:"eine gemeinsame Aktivität zur Teambildung", art:"das", lek:6},
+  {w:"der Defekt", def:"ein Schaden, etwas funktioniert nicht", art:"der", lek:6},
+  {w:"der Ratschlag", def:"eine Empfehlung, ein guter Tipp", art:"der", lek:6},
+  {w:"entkalken", def:"den Kalk aus einem Gerät entfernen", art:"-", lek:6},
+  {w:"begeistert", def:"sehr positiv und voller Freude", art:"-", lek:6},
+  {w:"die Ablehnung", def:"das Nein-Sagen, etwas nicht wollen", art:"die", lek:6}
+];
+const TEAMCOLORS=["","var(--team1)","var(--team2)","var(--team3)","var(--team4)","var(--team5)","var(--team6)"];
+const LADDER=[50,100,200,300,500,1000,2000,4000,8000,16000,32000,64000,125000,500000,1000000];
+const SAFE=[4,9]; // Indizes der Sicherheitsstufen (500, 16000)
+
+/* ===================== STATE ===================== */
+let role=null, code=null, myId=null, myName=null, myTeam=null;
+let gameData={}, modTabCur="tn", selMode="quiz";
+let curRoundId=null, pAnswered=false, pScore=0;
+let memFirst=null, memLock=false, memMatched=0;
+let millState=null;
+
+function toast(m){ const t=document.getElementById("toast"); t.textContent=m; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1800); }
+function rndCode(){ const c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; let s=""; for(let i=0;i<4;i++)s+=c[Math.floor(Math.random()*c.length)]; return s; }
+function esc(s){return String(s).replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function goMod(){document.getElementById("chooser").classList.add("hide");document.getElementById("mod").classList.remove("hide");}
+function goPlay(){document.getElementById("chooser").classList.add("hide");document.getElementById("play").classList.remove("hide");}
+
+/* ===================== MODERATOR ===================== */
+function createGame(){
+  if(!fbOK){toast("Firebase nicht erreichbar");return;}
+  code=rndCode();
+  gref(code).set({created:Date.now(),phase:"lobby",teamMode:"solo",teamCount:4,participants:{},round:null}).then(()=>openPanel());
+}
+function reopenGame(){
+  const c=(document.getElementById("reopen").value||"").trim().toUpperCase();
+  if(c.length!==4){toast("Bitte 4-stelligen Code");return;}
+  gref(c).get().then(s=>{if(!s.exists()){toast("Code nicht gefunden");return;}code=c;openPanel();});
+}
+function openPanel(){
+  document.getElementById("mod-create").classList.add("hide");
+  document.getElementById("mod-panel").classList.remove("hide");
+  document.getElementById("gamecode").textContent=code;
+  buildLekFilter();
+  gref(code).on("value",snap=>{gameData=snap.val()||{};renderMod();});
+}
+function buildLekFilter(){
+  const box=document.getElementById("lekfilter"); if(box.dataset.built)return;
+  [1,2,3,4,5,6].forEach(l=>{
+    const id="lek"+l;
+    const lab=document.createElement("label");
+    lab.style.cssText="display:flex;align-items:center;gap:4px;font-weight:600;color:var(--ink);margin:0";
+    lab.innerHTML=`<input type="checkbox" id="${id}" checked style="width:auto"> L${l}`;
+    box.appendChild(lab);
+  });
+  box.dataset.built="1";
+}
+function modTab(t){
+  modTabCur=t;
+  document.querySelectorAll("#mod .tab").forEach(x=>x.classList.toggle("active",x.dataset.tab===t));
+  ["tn","teams","game","score"].forEach(k=>document.getElementById("t-"+k).classList.toggle("hide",k!==t));
+  renderMod();
+}
+function participantsArr(){const p=gameData.participants||{};return Object.keys(p).map(id=>({id,...p[id]})).filter(x=>x.name);}
+function renderMod(){
+  const arr=participantsArr();
+  document.getElementById("tncount").textContent=arr.length;
+  const gs=document.getElementById("gamestatus");
+  if(gs){
+    const ph=gameData.phase, r=gameData.round;
+    if(ph==="lobby")gs.textContent="Lobby – warte auf Start.";
+    else if(ph==="done")gs.textContent="Auswertung wird gezeigt.";
+    else if(r)gs.textContent=`Läuft: ${modeName(r.mode)}${r.mode!=="memory"&&r.mode!=="millionaer"?` (${r.items?r.items.length:0} Fragen)`:""}`;
+  }
+  if(modTabCur==="tn")renderTNList(arr);
+  if(modTabCur==="teams")renderTeamAssign(arr);
+  if(modTabCur==="score")renderScore(arr);
+  if(modTabCur==="game"&&gameData.round&&gameData.round.mode==="millionaer")renderMillConsole();
+}
+function modeName(m){return{quiz:"Blitz-Quiz",memory:"Memory",artikel:"Artikel-Rennen",millionaer:"Millionär"}[m]||m;}
+function renderTNList(arr){
+  const box=document.getElementById("tnlist");
+  if(!arr.length){box.innerHTML='<div class="empty">Noch niemand beigetreten.</div>';return;}
+  const now=Date.now(); box.innerHTML="";
+  arr.sort((a,b)=>(b.score||0)-(a.score||0)).forEach(p=>{
+    const active=(now-(p.lastSeen||0))<20000;
+    const div=document.createElement("div");div.className="pitem";
+    div.innerHTML=`<span class="dot ${active?'on':''}"></span>
+      <span class="nm">${esc(p.name||"?")}</span>
+      ${p.team?`<span class="team" style="background:${TEAMCOLORS[p.team]||'#999'}">T${p.team}</span>`:""}
+      <span class="sc">${p.score||0}</span>
+      <button class="btn danger small" onclick="removeTN('${p.id}')">✕</button>`;
+    box.appendChild(div);
+  });
+}
+function removeTN(id){gref(code,"participants/"+id).remove();toast("Entfernt");}
+function removeAllTN(){if(confirm("Wirklich ALLE Teilnehmer entfernen?"))gref(code,"participants").remove();}
+function cleanInactive(){const now=Date.now();let n=0;participantsArr().forEach(p=>{if((now-(p.lastSeen||0))>=20000){gref(code,"participants/"+p.id).remove();n++;}});toast(n?`${n} inaktive entfernt`:"Keine inaktiven");}
+function resetScores(){if(!confirm("Alle Punkte auf 0 setzen?"))return;const u={};participantsArr().forEach(p=>{u["participants/"+p.id+"/score"]=0;});gref(code).update(u);toast("Punkte zurückgesetzt");}
+function onTeamModeChange(){
+  const m=document.getElementById("teammode").value;
+  document.getElementById("teamopts").classList.toggle("hide",m!=="team");
+  gref(code,"teamMode").set(m);
+}
+function renderTeamAssign(arr){
+  const box=document.getElementById("teamassign");
+  if(!arr.length){box.innerHTML='<div class="empty">Noch niemand da.</div>';return;}
+  const tc=parseInt(document.getElementById("teamcount").value||"4");
+  box.innerHTML="";
+  arr.sort((a,b)=>(a.name||"").localeCompare(b.name||"")).forEach(p=>{
+    let opts='<option value="">–</option>';
+    for(let i=1;i<=tc;i++)opts+=`<option value="${i}" ${String(p.team)===String(i)?"selected":""}>Team ${i}</option>`;
+    const div=document.createElement("div");div.className="pitem";
+    div.innerHTML=`<span class="nm">${esc(p.name||"?")}</span><select style="width:auto" onchange="setTeam('${p.id}',this.value)">${opts}</select>`;
+    box.appendChild(div);
+  });
+}
+function setTeam(id,t){gref(code,"participants/"+id+"/team").set(t?parseInt(t):null);}
+function autoTeams(){
+  const tc=parseInt(document.getElementById("teamcount").value||"4");
+  gref(code,"teamCount").set(tc);
+  const sh=shuffle(participantsArr());const u={};
+  sh.forEach((p,i)=>{u["participants/"+p.id+"/team"]=(i%tc)+1;});
+  gref(code).update(u).then(()=>toast("Teams verteilt"));
+}
+function pickMode(m){selMode=m;document.querySelectorAll(".modebtn").forEach(x=>x.classList.toggle("sel",x.dataset.mode===m));}
+function selectedLeks(){const out=[];[1,2,3,4,5,6].forEach(l=>{const c=document.getElementById("lek"+l);if(c&&c.checked)out.push(l);});return out.length?out:[1,2,3,4,5,6];}
+function poolForLeks(){const ls=selectedLeks();return WORTSCHATZ.filter(w=>ls.includes(w.lek));}
+
+/* build a round object depending on mode */
+function startRound(){
+  const pool=poolForLeks();
+  if(pool.length<4){toast("Zu wenige Wörter – mehr Lektionen wählen");return;}
+  const n=parseInt(document.getElementById("qcount").value||"12");
+  const rid="r"+Date.now();
+  let round={id:rid,mode:selMode,startedAt:Date.now()};
+  if(selMode==="quiz"){
+    round.items=buildQuizItems(pool,Math.min(n,pool.length));
+  }else if(selMode==="artikel"){
+    const withArt=pool.filter(w=>w.art!=="-");
+    round.items=shuffle(withArt).slice(0,Math.min(n,withArt.length)).map(w=>({w:w.w,art:w.art}));
+    if(!round.items.length){toast("Keine Artikel-Wörter in Auswahl");return;}
+  }else if(selMode==="memory"){
+    const pairs=shuffle(pool).slice(0,8); // 8 Paare = 16 Karten
+    round.pairs=pairs.map((w,i)=>({id:i,w:w.w,def:w.def}));
+  }else if(selMode==="millionaer"){
+    round.items=buildQuizItems(pool,Math.min(n,pool.length));
+    round.mill={idx:0,phase:"question",revealed:false,teamsAlive:{}};
+  }
+  // reset per-round progress on participants
+  const u={round:round,phase:"play"};
+  participantsArr().forEach(p=>{u["participants/"+p.id+"/rprog"]={rid:rid,idx:0,done:false};});
+  gref(code).update(u).then(()=>toast(modeName(selMode)+" gestartet"));
+}
+function buildQuizItems(pool,n){
+  const chosen=shuffle(pool).slice(0,n);
+  return chosen.map(correct=>{
+    const distr=shuffle(pool.filter(x=>x.w!==correct.w)).slice(0,3);
+    const opts=shuffle([correct,...distr]).map(x=>x.w);
+    return {def:correct.def, answer:correct.w, opts:opts, lek:correct.lek};
+  });
+}
+function setPhase(ph){gref(code,"phase").set(ph);toast("Phase: "+ph);}
+function renderScore(arr){
+  const box=document.getElementById("scoreboard");
+  const tm=gameData.teamMode==="team";
+  let rows;
+  if(tm){
+    const teams={};arr.forEach(p=>{if(p.team)teams[p.team]=(teams[p.team]||0)+(p.score||0);});
+    rows=Object.keys(teams).map(t=>({name:"Team "+t,pts:teams[t],team:t})).sort((a,b)=>b.pts-a.pts);
+  }else{
+    rows=arr.map(p=>({name:p.name,pts:p.score||0})).sort((a,b)=>b.pts-a.pts);
+  }
+  if(!rows.length){box.innerHTML='<div class="empty">Noch keine Punkte.</div>';return;}
+  box.innerHTML="";
+  rows.forEach((r,i)=>{
+    const div=document.createElement("div");div.className="scorerow"+(i===0?" top":"");
+    div.innerHTML=`<span class="rank">${i===0?"🏆":(i+1)+"."}</span><span class="nm">${esc(r.name)}</span><span class="pts">${r.pts} P</span>`;
+    box.appendChild(div);
+  });
+}
+
+/* ---- Millionär console (teacher drives) ---- */
+function renderMillConsole(){
+  const box=document.getElementById("mill-console");box.classList.remove("hide");
+  const r=gameData.round; if(!r||r.mode!=="millionaer"){box.classList.add("hide");return;}
+  const m=r.mill||{idx:0}; const it=r.items[m.idx];
+  if(!it){box.innerHTML=`<div class="banner">🏁 Alle Fragen gespielt!</div>`;return;}
+  let html=`<div class="banner"><b>Frage ${m.idx+1}/${r.items.length}</b> – Stufe ${LADDER[Math.min(m.idx,LADDER.length-1)]} €<br>
+    <span style="font-size:.9rem">${esc(it.def)}</span></div>
+    <div style="margin-top:8px;font-size:.85rem;color:var(--muted)">Richtige Antwort: <b>${esc(it.answer)}</b></div>
+    <div style="display:grid;gap:8px;margin-top:10px">`;
+  if(!m.revealed){
+    html+=`<button class="btn gold" onclick="millReveal()">✅ Antwort auflösen</button>`;
+  }else{
+    html+=`<button class="btn" onclick="millNext()">➡️ Nächste Frage</button>`;
+  }
+  html+=`</div>`;
+  box.innerHTML=html;
+}
+function millReveal(){gref(code,"round/mill/revealed").set(true);}
+function millNext(){
+  const r=gameData.round;const m=r.mill||{idx:0};
+  const ni=m.idx+1;
+  if(ni>=r.items.length){ setPhase("done"); return; }
+  gref(code,"round/mill").update({idx:ni,revealed:false});
+}
+
+/* ===================== PARTICIPANT ===================== */
+function joinGame(){
+  if(!fbOK){toast("Firebase nicht erreichbar");return;}
+  const c=(document.getElementById("joincode").value||"").trim().toUpperCase();
+  const nm=(document.getElementById("joinname").value||"").trim();
+  if(c.length!==4){document.getElementById("joinmsg").textContent="Bitte 4-stelligen Code.";return;}
+  if(!nm){document.getElementById("joinmsg").textContent="Bitte Namen eingeben.";return;}
+  gref(c).get().then(s=>{
+    if(!s.exists()){document.getElementById("joinmsg").textContent="❌ Code nicht gefunden.";return;}
+    code=c;myName=nm;myId=getDeviceId(c);
+    const ex=(s.val().participants||{})[myId]||{};
+    gref(code,"participants/"+myId).set({name:nm,joined:ex.joined||Date.now(),lastSeen:Date.now(),team:ex.team||null,score:ex.score||0,rprog:ex.rprog||null}).then(()=>{
+      gref(code,"participants/"+myId).onDisconnect().remove();
+      document.getElementById("p-join").classList.add("hide");
+      document.getElementById("p-wait").classList.remove("hide");
+      document.getElementById("p-name").textContent=nm;
+      startHeartbeat();
+      gref(code).on("value",snap=>{gameData=snap.val()||{};renderPlay();});
+    });
+  });
+}
+function getDeviceId(c){const k="wa_pid_"+c;try{let v=localStorage.getItem(k);if(!v){v="p_"+Date.now()+"_"+Math.floor(Math.random()*9999);localStorage.setItem(k,v);}return v;}catch(e){return "p_"+Date.now()+"_"+Math.floor(Math.random()*9999);}}
+function startHeartbeat(){setInterval(()=>{
+  if(!code||!myId)return;
+  // Nur schreiben, wenn der eigene Datensatz noch existiert – sonst würde ein
+  // von der Moderation entfernter Teilnehmer als "Geist" wieder auftauchen.
+  gref(code,"participants/"+myId).get().then(s=>{
+    if(s.exists()) gref(code,"participants/"+myId+"/lastSeen").set(Date.now());
+    else showRemoved();
+  }).catch(()=>{});
+},8000);}
+function showRemoved(){
+  // Von der Moderation entfernt: stabile ID löschen, damit ein Neu-Beitritt
+  // (bzw. Neuladen) einen frischen Datensatz anlegt statt den alten zu treffen.
+  try{ if(code) localStorage.removeItem("wa_pid_"+code); }catch(e){}
+  // renderPlay() zeigt bereits den "Du wurdest entfernt"-Bildschirm mit Neu-laden-Button.
+}
+function myRec(){return(gameData.participants&&gameData.participants[myId])||null;}
+let lastRoundSeen=null;
+function renderPlay(){
+  const me=myRec();
+  if(!me){document.getElementById("play").innerHTML='<div class="card"><h2>Du wurdest entfernt</h2><p style="color:var(--muted)">Lade die Seite neu, um wieder beizutreten.</p><div style="margin-top:14px"><button class="btn" onclick="location.reload()">Neu laden</button></div></div>';return;}
+  myTeam=me.team;pScore=me.score||0;
+  const phase=gameData.phase||"lobby";
+  document.getElementById("p-wait").classList.toggle("hide",phase!=="lobby");
+  document.getElementById("p-game").classList.toggle("hide",phase!=="play");
+  document.getElementById("p-done").classList.toggle("hide",phase!=="done");
+  if(phase==="lobby"){
+    document.getElementById("p-teaminfo").innerHTML = (gameData.teamMode==="team")
+      ? (myTeam?`<span class="pill" style="background:${TEAMCOLORS[myTeam]};color:#fff">Team ${myTeam}</span>`:`<span class="pill">Team folgt …</span>`)
+      : `<span class="pill">Einzelspiel</span>`;
+    lastRoundSeen=null;
+  }
+  if(phase==="play"){
+    document.getElementById("p-team2").textContent = (gameData.teamMode==="team")?("Team "+(myTeam||"?")):(me.name||"");
+    document.getElementById("p-team2").style.background = (gameData.teamMode==="team"&&myTeam)?TEAMCOLORS[myTeam]:"var(--paper)";
+    document.getElementById("p-team2").style.color = (gameData.teamMode==="team"&&myTeam)?"#fff":"var(--accent-deep)";
+    document.getElementById("p-score2").textContent=pScore+" Punkte";
+    const r=gameData.round;
+    if(r&&r.id!==lastRoundSeen){ lastRoundSeen=r.id; startParticipantRound(r); }
+    else if(r&&r.mode==="millionaer"){ renderMillParticipant(r); }
+  }
+  if(phase==="done")renderDone();
+}
+function addScore(pts){pScore+=pts;if(myId)gref(code,"participants/"+myId+"/score").set(pScore);document.getElementById("p-score2").textContent=pScore+" Punkte";}
+
+function startParticipantRound(r){
+  pAnswered=false;memFirst=null;memLock=false;memMatched=0;
+  if(r.mode==="quiz")startQuiz(r);
+  else if(r.mode==="artikel")startArtikel(r);
+  else if(r.mode==="memory")startMemory(r);
+  else if(r.mode==="millionaer")renderMillParticipant(r);
+}
+
+/* ---- QUIZ (self-paced, speed bonus) ---- */
+let quizItems=[],quizIdx=0,quizStart=0;
+function startQuiz(r){quizItems=shuffle(r.items);quizIdx=0;renderQuizQ();}
+function renderQuizQ(){
+  const host=document.getElementById("p-host");
+  if(quizIdx>=quizItems.length){return quizDone();}
+  document.getElementById("p-bar").style.width=Math.round(quizIdx/quizItems.length*100)+"%";
+  const it=quizItems[quizIdx];pAnswered=false;quizStart=Date.now();
+  let html=`<div class="qtype">Frage ${quizIdx+1}/${quizItems.length} · Welches Wort passt?</div>
+    <div class="qbig">${esc(it.def)}</div><div class="opts" id="opts">`;
+  it.opts.forEach(o=>html+=`<button class="opt" data-val="${esc(o)}" onclick="quizAns(this)">${esc(o)}</button>`);
+  html+=`</div><div class="feedback" id="fb"></div><div id="cont"></div>`;
+  host.innerHTML=html;
+}
+function quizAns(el){
+  if(pAnswered)return;pAnswered=true;
+  const val=el.getAttribute("data-val");
+  const it=quizItems[quizIdx];const ok=val===it.answer;
+  const secs=(Date.now()-quizStart)/1000;
+  document.querySelectorAll("#opts .opt").forEach(b=>{b.style.pointerEvents="none";if(b.textContent===it.answer)b.classList.add("ok");});
+  if(!ok)el.classList.add("bad");
+  let pts=0;
+  if(ok){pts=100+Math.max(0,Math.round((10-secs)*5));addScore(pts);}
+  const fb=document.getElementById("fb");fb.className="feedback show "+(ok?"good":"wrong");
+  fb.innerHTML=ok?`✅ Richtig! +${pts} Punkte${secs<5?" (schnell!)":""}`:`❌ Richtig wäre: <b>${esc(it.answer)}</b>`;
+  document.getElementById("cont").innerHTML=`<div style="margin-top:12px"><button class="btn" style="width:100%" onclick="quizNext()">Weiter →</button></div>`;
+}
+function quizNext(){quizIdx++;if(myId)gref(code,"participants/"+myId+"/rprog/idx").set(quizIdx);renderQuizQ();}
+function quizDone(){
+  document.getElementById("p-bar").style.width="100%";
+  document.getElementById("p-host").innerHTML=`<div class="banner"><b>Fertig!</b> Du hast alle Fragen beantwortet – ${pScore} Punkte.</div><p style="margin-top:10px;font-size:.9rem;color:var(--muted)">Warte auf die nächste Runde oder die Auswertung.</p>`;
+  if(myId)gref(code,"participants/"+myId+"/rprog/done").set(true);
+}
+
+/* ---- ARTIKEL-RENNEN ---- */
+let artItems=[],artIdx=0;
+function startArtikel(r){artItems=shuffle(r.items);artIdx=0;renderArt();}
+function renderArt(){
+  const host=document.getElementById("p-host");
+  if(artIdx>=artItems.length){return artDone();}
+  document.getElementById("p-bar").style.width=Math.round(artIdx/artItems.length*100)+"%";
+  const it=artItems[artIdx];pAnswered=false;
+  const word=it.w.replace(/^(der|die|das)\s+/,"");
+  let html=`<div class="qtype">Wort ${artIdx+1}/${artItems.length} · Welcher Artikel?</div>
+    <div class="big-word">___ ${esc(word)}</div>
+    <div class="artbtns">
+      <button class="artbtn" onclick="artAns(this,'der')">der</button>
+      <button class="artbtn" onclick="artAns(this,'die')">die</button>
+      <button class="artbtn" onclick="artAns(this,'das')">das</button>
+    </div><div class="feedback" id="fb"></div><div id="cont"></div>`;
+  host.innerHTML=html;
+}
+function artAns(el,val){
+  if(pAnswered)return;pAnswered=true;
+  const it=artItems[artIdx];const ok=val===it.art;
+  document.querySelectorAll(".artbtn").forEach(b=>{b.style.pointerEvents="none";if(b.textContent===it.art)b.classList.add("ok");});
+  if(!ok)el.classList.add("bad");
+  if(ok)addScore(50);
+  const fb=document.getElementById("fb");fb.className="feedback show "+(ok?"good":"wrong");
+  fb.innerHTML=ok?`✅ Richtig! <b>${it.art} ${esc(it.w.replace(/^(der|die|das)\s+/,""))}</b> · +50`:`❌ Richtig: <b>${it.art}</b>`;
+  document.getElementById("cont").innerHTML=`<div style="margin-top:12px"><button class="btn" style="width:100%" onclick="artNext()">Weiter →</button></div>`;
+}
+function artNext(){artIdx++;renderArt();}
+function artDone(){document.getElementById("p-bar").style.width="100%";document.getElementById("p-host").innerHTML=`<div class="banner"><b>Geschafft!</b> ${pScore} Punkte.</div>`;if(myId)gref(code,"participants/"+myId+"/rprog/done").set(true);}
+
+/* ---- MEMORY ---- */
+let memCards=[];
+function startMemory(r){
+  const cards=[];
+  r.pairs.forEach(p=>{cards.push({pid:p.id,type:"w",txt:p.w});cards.push({pid:p.id,type:"def",txt:p.def});});
+  memCards=shuffle(cards).map((c,i)=>({...c,pos:i,done:false,open:false}));
+  memMatched=0;memFirst=null;memLock=false;renderMem();
+}
+function renderMem(){
+  const host=document.getElementById("p-host");
+  document.getElementById("p-bar").style.width=Math.round(memMatched/(memCards.length/2)*100)+"%";
+  let html=`<div class="qtype">Memory · Wort und Definition paaren</div><div class="memgrid">`;
+  memCards.forEach(c=>{
+    const cls=c.done?"done":(c.open?"open":"");
+    html+=`<div class="memcard ${cls}" onclick="memFlip(${c.pos})">${(c.open||c.done)?esc(c.txt):"?"}</div>`;
+  });
+  html+=`</div><div id="cont"></div>`;
+  host.innerHTML=html;
+}
+function memFlip(pos){
+  if(memLock)return;
+  const c=memCards.find(x=>x.pos===pos);
+  if(!c||c.done||c.open)return;
+  c.open=true;renderMem();
+  if(memFirst===null){memFirst=c;return;}
+  const first=memFirst;memFirst=null;memLock=true;
+  if(first.pid===c.pid&&first.type!==c.type){
+    setTimeout(()=>{first.done=true;c.done=true;memMatched++;addScore(30);memLock=false;
+      if(memMatched===memCards.length/2){renderMem();memDone();}else renderMem();},450);
+  }else{
+    setTimeout(()=>{first.open=false;c.open=false;memLock=false;renderMem();},900);
+  }
+}
+function memDone(){document.getElementById("cont").innerHTML=`<div class="banner" style="margin-top:12px"><b>Alle Paare gefunden! 🎉</b> ${pScore} Punkte.</div>`;if(myId)gref(code,"participants/"+myId+"/rprog/done").set(true);}
+
+/* ---- MILLIONÄR (participant view: teacher-driven, team answers) ---- */
+function renderMillParticipant(r){
+  const host=document.getElementById("p-host");
+  const m=r.mill||{idx:0};const it=r.items[m.idx];
+  if(!it){host.innerHTML=`<div class="banner">🏁 Millionär beendet! Auswertung folgt.</div>`;return;}
+  document.getElementById("p-bar").style.width=Math.round(m.idx/r.items.length*100)+"%";
+  const stufe=LADDER[Math.min(m.idx,LADDER.length-1)];
+  // ladder display (compact: current +/- 2)
+  let ladderHtml='<div class="ladder">';
+  for(let i=r.items.length-1;i>=0;i--){
+    if(Math.abs(i-m.idx)>2 && i!==r.items.length-1 && i!==0) continue;
+    const val=LADDER[Math.min(i,LADDER.length-1)];
+    const cls=i===m.idx?"active":(i<m.idx?"done":(SAFE.includes(i)?"safe":""));
+    ladderHtml+=`<div class="rung ${cls}"><span>Frage ${i+1}</span><span>${val} €</span></div>`;
+  }
+  ladderHtml+='</div>';
+  const answeredKey="millans_"+r.id+"_"+m.idx;
+  const already=sessionStorage.getItem(answeredKey);
+  let html=`<div class="qtype">💰 Millionär · Stufe ${stufe} €</div>${ladderHtml}<div class="qbig">${esc(it.def)}</div>`;
+  if(m.revealed){
+    html+=`<div class="opts">`;
+    it.opts.forEach(o=>{const ok=o===it.answer;html+=`<div class="opt ${ok?'ok':(already===o&&!ok?'bad':'')}">${esc(o)}${ok?' ✓':''}</div>`;});
+    html+=`</div><div class="banner" style="margin-top:10px">${already?(already===it.answer?'✅ Euer Team lag richtig!':'❌ Leider falsch.'):'Richtige Antwort: '+esc(it.answer)}</div>`;
+  }else if(already){
+    html+=`<div class="banner">Antwort abgegeben: <b>${esc(already)}</b><br><span style="font-size:.85rem">Warte auf die Auflösung durch die Lehrkraft …</span></div>`;
+  }else{
+    html+=`<div class="opts" id="opts">`;
+    it.opts.forEach(o=>html+=`<button class="opt" data-val="${esc(o)}" onclick="millPick(this,'${answeredKey}','${r.id}',${m.idx})">${esc(o)}</button>`);
+    html+=`</div><div class="statusline" style="text-align:left">Beratet euch im Team und wählt gemeinsam.</div>`;
+  }
+  host.innerHTML=html;
+}
+function millPick(el,key,rid,idx){
+  const val=el.getAttribute("data-val");
+  sessionStorage.setItem(key,val);
+  const it=gameData.round.items[idx];const ok=val===it.answer;
+  // score: only first correct answer per team per question — simplest: each correct player adds points at their ladder stufe/50
+  if(ok){const stufe=LADDER[Math.min(idx,LADDER.length-1)];addScore(Math.round(stufe/50));}
+  renderMillParticipant(gameData.round);
+}
+
+function renderDone(){
+  const me=myRec()||{};
+  const arr=participantsArr();
+  const tm=gameData.teamMode==="team";
+  let rows;
+  if(tm){const teams={};arr.forEach(p=>{if(p.team)teams[p.team]=(teams[p.team]||0)+(p.score||0);});rows=Object.keys(teams).map(t=>({name:"Team "+t,pts:teams[t]})).sort((a,b)=>b.pts-a.pts);}
+  else rows=arr.map(p=>({name:p.name,pts:p.score||0})).sort((a,b)=>b.pts-a.pts);
+  let html=`<div class="banner">Dein Punktestand: <b>${me.score||0} Punkte</b>${tm&&myTeam?` · Team ${myTeam}`:""}</div><h3>Rangliste</h3><div class="scoreboard">`;
+  rows.slice(0,8).forEach((r,i)=>{html+=`<div class="scorerow${i===0?' top':''}"><span class="rank">${i===0?'🏆':(i+1)+'.'}</span><span class="nm">${esc(r.name)}</span><span class="pts">${r.pts} P</span></div>`;});
+  html+=`</div>`;
+  document.getElementById("p-result").innerHTML=html;
+}
+</script>
+</body>
+</html>

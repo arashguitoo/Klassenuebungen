@@ -540,6 +540,7 @@ function renderScore(arr){
 }
 
 /* ===================== PARTICIPANT ===================== */
+function getDeviceId(c){const k="fbw_pid_"+c;try{let v=localStorage.getItem(k);if(!v){v="p_"+Date.now()+"_"+Math.floor(Math.random()*9999);localStorage.setItem(k,v);}return v;}catch(e){return "p_"+Date.now()+"_"+Math.floor(Math.random()*9999);}}
 function joinGame(){
   if(!fbOK){ toast("Firebase nicht erreichbar"); return; }
   const c=(document.getElementById("joincode").value||"").trim().toUpperCase();
@@ -548,8 +549,9 @@ function joinGame(){
   if(!nm){ document.getElementById("joinmsg").textContent="Bitte Namen eingeben."; return; }
   gref(c).get().then(s=>{
     if(!s.exists()){ document.getElementById("joinmsg").textContent="❌ Code nicht gefunden."; return; }
-    code=c; myName=nm; myId="p_"+Date.now()+"_"+Math.floor(Math.random()*9999);
-    const me={name:nm, joined:Date.now(), lastSeen:Date.now(), team:null, score:0, idx:0};
+    code=c; myName=nm; myId=getDeviceId(c);
+    const exist=(s.val().participants||{})[myId]||{};
+    const me={name:nm, joined:exist.joined||Date.now(), lastSeen:Date.now(), team:exist.team||null, score:exist.score||0, idx:exist.idx||0};
     gref(code,"participants/"+myId).set(me).then(()=>{
       // presence: clear on disconnect
       gref(code,"participants/"+myId).onDisconnect().remove();
@@ -568,6 +570,7 @@ function startHeartbeat(){
     // namenloser „?"-Eintrag neu angelegt, falls die Moderation uns entfernt hat.
     gref(code,"participants/"+myId).get().then(s=>{
       if(s.exists()){ gref(code,"participants/"+myId+"/lastSeen").set(Date.now()); }
+      else { try{ localStorage.removeItem("fbw_pid_"+code); }catch(e){} }
     }).catch(()=>{});
   },8000);
 }

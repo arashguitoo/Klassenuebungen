@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prüfungstraining Sprechen B2 · Teil 1A – Lern Deutsch mit Arash</title>
+<style>
+:root{
+  --bg:#0f1a2b; --bg2:#14243a; --card:#182b45; --card2:#1f3555;
+  --ink:#eaf1f8; --ink-soft:#93a7bf; --line:#2b4568;
+  --teal:#2fa389; --blue:#3f7cc4; --amber:#e0a32e; --rose:#e0654a;
+  --green:#37b989;
+  --radius:16px; --shadow:0 1px 2px rgba(0,0,0,.2),0 12px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',Calibri,system-ui,sans-serif;color:var(--ink);line-height:1.55;
+  background:radial-gradient(circle at 50% -8%, #1e3556 0%, transparent 55%),var(--bg);-webkit-font-smoothing:antialiased;}
+.wrap{max-width:760px;margin:0 auto;padding:16px 16px 70px}
+.hidden{display:none!important}
+h1,h2,h3{margin:0}
+button{font-family:inherit}
+header.top{display:flex;align-items:center;gap:14px;padding:18px 0 20px}
+.logo{flex:0 0 auto;width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--blue),#2b5990);
+  display:grid;place-items:center;color:#fff;font-size:1.5rem;box-shadow:0 6px 16px rgba(63,124,196,.35)}
+header.top h1{font-size:1.4rem;letter-spacing:-.3px;line-height:1.08}
+header.top .tag{color:var(--ink-soft);font-size:.85rem;margin-top:2px}
+header.top .home{margin-left:auto;text-decoration:none;color:var(--ink-soft);font-size:.82rem;font-weight:700;
+  border:1px solid var(--line);border-radius:999px;padding:7px 13px;background:var(--card);white-space:nowrap}
+.card{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:var(--shadow)}
+.card h2{font-size:1.15rem;margin-bottom:4px}
+.muted{color:var(--ink-soft);font-size:.9rem}
+.center{text-align:center}
+.btn{border:none;border-radius:12px;padding:13px 20px;font-size:1rem;font-weight:800;cursor:pointer;transition:.15s;color:#fff}
+.btn-blue{background:linear-gradient(180deg,var(--blue),#2b5990)}
+.btn-blue:hover{filter:brightness(1.08)}
+.btn-teal{background:linear-gradient(180deg,var(--teal),#1f7d68)}
+.btn-amber{background:linear-gradient(180deg,var(--amber),#b57f14);color:#3a2a00}
+.btn-ghost{background:var(--card2);color:var(--ink-soft);border:1px solid var(--line)}
+.btn-ghost:hover{color:var(--ink)}
+.btn-rose{background:linear-gradient(180deg,var(--rose),#b5432e)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.small{padding:8px 13px;font-size:.85rem}
+.btn.big{padding:16px 26px;font-size:1.15rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;flex-wrap:wrap}
+.seg button{border:none;background:var(--card);padding:11px 16px;font-weight:700;font-size:.9rem;cursor:pointer;color:var(--ink-soft)}
+.seg button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.choice-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:6px}
+.choice{border:1px solid var(--line);background:var(--card2);border-radius:12px;padding:14px 16px;cursor:pointer;text-align:left;transition:.14s;color:var(--ink);display:flex;gap:12px;align-items:flex-start}
+.choice:hover{border-color:var(--blue);transform:translateY(-1px)}
+.choice .num{flex:0 0 auto;width:30px;height:30px;border-radius:9px;background:var(--blue);color:#fff;font-weight:800;display:grid;place-items:center;font-size:.95rem}
+.choice .t{font-size:.98rem;font-weight:600}
+.choice .h{font-size:.82rem;color:var(--ink-soft);margin-top:2px;font-weight:400}
+
+/* Timer */
+.timer-wrap{text-align:center;padding:10px 0}
+.clock{font-size:4.2rem;font-weight:900;letter-spacing:2px;font-variant-numeric:tabular-nums;line-height:1}
+.clock.warn{color:var(--amber)}.clock.over{color:var(--rose)}
+.ring{position:relative;width:210px;height:210px;margin:6px auto 12px}
+.ring svg{transform:rotate(-90deg)}
+.ring .lbl{position:absolute;inset:0;display:grid;place-items:center;flex-direction:column}
+.phase-tip{font-size:.92rem;color:var(--ink-soft);margin-top:4px;min-height:1.2em}
+
+.themebox{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card);margin-bottom:14px}
+.themebox .tb-top{background:linear-gradient(135deg,var(--blue),#2b5990);color:#fff;padding:13px 16px}
+.themebox .tb-top .k{font-size:.72rem;text-transform:uppercase;letter-spacing:.8px;opacity:.9}
+.themebox .tb-top .th{font-size:1.08rem;font-weight:800;margin-top:2px}
+.themebox .tb-body{padding:14px 16px}
+.ideas{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:7px}
+.ideas li{background:var(--card2);border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:9px 12px;font-size:.95rem}
+.sub{color:var(--amber);font-weight:800;font-size:.82rem;text-transform:uppercase;letter-spacing:.4px;margin:14px 0 4px}
+.phrase{display:block;background:var(--card2);border-left:3px solid var(--blue);padding:8px 12px;border-radius:0 8px 8px 0;margin-bottom:6px;font-size:.94rem}
+.notice{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:.9rem;margin-top:10px}
+.notice.ok{border-color:var(--teal);color:#b8ecdd}
+.notice.warn{border-color:var(--amber);color:#f2d489}
+.pill{display:inline-block;font-size:.74rem;font-weight:800;padding:4px 10px;border-radius:999px;background:var(--card2);color:var(--ink-soft);border:1px solid var(--line)}
+.role-turn{background:linear-gradient(135deg,var(--teal),#1f7d68);color:#fff;border-radius:12px;padding:12px 15px;font-weight:800;text-align:center;margin-bottom:12px}
+.notes-list{margin:8px 0 0;padding-left:18px}.notes-list li{margin:4px 0;font-size:.93rem}
+footer{text-align:center;color:var(--ink-soft);font-size:.8rem;margin-top:34px}
+.toggle-hint{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px}
+</style>
+</head>
+<body>
+
+<!-- SETUP -->
+<div id="screen-setup" class="wrap">
+  <header class="top">
+    <div class="logo">🎤</div>
+    <div><h1>Prüfungstraining Sprechen</h1><div class="tag">telc Deutsch-Test für den Beruf B2 · Teil 1A</div></div>
+    <a href="index.html" class="home">🏠 Index</a>
+  </header>
+
+  <div class="card">
+    <h2>1 · Modus wählen</h2>
+    <p class="muted">Wie übt ihr?</p>
+    <div class="seg" id="modeSeg" style="margin-top:8px">
+      <button data-mode="solo" aria-pressed="true" onclick="setMode('solo')">🧍 Allein üben</button>
+      <button data-mode="pair" aria-pressed="false" onclick="setMode('pair')">👥 1 gegen 1</button>
+    </div>
+    <p class="muted" id="modeDesc" style="margin-top:10px">Allein: Du sprichst, die Stoppuhr läuft. Danach kommen Prüferfragen zum Weiterüben.</p>
+  </div>
+
+  <div class="card">
+    <h2>2 · Sprechzeit</h2>
+    <p class="muted">In der echten Prüfung sind es 2 Minuten. Zum Einstieg kürzer starten.</p>
+    <div class="seg" id="timeSeg" style="margin-top:8px">
+      <button data-sec="60" aria-pressed="false" onclick="setTime(60)">1 Min</button>
+      <button data-sec="90" aria-pressed="true" onclick="setTime(90)">1,5 Min</button>
+      <button data-sec="120" aria-pressed="false" onclick="setTime(120)">2 Min (Prüfung)</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3 · Ideen-Hilfe</h2>
+    <div class="toggle-hint">
+      <p class="muted" style="margin:0">Stichpunkte &amp; Redemittel zum Thema anzeigen? (Für den Anfang: an.)</p>
+      <div class="seg" id="helpSeg">
+        <button data-help="1" aria-pressed="true" onclick="setHelp(1)">Mit Hilfe</button>
+        <button data-help="0" aria-pressed="false" onclick="setHelp(0)">Ohne (wie Prüfung)</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card center">
+    <h2>4 · Thema</h2>
+    <p class="muted">Zwei Themen werden zufällig angeboten – wie in der Prüfung. Wähle dann eines.</p>
+    <div class="row" style="justify-content:center;margin-top:12px">
+      <button class="btn btn-blue big" onclick="drawThemes()">🎲 Zwei Themen ziehen</button>
+      <button class="btn btn-ghost" onclick="showAllThemes()">Alle 8 Themen ansehen</button>
+    </div>
+    <div id="setup-msg"></div>
+  </div>
+
+  <div class="card">
+    <h2>So läuft Teil 1A (echte Prüfung)</h2>
+    <ol class="muted" style="margin:6px 0 0;padding-left:20px;line-height:1.75">
+      <li><b>Teil 1A:</b> Du bekommst 2 Themen, wählst eines und sprichst ca. 2 Minuten darüber.</li>
+      <li><b>Teil 1B:</b> Die Prüferin/der Prüfer stellt dir danach Fragen (ca. 2 Min).</li>
+      <li><b>Teil 1C:</b> Dein Partner erklärt einen Aspekt aus deinen Antworten (ca. 1 Min).</li>
+    </ol>
+  </div>
+</div>
+
+<!-- THEME CHOICE -->
+<div id="screen-choose" class="wrap hidden">
+  <header class="top"><div class="logo">🎤</div>
+    <div><h1>Thema wählen</h1><div class="tag">Wähle eines der beiden Themen</div></div>
+    <a href="#" class="home" onclick="backToSetup();return false;">← zurück</a></header>
+  <div id="choose-list" class="choice-grid"></div>
+  <div class="center" style="margin-top:8px"><button class="btn btn-ghost small" onclick="drawThemes()">🎲 Andere zwei ziehen</button></div>
+</div>
+
+<!-- ALL THEMES -->
+<div id="screen-all" class="wrap hidden">
+  <header class="top"><div class="logo">🎤</div>
+    <div><h1>Alle 8 Themen</h1><div class="tag">Teil 1A · zum Vorbereiten</div></div>
+    <a href="#" class="home" onclick="backToSetup();return false;">← zurück</a></header>
+  <div id="all-list"></div>
+</div>
+
+<!-- PREP + TIMER -->
+<div id="screen-run" class="wrap hidden"></div>
+
+<footer>Lern Deutsch mit Arash · Prüfungstraining Sprechen B2</footer>
+
+<script data-goatcounter="https://aguitoo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+/* ================= DATEN: 8 telc-Themen + Ideen + Redemittel ================= */
+const THEMEN = [
+  { nr:1, kurz:"Ein Arbeitgeber",
+    titel:"Beschreiben Sie einen Arbeitgeber, für den Sie gearbeitet haben oder arbeiten möchten.",
+    klammer:"z. B. Branche, Produkte und Dienstleistungen, Abteilungen und ihre Aufgaben, Besonderheiten",
+    ideen:[
+      "Welche Firma? (Name, Branche – z. B. Supermarkt, Werkstatt, Krankenhaus)",
+      "Was macht die Firma? (Produkte oder Dienstleistungen)",
+      "Welche Abteilungen gibt es? (Verkauf, Lager, Büro …)",
+      "Warum möchtest du dort arbeiten? (Gehalt, Team, Nähe, Zukunft)",
+      "Etwas Besonderes an der Firma? (bekannt, modern, familiär)"],
+    phrasen:[
+      "Ich möchte gern bei … arbeiten, weil …",
+      "Die Firma ist in der Branche … tätig.",
+      "Sie stellt … her / bietet … an.",
+      "Besonders gut finde ich, dass …"] },
+  { nr:2, kurz:"Gutes Arbeitsumfeld",
+    titel:"Beschreiben Sie, wie Sie sich ein gutes Arbeitsumfeld vorstellen.",
+    klammer:"z. B. Jobsicherheit, Lohn/Gehalt, Karrierechancen, Kommunikation in der Firma, Beispiele aus Ihrer Berufserfahrung",
+    ideen:[
+      "Was ist dir wichtig? (sicherer Job, gutes Gehalt, nettes Team)",
+      "Wie soll die Kommunikation sein? (freundlich, offen, respektvoll)",
+      "Karrierechancen: Möchtest du aufsteigen oder lernen?",
+      "Arbeitszeiten: fest oder flexibel?",
+      "Ein Beispiel: Wo hast du dich wohl/nicht wohl gefühlt?"],
+    phrasen:[
+      "Für mich ist wichtig, dass …",
+      "Ein gutes Arbeitsumfeld bedeutet für mich …",
+      "Ich lege Wert auf …",
+      "In meiner Erfahrung war … (nicht) gut, weil …"] },
+  { nr:3, kurz:"Meine Berufswahl",
+    titel:"Beschreiben Sie die Ereignisse und Erfahrungen, die Ihre Berufswahl beeinflusst haben.",
+    klammer:"z. B. Stationen, wichtige Personen, Motivation, Folgen",
+    ideen:[
+      "Welchen Beruf hast/willst du? Seit wann?",
+      "Wer hat dich beeinflusst? (Familie, Lehrer, Freunde)",
+      "Ein Ereignis, das wichtig war (ein Praktikum, ein Erlebnis)",
+      "Was motiviert dich an diesem Beruf?",
+      "Was hat sich dadurch für dich verändert?"],
+    phrasen:[
+      "Schon als Kind wollte ich …",
+      "Eine wichtige Person für mich war …, weil …",
+      "Der Grund für meine Berufswahl ist …",
+      "Das hat dazu geführt, dass …"] },
+  { nr:4, kurz:"Berufliches Vorbild",
+    titel:"Beschreiben Sie eine Person aus Ihrem Umfeld, die für Sie ein berufliches Vorbild ist.",
+    klammer:"z. B. Beziehung zu dieser Person, Eigenschaften, Einfluss auf Sie",
+    ideen:[
+      "Wer ist die Person? (Verwandter, Chef, Kollege, Lehrer)",
+      "Was macht sie beruflich?",
+      "Welche Eigenschaften hat sie? (fleißig, geduldig, klug)",
+      "Warum bewunderst du sie?",
+      "Wie beeinflusst sie dich? (Motivation, Tipps)"],
+    phrasen:[
+      "Mein Vorbild ist …, weil …",
+      "Sie/Er arbeitet als … und ist sehr …",
+      "Ich bewundere an ihr/ihm, dass …",
+      "Von ihr/ihm habe ich gelernt, …"] },
+  { nr:5, kurz:"Arbeitssuche",
+    titel:"Beschreiben Sie das Vorgehen bei der Arbeitssuche für ein Land Ihrer Wahl.",
+    klammer:"z. B. Angebote finden, Erstkontakt, Bewerbungsunterlagen oder -gespräch",
+    ideen:[
+      "Welches Land? Warum?",
+      "Wo findet man Stellen? (Internet, Agentur, Freunde, Zeitung)",
+      "Wie nimmt man Kontakt auf? (E-Mail, Anruf, persönlich)",
+      "Welche Unterlagen braucht man? (Lebenslauf, Anschreiben, Zeugnisse)",
+      "Was passiert beim Bewerbungsgespräch?"],
+    phrasen:[
+      "In … sucht man Arbeit meistens über …",
+      "Zuerst … , danach …",
+      "Für die Bewerbung braucht man …",
+      "Beim Erstkontakt sollte man …"] },
+  { nr:6, kurz:"Bewerbungsgespräch",
+    titel:"Beschreiben Sie, worauf es bei einem Bewerbungsgespräch ankommt (Land Ihrer Wahl).",
+    klammer:"z. B. Berufsfeld, Vorbereitung, Kleidung, typische Fragen",
+    ideen:[
+      "Welches Land / welcher Beruf?",
+      "Wie bereitet man sich vor? (Firma recherchieren, Fragen üben)",
+      "Was zieht man an? (ordentlich, passend zum Beruf)",
+      "Typische Fragen? („Erzählen Sie von sich“, Stärken/Schwächen)",
+      "Wie verhält man sich? (pünktlich, freundlich, Blickkontakt)"],
+    phrasen:[
+      "Es ist wichtig, dass man sich gut vorbereitet.",
+      "Man sollte … tragen.",
+      "Eine typische Frage ist …",
+      "Man muss unbedingt pünktlich sein."] },
+  { nr:7, kurz:"Ein Produkt / eine Dienstleistung",
+    titel:"Beschreiben Sie ein Produkt oder eine Dienstleistung Ihrer Wahl.",
+    klammer:"z. B. Merkmale, Nutzen für Kunden, Vor- und Nachteile, Erfolg",
+    ideen:[
+      "Welches Produkt / welche Dienstleistung?",
+      "Was kann es / was bietet es? (Merkmale)",
+      "Wem hilft es? (Nutzen für Kunden)",
+      "Vorteile und Nachteile?",
+      "Ist es erfolgreich? Warum?"],
+    phrasen:[
+      "Ich möchte … vorstellen.",
+      "Das Besondere daran ist …",
+      "Der Vorteil für Kunden ist, dass …",
+      "Ein Nachteil könnte sein, dass …"] },
+  { nr:8, kurz:"Meine Geschäftsidee",
+    titel:"Sie möchten sich selbstständig machen. Beschreiben Sie Ihre Geschäftsidee.",
+    klammer:"z. B. welches Produkt/welche Dienstleistung, Besonderheiten, Zielgruppe",
+    ideen:[
+      "Welche Idee? (Laden, Café, Werkstatt, Online-Shop, Service)",
+      "Was genau bietest du an?",
+      "Was ist besonders / anders als bei anderen?",
+      "Wer sind deine Kunden? (Zielgruppe)",
+      "Warum sollte die Idee funktionieren?"],
+    phrasen:[
+      "Meine Geschäftsidee ist …",
+      "Ich würde gern … anbieten.",
+      "Das Besondere an meiner Idee ist …",
+      "Meine Zielgruppe sind …"] },
+];
+
+/* Prüferfragen Teil 1B – allgemein, für jedes Thema nutzbar */
+const PRUEFERFRAGEN = [
+  "Können Sie ein konkretes Beispiel dafür geben?",
+  "Warum ist Ihnen das wichtig?",
+  "Wie war das bei Ihnen persönlich?",
+  "Was war für Sie am schwierigsten?",
+  "Würden Sie das weiterempfehlen? Warum (nicht)?",
+  "Wie stellen Sie sich das in Zukunft vor?",
+  "Was würden Sie anders machen?",
+  "Können Sie das genauer erklären?"
+];
+</script>
+<script>
+/* ================= LOGIK ================= */
+const S=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+let state={mode:"solo", secs:90, help:1, pair:[], theme:null, whoseTurn:1};
+
+function setMode(m){state.mode=m;
+  document.querySelectorAll('#modeSeg button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.mode===m));
+  S("modeDesc").textContent = m==="solo"
+    ? "Allein: Du sprichst, die Stoppuhr läuft. Danach kommen Prüferfragen zum Weiterüben."
+    : "1 gegen 1: Erst spricht Person A, dann Person B. Die andere hört zu und macht Notizen – wie in der Prüfung.";
+}
+function setTime(s){state.secs=s;document.querySelectorAll('#timeSeg button').forEach(b=>b.setAttribute('aria-pressed', +b.dataset.sec===s));}
+function setHelp(h){state.help=h;document.querySelectorAll('#helpSeg button').forEach(b=>b.setAttribute('aria-pressed', +b.dataset.help===h));}
+
+function hideAll(){["screen-setup","screen-choose","screen-all","screen-run"].forEach(x=>S(x).classList.add("hidden"));}
+function backToSetup(){stopTimer();hideAll();S("screen-setup").classList.remove("hidden");}
+
+function drawThemes(){
+  state.pair=shuffle(THEMEN).slice(0,2);
+  hideAll();S("screen-choose").classList.remove("hidden");
+  S("choose-list").innerHTML=state.pair.map(t=>`
+    <button class="choice" onclick="pickTheme(${t.nr})">
+      <span class="num">${t.nr}</span>
+      <span><span class="t">${esc(t.titel)}</span><span class="h">${esc(t.klammer)}</span></span>
+    </button>`).join("");
+}
+function showAllThemes(){
+  hideAll();S("screen-all").classList.remove("hidden");
+  S("all-list").innerHTML=THEMEN.map(t=>`
+    <div class="themebox"><div class="tb-top"><div class="k">Thema ${t.nr}</div><div class="th">${esc(t.titel)}</div></div>
+      <div class="tb-body"><p class="muted" style="margin-top:0">${esc(t.klammer)}</p>
+        <div class="sub">Ideen – worüber kann ich sprechen?</div>
+        <ul class="ideas">${t.ideen.map(i=>`<li>${esc(i)}</li>`).join("")}</ul>
+        <div class="sub">Redemittel</div>
+        ${t.phrasen.map(p=>`<span class="phrase">${esc(p)}</span>`).join("")}
+      </div></div>`).join("");
+}
+function pickTheme(nr){ state.theme=THEMEN.find(t=>t.nr===nr); state.whoseTurn=1; showPrep(); }
+
+function showPrep(){
+  const t=state.theme;
+  hideAll();S("screen-run").classList.remove("hidden");
+  const turnBanner = state.mode==="pair" ? `<div class="role-turn">👤 Person ${state.whoseTurn} ist dran – Person ${state.whoseTurn===1?2:1} hört zu &amp; macht Notizen</div>` : "";
+  let help="";
+  if(state.help){
+    help=`<div class="sub">💡 Ideen – worüber kannst du sprechen?</div>
+      <ul class="ideas">${t.ideen.map(i=>`<li>${esc(i)}</li>`).join("")}</ul>
+      <div class="sub">Redemittel zum Anfangen</div>
+      ${t.phrasen.map(p=>`<span class="phrase">${esc(p)}</span>`).join("")}`;
+  } else {
+    help=`<div class="notice">Ohne Hilfe – wie in der Prüfung. Denk an: Wer? Was? Warum? Beispiel?</div>`;
+  }
+  S("screen-run").innerHTML=`
+    <header class="top"><div class="logo">🎤</div>
+      <div><h1>Dein Thema</h1><div class="tag">Thema ${t.nr} · ${state.secs/60===1?'1 Min':state.secs===90?'1,5 Min':'2 Min'} · ${state.mode==="pair"?'1 gegen 1':'Allein'}</div></div>
+      <a href="#" class="home" onclick="backToSetup();return false;">← Setup</a></header>
+    ${turnBanner}
+    <div class="themebox"><div class="tb-top"><div class="k">Teil 1A · Über ein Thema sprechen</div><div class="th">${esc(t.titel)}</div></div>
+      <div class="tb-body"><p class="muted" style="margin-top:0">${esc(t.klammer)}</p>${help}</div></div>
+    <div class="card center">
+      <p class="muted">Kurz überlegen (30 Sek. sind erlaubt) – dann starten. Sprich, bis die Zeit um ist.</p>
+      <button class="btn btn-teal big" onclick="startSpeak()">▶︎ Sprechen starten</button>
+    </div>`;
+}
+
+let timerId=null, remain=0, phase="idle";
+function startSpeak(){
+  const t=state.theme;
+  remain=state.secs; phase="speak";
+  renderTimer();
+  hideAll();S("screen-run").classList.remove("hidden");
+  drawTimerScreen();
+  timerId=setInterval(tick,1000);
+}
+function drawTimerScreen(){
+  const t=state.theme;
+  const turnBanner = state.mode==="pair" ? `<div class="role-turn">👤 Person ${state.whoseTurn} spricht</div>` : "";
+  S("screen-run").innerHTML=`
+    <header class="top"><div class="logo">🎤</div>
+      <div><h1>${esc(t.kurz)}</h1><div class="tag">Thema ${t.nr} · Teil 1A</div></div>
+      <a href="#" class="home" onclick="if(confirm('Abbrechen?')){stopTimer();backToSetup();}return false;">✕</a></header>
+    ${turnBanner}
+    <div class="card">
+      <div class="ring">
+        <svg width="210" height="210" viewBox="0 0 210 210">
+          <circle cx="105" cy="105" r="95" fill="none" stroke="#24384f" stroke-width="14"/>
+          <circle id="ringfg" cx="105" cy="105" r="95" fill="none" stroke="#2fa389" stroke-width="14"
+            stroke-linecap="round" stroke-dasharray="${2*Math.PI*95}" stroke-dashoffset="0"/>
+        </svg>
+        <div class="lbl"><div id="clock" class="clock">0:00</div></div>
+      </div>
+      <div class="phase-tip center" id="ptip"></div>
+      <div class="row" style="justify-content:center;margin-top:10px">
+        <button id="pauseBtn" class="btn btn-ghost" onclick="togglePause()">⏸ Pause</button>
+        <button class="btn btn-rose" onclick="stopEarly()">■ Fertig</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="sub" style="margin-top:0">Kannst du das schaffen?</div>
+      <ul class="notes-list">
+        <li>Nenne mindestens <b>3 Punkte</b> zum Thema.</li>
+        <li>Gib <b>ein Beispiel</b> aus deinem Leben.</li>
+        <li>Rede <b>bis zum Ende</b> – nicht früher aufhören.</li>
+      </ul>
+    </div>`;
+  renderTimer();
+}
+function renderTimer(){
+  const c=S("clock"); if(!c)return;
+  const m=Math.floor(remain/60), s=remain%60;
+  c.textContent=`${m}:${String(s).padStart(2,'0')}`;
+  c.className="clock"+(remain<=10?" over":remain<=30?" warn":"");
+  const fg=S("ringfg");
+  if(fg){
+    const frac=Math.max(0,remain/state.secs);
+    const circ=2*Math.PI*95;
+    fg.setAttribute("stroke-dashoffset", (circ*(1-frac)).toFixed(1));
+    fg.setAttribute("stroke", remain<=10?"#e0654a":remain<=30?"#e0a32e":"#2fa389");
+  }
+  const tip=S("ptip");
+  if(tip){
+    tip.textContent = remain<=10?"Gleich vorbei – bring deinen Satz zu Ende." :
+                      remain<=30?"Noch etwas Zeit – nenne ein Beispiel." :
+                      "Sprich ruhig weiter.";
+  }
+}
+function tick(){
+  if(phase!=="speak")return;
+  remain--; renderTimer();
+  if(remain<=0){ stopTimer(); speakDone(); }
+}
+let paused=false;
+function togglePause(){ paused=!paused;
+  const b=S("pauseBtn");
+  if(paused){ clearInterval(timerId); timerId=null; if(b){b.textContent="▶︎ Weiter";} }
+  else { timerId=setInterval(tick,1000); if(b){b.textContent="⏸ Pause";} }
+}
+function stopTimer(){ if(timerId){clearInterval(timerId);timerId=null;} phase="idle"; paused=false; }
+function stopEarly(){ stopTimer(); speakDone(); }
+
+function speakDone(){
+  const t=state.theme;
+  hideAll();S("screen-run").classList.remove("hidden");
+  const qs=shuffle(PRUEFERFRAGEN).slice(0,4);
+  // Nächster Schritt hängt vom Modus ab
+  let nextBtn="";
+  if(state.mode==="pair" && state.whoseTurn===1){
+    nextBtn=`<button class="btn btn-teal big" onclick="secondPerson()">👤 Person 2 ist dran →</button>`;
+  } else {
+    nextBtn=`<button class="btn btn-blue big" onclick="backToSetup()">✓ Neue Runde</button>
+             <button class="btn btn-ghost" onclick="pickTheme(${t.nr})">Gleiches Thema nochmal</button>`;
+  }
+  S("screen-run").innerHTML=`
+    <header class="top"><div class="logo">🎤</div>
+      <div><h1>Zeit vorbei ⏱</h1><div class="tag">Thema ${t.nr} · gut gemacht!</div></div>
+      <a href="#" class="home" onclick="backToSetup();return false;">← Setup</a></header>
+    <div class="card center">
+      <h2>Geschafft! 🎉</h2>
+      <p class="muted">Du hast über „${esc(t.kurz)}“ gesprochen.</p>
+    </div>
+    <div class="card">
+      <div class="sub" style="margin-top:0">Teil 1B · Jetzt kommen Prüferfragen</div>
+      <p class="muted">${state.mode==="pair"?'Die zuhörende Person (oder die Lehrkraft) stellt jetzt Fragen:':'Übe weiter: Beantworte diese Prüferfragen laut.'}</p>
+      <ul class="notes-list">${qs.map(q=>`<li>${esc(q)}</li>`).join("")}</ul>
+    </div>
+    ${state.mode==="pair" && state.whoseTurn===1 ? `<div class="card"><div class="sub" style="margin-top:0">Teil 1C</div><p class="muted">Danach: Person 2 erklärt kurz einen Aspekt, den Person 1 gesagt hat.</p></div>`:''}
+    <div class="card center"><div class="row" style="justify-content:center">${nextBtn}</div></div>`;
+}
+function secondPerson(){
+  state.whoseTurn=2;
+  // Person 2 bekommt das gleiche gezogene Paar zur Auswahl – neue Wahl
+  hideAll();S("screen-choose").classList.remove("hidden");
+  S("choose-list").innerHTML=`<div class="role-turn">👤 Person 2 wählt jetzt ihr Thema</div>`+
+    state.pair.map(t=>`
+    <button class="choice" onclick="pickTheme(${t.nr})">
+      <span class="num">${t.nr}</span>
+      <span><span class="t">${esc(t.titel)}</span><span class="h">${esc(t.klammer)}</span></span>
+    </button>`).join("");
+}
+
+setMode("solo"); setTime(90); setHelp(1);
+</script>
+</body>
+</html>

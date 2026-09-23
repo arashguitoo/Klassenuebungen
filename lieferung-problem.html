@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lieferung mit Problemen – Lern Deutsch mit Arash</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<style>
+:root{
+  --bg:#141b12; --bg2:#1c2618; --card:#22301c; --card2:#2b3d24;
+  --ink:#eef4e9; --ink-soft:#a7bb9a; --line:#3c5230;
+  --green:#5c9a3a; --green-deep:#3f7024; --amber:#d99a2b; --rose:#d15a3a;
+  --blue:#3f7cc4;
+  --radius:16px; --shadow:0 1px 2px rgba(0,0,0,.2),0 12px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',Calibri,system-ui,sans-serif;color:var(--ink);line-height:1.55;
+  background:radial-gradient(circle at 50% -8%, #2a3a1f 0%, transparent 55%),var(--bg);-webkit-font-smoothing:antialiased;}
+.wrap{max-width:1000px;margin:0 auto;padding:16px 16px 70px}
+.wrap.beamer{max-width:1180px}
+.hidden{display:none!important}
+h1,h2,h3{margin:0}
+button{font-family:inherit}
+header.top{display:flex;align-items:center;gap:14px;padding:18px 0 20px}
+.logo{flex:0 0 auto;width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--green),var(--green-deep));
+  display:grid;place-items:center;color:#fff;font-size:1.6rem;box-shadow:0 6px 16px rgba(92,154,58,.35)}
+header.top h1{font-size:1.5rem;letter-spacing:-.4px;line-height:1.05}
+header.top .tag{color:var(--ink-soft);font-size:.85rem;margin-top:2px}
+header.top .home{margin-left:auto;text-decoration:none;color:var(--ink-soft);font-size:.82rem;font-weight:700;
+  border:1px solid var(--line);border-radius:999px;padding:7px 13px;background:var(--card);white-space:nowrap}
+.card{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:var(--shadow)}
+.card h2{font-size:1.18rem;margin-bottom:4px}
+.muted{color:var(--ink-soft);font-size:.9rem}
+.center{text-align:center}
+.btn{border:none;border-radius:12px;padding:13px 20px;font-size:1rem;font-weight:800;cursor:pointer;transition:.15s;color:#fff}
+.btn-green{background:linear-gradient(180deg,var(--green),var(--green-deep))}
+.btn-green:hover{filter:brightness(1.08)}
+.btn-amber{background:linear-gradient(180deg,var(--amber),#b57f14);color:#3a2a00}
+.btn-blue{background:linear-gradient(180deg,var(--blue),#2b5990)}
+.btn-ghost{background:var(--card2);color:var(--ink-soft);border:1px solid var(--line)}
+.btn-ghost:hover{color:var(--ink)}
+.btn-danger{background:#7a2520;border:1px solid #a23}
+.btn-danger:hover{background:#8f2d27}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.small{padding:8px 13px;font-size:.85rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input,select,textarea{padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--card2);color:var(--ink);font-family:inherit}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--green);border-color:var(--green)}
+textarea{width:100%;min-height:120px;resize:vertical;line-height:1.5}
+.notice{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:.9rem;margin-top:10px}
+.notice.ok{border-color:var(--green);color:#cfeab8}
+.notice.err{border-color:var(--rose);color:#f6cdbf}
+.notice.warn{border-color:var(--amber);color:#f2d489}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+@media(max-width:560px){.role-grid{grid-template-columns:1fr}}
+.role-pick{border:1px solid var(--line);background:var(--card2);border-radius:var(--radius);padding:22px;cursor:pointer;text-align:left;transition:.15s;color:var(--ink)}
+.role-pick:hover{border-color:var(--green);transform:translateY(-2px)}
+.role-pick .ic{font-size:2rem;margin-bottom:8px}
+.role-pick h3{font-size:1.1rem;margin-bottom:4px}
+.role-pick p{color:var(--ink-soft);font-size:.86rem;margin:0}
+.bigcode{font-size:2.4rem;font-weight:900;letter-spacing:6px;color:var(--amber);text-align:center;margin:8px 0}
+.flex-between{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.list-item{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;flex-wrap:wrap}
+.list-item .nm{font-weight:700;flex:1;min-width:90px}
+.assign-sel{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:.82rem;max-width:230px}
+.assign-sel:focus{outline:2px solid var(--green);border-color:var(--green)}
+.pill{display:inline-block;font-size:.74rem;font-weight:800;padding:4px 10px;border-radius:999px}
+.pill.gastro{background:#123a2a;color:#7fe0b8}.pill.lief{background:#3a2f12;color:#f2cf89}.pill.frei{background:#2a3a22;color:var(--ink-soft)}
+.phase-banner{border-radius:14px;padding:16px 18px;margin-bottom:14px;text-align:center;font-weight:800}
+.phase-1{background:linear-gradient(135deg,var(--green),var(--green-deep));color:#fff}
+.phase-2{background:linear-gradient(135deg,var(--amber),#b57f14);color:#3a2a00}
+.phase-3{background:linear-gradient(135deg,var(--rose),#a5432b);color:#fff}
+.phase-lobby{background:var(--card2);color:var(--ink-soft)}
+.phase-banner .t{font-size:1.15rem}.phase-banner .s{font-size:.9rem;opacity:.94;font-weight:600;margin-top:3px}
+.mode-toggle{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;flex-wrap:wrap}
+.mode-toggle button{border:none;background:var(--card);padding:10px 14px;font-weight:700;font-size:.85rem;cursor:pointer;color:var(--ink-soft)}
+.mode-toggle button[aria-pressed="true"]{background:var(--green);color:#fff}
+.firmhead{display:flex;align-items:center;gap:10px;margin:16px 0 6px}
+.firmdot{width:14px;height:14px;border-radius:4px}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tabs button{border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:9px 15px;border-radius:999px;font-size:.9rem;font-weight:700;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--amber);color:#3a2a00;border-color:var(--amber)}
+.panel{display:none}.panel.active{display:block}
+.rolecard{border-radius:var(--radius);overflow:hidden;background:var(--card);box-shadow:var(--shadow);margin-bottom:12px;border:1px solid var(--line)}
+.rolecard .rc-top{padding:14px 16px;color:#fff}
+.rolecard .rc-top .firm{font-size:.74rem;text-transform:uppercase;letter-spacing:.8px;opacity:.9}
+.rolecard .rc-top .role{font-size:1.3rem;font-weight:800;margin-top:2px}
+.rolecard .rc-body{padding:14px 16px}
+.rolecard dt{font-weight:800;font-size:.74rem;text-transform:uppercase;letter-spacing:.4px;margin-top:10px;color:var(--ink-soft)}
+.rolecard dt:first-child{margin-top:0}
+.rolecard dd{margin:2px 0 0}
+dl{margin:0}
+table.ware{width:100%;border-collapse:collapse;margin:8px 0 0;font-size:.9rem}
+table.ware th,table.ware td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+table.ware th{background:var(--card2);color:var(--ink-soft);font-size:.78rem;text-transform:uppercase;letter-spacing:.4px}
+.orderbox{border:1px solid var(--line);border-radius:12px;background:var(--card2);padding:14px 16px;margin-bottom:12px}
+.orderbox h3{font-size:1rem;margin-bottom:8px;color:var(--amber)}
+.order-line{display:flex;gap:10px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.order-line select,.order-line input{flex:1 1 120px}
+.order-status{display:inline-block;font-size:.76rem;font-weight:800;padding:4px 11px;border-radius:999px;margin-left:6px}
+.st-neu{background:#2a3a22;color:var(--ink-soft)}
+.st-bestellt{background:#123a2a;color:#7fe0b8}
+.st-bestaetigt{background:#13294a;color:#9cc4f0}
+.st-problem{background:#3a1f16;color:#f6b8a3}
+.problembox{border:2px solid var(--rose);border-radius:12px;background:#2a1a14;padding:14px 16px;margin-bottom:12px}
+.problembox h3{color:#f6b8a3;font-size:1.05rem;margin-bottom:5px}
+.phrase-group{margin-bottom:14px}
+.phrase-group h3{font-size:.95rem;color:var(--amber);margin-bottom:6px}
+.phrase{display:block;background:var(--card2);border-left:3px solid var(--green);padding:9px 13px;border-radius:0 8px 8px 0;margin-bottom:6px;font-size:.96rem}
+.pill-status{display:inline-flex;gap:7px;align-items:center;font-size:.8rem;font-weight:700;color:var(--ink-soft)}
+.sdot{width:8px;height:8px;border-radius:50%;background:var(--rose)}
+.pill-status.live .sdot{background:var(--green)}
+.savebar{display:flex;gap:10px;align-items:center;margin-top:10px}
+.msg-in{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-bottom:9px}
+.msg-in .who{font-weight:800;font-size:.85rem;color:var(--amber)}
+.msg-in .txt{font-size:.95rem;margin-top:3px;white-space:pre-wrap}
+footer{text-align:center;color:var(--ink-soft);font-size:.8rem;margin-top:34px}
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div id="screen-home" class="wrap">
+  <header class="top">
+    <div class="logo">🚚</div>
+    <div><h1>Lieferung mit Problemen</h1><div class="tag">Gastro bestellt beim Lieferanten · B1/B2</div></div>
+    <a href="index.html" class="home">🏠 Index</a>
+  </header>
+  <div class="card">
+    <h2>Wie machst du mit?</h2>
+    <p class="muted">Die Lehrkraft öffnet die <b>Spielleitung</b> (Beamer) und teilt die Rollen zu. Alle anderen treten am Handy bei: entweder im <b>Gastro-Betrieb</b> (bestellt Ware) oder beim <b>Lieferanten</b> (liefert Ware). Eine Bestellung wandert digital hin und her.</p>
+    <div class="role-grid">
+      <button class="role-pick" onclick="showConsoleLogin()">
+        <div class="ic">🎛️</div><h3>Spielleitung (Beamer)</h3>
+        <p>Rollen zuteilen, Paare bilden, die drei Phasen steuern, Teilnehmende verwalten.</p>
+      </button>
+      <button class="role-pick" onclick="showJoin()">
+        <div class="ic">📱</div><h3>Mitspielen</h3>
+        <p>Beitreten, Rolle ansehen, Bestellung aufgeben oder annehmen, reklamieren.</p>
+      </button>
+    </div>
+  </div>
+  <div class="card">
+    <h2>So läuft das Spiel</h2>
+    <ol class="muted" style="margin:6px 0 0;padding-left:20px;line-height:1.8">
+      <li><b>Phase 1 · Bestellen (sprechen):</b> Der Gastro-Betrieb ruft beim Lieferanten an und bestellt Ware (Menge, Termin, Preis). Der Lieferant bestätigt.</li>
+      <li><b>Phase 2 · Lieferung &amp; Problem:</b> Die Ware kommt – aber es gibt ein Problem (falsche Menge, beschädigt, zu spät, falsches Produkt).</li>
+      <li><b>Phase 3 · Reklamieren (schreiben):</b> Der Gastro-Betrieb schreibt eine formelle Reklamation, der Lieferant antwortet schriftlich.</li>
+    </ol>
+  </div>
+</div>
+
+<!-- JOIN -->
+<div id="screen-join" class="wrap hidden">
+  <header class="top"><div class="logo">🚚</div>
+    <div><h1>Beitreten</h1><div class="tag">Spielcode und Name eingeben</div></div>
+    <a href="#" class="home" onclick="goHome();return false;">← zurück</a></header>
+  <div class="card">
+    <div class="row" style="margin-bottom:12px">
+      <input id="join-code" placeholder="Spielcode" style="flex:1 1 160px;text-transform:uppercase">
+      <input id="join-name" placeholder="Dein Name" style="flex:1 1 160px">
+    </div>
+    <button class="btn btn-green" onclick="joinGame()">Beitreten</button>
+    <div id="join-msg"></div>
+  </div>
+</div>
+
+<!-- CONSOLE LOGIN -->
+<div id="screen-console-login" class="wrap hidden">
+  <header class="top"><div class="logo">🚚</div>
+    <div><h1>Spielleitung</h1><div class="tag">Neues Spiel starten</div></div>
+    <a href="#" class="home" onclick="goHome();return false;">← zurück</a></header>
+  <div class="card">
+    <h2>Neues Spiel</h2>
+    <p class="muted">Ein Spielcode wird erzeugt. Teilt ihn mit dem Kurs.</p>
+    <div class="row" style="margin-top:12px"><button class="btn btn-green" onclick="createGame()">🎬 Spiel erstellen</button></div>
+    <div id="console-login-msg"></div>
+  </div>
+</div>
+
+<div id="screen-console" class="wrap beamer hidden"></div>
+<div id="screen-player" class="wrap hidden"></div>
+
+<footer>Lern Deutsch mit Arash · Lieferung mit Problemen</footer>
+
+<script data-goatcounter="https://aguitoo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+/* ================= DATEN ================= */
+/* Gastro-Betriebe (bestellen) */
+const GASTRO = [
+  {id:"G1", name:"Ristorante Bella Vista", art:"Italienisches Restaurant",
+   braucht:"Mozzarella, Tomaten, Olivenöl, Mehl, Rotwein"},
+  {id:"G2", name:"Café Morgenrot", art:"Café & Frühstück",
+   braucht:"Kaffeebohnen, Milch, Croissants, Marmelade, Servietten"},
+  {id:"G3", name:"Kantine TechPark", art:"Betriebskantine",
+   braucht:"Kartoffeln, Hähnchen, Gemüse (TK), Reis, Mineralwasser"},
+];
+/* Lieferanten (liefern) */
+const LIEFERANT = [
+  {id:"L1", name:"FreshFood Großhandel", art:"Lebensmittel-Großhandel",
+   liefert:"frische Lebensmittel, Obst, Gemüse, Molkereiprodukte"},
+  {id:"L2", name:"GetränkeProfi GmbH", art:"Getränke-Lieferant",
+   liefert:"Getränke aller Art, Kaffee, Wasser, Wein, Fässer"},
+  {id:"L3", name:"GastroBedarf24", art:"Ausstattung & Verbrauchsmaterial",
+   liefert:"Geschirr, Servietten, Reinigungsmittel, Verpackungen"},
+];
+/* Rollen je Seite */
+const ROLLEN = {
+  gastro:[
+    {key:"kueche", titel:"Küchenchef:in", kern:true,
+     aufgabe:"Du weißt, was die Küche braucht. Sag genau, welche Ware und wie viel.",
+     ziel:"Die richtige Ware in der richtigen Menge bekommen."},
+    {key:"einkauf", titel:"Einkauf", kern:true,
+     aufgabe:"Du bestellst und achtest auf Preis und Liefertermin. Du führst das Telefonat.",
+     ziel:"Guten Preis und passenden Termin aushandeln."},
+    {key:"leitung", titel:"Restaurantleitung", kern:false,
+     aufgabe:"Du entscheidest bei Problemen und unterschreibst die Reklamation.",
+     ziel:"Bei Problemen eine faire Lösung durchsetzen."},
+  ],
+  lieferant:[
+    {key:"vertrieb", titel:"Vertrieb / Verkauf", kern:true,
+     aufgabe:"Du nimmst die Bestellung an, nennst Preise und bestätigst den Termin.",
+     ziel:"Die Bestellung korrekt aufnehmen und den Kunden zufriedenstellen."},
+    {key:"lager", titel:"Lager", kern:true,
+     aufgabe:"Du prüfst, was auf Lager ist, und packst die Bestellung. Manchmal fehlt etwas.",
+     ziel:"Richtig kommissionieren – oder ehrlich sagen, was fehlt."},
+    {key:"fahrer", titel:"Fahrer:in / Auslieferung", kern:false,
+     aufgabe:"Du lieferst die Ware und nimmst Reklamationen vor Ort entgegen.",
+     ziel:"Pünktlich liefern und bei Problemen ruhig bleiben."},
+  ],
+};
+/* Warenlisten je Lieferant (für die Bestellung) */
+const WAREN = {
+  L1:[
+    {ware:"Mozzarella (1 kg)", preis:"8,50 €"},
+    {ware:"Tomaten, frisch (5 kg)", preis:"9,00 €"},
+    {ware:"Kartoffeln (10 kg)", preis:"7,50 €"},
+    {ware:"Hähnchenbrust (5 kg)", preis:"32,00 €"},
+    {ware:"Gemüsemischung TK (5 kg)", preis:"14,00 €"},
+    {ware:"Milch (10 l)", preis:"11,00 €"},
+  ],
+  L2:[
+    {ware:"Kaffeebohnen (1 kg)", preis:"18,00 €"},
+    {ware:"Mineralwasser (Kasten)", preis:"6,50 €"},
+    {ware:"Rotwein (6 Flaschen)", preis:"36,00 €"},
+    {ware:"Orangensaft (10 l)", preis:"15,00 €"},
+    {ware:"Bierfass (30 l)", preis:"70,00 €"},
+    {ware:"Milch für Kaffee (10 l)", preis:"12,00 €"},
+  ],
+  L3:[
+    {ware:"Servietten (1000 St.)", preis:"9,00 €"},
+    {ware:"Pizzakartons (100 St.)", preis:"22,00 €"},
+    {ware:"Reinigungsmittel (5 l)", preis:"16,00 €"},
+    {ware:"Einweggeschirr (200 St.)", preis:"18,00 €"},
+    {ware:"Müllbeutel (Rolle)", preis:"7,00 €"},
+    {ware:"Küchentücher (Karton)", preis:"13,00 €"},
+  ],
+};
+/* Probleme, die bei der Lieferung auftreten (Phase 2) */
+const PROBLEME = [
+  {t:"Falsche Menge", d:"Es wurden nur die Hälfte der bestellten Ware geliefert."},
+  {t:"Beschädigte Ware", d:"Mehrere Kartons sind kaputt, die Ware ist teilweise unbrauchbar."},
+  {t:"Zu spät geliefert", d:"Die Lieferung kam Stunden zu spät – das Mittagsgeschäft war schon vorbei."},
+  {t:"Falsches Produkt", d:"Es wurde ein anderes Produkt geliefert als bestellt."},
+  {t:"Verdorbene Ware", d:"Die frische Ware war nicht mehr gut (abgelaufen / falsch gekühlt)."},
+  {t:"Falsche Rechnung", d:"Auf der Rechnung stehen ein zu hoher Preis und Waren, die nie bestellt wurden."},
+];
+/* Redemittel */
+const PHRASES = [
+  {group:"Telefonisch bestellen (Gastro)", items:[
+    "Guten Tag, ich möchte gern eine Bestellung aufgeben.",
+    "Ich hätte gern … / Wir brauchen … Kilo / Liter / Stück.",
+    "Bis wann können Sie liefern?",
+    "Was kostet das? Bekommen wir einen Mengenrabatt?"]},
+  {group:"Bestellung annehmen (Lieferant)", items:[
+    "Gern, was darf es sein?",
+    "Wie viel brauchen Sie davon?",
+    "Der Preis liegt bei … pro Einheit.",
+    "Wir können am … liefern. Passt das?"]},
+  {group:"Nachfragen & bestätigen", items:[
+    "Können Sie das bitte wiederholen?",
+    "Also: … Stück bis …, richtig?",
+    "Ich fasse zusammen: Sie bestellen …",
+    "Vielen Dank, die Bestellung ist notiert."]},
+  {group:"Problem melden / reklamieren (Gastro)", items:[
+    "Leider gibt es ein Problem mit der Lieferung.",
+    "Die Ware ist … (beschädigt / falsch / zu wenig).",
+    "So können wir das nicht annehmen.",
+    "Wir erwarten eine Lösung: Ersatz / Rückerstattung / Rabatt."]},
+  {group:"Auf Reklamation reagieren (Lieferant)", items:[
+    "Das tut mir sehr leid, das war unser Fehler.",
+    "Können Sie mir genau sagen, was fehlt?",
+    "Wir schicken umgehend Ersatz.",
+    "Als Entschuldigung bieten wir Ihnen … an."]},
+  {group:"Formelle Reklamation schreiben", items:[
+    "Sehr geehrte Damen und Herren,",
+    "am … haben wir bei Ihnen … bestellt.",
+    "Leider mussten wir feststellen, dass …",
+    "Wir bitten Sie, bis … für Ersatz zu sorgen.",
+    "Mit freundlichen Grüßen"]},
+];
+</script>
+<script>
+/* ================= ENGINE ================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyBDChXlm34Kr7Gg0Dw458GiiwoLnWJAnxM",
+  authDomain: "lern-deutsch-arash.firebaseapp.com",
+  databaseURL: "https://lern-deutsch-arash-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "lern-deutsch-arash",
+  storageBucket: "lern-deutsch-arash.firebasestorage.app",
+  messagingSenderId: "845503292114",
+  appId: "1:845503292114:web:f76ab5fcde1e978d00c30b"
+};
+let db=null, fbReady=false;
+try{ firebase.initializeApp(firebaseConfig); db=firebase.database(); fbReady=true; }
+catch(e){ console.warn("Firebase nicht konfiguriert:",e); }
+
+const GMAP={}; GASTRO.forEach(g=>GMAP[g.id]=g);
+const LMAP={}; LIEFERANT.forEach(l=>LMAP[l.id]=l);
+const PHASES=[
+  {key:"lobby", label:"Lobby", sub:"Warten auf den Start"},
+  {key:"p1", label:"Phase 1 · Bestellen", sub:"Gastro ruft an und bestellt – Lieferant bestätigt (sprechen)"},
+  {key:"p2", label:"Phase 2 · Lieferung & Problem", sub:"Die Ware kommt – aber es gibt ein Problem"},
+  {key:"p3", label:"Phase 3 · Reklamieren", sub:"Formelle Reklamation schreiben und beantworten"}
+];
+const PHASE_IDX={lobby:0,p1:1,p2:2,p3:3};
+
+let role=null, gameCode=null, gameRef=null, myId=null, lastGame=null, playerTab="rolle";
+const S=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function rand4(){return String(Math.floor(1000+Math.random()*9000));}
+function uid(){return "u"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function setMsg(id,t,c){const e=S(id);if(e)e.innerHTML=`<div class="notice ${c||''}">${t}</div>`;}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function hideAll(){["screen-home","screen-join","screen-player","screen-console-login","screen-console"].forEach(s=>S(s).classList.add("hidden"));}
+function goHome(){ if(gameRef){gameRef.off();} hideAll(); S("screen-home").classList.remove("hidden"); role=null;gameCode=null;gameRef=null;myId=null;lastGame=null; }
+function showJoin(){hideAll();S("screen-join").classList.remove("hidden");}
+function showConsoleLogin(){hideAll();S("screen-console-login").classList.remove("hidden");
+  if(!fbReady)setMsg("console-login-msg","⚠️ Firebase ist nicht konfiguriert.","err");}
+function getDeviceId(code){const k="lmp_pid_"+code;try{let v=localStorage.getItem(k);if(!v){v=uid();localStorage.setItem(k,v);}return v;}catch(e){return uid();}}
+
+/* ---- role id helpers: "gastro-G1-kueche" / "lieferant-L1-vertrieb" ---- */
+function parseRole(rid){ if(!rid)return null; const p=rid.split("-"); return {seite:p[0], firma:p[1], rolle:p[2]}; }
+function roleTitle(rid){ const r=parseRole(rid); if(!r)return ""; const list=ROLLEN[r.seite]||[]; const rr=list.find(x=>x.key===r.rolle); return rr?rr.titel:""; }
+function firmName(rid){ const r=parseRole(rid); if(!r)return ""; return (r.seite==="gastro"?GMAP:LMAP)[r.firma]?.name||""; }
+
+/* -------- CONSOLE -------- */
+function createGame(){
+  if(!fbReady){setMsg("console-login-msg","⚠️ Firebase fehlt.","err");return;}
+  const code=rand4();
+  db.ref("games_lmp/"+code).set({createdAt:Date.now(),phase:"lobby",players:{},orders:{}})
+    .then(()=>{gameCode=code;role="console";enterConsole();});
+}
+function enterConsole(){
+  hideAll();S("screen-console").classList.remove("hidden");
+  gameRef=db.ref("games_lmp/"+gameCode);
+  gameRef.on("value",snap=>{lastGame=snap.val()||{};renderConsole(lastGame);});
+}
+function roleOptions(sel){
+  let o=`<option value="" ${sel==null?'selected':''}>— keine Rolle —</option>`;
+  o+=`<optgroup label="🍽️ Gastro-Betriebe">`;
+  GASTRO.forEach(g=>ROLLEN.gastro.forEach(r=>{
+    const val="gastro-"+g.id+"-"+r.key;
+    o+=`<option value="${val}" ${sel===val?'selected':''}>${esc(g.name)} · ${esc(r.titel)}${r.kern?' ★':''}</option>`;
+  }));
+  o+=`</optgroup><optgroup label="🚚 Lieferanten">`;
+  LIEFERANT.forEach(l=>ROLLEN.lieferant.forEach(r=>{
+    const val="lieferant-"+l.id+"-"+r.key;
+    o+=`<option value="${val}" ${sel===val?'selected':''}>${esc(l.name)} · ${esc(r.titel)}${r.kern?' ★':''}</option>`;
+  }));
+  o+=`</optgroup>`;
+  return o;
+}
+function renderConsole(g){
+  const players=g.players||{};
+  const arr=Object.entries(players).map(([id,p])=>({id,...p})).filter(p=>p.name).sort((a,b)=>(a.joinedAt||0)-(b.joinedAt||0));
+  const phase=g.phase||"lobby"; const pi=PHASE_IDX[phase]||0;
+
+  let body=`<header class="top">
+    <div class="logo">🚚</div>
+    <div><h1>Spielleitung</h1><div class="tag">${esc(PHASES[pi].label)} · ${arr.length} Teilnehmende</div></div>
+    <a href="#" class="home" onclick="if(confirm('Spiel verlassen?'))goHome();return false;">← beenden</a>
+  </header>
+  <div class="card center"><div class="muted">Spielcode für den Kurs</div><div class="bigcode">${esc(gameCode)}</div></div>`;
+
+  body+=`<div class="card center">
+    <div class="phase-banner phase-${phase==='lobby'?'lobby':phase}">
+      <div class="t">${esc(PHASES[pi].label)}</div><div class="s">${esc(PHASES[pi].sub)}</div>
+    </div>
+    <div class="mode-toggle">
+      ${PHASES.map((p,i)=>`<button aria-pressed="${pi===i}" onclick="setPhase('${p.key}')">${i===0?'Lobby':'Phase '+i}</button>`).join("")}
+    </div>
+    <p class="muted" style="margin-top:8px">Phase 2 verteilt automatisch an jedes Gastro-Team ein zufälliges Problem.</p>
+  </div>`;
+
+  body+=`<div class="card">
+    <div class="flex-between"><h2>Teilnehmende &amp; Rollen</h2>
+      ${arr.length?`<button class="btn btn-danger small" onclick="clearAll()">Alle entfernen</button>`:""}</div>
+    <p class="muted" style="margin-top:0">★ = Kernrolle. Verteile so, dass jeweils ein Gastro-Betrieb und ein Lieferant zusammenpassen (gleiche Nummer wird automatisch gepaart). Mit ✕ entfernen.</p>`;
+
+  if(!arr.length){ body+=`<p class="muted">Noch niemand da. Teilt den Spielcode!</p>`; }
+  else {
+    const unassigned=arr.filter(p=>!p.role);
+    if(unassigned.length){
+      body+=`<div class="firmhead"><span class="firmdot" style="background:var(--ink-soft)"></span><h2>Noch ohne Rolle</h2></div><div class="list">`;
+      body+=unassigned.map(p=>consoleRow(p)).join("")+`</div>`;
+    }
+    body+=`<div class="firmhead"><span class="firmdot" style="background:var(--green)"></span><h2>🍽️ Gastro-Betriebe</h2></div><div class="list">`;
+    const gA=arr.filter(p=>p.role&&p.role.startsWith("gastro"));
+    body+= gA.length? gA.map(p=>consoleRow(p)).join("") : `<p class="muted" style="margin:2px 0 0">— noch niemand —</p>`;
+    body+=`</div>`;
+    body+=`<div class="firmhead"><span class="firmdot" style="background:var(--amber)"></span><h2>🚚 Lieferanten</h2></div><div class="list">`;
+    const lA=arr.filter(p=>p.role&&p.role.startsWith("lieferant"));
+    body+= lA.length? lA.map(p=>consoleRow(p)).join("") : `<p class="muted" style="margin:2px 0 0">— noch niemand —</p>`;
+    body+=`</div>`;
+  }
+  body+=`</div>`;
+
+  if(phase==="lobby"&&arr.length>=2){
+    body+=`<div class="card center">
+      <button class="btn btn-green" onclick="autoAssign()">🎲 Automatisch verteilen</button>
+      <p class="muted" style="margin-top:8px">Verteilt zufällig auf Gastro/Lieferant, Kernrollen (★) zuerst. Passt für 6–18 Personen.</p>
+    </div>`;
+  }
+  S("screen-console").innerHTML=body;
+}
+function consoleRow(p){
+  return `<div class="list-item"><span class="nm">${esc(p.name)}</span>
+    <select class="assign-sel" onchange="setRole('${p.id}',this.value)">${roleOptions(p.role)}</select>
+    ${p.role?`<span class="pill ${p.role.startsWith('gastro')?'gastro':'lief'}">${esc(firmName(p.role))} · ${esc(roleTitle(p.role))}</span>`:""}
+    <button class="btn btn-danger small" onclick="removePlayer('${p.id}')">✕</button></div>`;
+}
+function setPhase(k){
+  gameRef.child("phase").set(k);
+  if(k==="p2"){ // jedem Gastro-Betrieb ein Problem zuweisen
+    const g=lastGame, players=g.players||{};
+    const firmen=new Set();
+    Object.values(players).forEach(p=>{ if(p.role&&p.role.startsWith("gastro")){ firmen.add(p.role.split("-")[1]); }});
+    const updates={};
+    firmen.forEach(fid=>{
+      const pr=PROBLEME[Math.floor(Math.random()*PROBLEME.length)];
+      updates["orders/"+fid+"/problem"]=pr;
+    });
+    if(Object.keys(updates).length) gameRef.update(updates);
+  }
+}
+function setRole(id,val){ if(val==="") gameRef.child("players/"+id+"/role").remove(); else gameRef.child("players/"+id+"/role").set(val); }
+function removePlayer(id){ gameRef.child("players/"+id).remove(); }
+function clearAll(){ if(confirm("Wirklich ALLE Teilnehmenden entfernen?")) gameRef.child("players").remove(); }
+function autoAssign(){
+  const g=lastGame, players=g.players||{};
+  const ids=shuffle(Object.keys(players).filter(id=>players[id]&&players[id].name));
+  // Slots: pair firm G1<->L1, G2<->L2, G3<->L3; core roles first
+  const slots=[];
+  [["G1","L1"],["G2","L2"],["G3","L3"]].forEach(([gid,lid])=>{
+    ROLLEN.gastro.filter(r=>r.kern).forEach(r=>slots.push("gastro-"+gid+"-"+r.key));
+    ROLLEN.lieferant.filter(r=>r.kern).forEach(r=>slots.push("lieferant-"+lid+"-"+r.key));
+  });
+  [["G1","L1"],["G2","L2"],["G3","L3"]].forEach(([gid,lid])=>{
+    ROLLEN.gastro.filter(r=>!r.kern).forEach(r=>slots.push("gastro-"+gid+"-"+r.key));
+    ROLLEN.lieferant.filter(r=>!r.kern).forEach(r=>slots.push("lieferant-"+lid+"-"+r.key));
+  });
+  const updates={};
+  ids.forEach((id,i)=>{ if(i<slots.length) updates["players/"+id+"/role"]=slots[i]; });
+  gameRef.update(updates);
+}
+
+/* -------- PLAYER -------- */
+function joinGame(){
+  if(!fbReady){setMsg("join-msg","⚠️ Firebase ist nicht konfiguriert.","err");return;}
+  const code=S("join-code").value.trim().toUpperCase();
+  const name=S("join-name").value.trim();
+  if(!code||!name){setMsg("join-msg","Bitte Spielcode und Namen eingeben.","err");return;}
+  db.ref("games_lmp/"+code).get().then(s=>{
+    if(!s.exists()){setMsg("join-msg","Kein Spiel mit diesem Code gefunden.","err");return;}
+    gameCode=code;role="player";myId=getDeviceId(code);
+    const ex=(s.val().players||{})[myId]||{};
+    const data={name,joinedAt:ex.joinedAt||Date.now()};
+    if(ex.role)data.role=ex.role;
+    db.ref("games_lmp/"+code+"/players/"+myId).update(data).then(enterPlayer);
+  });
+}
+function enterPlayer(){
+  hideAll();S("screen-player").classList.remove("hidden");
+  gameRef=db.ref("games_lmp/"+gameCode);
+  gameRef.on("value",snap=>{lastGame=snap.val()||{};renderPlayer(lastGame);});
+}
+function renderPlayer(g){
+  const me=(g.players||{})[myId];
+  if(!me){
+    S("screen-player").innerHTML=`<header class="top"><div class="logo">🚚</div>
+      <div><h1>Mitspielen</h1><div class="tag">Verbindung</div></div></header>
+      <div class="card center"><h2>Du wurdest entfernt</h2><p class="muted">Die Spielleitung hat dich entfernt.</p>
+      <button class="btn btn-green" onclick="rejoinFresh()">Neu beitreten</button></div>`;
+    return;
+  }
+  const phase=g.phase||"lobby"; const pi=PHASE_IDX[phase]||0;
+  let body=`<header class="top"><div class="logo">🚚</div>
+    <div><h1>${esc(me.name)}</h1><div class="tag pill-status live"><span class="sdot"></span> verbunden</div></div>
+    <a href="#" class="home" onclick="if(confirm('Spiel verlassen?'))goHome();return false;">←</a></header>`;
+
+  if(!me.role){
+    body+=`<div class="card center"><h2>Warte auf deine Rolle 🎭</h2><p class="muted">Die Spielleitung teilt dich gleich zu.</p></div>`;
+    S("screen-player").innerHTML=body; return;
+  }
+
+  const pr=parseRole(me.role);
+  const seite=pr.seite; // gastro | lieferant
+  const firma=(seite==="gastro"?GMAP:LMAP)[pr.firma];
+  const rInfo=(ROLLEN[seite]||[]).find(x=>x.key===pr.rolle);
+  const orders=g.orders||{};
+  const order=orders[pr.firma]||{}; // Bestellung wird unter der Gastro-Firmen-ID geführt
+  const gastroFirmId = seite==="gastro" ? pr.firma : ("G"+pr.firma.slice(1)); // L1<->G1
+  const myOrder = orders[ seite==="gastro"?pr.firma : ("G"+pr.firma.slice(1)) ] || {};
+
+  body+=`<div class="phase-banner phase-${phase==='lobby'?'lobby':phase}">
+    <div class="t">${esc(PHASES[pi].label)}</div><div class="s">${esc(PHASES[pi].sub)}</div></div>`;
+
+  body+=`<div class="tabs">
+    <button aria-selected="${playerTab==='rolle'}" onclick="setTab('rolle')">🎭 Rolle</button>
+    <button aria-selected="${playerTab==='bestellung'}" onclick="setTab('bestellung')">📋 Bestellung</button>
+    ${phase==='p3'||phase==='p2'?`<button aria-selected="${playerTab==='reklamation'}" onclick="setTab('reklamation')">✍️ Reklamation</button>`:''}
+    <button aria-selected="${playerTab==='bausteine'}" onclick="setTab('bausteine')">💬 Redemittel</button>
+  </div>`;
+
+  const farbe = seite==="gastro" ? "var(--green)" : "var(--amber)";
+  // ROLLE
+  body+=`<div class="panel ${playerTab==='rolle'?'active':''}">
+    <div class="rolecard"><div class="rc-top" style="background:${seite==='gastro'?'linear-gradient(135deg,var(--green),var(--green-deep))':'linear-gradient(135deg,var(--amber),#b57f14)'};${seite==='lieferant'?'color:#3a2a00':''}">
+      <div class="firm">${esc(firma.name)} · ${esc(firma.art)} · ${seite==='gastro'?'BESTELLT':'LIEFERT'}</div>
+      <div class="role">${esc(rInfo.titel)}${rInfo.kern?' ★':''}</div></div>
+      <div class="rc-body"><dl>
+        <dt>Deine Aufgabe</dt><dd>${esc(rInfo.aufgabe)}</dd>
+        <dt>Dein Ziel</dt><dd>${esc(rInfo.ziel)}</dd>
+        <dt>${seite==='gastro'?'Ihr braucht':'Ihr liefert'}</dt><dd>${esc(seite==='gastro'?firma.braucht:firma.liefert)}</dd>
+        <dt>Euer Partner</dt><dd>${seite==='gastro'?esc(LMAP["L"+pr.firma.slice(1)].name)+' (Lieferant)':esc(GMAP["G"+pr.firma.slice(1)].name)+' (Gastro)'}</dd>
+      </dl></div></div>
+    <div class="notice">${seite==='gastro'?'Phase 1: Ruft euren Lieferanten an und bestellt. Tragt die Bestellung im Tab „Bestellung" ein.':'Phase 1: Nehmt die Bestellung des Gastro-Betriebs an und bestätigt sie im Tab „Bestellung".'}</div>
+  </div>`;
+
+  // BESTELLUNG
+  const linkedFirmId = seite==="gastro" ? pr.firma : ("G"+pr.firma.slice(1));
+  const ord = orders[linkedFirmId] || {};
+  const lieferantId = "L"+linkedFirmId.slice(1);
+  const waren = WAREN[lieferantId]||[];
+  body+=`<div class="panel ${playerTab==='bestellung'?'active':''}"><div class="card">
+    <h2>📋 Bestellung ${ord.status?`<span class="order-status st-${ord.status}">${esc(ord.status)}</span>`:'<span class="order-status st-neu">neu</span>'}</h2>`;
+
+  // Warenliste (Referenz)
+  body+=`<p class="muted" style="margin-top:6px">Warenliste von ${esc(LMAP[lieferantId].name)}:</p>
+    <table class="ware"><tr><th>Ware</th><th>Preis</th></tr>
+    ${waren.map(w=>`<tr><td>${esc(w.ware)}</td><td>${esc(w.preis)}</td></tr>`).join("")}</table>`;
+
+  if(seite==="gastro"){
+    body+=`<div class="orderbox" style="margin-top:12px"><h3>Eure Bestellung eintragen</h3>
+      <p class="muted" style="margin-top:0">Telefoniert erst, dann tragt ein, was ihr bestellt habt.</p>
+      <textarea id="orderText" placeholder="z. B.:&#10;- 2 kg Mozzarella&#10;- 5 kg Tomaten&#10;Liefertermin: Donnerstag&#10;Bestellt bei: Vertrieb (Name)">${esc(ord.text||"")}</textarea>
+      <div class="savebar">
+        <button class="btn btn-green small" onclick="saveOrder('${linkedFirmId}')">📤 Bestellung absenden</button>
+        <span id="ordsaved" class="muted"></span>
+      </div>
+    </div>`;
+    if(ord.confirm){ body+=`<div class="notice ok">✅ Lieferant hat bestätigt: ${esc(ord.confirm)}</div>`; }
+  } else {
+    // Lieferant sieht die Bestellung, bestätigt
+    if(ord.text){
+      body+=`<div class="orderbox" style="margin-top:12px"><h3>Eingegangene Bestellung</h3>
+        <div class="msg-in"><div class="who">${esc(GMAP[linkedFirmId].name)}</div><div class="txt">${esc(ord.text)}</div></div>
+        <textarea id="confirmText" placeholder="Bestätigung, z. B.:&#10;Bestellung bestätigt.&#10;Lieferung am Donnerstag, 10 Uhr.&#10;Gesamtpreis: … €">${esc(ord.confirm||"")}</textarea>
+        <div class="savebar">
+          <button class="btn btn-amber small" onclick="saveConfirm('${linkedFirmId}')">✅ Bestätigung senden</button>
+          <span id="confsaved" class="muted"></span>
+        </div>
+      </div>`;
+    } else {
+      body+=`<div class="notice warn" style="margin-top:12px">⏳ Noch keine Bestellung eingegangen. Wartet, bis der Gastro-Betrieb bestellt (oder ruft an!).</div>`;
+    }
+  }
+  body+=`</div></div>`;
+
+  // REKLAMATION (Phase 2/3)
+  if(phase==="p3"||phase==="p2"){
+    body+=`<div class="panel ${playerTab==='reklamation'?'active':''}"><div class="card">`;
+    const problem=ord.problem;
+    if(problem){
+      body+=`<div class="problembox"><h3>⚠️ Problem bei der Lieferung: ${esc(problem.t)}</h3><p style="margin:0">${esc(problem.d)}</p></div>`;
+    } else {
+      body+=`<div class="notice warn">Das Problem erscheint, sobald die Spielleitung Phase 2 startet.</div>`;
+    }
+    if(seite==="gastro"){
+      body+=`<h2>✍️ Reklamation schreiben</h2>
+        <p class="muted">Schreibt eine formelle Reklamation an den Lieferanten. Nennt: was bestellt, was falsch, was ihr verlangt.</p>
+        <textarea id="reklText" placeholder="Sehr geehrte Damen und Herren,&#10;am … haben wir … bestellt.&#10;Leider …&#10;Wir bitten Sie, …&#10;Mit freundlichen Grüßen">${esc(ord.reklamation||"")}</textarea>
+        <div class="savebar"><button class="btn btn-green small" onclick="saveReklamation('${linkedFirmId}')">📤 Reklamation senden</button>
+          <span id="reklsaved" class="muted"></span></div>`;
+      if(ord.antwort){ body+=`<div class="notice ok" style="margin-top:12px"><b>Antwort des Lieferanten:</b><br>${esc(ord.antwort)}</div>`; }
+    } else {
+      if(ord.reklamation){
+        body+=`<div class="msg-in"><div class="who">Reklamation von ${esc(GMAP[linkedFirmId].name)}</div><div class="txt">${esc(ord.reklamation)}</div></div>
+          <h2>✍️ Antwort schreiben</h2>
+          <p class="muted">Reagiert höflich: entschuldigen, Lösung anbieten (Ersatz / Rabatt / Rückerstattung).</p>
+          <textarea id="antwortText" placeholder="Sehr geehrte…,&#10;vielen Dank für Ihre Nachricht.&#10;Das tut uns leid …&#10;Wir bieten Ihnen … an.&#10;Mit freundlichen Grüßen">${esc(ord.antwort||"")}</textarea>
+          <div class="savebar"><button class="btn btn-amber small" onclick="saveAntwort('${linkedFirmId}')">📤 Antwort senden</button>
+            <span id="antwsaved" class="muted"></span></div>`;
+      } else {
+        body+=`<div class="notice warn">⏳ Noch keine Reklamation erhalten. Wartet auf den Gastro-Betrieb.</div>`;
+      }
+    }
+    body+=`</div></div>`;
+  }
+
+  // BAUSTEINE
+  body+=`<div class="panel ${playerTab==='bausteine'?'active':''}"><div class="card">
+    ${PHRASES.map(gp=>`<div class="phrase-group"><h3>${esc(gp.group)}</h3>
+      ${gp.items.map(p=>`<span class="phrase">${esc(p)}</span>`).join("")}</div>`).join("")}
+  </div></div>`;
+
+  S("screen-player").innerHTML=body;
+}
+function setTab(t){playerTab=t;renderPlayer(lastGame);}
+function saveOrder(fid){ const t=S("orderText").value; gameRef.child("orders/"+fid).update({text:t,status:"bestellt"}).then(()=>flash("ordsaved")); }
+function saveConfirm(fid){ const t=S("confirmText").value; gameRef.child("orders/"+fid).update({confirm:t,status:"bestaetigt"}).then(()=>flash("confsaved")); }
+function saveReklamation(fid){ const t=S("reklText").value; gameRef.child("orders/"+fid).update({reklamation:t,status:"problem"}).then(()=>flash("reklsaved")); }
+function saveAntwort(fid){ const t=S("antwortText").value; gameRef.child("orders/"+fid).update({antwort:t}).then(()=>flash("antwsaved")); }
+function flash(id){ const e=S(id); if(e){e.textContent="gesendet ✓"; setTimeout(()=>{if(e)e.textContent="";},2000);} }
+function rejoinFresh(){try{localStorage.removeItem("lmp_pid_"+gameCode);}catch(e){}goHome();showJoin();}
+
+goHome();
+</script>
+</body>
+</html>

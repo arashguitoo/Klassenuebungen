@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mitarbeitergespräche – Lern Deutsch mit Arash</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<style>
+:root{
+  --bg:#0e1b2a; --bg2:#132539; --card:#16293f; --card2:#1d3350;
+  --ink:#eaf1f8; --ink-soft:#93a7bf; --line:#2a4463;
+  --chef:#b5451f; --chef2:#8f3418; --mit:#2f7d9e; --mit2:#215a72;
+  --gold:#e0a32e; --teal:#2fa389; --rose:#e0654a;
+  --radius:16px; --shadow:0 1px 2px rgba(0,0,0,.2),0 12px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',Calibri,system-ui,sans-serif;color:var(--ink);line-height:1.55;
+  background:radial-gradient(circle at 50% -8%, #1c3555 0%, transparent 55%),var(--bg);-webkit-font-smoothing:antialiased;}
+.wrap{max-width:1000px;margin:0 auto;padding:16px 16px 70px}
+.wrap.beamer{max-width:1180px}
+.hidden{display:none!important}
+h1,h2,h3{margin:0}
+button{font-family:inherit}
+header.top{display:flex;align-items:center;gap:14px;padding:18px 0 20px}
+.logo{flex:0 0 auto;width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--gold),#b57f14);
+  display:grid;place-items:center;color:#3a2a00;font-size:1.6rem;box-shadow:0 6px 16px rgba(224,163,46,.3)}
+header.top h1{font-size:1.5rem;letter-spacing:-.4px;line-height:1.05}
+header.top .tag{color:var(--ink-soft);font-size:.85rem;margin-top:2px}
+header.top .home{margin-left:auto;text-decoration:none;color:var(--ink-soft);font-size:.82rem;font-weight:700;
+  border:1px solid var(--line);border-radius:999px;padding:7px 13px;background:var(--card);white-space:nowrap}
+.card{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:16px;box-shadow:var(--shadow)}
+.card h2{font-size:1.18rem;margin-bottom:4px}
+.muted{color:var(--ink-soft);font-size:.9rem}
+.center{text-align:center}
+.btn{border:none;border-radius:12px;padding:13px 20px;font-size:1rem;font-weight:800;cursor:pointer;transition:.15s;color:#fff}
+.btn-gold{background:linear-gradient(180deg,var(--gold),#b57f14);color:#3a2a00}
+.btn-gold:hover{filter:brightness(1.06)}
+.btn-teal{background:linear-gradient(180deg,var(--teal),#1f7d68)}
+.btn-ghost{background:var(--card2);color:var(--ink-soft);border:1px solid var(--line)}
+.btn-ghost:hover{color:var(--ink)}
+.btn-danger{background:#7a2520;border:1px solid #a23}
+.btn-danger:hover{background:#8f2d27}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.small{padding:8px 13px;font-size:.85rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input,select{padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--card2);color:var(--ink);font-family:inherit}
+input:focus,select:focus{outline:2px solid var(--gold);border-color:var(--gold)}
+.notice{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:.9rem;margin-top:10px}
+.notice.ok{border-color:var(--teal);color:#b8ecdd}
+.notice.err{border-color:var(--rose);color:#f7cbc0}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+@media(max-width:560px){.role-grid{grid-template-columns:1fr}}
+.role-pick{border:1px solid var(--line);background:var(--card2);border-radius:var(--radius);padding:22px;cursor:pointer;text-align:left;transition:.15s;color:var(--ink)}
+.role-pick:hover{border-color:var(--gold);transform:translateY(-2px)}
+.role-pick .ic{font-size:2rem;margin-bottom:8px}
+.role-pick h3{font-size:1.1rem;margin-bottom:4px}
+.role-pick p{color:var(--ink-soft);font-size:.86rem;margin:0}
+.bigcode{font-size:2.4rem;font-weight:900;letter-spacing:6px;color:var(--gold);text-align:center;margin:8px 0}
+.flex-between{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.list-item{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;flex-wrap:wrap}
+.list-item .nm{font-weight:700;flex:1;min-width:90px}
+.assign-sel{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:.82rem;max-width:230px}
+.assign-sel:focus{outline:2px solid var(--gold);border-color:var(--gold)}
+.pill{display:inline-block;font-size:.74rem;font-weight:800;padding:4px 10px;border-radius:999px}
+.pill.chef{background:#3a1e12;color:#f0b79a}
+.pill.mit{background:#12303a;color:#9cd6ea}
+.pill.frei{background:#22344b;color:var(--ink-soft)}
+.pairhead{display:flex;align-items:center;gap:10px;margin:16px 0 4px}
+.pairhead h2{font-size:1.02rem}
+.pairhead .pn{width:26px;height:26px;border-radius:7px;background:var(--gold);color:#3a2a00;font-weight:900;display:grid;place-items:center;font-size:.85rem}
+.card-steck{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:14px;border:1px solid var(--line)}
+.card-steck .cs-top{padding:15px 17px;color:#fff}
+.card-steck.chef .cs-top{background:linear-gradient(135deg,var(--chef),var(--chef2))}
+.card-steck.mit .cs-top{background:linear-gradient(135deg,var(--mit),var(--mit2))}
+.card-steck .cs-rolle{font-size:.76rem;text-transform:uppercase;letter-spacing:1px;opacity:.92}
+.card-steck .cs-name{font-size:1.4rem;font-weight:800;margin-top:2px}
+.card-steck .cs-body{padding:15px 17px;background:var(--card)}
+.card-steck dt{font-weight:800;font-size:.74rem;text-transform:uppercase;letter-spacing:.4px;margin-top:12px;color:var(--ink-soft)}
+.card-steck dt:first-child{margin-top:0}
+.card-steck dd{margin:3px 0 0;font-size:1.02rem}
+dl{margin:0}
+.secret{background:#2a2210;border:1px dashed var(--gold);border-radius:10px;padding:11px 13px;margin-top:14px}
+.secret .lbl{color:var(--gold);font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:.5px}
+.secret p{margin:4px 0 0;font-size:1rem}
+.situation{background:var(--card2);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:12px 15px;margin-bottom:14px}
+.situation .lbl{color:var(--gold);font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:.5px}
+.situation p{margin:4px 0 0}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tabs button{border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:9px 15px;border-radius:999px;font-size:.9rem;font-weight:700;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--gold);color:#3a2a00;border-color:var(--gold)}
+.panel{display:none}.panel.active{display:block}
+.phrase-group{margin-bottom:14px}
+.phrase-group h3{font-size:.95rem;color:var(--gold);margin-bottom:6px}
+.phrase{display:block;background:var(--card2);border-left:3px solid var(--mit);padding:9px 13px;border-radius:0 8px 8px 0;margin-bottom:6px;font-size:.96rem}
+.pill-status{display:inline-flex;gap:7px;align-items:center;font-size:.8rem;font-weight:700;color:var(--ink-soft)}
+.sdot{width:8px;height:8px;border-radius:50%;background:var(--rose)}
+.pill-status.live .sdot{background:var(--teal)}
+footer{text-align:center;color:var(--ink-soft);font-size:.8rem;margin-top:34px}
+.hintline{font-size:.85rem;color:var(--ink-soft);margin-top:6px}
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div id="screen-home" class="wrap">
+  <header class="top">
+    <div class="logo">💬</div>
+    <div><h1>Mitarbeitergespräche</h1><div class="tag">Rollenspiel · Chef:in &amp; Mitarbeiter:in · B1/B2</div></div>
+    <a href="index.html" class="home">🏠 Index</a>
+  </header>
+  <div class="card">
+    <h2>Wie machst du mit?</h2>
+    <p class="muted">Die Lehrkraft öffnet die <b>Spielleitung</b> (Beamer) und bildet Paare. Jede Person bekommt einen <b>Steckbrief</b> auf ihr Handy – Chef:in oder Mitarbeiter:in. Wichtig: Man sieht nur die eigene Karte, nicht die des Partners!</p>
+    <div class="role-grid">
+      <button class="role-pick" onclick="showConsoleLogin()">
+        <div class="ic">🎛️</div><h3>Spielleitung (Beamer)</h3>
+        <p>Paare bilden, Rollen zulosen, Szenarien zuteilen, Teilnehmende verwalten.</p>
+      </button>
+      <button class="role-pick" onclick="showJoin()">
+        <div class="ic">📱</div><h3>Mitspielen</h3>
+        <p>Beitreten und den eigenen Steckbrief mit Wünschen und Geheim-Interesse lesen.</p>
+      </button>
+    </div>
+  </div>
+  <div class="card">
+    <h2>So läuft ein Gespräch</h2>
+    <ol class="muted" style="margin:6px 0 0;padding-left:20px;line-height:1.7">
+      <li>Jedes Paar bekommt ein <b>Szenario</b> (z. B. Gehalt, Urlaub, Konflikt).</li>
+      <li><b>Chef:in</b> und <b>Mitarbeiter:in</b> haben unterschiedliche Wünsche – und ein <b>Geheim-Interesse</b>, das die andere Person nicht kennt.</li>
+      <li>Führt das Gespräch und versucht, eine <b>Lösung</b> oder einen <b>Kompromiss</b> zu finden.</li>
+      <li>Danach: Kurz im Kurs berichten – wie ist es ausgegangen?</li>
+    </ol>
+  </div>
+</div>
+
+<!-- JOIN -->
+<div id="screen-join" class="wrap hidden">
+  <header class="top"><div class="logo">💬</div>
+    <div><h1>Beitreten</h1><div class="tag">Spielcode und Name eingeben</div></div>
+    <a href="#" class="home" onclick="goHome();return false;">← zurück</a></header>
+  <div class="card">
+    <div class="row" style="margin-bottom:12px">
+      <input id="join-code" placeholder="Spielcode" style="flex:1 1 160px;text-transform:uppercase">
+      <input id="join-name" placeholder="Dein Name" style="flex:1 1 160px">
+    </div>
+    <button class="btn btn-gold" onclick="joinGame()">Beitreten</button>
+    <div id="join-msg"></div>
+  </div>
+</div>
+
+<!-- CONSOLE LOGIN -->
+<div id="screen-console-login" class="wrap hidden">
+  <header class="top"><div class="logo">💬</div>
+    <div><h1>Spielleitung</h1><div class="tag">Neues Spiel starten</div></div>
+    <a href="#" class="home" onclick="goHome();return false;">← zurück</a></header>
+  <div class="card">
+    <h2>Neues Spiel</h2>
+    <p class="muted">Ein Spielcode wird erzeugt. Teilt ihn mit dem Kurs.</p>
+    <div class="row" style="margin-top:12px"><button class="btn btn-gold" onclick="createGame()">🎬 Spiel erstellen</button></div>
+    <div id="console-login-msg"></div>
+  </div>
+</div>
+
+<div id="screen-console" class="wrap beamer hidden"></div>
+<div id="screen-player" class="wrap hidden"></div>
+
+<footer>Lern Deutsch mit Arash · Mitarbeitergespräche</footer>
+
+<script data-goatcounter="https://aguitoo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+/* ============ DATEN: 12 Rollenpaare ============ */
+/* Jedes Paar: situation (beide sehen es), chef{...}, mit{...} mit je wunsch/ziel/geheim */
+const PAARE = [
+  { id:1, thema:"Gehaltserhöhung",
+    situation:"Der/die Mitarbeiter:in bittet um ein Gespräch über eine Gehaltserhöhung. Beide treffen sich im Büro.",
+    chef:{ name:"Chef:in – Frau/Herr Berger", wunsch:"Du willst gute Mitarbeitende halten, aber das Budget ist knapp.",
+      ziel:"Wenn möglich keine Gehaltserhöhung – oder nur eine kleine.",
+      geheim:"Du weißt: Wenn die Person kündigt, findest du schwer Ersatz. Bei starkem Druck kannst du bis 150 € mehr anbieten." },
+    mit:{ name:"Mitarbeiter:in – Frau/Herr Klein", wunsch:"Du arbeitest seit 3 Jahren gut und willst mehr Geld.",
+      ziel:"Du möchtest 300 € mehr im Monat.",
+      geheim:"Du hast ein Angebot von einer anderen Firma. Das kannst du andeuten, um Druck zu machen." } },
+  { id:2, thema:"Urlaub zur gleichen Zeit",
+    situation:"Zwei Mitarbeitende wollen im Sommer gleichzeitig Urlaub. Der/die Mitarbeiter:in spricht mit dem/der Chef:in.",
+    chef:{ name:"Chef:in – Frau/Herr Wolf", wunsch:"Im Sommer ist viel zu tun. Es können nicht alle gleichzeitig frei haben.",
+      ziel:"Der/die Mitarbeiter:in soll den Urlaub verschieben.",
+      geheim:"Wenn die Person triftige Gründe nennt (Familie, gebuchte Reise), darfst du zustimmen." },
+    mit:{ name:"Mitarbeiter:in – Frau/Herr Sahin", wunsch:"Du hast schon eine Reise gebucht und willst im Juli frei.",
+      ziel:"Du willst deinen Urlaub im Juli bekommen.",
+      geheim:"Die Reise ist noch nicht bezahlt – du könntest zur Not auch im August fahren, willst das aber nicht sagen." } },
+  { id:3, thema:"Zu oft zu spät",
+    situation:"Der/die Chef:in hat bemerkt, dass der/die Mitarbeiter:in in letzter Zeit oft zu spät kommt.",
+    chef:{ name:"Chef:in – Frau/Herr Meier", wunsch:"Du willst, dass alle pünktlich sind – es fällt dem Team auf.",
+      ziel:"Die Person soll ab jetzt pünktlich kommen.",
+      geheim:"Du magst die Person und ihre Arbeit. Du suchst eine Lösung, keine Strafe." },
+    mit:{ name:"Mitarbeiter:in – Frau/Herr Yilmaz", wunsch:"Du kommst zu spät, weil der Bus morgens oft unzuverlässig ist.",
+      ziel:"Du möchtest eine Lösung, ohne Ärger zu bekommen.",
+      geheim:"Du könntest einen Bus früher nehmen, müsstest dann aber 40 Minuten warten. Vielleicht wären flexible Zeiten besser." } },
+  { id:4, thema:"Mehr Verantwortung",
+    situation:"Der/die Mitarbeiter:in möchte anspruchsvollere Aufgaben übernehmen und bittet um ein Gespräch.",
+    chef:{ name:"Chef:in – Frau/Herr Braun", wunsch:"Du bist zufrieden, aber nicht sicher, ob die Person bereit ist.",
+      ziel:"Du willst erst sehen, ob die Person die neue Aufgabe schafft.",
+      geheim:"Du suchst tatsächlich jemanden für ein neues Projekt – aber das sagst du noch nicht direkt." },
+    mit:{ name:"Mitarbeiter:in – Frau/Herr Novak", wunsch:"Du langweilst dich und willst mehr Verantwortung.",
+      ziel:"Du möchtest eine neue, wichtigere Aufgabe bekommen.",
+      geheim:"Du willst eigentlich Teamleiter:in werden, traust dich aber noch nicht, das zu sagen." } },
+  { id:5, thema:"Weiterbildung bezahlen",
+    situation:"Der/die Mitarbeiter:in möchte einen Kurs machen und fragt, ob die Firma die Kosten übernimmt.",
+    chef:{ name:"Chef:in – Frau/Herr Fischer", wunsch:"Weiterbildung ist gut, aber teuer und kostet Arbeitszeit.",
+      ziel:"Du willst die Kosten möglichst nicht (allein) übernehmen.",
+      geheim:"Für einen Kurs, der der Firma direkt nützt, hast du ein kleines Budget – das gibst du nur bei guten Argumenten frei." },
+    mit:{ name:"Mitarbeiter:in – Frau/Herr Ali", wunsch:"Du willst einen Computerkurs machen, der 800 € kostet.",
+      ziel:"Die Firma soll den Kurs bezahlen und dich freistellen.",
+      geheim:"Du würdest den Kurs auch in deiner Freizeit machen – wenn die Firma wenigstens die Hälfte zahlt." } },
+  { id:6, thema:"Konflikt im Team",
+    situation:"Es gibt Streit zwischen zwei Kolleg:innen. Der/die Chef:in spricht mit einer/einem der beiden.",
+    chef:{ name:"Chef:in – Frau/Herr Schulz", wunsch:"Der Streit stört die Arbeit. Du willst Frieden im Team.",
+      ziel:"Die beiden sollen wieder normal zusammenarbeiten.",
+      geheim:"Du weißt nicht genau, wer angefangen hat. Du willst zuhören, nicht sofort urteilen." },
+    mit:{ name:"Mitarbeiter:in – Frau/Herr Costa", wunsch:"Du fühlst dich von einer Kollegin/einem Kollegen ungerecht behandelt.",
+      ziel:"Du willst, dass der/die Chef:in dein Problem ernst nimmt.",
+      geheim:"Du hast selbst auch einen Fehler gemacht, gibst das aber nur zu, wenn man dich freundlich behandelt." } },
+  { id:7, thema:"Wechsel ins Homeoffice",
+    situation:"Der/die Mitarbeiter:in möchte an zwei Tagen pro Woche von zu Hause arbeiten.",
+    chef:{ name:"Chef:in – Frau/Herr Krüger", wunsch:"Du hast Sorge, dass die Arbeit im Homeoffice leidet.",
+      ziel:"Du willst, dass alle im Büro sind – oder klare Regeln.",
+      geheim:"Andere im Team wollen das auch. Wenn es gut läuft, könntest du es für alle erlauben." },
+    mit:{ name:"Mitarbeiter:in – Frau/Herr Petrov", wunsch:"Der Weg zur Arbeit ist lang; zu Hause arbeitest du konzentrierter.",
+      ziel:"Du möchtest 2 Tage Homeoffice pro Woche.",
+      geheim:"Ein Tag würde dir auch reichen – aber du fragst erst nach zwei, um zu verhandeln." } },
+  { id:8, thema:"Kritik an der Arbeit",
+    situation:"Der/die Chef:in ist mit der Qualität einer Arbeit nicht zufrieden und spricht die Person darauf an.",
+    chef:{ name:"Chef:in – Frau/Herr Hoffmann", wunsch:"Die letzte Aufgabe hatte viele Fehler. Das darf nicht wieder passieren.",
+      ziel:"Die Person soll die Fehler verstehen und es besser machen.",
+      geheim:"Du hast die Anweisungen selbst etwas unklar gegeben – das gibst du nur zu, wenn es fair ist." },
+    mit:{ name:"Mitarbeiter:in – Frau/Herr Demir", wunsch:"Du hast dir Mühe gegeben und findest die Kritik zu hart.",
+      ziel:"Du willst erklären, warum es passiert ist, ohne dich nur zu entschuldigen.",
+      geheim:"Die Aufgabe war dir nicht ganz klar – du hast dich aber nicht getraut, nachzufragen." } },
+  { id:9, thema:"Neue Aufgaben ohne mehr Geld",
+    situation:"Der/die Chef:in möchte der Person zusätzliche Aufgaben geben – vorerst ohne mehr Gehalt.",
+    chef:{ name:"Chef:in – Frau/Herr Lange", wunsch:"Eine Kollegin ist ausgefallen; die Arbeit muss verteilt werden.",
+      ziel:"Die Person soll die Aufgaben übernehmen.",
+      geheim:"Du könntest als Ausgleich extra Urlaubstage oder flexible Zeiten anbieten." },
+    mit:{ name:"Mitarbeiter:in – Frau/Herr Bauer", wunsch:"Du hast schon viel zu tun und willst nicht noch mehr – nicht ohne Gegenleistung.",
+      ziel:"Wenn mehr Arbeit, dann auch etwas dafür (Geld, Zeit, Urlaub).",
+      geheim:"Die Aufgaben interessieren dich eigentlich – du willst sie, aber nicht umsonst." } },
+  { id:10, thema:"Rückkehr nach langer Krankheit",
+    situation:"Der/die Mitarbeiter:in kommt nach mehreren Wochen Krankheit zurück. Erstes Gespräch mit dem/der Chef:in.",
+    chef:{ name:"Chef:in – Frau/Herr Wagner", wunsch:"Du freust dich über die Rückkehr, brauchst die Person aber wieder voll.",
+      ziel:"Du willst wissen, ob die Person wieder voll arbeiten kann.",
+      geheim:"Du darfst nicht nach der Krankheit fragen. Du musst freundlich einen Wiedereinstieg planen." },
+    mit:{ name:"Mitarbeiter:in – Frau/Herr Ivanova", wunsch:"Du bist zurück, aber noch nicht ganz bei 100 %.",
+      ziel:"Du möchtest langsam wieder anfangen (weniger Stunden am Anfang).",
+      geheim:"Du hast Angst, deinen Job zu verlieren – deshalb sagst du vielleicht, dass mehr geht, als wirklich geht." } },
+  { id:11, thema:"Schichttausch",
+    situation:"Der/die Mitarbeiter:in möchte nicht mehr in der Spätschicht arbeiten und spricht mit dem/der Chef:in.",
+    chef:{ name:"Chef:in – Frau/Herr Richter", wunsch:"Die Spätschicht muss besetzt sein. Nicht alle wollen sie machen.",
+      ziel:"Du willst, dass die Person weiter Spätschicht macht – zumindest manchmal.",
+      geheim:"Ein:e neue:r Mitarbeiter:in fängt bald an und macht gern Spätschicht. Das könnte die Lösung sein." },
+    mit:{ name:"Mitarbeiter:in – Frau/Herr Haddad", wunsch:"Die Spätschicht passt nicht mehr, weil du abends dein Kind betreuen musst.",
+      ziel:"Du möchtest nur noch Frühschicht arbeiten.",
+      geheim:"Ein oder zwei Spätschichten im Monat gingen zur Not – aber nicht mehr." } },
+  { id:12, thema:"Handy am Arbeitsplatz",
+    situation:"Dem/der Chef:in ist aufgefallen, dass die Person während der Arbeit oft privat das Handy benutzt.",
+    chef:{ name:"Chef:in – Frau/Herr Neumann", wunsch:"Privates Handy stört die Arbeit und andere sehen es auch.",
+      ziel:"Die Person soll das Handy während der Arbeit weglegen.",
+      geheim:"Eine feste Handy-Pause pro Schicht wäre für dich ein akzeptabler Kompromiss." },
+    mit:{ name:"Mitarbeiter:in – Frau/Herr Kaya", wunsch:"Du schaust manchmal aufs Handy, weil du wegen deiner Familie erreichbar sein willst.",
+      ziel:"Du möchtest in Notfällen erreichbar bleiben.",
+      geheim:"Oft ist es aber auch nur Langeweile – das gibst du nicht offen zu." } },
+];
+
+const REDEMITTEL = {
+  chef:[
+    {group:"Das Gespräch eröffnen", items:[
+      "Schön, dass Sie da sind. Setzen Sie sich.",
+      "Ich wollte mit Ihnen über … sprechen.",
+      "Mir ist aufgefallen, dass …"]},
+    {group:"Wünsche / Erwartungen äußern", items:[
+      "Ich erwarte von Ihnen, dass …",
+      "Für mich ist wichtig, dass …",
+      "Wir brauchen hier eine Lösung, weil …"]},
+    {group:"Reagieren & verhandeln", items:[
+      "Ich verstehe Ihren Standpunkt, aber …",
+      "Das kann ich leider nicht versprechen.",
+      "Ich schlage vor, dass wir …",
+      "Als Kompromiss könnte ich Ihnen … anbieten."]},
+  ],
+  mit:[
+    {group:"Ein Anliegen vorbringen", items:[
+      "Ich würde gern mit Ihnen über … sprechen.",
+      "Es geht mir um Folgendes: …",
+      "Ich habe eine Bitte / einen Wunsch: …"]},
+    {group:"Begründen", items:[
+      "Der Grund dafür ist …",
+      "Ich arbeite jetzt seit … und …",
+      "Für mich ist das wichtig, weil …"]},
+    {group:"Reagieren & verhandeln", items:[
+      "Das verstehe ich, aber für mich ist …",
+      "Wäre es möglich, dass …?",
+      "Können wir uns in der Mitte treffen?",
+      "Ich wäre einverstanden, wenn …"]},
+  ]
+};
+</script>
+<script>
+/* ============ ENGINE ============ */
+const firebaseConfig = {
+  apiKey: "AIzaSyBDChXlm34Kr7Gg0Dw458GiiwoLnWJAnxM",
+  authDomain: "lern-deutsch-arash.firebaseapp.com",
+  databaseURL: "https://lern-deutsch-arash-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "lern-deutsch-arash",
+  storageBucket: "lern-deutsch-arash.firebasestorage.app",
+  messagingSenderId: "845503292114",
+  appId: "1:845503292114:web:f76ab5fcde1e978d00c30b"
+};
+let db=null, fbReady=false;
+try{ firebase.initializeApp(firebaseConfig); db=firebase.database(); fbReady=true; }
+catch(e){ console.warn("Firebase nicht konfiguriert:",e); }
+
+let role=null, gameCode=null, gameRef=null, myId=null, lastGame=null, playerTab="steck";
+const S=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function rand4(){return String(Math.floor(1000+Math.random()*9000));}
+function uid(){return "u"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function setMsg(id,t,c){const e=S(id);if(e)e.innerHTML=`<div class="notice ${c||''}">${t}</div>`;}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function hideAll(){["screen-home","screen-join","screen-player","screen-console-login","screen-console"].forEach(s=>S(s).classList.add("hidden"));}
+function goHome(){ if(gameRef){gameRef.off();} hideAll(); S("screen-home").classList.remove("hidden"); role=null;gameCode=null;gameRef=null;myId=null;lastGame=null; }
+function showJoin(){hideAll();S("screen-join").classList.remove("hidden");}
+function showConsoleLogin(){hideAll();S("screen-console-login").classList.remove("hidden");
+  if(!fbReady)setMsg("console-login-msg","⚠️ Firebase ist nicht konfiguriert.","err");}
+function getDeviceId(code){const k="mag_pid_"+code;try{let v=localStorage.getItem(k);if(!v){v=uid();localStorage.setItem(k,v);}return v;}catch(e){return uid();}}
+
+/* -------- CONSOLE -------- */
+function createGame(){
+  if(!fbReady){setMsg("console-login-msg","⚠️ Firebase fehlt.","err");return;}
+  const code=rand4();
+  db.ref("games_mag/"+code).set({createdAt:Date.now(),phase:"lobby",players:{}})
+    .then(()=>{gameCode=code;role="console";enterConsole();});
+}
+function enterConsole(){
+  hideAll();S("screen-console").classList.remove("hidden");
+  gameRef=db.ref("games_mag/"+gameCode);
+  gameRef.on("value",snap=>{lastGame=snap.val()||{};renderConsole(lastGame);});
+}
+function assignOptions(sel){
+  // value format: "pairId-role" e.g. "3-chef"
+  let o=`<option value="" ${sel==null?'selected':''}>— keine Rolle —</option>`;
+  PAARE.forEach(p=>{
+    o+=`<optgroup label="Paar ${p.id}: ${esc(p.thema)}">`;
+    o+=`<option value="${p.id}-chef" ${sel===p.id+'-chef'?'selected':''}>Chef:in</option>`;
+    o+=`<option value="${p.id}-mit" ${sel===p.id+'-mit'?'selected':''}>Mitarbeiter:in</option>`;
+    o+=`</optgroup>`;
+  });
+  return o;
+}
+function renderConsole(g){
+  const players=g.players||{};
+  const arr=Object.entries(players).map(([id,p])=>({id,...p})).filter(p=>p.name).sort((a,b)=>(a.joinedAt||0)-(b.joinedAt||0));
+
+  let body=`<header class="top">
+    <div class="logo">💬</div>
+    <div><h1>Spielleitung</h1><div class="tag">${arr.length} Teilnehmende</div></div>
+    <a href="#" class="home" onclick="if(confirm('Spiel verlassen?'))goHome();return false;">← beenden</a>
+  </header>
+  <div class="card center"><div class="muted">Spielcode für den Kurs</div><div class="bigcode">${esc(gameCode)}</div></div>`;
+
+  body+=`<div class="card center">
+    <h2>Paare bilden</h2>
+    <p class="muted">Verteilt automatisch Rollen: immer ein:e Chef:in und ein:e Mitarbeiter:in pro Szenario.</p>
+    <div class="row" style="justify-content:center;margin-top:10px">
+      <button class="btn btn-gold" ${arr.length<2?'disabled':''} onclick="autoPair()">🎲 Automatisch paaren</button>
+      <button class="btn btn-ghost" onclick="clearRoles()">Rollen zurücksetzen</button>
+    </div>
+  </div>`;
+
+  body+=`<div class="card">
+    <div class="flex-between"><h2>Teilnehmende &amp; Rollen</h2>
+      ${arr.length?`<button class="btn btn-danger small" onclick="clearAll()">Alle entfernen</button>`:""}</div>
+    <p class="muted" style="margin-top:0">Über das Feld kannst du jede Person manuell einem Paar + Rolle zuordnen. ✕ entfernt eine Person.</p>
+    <div class="list">
+      ${arr.length?arr.map(p=>{
+        let tag="";
+        if(p.role){ const[pid,rl]=p.role.split("-"); const pr=PAARE.find(x=>x.id==pid);
+          tag=`<span class="pill ${rl}">Paar ${pid} · ${rl==='chef'?'Chef:in':'Mitarb.'}</span>`; }
+        return `<div class="list-item"><span class="nm">${esc(p.name)}</span>
+          <select class="assign-sel" onchange="setRole('${p.id}',this.value)">${assignOptions(p.role)}</select>
+          ${tag}
+          <button class="btn btn-danger small" onclick="removePlayer('${p.id}')">✕</button></div>`;
+      }).join(""):`<p class="muted">Noch niemand da. Teilt den Spielcode!</p>`}
+    </div>
+  </div>`;
+
+  // Übersicht der Paare (wer gehört zusammen)
+  const used={};
+  arr.forEach(p=>{ if(p.role){const[pid,rl]=p.role.split("-"); (used[pid]=used[pid]||{})[rl]=p.name;} });
+  const usedIds=Object.keys(used).sort((a,b)=>a-b);
+  if(usedIds.length){
+    body+=`<div class="card"><h2>Paar-Übersicht</h2>`;
+    usedIds.forEach(pid=>{
+      const pr=PAARE.find(x=>x.id==pid); const u=used[pid];
+      body+=`<div class="pairhead"><span class="pn">${pid}</span><h2>${esc(pr.thema)}</h2></div>
+        <div class="row" style="padding-left:36px">
+          <span class="pill chef">Chef:in: ${u.chef?esc(u.chef):'—'}</span>
+          <span class="pill mit">Mitarbeiter:in: ${u.mit?esc(u.mit):'—'}</span>
+        </div>`;
+    });
+    body+=`</div>`;
+  }
+  S("screen-console").innerHTML=body;
+}
+function setRole(id,val){ if(val==="") gameRef.child("players/"+id+"/role").remove(); else gameRef.child("players/"+id+"/role").set(val); }
+function removePlayer(id){ gameRef.child("players/"+id).remove(); }
+function clearAll(){ if(confirm("Wirklich ALLE Teilnehmenden entfernen?")) gameRef.child("players").remove(); }
+function clearRoles(){ const g=lastGame,players=g.players||{}; const up={}; Object.keys(players).forEach(id=>up["players/"+id+"/role"]=null); gameRef.update(up); }
+function autoPair(){
+  const g=lastGame, players=g.players||{};
+  const ids=shuffle(Object.keys(players).filter(id=>players[id]&&players[id].name));
+  const pairs=shuffle(PAARE.map(p=>p.id));
+  const up={}; let pi=0;
+  for(let i=0;i<ids.length;i+=2){
+    const pid=pairs[pi%pairs.length]; pi++;
+    up["players/"+ids[i]+"/role"]=pid+"-chef";
+    if(ids[i+1]) up["players/"+ids[i+1]+"/role"]=pid+"-mit";
+  }
+  gameRef.update(up);
+}
+
+/* -------- PLAYER -------- */
+function joinGame(){
+  if(!fbReady){setMsg("join-msg","⚠️ Firebase ist nicht konfiguriert.","err");return;}
+  const code=S("join-code").value.trim().toUpperCase();
+  const name=S("join-name").value.trim();
+  if(!code||!name){setMsg("join-msg","Bitte Spielcode und Namen eingeben.","err");return;}
+  db.ref("games_mag/"+code).get().then(s=>{
+    if(!s.exists()){setMsg("join-msg","Kein Spiel mit diesem Code gefunden.","err");return;}
+    gameCode=code;role="player";myId=getDeviceId(code);
+    const ex=(s.val().players||{})[myId]||{};
+    const data={name,joinedAt:ex.joinedAt||Date.now()};
+    if(ex.role)data.role=ex.role;
+    db.ref("games_mag/"+code+"/players/"+myId).update(data).then(enterPlayer);
+  });
+}
+function enterPlayer(){
+  hideAll();S("screen-player").classList.remove("hidden");
+  gameRef=db.ref("games_mag/"+gameCode);
+  gameRef.on("value",snap=>{lastGame=snap.val()||{};renderPlayer(lastGame);});
+}
+function renderPlayer(g){
+  const me=(g.players||{})[myId];
+  if(!me){
+    S("screen-player").innerHTML=`<header class="top"><div class="logo">💬</div>
+      <div><h1>Mitspielen</h1><div class="tag">Verbindung</div></div></header>
+      <div class="card center"><h2>Du wurdest entfernt</h2><p class="muted">Die Spielleitung hat dich entfernt.</p>
+      <button class="btn btn-gold" onclick="rejoinFresh()">Neu beitreten</button></div>`;
+    return;
+  }
+  let body=`<header class="top"><div class="logo">💬</div>
+    <div><h1>${esc(me.name)}</h1><div class="tag pill-status live"><span class="sdot"></span> verbunden</div></div>
+    <a href="#" class="home" onclick="if(confirm('Spiel verlassen?'))goHome();return false;">←</a></header>`;
+
+  if(!me.role){
+    body+=`<div class="card center"><h2>Warte auf deine Rolle 🎭</h2><p class="muted">Die Spielleitung teilt dich gleich einem Gespräch zu. Gleich erscheint dein Steckbrief.</p></div>`;
+    S("screen-player").innerHTML=body; return;
+  }
+
+  const [pid,rl]=me.role.split("-");
+  const pr=PAARE.find(x=>x.id==pid); const c=(rl==="chef")?pr.chef:pr.mit;
+  const isChef=rl==="chef";
+
+  body+=`<div class="tabs">
+    <button aria-selected="${playerTab==='steck'}" onclick="setTab('steck')">🪪 Dein Steckbrief</button>
+    <button aria-selected="${playerTab==='bausteine'}" onclick="setTab('bausteine')">💬 Redemittel</button>
+  </div>`;
+
+  // STECKBRIEF
+  body+=`<div class="panel ${playerTab==='steck'?'active':''}">
+    <div class="situation"><div class="lbl">Die Situation (kennen beide)</div><p>${esc(pr.situation)}</p></div>
+    <div class="card-steck ${isChef?'chef':'mit'}">
+      <div class="cs-top"><div class="cs-rolle">${isChef?'👔 Du bist die/der CHEF:IN':'👤 Du bist MITARBEITER:IN'} · Thema: ${esc(pr.thema)}</div>
+        <div class="cs-name">${esc(c.name)}</div></div>
+      <div class="cs-body"><dl>
+        <dt>Deine Ausgangslage</dt><dd>${esc(c.wunsch)}</dd>
+        <dt>Dein Ziel im Gespräch</dt><dd>${esc(c.ziel)}</dd>
+      </dl>
+      <div class="secret"><div class="lbl">🤫 Dein Geheim-Interesse</div><p>${esc(c.geheim)}</p>
+        <p class="hintline">Das weiß die andere Person nicht! Verrate es nicht sofort – nutze es beim Verhandeln.</p></div>
+      </div>
+    </div>
+    <div class="notice">Lies deinen Steckbrief in Ruhe. Zeig dein Handy <b>nicht</b> der anderen Person. Dann beginnt das Gespräch.</div>
+  </div>`;
+
+  // REDEMITTEL
+  const rm=isChef?REDEMITTEL.chef:REDEMITTEL.mit;
+  body+=`<div class="panel ${playerTab==='bausteine'?'active':''}">
+    <div class="card">${rm.map(gp=>`<div class="phrase-group"><h3>${esc(gp.group)}</h3>
+      ${gp.items.map(p=>`<span class="phrase">${esc(p)}</span>`).join("")}</div>`).join("")}</div>
+  </div>`;
+
+  S("screen-player").innerHTML=body;
+}
+function setTab(t){playerTab=t;renderPlayer(lastGame);}
+function rejoinFresh(){try{localStorage.removeItem("mag_pid_"+gameCode);}catch(e){}goHome();showJoin();}
+
+goHome();
+</script>
+</body>
+</html>

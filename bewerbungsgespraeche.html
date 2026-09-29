@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bewerbungsgespräche – Lern Deutsch mit Arash</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<style>
+:root{
+  --bg:#0e1b2a; --bg2:#132539; --card:#16293f; --card2:#1d3350;
+  --ink:#eaf1f8; --ink-soft:#93a7bf; --line:#2a4463;
+  --firma:#3f8f4f; --firma2:#2c6a39; --bew:#2f72b0; --bew2:#215586; --beob:#7c6bd6; --beob2:#5a4bb0;
+  --gold:#e0a32e; --gold2:#b57f14; --teal:#2fa389; --rose:#e0654a;
+  --radius:16px; --shadow:0 1px 2px rgba(0,0,0,.2),0 12px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',Calibri,system-ui,sans-serif;color:var(--ink);line-height:1.55;
+  background:radial-gradient(circle at 50% -8%,#1c3555 0%,transparent 55%),var(--bg);-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:16px 16px 70px}
+.wrap.beamer{max-width:1200px}
+.hidden{display:none!important}
+h1,h2,h3{margin:0}
+button{font-family:inherit}
+header.top{display:flex;align-items:center;gap:14px;padding:18px 0 20px}
+.logo{flex:0 0 auto;width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));
+  display:grid;place-items:center;font-size:1.6rem;box-shadow:0 6px 16px rgba(224,163,46,.3)}
+header.top h1{font-size:1.45rem;letter-spacing:-.4px;line-height:1.08}
+header.top .tag{color:var(--ink-soft);font-size:.85rem;margin-top:2px}
+header.top .home{margin-left:auto;text-decoration:none;color:var(--ink-soft);font-size:.82rem;font-weight:700;
+  border:1px solid var(--line);border-radius:999px;padding:7px 13px;background:var(--card);white-space:nowrap}
+.card{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:16px;box-shadow:var(--shadow)}
+.card h2{font-size:1.15rem;margin-bottom:4px}
+.muted{color:var(--ink-soft);font-size:.9rem}
+.center{text-align:center}
+.btn{border:none;border-radius:12px;padding:12px 18px;font-size:.98rem;font-weight:800;cursor:pointer;transition:.15s;color:#fff}
+.btn-gold{background:linear-gradient(180deg,var(--gold),var(--gold2));color:#3a2a00}
+.btn-teal{background:linear-gradient(180deg,var(--teal),#1f7d68)}
+.btn-blue{background:linear-gradient(180deg,var(--bew),var(--bew2))}
+.btn-ghost{background:var(--card2);color:var(--ink-soft);border:1px solid var(--line)}
+.btn-ghost:hover{color:var(--ink)}
+.btn-danger{background:#7a2520;border:1px solid #a23}
+.btn:hover{filter:brightness(1.07)}
+.btn:disabled{opacity:.4;cursor:not-allowed;filter:none}
+.btn.small{padding:7px 12px;font-size:.83rem;border-radius:10px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input,select{padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--card2);color:var(--ink);font-family:inherit}
+input:focus,select:focus{outline:2px solid var(--gold);border-color:var(--gold)}
+.notice{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:.9rem;margin-top:10px}
+.notice.ok{border-color:var(--teal);color:#b8ecdd}
+.notice.err{border-color:var(--rose);color:#f7cbc0}
+.notice.warn{border-color:var(--gold);color:#f2d489}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+@media(max-width:560px){.role-grid{grid-template-columns:1fr}}
+.role-pick{border:1px solid var(--line);background:var(--card2);border-radius:var(--radius);padding:20px;cursor:pointer;text-align:left;transition:.15s;color:var(--ink)}
+.role-pick:hover{border-color:var(--gold);transform:translateY(-2px)}
+.role-pick .ic{font-size:2rem;margin-bottom:8px}
+.role-pick h3{font-size:1.08rem;margin-bottom:4px}
+.role-pick p{color:var(--ink-soft);font-size:.86rem;margin:0}
+
+/* Konsole */
+.codebar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.bigcode{font-size:2.6rem;font-weight:900;letter-spacing:7px;color:var(--gold)}
+.ctrl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:12px}
+.ctrl{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px}
+.ctrl .btn{width:100%}
+.ctrl p{margin:7px 0 0;font-size:.8rem;color:var(--ink-soft)}
+.pair-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:12px}
+.pairbox{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:13px}
+.pairbox.onstage{border-color:var(--gold);box-shadow:0 0 0 2px rgba(224,163,46,.35)}
+.pairbox .ph{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.pairbox .pn{flex:0 0 auto;width:28px;height:28px;border-radius:8px;background:var(--gold);color:#3a2a00;font-weight:900;display:grid;place-items:center}
+.pairbox select{flex:1;min-width:0;padding:7px 9px;font-size:.82rem}
+.pline{display:flex;align-items:center;gap:8px;font-size:.92rem;margin:5px 0}
+.pline .lbl{flex:0 0 auto;font-size:.72rem;font-weight:800;border-radius:999px;padding:3px 9px}
+.lbl.firma{background:#173a1f;color:#a6e0b0}.lbl.bew{background:#13304c;color:#9cc8ef}.lbl.beob{background:#2a2350;color:#c3b8f5}
+.pline .who{font-weight:700}
+.pline .miss{color:var(--rose);font-weight:700}
+.pairbox .pb-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.list{display:flex;flex-direction:column;gap:7px;margin-top:10px}
+.list-item{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:8px 11px;flex-wrap:wrap}
+.list-item .nm{font-weight:700;flex:1;min-width:110px}
+.list-item select{padding:7px 9px;font-size:.84rem;max-width:260px}
+.pill{display:inline-block;font-size:.74rem;font-weight:800;padding:4px 10px;border-radius:999px}
+.pill.frei{background:#3a2412;color:#f2c48a}
+.stage{border:2px solid var(--gold);background:linear-gradient(180deg,#2a2210,#1a1a14)}
+.stage .st-k{color:var(--gold);font-weight:900;text-transform:uppercase;letter-spacing:1px;font-size:.85rem}
+.stage .st-t{font-size:1.9rem;font-weight:900;margin:4px 0 6px;line-height:1.15}
+.stage .st-names{font-size:1.25rem;display:flex;gap:18px;flex-wrap:wrap;margin-bottom:10px}
+.stage .st-count{font-size:1.1rem;font-weight:800;color:#f2d489;margin:6px 0 12px}
+.res-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.92rem}
+.res-table th,.res-table td{border-bottom:1px solid var(--line);padding:8px 7px;text-align:left;vertical-align:middle}
+.res-table th{color:var(--ink-soft);font-size:.74rem;text-transform:uppercase;letter-spacing:.4px}
+.res-table td.num{font-weight:800;color:var(--gold);white-space:nowrap}
+.bar{height:9px;border-radius:5px;background:#24384f;overflow:hidden;min-width:70px}
+.bar>span{display:block;height:100%;background:var(--gold)}
+.hire{display:flex;gap:4px;font-size:.8rem;white-space:nowrap}
+.hire span{border-radius:6px;padding:2px 6px;font-weight:700}
+.h-ja{background:#173a1f;color:#a6e0b0}.h-vl{background:#3a2f12;color:#f2d489}.h-nein{background:#3a1616;color:#f0a9a0}
+
+/* Spieler */
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tabs button{border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:9px 15px;border-radius:999px;font-size:.9rem;font-weight:700;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--gold);color:#3a2a00;border-color:var(--gold)}
+.rolecard{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:14px;border:1px solid var(--line)}
+.rolecard .rc-top{padding:15px 17px;color:#fff}
+.rolecard.firma .rc-top{background:linear-gradient(135deg,var(--firma),var(--firma2))}
+.rolecard.bew .rc-top{background:linear-gradient(135deg,var(--bew),var(--bew2))}
+.rolecard.beob .rc-top{background:linear-gradient(135deg,var(--beob),var(--beob2))}
+.rolecard .rc-k{font-size:.74rem;text-transform:uppercase;letter-spacing:1px;opacity:.92}
+.rolecard .rc-t{font-size:1.35rem;font-weight:800;margin-top:2px;line-height:1.2}
+.rolecard .rc-s{font-size:.9rem;opacity:.92;margin-top:2px}
+.rolecard .rc-body{padding:15px 17px;background:var(--card)}
+.sec{margin-top:14px}
+.sec:first-child{margin-top:0}
+.sec-h{font-weight:800;font-size:.74rem;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-soft);margin-bottom:5px}
+.sec p{margin:0}
+.sec ul{margin:0;padding-left:20px}
+.sec li{margin:3px 0}
+.kv{width:100%;border-collapse:collapse}
+.kv td{border-bottom:1px solid var(--line);padding:7px 6px;vertical-align:top;font-size:.95rem}
+.kv td:first-child{color:var(--gold);font-weight:700;white-space:nowrap;width:1%;padding-right:12px}
+.hl{background:#2a2210;border:1px dashed var(--gold);border-radius:10px;padding:11px 13px}
+.hl .sec-h{color:var(--gold)}
+.tabu{background:#2d1616;border:1px solid #6a2b25;border-radius:10px;padding:10px 12px;font-size:.88rem;color:#f5c6bd;margin-top:14px}
+.phase{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.phase h3{font-size:.98rem;color:var(--gold);margin-bottom:6px}
+.phrase{display:block;border-left:3px solid var(--bew);padding:6px 11px;margin:5px 0;font-size:.95rem;background:rgba(255,255,255,.03);border-radius:0 7px 7px 0}
+.rolecard.firma ~ * .phrase{border-left-color:var(--firma)}
+.phase .tipp{font-size:.84rem;color:#f2d489;margin-top:6px}
+.polite{width:100%;border-collapse:collapse;font-size:.92rem}
+.polite td{border-bottom:1px solid var(--line);padding:7px 6px;vertical-align:top}
+.polite td:first-child{color:var(--ink-soft);text-decoration:line-through;width:38%}
+.check{display:flex;gap:10px;align-items:center;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:7px;cursor:pointer}
+.check.on{border-color:var(--teal);background:#12332c}
+.check .bx{flex:0 0 auto;width:24px;height:24px;border-radius:6px;border:2px solid var(--line);display:grid;place-items:center;font-weight:900;color:transparent}
+.check.on .bx{background:var(--teal);border-color:var(--teal);color:#fff}
+.waitrole{border-radius:var(--radius);padding:22px;text-align:center;color:#fff;margin-bottom:14px}
+.waitrole.firma{background:linear-gradient(135deg,var(--firma),var(--firma2))}
+.waitrole.bew{background:linear-gradient(135deg,var(--bew),var(--bew2))}
+.waitrole.beob{background:linear-gradient(135deg,var(--beob),var(--beob2))}
+.waitrole .big{font-size:1.5rem;font-weight:900;margin:4px 0}
+.ratecard{border:2px solid var(--gold);border-radius:var(--radius);background:linear-gradient(180deg,#2a2210,var(--bg2));padding:18px;margin-bottom:16px;box-shadow:var(--shadow)}
+.ratecard h2{font-size:1.15rem}
+.crit{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:10px}
+.crit .cl{font-weight:700;font-size:.92rem}
+.crit .cs{font-size:.8rem;color:var(--ink-soft)}
+.stars{display:flex;gap:4px;margin-top:4px}
+.star{font-size:2rem;line-height:1;cursor:pointer;color:#34485f;background:none;border:none;padding:0 2px}
+.star.on{color:var(--gold)}
+.hirebtns{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.hirebtns button{flex:1;min-width:90px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:10px;border-radius:10px;font-weight:800;cursor:pointer}
+.hirebtns button.on.ja{background:#2c6a39;border-color:#3f8f4f}
+.hirebtns button.on.vl{background:#8a6414;border-color:var(--gold)}
+.hirebtns button.on.nein{background:#7a2520;border-color:#a23}
+.pill-status{display:inline-flex;gap:7px;align-items:center;font-size:.8rem;font-weight:700;color:var(--ink-soft)}
+.sdot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
+footer{text-align:center;color:var(--ink-soft);font-size:.8rem;margin-top:34px}
+</style>
+</head>
+<body>
+
+<!-- START -->
+<div id="screen-home" class="wrap">
+  <header class="top">
+    <div class="logo">🤝</div>
+    <div><h1>Bewerbungsgespräche</h1><div class="tag">Rollenspiel · Unternehmen &amp; Bewerber:in · B1/B2</div></div>
+    <a href="index.html" class="home">🏠 Index</a>
+  </header>
+  <div class="card">
+    <h2>Wie machst du mit?</h2>
+    <p class="muted">Die Lehrkraft öffnet die <b>Spielleitung</b> am Beamer. Alle anderen melden sich mit dem Spielcode am Handy an und bekommen ihre <b>Rollenkarte</b>: Unternehmen oder Bewerber:in. Man sieht nur die eigene Karte!</p>
+    <div class="role-grid">
+      <button class="role-pick" onclick="showConsoleLogin()">
+        <div class="ic">🎛️</div><h3>Spielleitung (Beamer)</h3>
+        <p>Anmeldungen sehen, Rollen verteilen und ändern, Karten freigeben, Gespräche auf die Bühne holen, Bewertungen auswerten.</p>
+      </button>
+      <button class="role-pick" onclick="showJoin()">
+        <div class="ic">📱</div><h3>Mitspielen</h3>
+        <p>Anmelden, Rollenkarte lesen, das Gespräch führen – und die anderen Gespräche anonym bewerten.</p>
+      </button>
+    </div>
+  </div>
+  <div class="card">
+    <h2>So läuft es</h2>
+    <ol class="muted" style="margin:6px 0 0;padding-left:20px;line-height:1.75">
+      <li>Alle melden sich an. Die Lehrkraft verteilt die Rollen: immer <b>Unternehmen + Bewerber:in</b> zu einer Stelle.</li>
+      <li>Das <b>Unternehmen</b> kennt Firma, Stelle und Vertrag. Die <b>Bewerberin/der Bewerber</b> kennt Lebenslauf, Familie und eigene Wünsche.</li>
+      <li>Ihr führt das Gespräch in 7 Phasen – vom Smalltalk bis zum Abschluss.</li>
+      <li>Auf der <b>Bühne</b> spielen Paare vor. Alle anderen bewerten <b>anonym</b> am Handy.</li>
+    </ol>
+  </div>
+</div>
+
+<!-- BEITRETEN -->
+<div id="screen-join" class="wrap hidden">
+  <header class="top"><div class="logo">🤝</div>
+    <div><h1>Anmelden</h1><div class="tag">Spielcode und Name eingeben</div></div>
+    <a href="#" class="home" onclick="goHome();return false;">← zurück</a></header>
+  <div class="card">
+    <div class="row" style="margin-bottom:12px">
+      <input id="join-code" placeholder="Spielcode" inputmode="numeric" maxlength="4" style="flex:1 1 150px">
+      <input id="join-name" placeholder="Dein Vorname" maxlength="24" style="flex:1 1 170px">
+    </div>
+    <button class="btn btn-gold" onclick="joinGame()">Anmelden</button>
+    <div id="join-msg"></div>
+  </div>
+</div>
+
+<!-- KONSOLE LOGIN -->
+<div id="screen-console-login" class="wrap hidden">
+  <header class="top"><div class="logo">🤝</div>
+    <div><h1>Spielleitung</h1><div class="tag">Spiel erstellen oder wieder öffnen</div></div>
+    <a href="#" class="home" onclick="goHome();return false;">← zurück</a></header>
+  <div class="card">
+    <h2>Neues Spiel</h2>
+    <p class="muted">Ein vierstelliger Spielcode wird erzeugt. Zeigt ihn am Beamer.</p>
+    <div class="row" style="margin-top:12px"><button class="btn btn-gold" onclick="createGame()">🎬 Spiel erstellen</button></div>
+  </div>
+  <div class="card">
+    <h2>Bestehendes Spiel öffnen</h2>
+    <p class="muted">Z. B. wenn die Seite neu geladen wurde – alle Anmeldungen und Rollen bleiben erhalten.</p>
+    <div class="row" style="margin-top:10px">
+      <input id="open-code" placeholder="Spielcode" inputmode="numeric" maxlength="4" style="flex:0 1 160px">
+      <button class="btn btn-ghost" onclick="openGame()">Öffnen</button>
+    </div>
+    <div id="console-login-msg"></div>
+  </div>
+</div>
+
+<div id="screen-console" class="wrap beamer hidden"></div>
+<div id="screen-player" class="wrap hidden"></div>
+
+<footer>Lern Deutsch mit Arash · Bewerbungsgespräche</footer>
+
+<script data-goatcounter="https://aguitoo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+/* ======================================================================
+   DATEN: 12 Stellen – jeweils Unternehmenskarte + Bewerberkarte
+   (1–3 nach Aspekte Beruf B2, S. 154)
+   ====================================================================== */
+const SZEN = [
+{ id:1, firma:"Mitzel Group", branche:"Online-Handel für Sport- und Freizeitartikel", ort:"Hamburg", groesse:"85 Mitarbeitende",
+  ansprech:"Frau Valentina Mitzel (Geschäftsführerin)", stelle:"Fachkraft Marketing und Verkauf",
+  ueber:"Familienunternehmen seit 1998. Verkauft Outdoor-Ausrüstung online und auf Messen in ganz Deutschland.",
+  aufgaben:["Social-Media-Kampagnen planen und betreuen","Kundenanfragen im Verkauf beantworten","Messen vorbereiten und betreuen (ca. 4 Messen pro Jahr)"],
+  anforderungen:["kaufmännische Ausbildung","Erfahrung mit Social Media","gutes Englisch","Bereitschaft zu Dienstreisen"],
+  vertrag:[["Gehalt","3.100–3.400 € brutto im Monat"],["Arbeitszeit","40 Std./Woche, Gleitzeit 7–19 Uhr"],["Urlaub","30 Tage"],["Probezeit","6 Monate"],["Vertrag","unbefristet"],["Eintritt","1. November"],["Extras","1 Tag Homeoffice pro Woche, Jobticket"]],
+  wichtig:["Die Stelle muss schnell besetzt werden – im November ist eine große Messe.","Frag nach der Erfahrung mit Social Media.","Frag, ob die Person zu Messen reisen kann."],
+  bew:{ name:"Samira Haddad", alter:27, wohnort:"Hamburg-Altona", familie:"verheiratet, ein Sohn (5 Jahre, in der Kita bis 16 Uhr)",
+    lauf:[["seit 2022","Marketing-Assistentin im Online-Shop „FitBox“ (Social Media)"],["2019–2022","Verkäuferin im Sportgeschäft „Sport Nord“"],["2016–2019","Ausbildung zur Kauffrau im Einzelhandel"],["2016","Mittlerer Schulabschluss"]],
+    sprachen:"Deutsch, Arabisch (Muttersprache), Englisch (B1)", kenntnisse:"Instagram, TikTok, Canva, Excel", staerken:"kreativ, kommunikativ, organisiert",
+    wunsch:[["Gehalt","3.500 € brutto"],["Arbeitszeit","Feierabend spätestens 15:30 Uhr (Kita)"],["Eintritt","frühestens 1. Dezember (Kündigungsfrist)"]],
+    achtung:["Messereisen sind wegen deines Sohnes schwierig – findet eine Lösung.","Dein Englisch ist nur B1 – sag, wie du es verbessern willst."],
+    fragen:["Gibt es mehr Homeoffice?","Kann ich eine Weiterbildung im Online-Marketing machen?"] } },
+
+{ id:2, firma:"Haus Theresa GmbH", branche:"Senioren- und Pflegeheim", ort:"Lübeck", groesse:"120 Bewohner:innen, 90 Mitarbeitende",
+  ansprech:"Herr Siddik Engin (Pflegedienstleitung)", stelle:"Pflegekraft (Nachtwache)",
+  ueber:"Modernes Pflegeheim mit Garten. Viele Bewohner:innen haben Demenz. Das Team ist international.",
+  aufgaben:["Bewohner:innen in der Nacht betreuen und Rundgänge machen","Medikamente vorbereiten","die Pflege dokumentieren"],
+  anforderungen:["Ausbildung in der Pflege (anerkannt)","Erfahrung mit älteren Menschen","Bereitschaft zum Nachtdienst"],
+  vertrag:[["Gehalt","3.300 € brutto + Nachtzuschläge (ca. 400 €)"],["Arbeitszeit","32 Std./Woche, 7 Nächte Dienst, dann 7 Nächte frei"],["Urlaub","30 Tage"],["Probezeit","6 Monate"],["Vertrag","unbefristet"],["Eintritt","sofort"],["Extras","Fahrtkostenzuschuss, kostenloser Parkplatz"]],
+  wichtig:["Zwei Kolleg:innen fehlen – ihr braucht jemanden sofort.","Frag, ob die Ausbildung in Deutschland anerkannt ist.","Frag nach Erfahrung mit Menschen mit Demenz."],
+  bew:{ name:"Daniel Mensah", alter:34, wohnort:"Lübeck", familie:"ledig, keine Kinder",
+    lauf:[["seit 2022","Pflegehelfer bei einem ambulanten Pflegedienst in Lübeck"],["2021–2022","Anpassungslehrgang Pflege"],["2019–2021","Deutschkurse (bis B2)"],["2013–2019","Krankenpfleger in einem Krankenhaus in Accra (Ghana)"],["2010–2013","Ausbildung zum Krankenpfleger (Ghana)"]],
+    sprachen:"Englisch, Twi (Muttersprache), Deutsch (B2)", kenntnisse:"Wundversorgung, Erfahrung mit Demenz", staerken:"ruhig, geduldig, zuverlässig",
+    wunsch:[["Gehalt","ca. 3.600 € mit Zuschlägen"],["Arbeitszeit","gern nur Nachtdienst"],["Eintritt","in 4 Wochen"]],
+    achtung:["Deine Anerkennung als Pflegefachmann ist beantragt, der Bescheid kommt in ca. 2 Monaten – erkläre das ehrlich."],
+    fragen:["Wie sieht die Einarbeitung aus?","Wie viele Kolleg:innen arbeiten nachts?"] } },
+
+{ id:3, firma:"Klengel Solutions", branche:"Ingenieurbüro für Hoch- und Tiefbau", ort:"Hannover", groesse:"45 Mitarbeitende",
+  ansprech:"Frau Maike Johansen-Berg (Projektleiterin)", stelle:"Bauingenieur/in",
+  ueber:"Plant Schulen, Brücken und Wohnhäuser für Städte und private Bauherren.",
+  aufgaben:["Bauprojekte planen und berechnen","Baustellen kontrollieren","mit Architekt:innen und Behörden sprechen"],
+  anforderungen:["Studium Bauingenieurwesen","mind. 2 Jahre Berufserfahrung","Kenntnisse in AutoCAD","Führerschein Klasse B"],
+  vertrag:[["Gehalt","4.200–4.600 € brutto"],["Arbeitszeit","40 Std./Woche, Gleitzeit"],["Urlaub","30 Tage"],["Probezeit","6 Monate"],["Vertrag","unbefristet"],["Eintritt","1. Januar"],["Extras","Firmenwagen für Baustellen, Betriebsrente"]],
+  wichtig:["Gutes Deutsch ist wichtig – die Person spricht oft mit Behörden.","Frag nach dem Führerschein.","Frag, was die Person in den letzten Jahren gemacht hat."],
+  bew:{ name:"Ali Rezaei", alter:31, wohnort:"Hannover", familie:"verheiratet, keine Kinder",
+    lauf:[["seit 2023","Bauzeichner in Teilzeit in einem Planungsbüro"],["2021–2023","Deutschkurse, Prüfung B2"],["2016–2021","Bauingenieur in einer Baufirma in Isfahan (Iran), Brückenbau"],["2011–2016","Studium Bauingenieurwesen (Bachelor) in Teheran"]],
+    sprachen:"Persisch (Muttersprache), Deutsch (B2), Englisch (B2)", kenntnisse:"AutoCAD, Statik, Brückenbau", staerken:"genau, analytisch, lernt schnell",
+    wunsch:[["Gehalt","4.500 € brutto"],["Vertrag","unbefristet"],["Eintritt","1. Januar passt"]],
+    achtung:["Du hast zwei Jahre nicht als Ingenieur gearbeitet – erkläre die Zeit positiv.","Dein Führerschein ist aus dem Iran und wird gerade umgeschrieben."],
+    fragen:["Gibt es Weiterbildungen zu deutschen Bau-Normen?","Wer ist in der Einarbeitung mein:e Ansprechpartner:in?"] } },
+
+{ id:4, firma:"Hotel Seeblick", branche:"Hotel mit Restaurant", ort:"Plön", groesse:"60 Zimmer, 35 Mitarbeitende",
+  ansprech:"Herr Jan Petersen (Küchenchef)", stelle:"Koch / Köchin",
+  ueber:"Familienhotel direkt am See. Im Sommer sehr viele Gäste, im Winter ruhiger.",
+  aufgaben:["warme Küche mittags und abends","Frühstücksbuffet vorbereiten","Waren bestellen und kontrollieren"],
+  anforderungen:["Ausbildung als Koch/Köchin","Teamfähigkeit","Arbeit am Wochenende"],
+  vertrag:[["Gehalt","2.700–2.900 € brutto"],["Arbeitszeit","40 Std./Woche, Schichtdienst, auch am Wochenende"],["Urlaub","28 Tage (nicht im Juli/August)"],["Probezeit","3 Monate"],["Vertrag","befristet auf 1 Jahr, Übernahme möglich"],["Eintritt","1. April"],["Extras","kostenloses Essen, Personalzimmer möglich"]],
+  wichtig:["Im Sommer ist es sehr stressig – die Person muss belastbar sein.","Frag, ob sie/er am Wochenende arbeiten kann.","Frag nach der Lücke im Lebenslauf."],
+  bew:{ name:"Leon Wagner", alter:22, wohnort:"Kiel", familie:"ledig, eine Freundin in Kiel",
+    lauf:[["seit 2024","Aushilfe in einer Pizzeria"],["2023–2024","6 Monate Work & Travel in Australien"],["2022–2023","Jungkoch in einer Kantine"],["2019–2022","Ausbildung zum Koch, Restaurant „Hafenblick“ Kiel"],["2019","Erster Schulabschluss"]],
+    sprachen:"Deutsch, Englisch (gut)", kenntnisse:"regionale Küche, Grillen, große Mengen kochen", staerken:"schnell, belastbar, offen",
+    wunsch:[["Gehalt","2.900 € brutto"],["Vertrag","lieber unbefristet"],["Freizeit","jedes zweite Wochenende frei"]],
+    achtung:["Du hast kein Auto. Plön ist weit weg von Kiel – frag nach dem Personalzimmer.","Erkläre die Zeit in Australien positiv (Was hast du gelernt?)."],
+    fragen:["Kann der Vertrag später unbefristet werden?","Gibt es ein Personalzimmer?"] } },
+
+{ id:5, firma:"NordLog GmbH", branche:"Versandlager für Online-Händler", ort:"Neumünster", groesse:"300 Mitarbeitende",
+  ansprech:"Frau Katrin Voß (Lagerleiterin)", stelle:"Fachkraft für Lagerlogistik",
+  ueber:"Großes Lager am Stadtrand. Täglich werden über 20.000 Pakete verschickt.",
+  aufgaben:["Ware annehmen und kontrollieren","Gabelstapler fahren","Bestellungen zusammenstellen (mit Scanner)"],
+  anforderungen:["Staplerschein","Erfahrung im Lager","Früh- und Spätschicht"],
+  vertrag:[["Gehalt","2.650 € brutto + Schichtzulage"],["Arbeitszeit","40 Std./Woche, Frühschicht 6–14 / Spätschicht 14–22 Uhr"],["Urlaub","28 Tage"],["Probezeit","6 Monate"],["Vertrag","zuerst befristet auf 2 Jahre"],["Eintritt","sofort"],["Extras","Weihnachtsgeld, Weiterbildung möglich"]],
+  wichtig:["Der letzte Mitarbeiter kam oft zu spät – Zuverlässigkeit ist sehr wichtig.","Das Lager liegt außerhalb, der Bus fährt selten. Frag, wie die Person zur Arbeit kommt."],
+  bew:{ name:"Mariusz Kowalski", alter:38, wohnort:"Neumünster", familie:"verheiratet, drei Kinder (4, 9 und 12 Jahre)",
+    lauf:[["seit 2024","Minijob im Supermarkt (Regale einräumen)"],["2020–2024","Fahrer bei einem Paketdienst (Firma insolvent)"],["2015–2020","Lagerarbeiter bei einer Zeitarbeitsfirma"],["2004–2015","Lagerarbeiter in Poznań (Polen)"],["2003","Berufsschule in Polen (Mechaniker)"]],
+    sprachen:"Polnisch (Muttersprache), Deutsch (B1/B2)", kenntnisse:"Staplerschein, Scanner, Lagerverwaltung", staerken:"zuverlässig, körperlich fit, ruhig",
+    wunsch:[["Gehalt","2.900 € brutto"],["Vertrag","unbefristet (Sicherheit für die Familie)"],["Schicht","keine Nachtschicht"]],
+    achtung:["Deine Frau braucht das Auto. Frag nach Bus oder Fahrgemeinschaften.","Deine letzte Firma ist pleite gegangen – das war nicht deine Schuld."],
+    fragen:["Kann der Vertrag unbefristet werden?","Gibt es Fahrgemeinschaften mit Kolleg:innen?"] } },
+
+{ id:6, firma:"Kita Sonnenstrahl", branche:"Städtische Kindertagesstätte", ort:"Kiel", groesse:"90 Kinder, 18 Mitarbeitende",
+  ansprech:"Frau Birte Lorenzen (Kita-Leitung)", stelle:"Erzieher/in",
+  ueber:"Kita mit offenem Konzept, viele Kinder sprechen mehrere Sprachen.",
+  aufgaben:["eine Gruppe mit Kindern von 3 bis 6 Jahren betreuen","Elterngespräche führen","die Entwicklung der Kinder dokumentieren"],
+  anforderungen:["staatlich anerkannte:r Erzieher:in","Geduld und Freude an Kindern","sehr gute Deutschkenntnisse"],
+  vertrag:[["Gehalt","ca. 3.300 € brutto (nach Tarif)"],["Arbeitszeit","30 bis 39 Std./Woche möglich"],["Urlaub","30 Tage"],["Probezeit","6 Monate"],["Vertrag","unbefristet"],["Eintritt","1. Februar"],["Extras","Fortbildungen, Betriebsausflug"]],
+  wichtig:["Teamfähigkeit ist sehr wichtig.","Frag, wie die Person mit schwierigen Eltern umgeht.","Frag nach Sprachen – viele Eltern sprechen wenig Deutsch."],
+  bew:{ name:"Aylin Demir", alter:25, wohnort:"Kiel", familie:"ledig, lebt mit ihrem Partner zusammen",
+    lauf:[["seit 2022","Erzieherin in der Kita „Kunterbunt“ (Vertrag endet am 31.12.)"],["2019–2022","Ausbildung zur Erzieherin (Fachschule)"],["2017–2019","Ausbildung zur Sozialpädagogischen Assistentin"],["2017","Mittlerer Schulabschluss"]],
+    sprachen:"Deutsch, Türkisch (Muttersprache), Englisch (A2)", kenntnisse:"Sprachförderung, Musik mit Kindern", staerken:"geduldig, fröhlich, teamfähig",
+    wunsch:[["Arbeitszeit","35 Std./Woche"],["Vertrag","unbefristet"],["Eintritt","am liebsten 1. Januar"]],
+    achtung:["Dein Vertrag endet am 31.12. – im Januar hättest du keine Arbeit. Verhandle über den Starttermin.","Du möchtest nächstes Jahr eine Weiterbildung zur Sprachförderung machen."],
+    fragen:["Kann ich schon im Januar anfangen?","Unterstützt die Kita meine Weiterbildung?"] } },
+
+{ id:7, firma:"TechnoWerk AG", branche:"IT-Dienstleister", ort:"Rendsburg", groesse:"60 Mitarbeitende",
+  ansprech:"Herr Jonas Weber (Teamleiter Support)", stelle:"Mitarbeiter/in IT-Support",
+  ueber:"Betreut Computer und Netzwerke für Arztpraxen, Schulen und kleine Firmen.",
+  aufgaben:["Kund:innen am Telefon helfen","Computer und Drucker einrichten","Anfragen (Tickets) bearbeiten"],
+  anforderungen:["Ausbildung oder Studium in der IT","Freundlichkeit am Telefon","Führerschein"],
+  vertrag:[["Gehalt","3.200–3.500 € brutto"],["Arbeitszeit","40 Std./Woche, Gleitzeit"],["Urlaub","28 Tage"],["Probezeit","6 Monate"],["Vertrag","unbefristet"],["Eintritt","ab sofort"],["Extras","2 Tage Homeoffice, Laptop und Handy, Zertifikate werden bezahlt"]],
+  wichtig:["Die Kund:innen sprechen nur Deutsch – Telefonieren ist wichtig.","Einmal im Monat gibt es Bereitschaftsdienst am Wochenende."],
+  bew:{ name:"Dmytro Kovalenko", alter:29, wohnort:"Kiel", familie:"verheiratet, eine Tochter (1 Jahr)",
+    lauf:[["seit 2024","IT-Support an einer Schule (Minijob)"],["2022–2024","Integrationskurs und Berufssprachkurs (B2)"],["2017–2022","IT-Administrator bei einer Bank in Kiew"],["2013–2017","Studium Informatik (Bachelor) in Kiew"]],
+    sprachen:"Ukrainisch, Russisch, Englisch (C1), Deutsch (B2)", kenntnisse:"Windows, Netzwerke, Datenbanken", staerken:"geduldig, logisch, hilfsbereit",
+    wunsch:[["Gehalt","3.600 € brutto"],["Homeoffice","3 Tage pro Woche"],["Wochenende","möglichst kein Bereitschaftsdienst (Baby)"]],
+    achtung:["Am Telefon bist du auf Deutsch noch etwas unsicher – sag, wie du daran arbeitest.","Deine Frau arbeitet am Wochenende – Bereitschaft ist schwierig."],
+    fragen:["Welche Zertifikate kann ich machen?","Wie lange dauert die Einarbeitung?"] } },
+
+{ id:8, firma:"Salon Schnittpunkt", branche:"Friseursalon", ort:"Eckernförde", groesse:"8 Mitarbeitende",
+  ansprech:"Frau Nadine Groß (Inhaberin)", stelle:"Friseur/in",
+  ueber:"Moderner Salon in der Fußgängerzone, viele Stammkund:innen.",
+  aufgaben:["Haare schneiden und färben","Kund:innen beraten","Termine vergeben"],
+  anforderungen:["abgeschlossene Ausbildung","Erfahrung mit Farbe","Arbeit am Samstag"],
+  vertrag:[["Gehalt","2.300 € brutto + 10 % Provision"],["Arbeitszeit","38 Std./Woche, Di–Sa"],["Urlaub","26 Tage"],["Probezeit","3 Monate"],["Vertrag","unbefristet"],["Eintritt","1. Dezember"],["Extras","Farb-Weiterbildung, Rabatt auf Produkte"]],
+  wichtig:["Der Samstag ist der wichtigste Tag.","Frag, ob die Person Stammkund:innen mitbringt."],
+  bew:{ name:"Elena Popescu", alter:33, wohnort:"Eckernförde", familie:"alleinerziehend, eine Tochter (8 Jahre)",
+    lauf:[["seit 2020","Friseurin in Teilzeit in einem Salon in Kiel"],["2018–2020","Elternzeit und Deutschkurs"],["2011–2018","Friseurin in Bukarest (Rumänien)"],["2008–2011","Ausbildung zur Friseurin in Bukarest"]],
+    sprachen:"Rumänisch (Muttersprache), Deutsch (B2)", kenntnisse:"Färben, Hochsteckfrisuren", staerken:"kreativ, freundlich, schnell",
+    wunsch:[["Arbeitszeit","30 Std./Woche"],["Samstag","nur jeden zweiten Samstag"],["Gehalt","mind. 2.500 € brutto"]],
+    achtung:["Am Samstag hast du keine Betreuung für deine Tochter – finde einen Kompromiss.","Einige Stammkundinnen aus Kiel würden zu dir kommen."],
+    fragen:["Wie funktioniert die Provision?","Ist Teilzeit möglich?"] } },
+
+{ id:9, firma:"AutoFix GmbH", branche:"Kfz-Werkstatt für alle Marken", ort:"Neustadt in Holstein", groesse:"15 Mitarbeitende",
+  ansprech:"Herr Bernd Hauser (Werkstattmeister)", stelle:"Kfz-Mechatroniker/in",
+  ueber:"Familienbetrieb seit 1985. Immer mehr Kund:innen kommen mit Elektroautos.",
+  aufgaben:["Inspektionen und Reparaturen","Fehler mit dem Computer finden","Elektroautos warten"],
+  anforderungen:["Ausbildung als Kfz-Mechatroniker/in","Führerschein","Interesse an E-Mobilität"],
+  vertrag:[["Gehalt","2.900–3.200 € brutto"],["Arbeitszeit","40 Std./Woche, Mo–Fr 7–16 Uhr"],["Urlaub","28 Tage"],["Probezeit","6 Monate"],["Vertrag","unbefristet"],["Eintritt","1. November"],["Extras","Hochvolt-Schulung wird bezahlt, Arbeitskleidung"]],
+  wichtig:["E-Autos werden immer wichtiger – frag nach Erfahrung.","Frag, warum die Person nach einer Leitungsfunktion wieder als Mechaniker arbeiten will."],
+  bew:{ name:"Mehmet Yıldız", alter:41, wohnort:"Neustadt", familie:"verheiratet, zwei Kinder (15 und 17 Jahre)",
+    lauf:[["seit 2021","Mechaniker in einem Reifenservice"],["2012–2020","Werkstattleiter in Izmir (Türkei)"],["2002–2012","Kfz-Mechaniker in Izmir"],["1999–2002","Ausbildung zum Kfz-Mechaniker"]],
+    sprachen:"Türkisch (Muttersprache), Deutsch (B1/B2)", kenntnisse:"Motoren, Diagnose, Getriebe", staerken:"erfahren, ruhig, genau",
+    wunsch:[["Gehalt","3.400 € brutto (wegen deiner Erfahrung)"],["Weiterbildung","Hochvolt-Schulung"],["Zukunft","später vielleicht Meister werden"]],
+    achtung:["Du hast noch nie an E-Autos gearbeitet – zeig, dass du lernen willst.","Früher warst du Chef, jetzt wärst du Mitarbeiter – erkläre, warum das für dich okay ist."],
+    fragen:["Kann ich später die Meisterprüfung machen?","Wann ist die Hochvolt-Schulung?"] } },
+
+{ id:10, firma:"Bäckerei Körner", branche:"Bäckerei mit Café (6 Filialen)", ort:"Preetz", groesse:"45 Mitarbeitende",
+  ansprech:"Frau Silke Brandt (Filialleiterin)", stelle:"Verkäufer/in",
+  ueber:"Traditionsbäckerei seit 1952, bekannt für Brot aus der Region.",
+  aufgaben:["Kund:innen bedienen und kassieren","Kaffee zubereiten","das Café sauber halten"],
+  anforderungen:["Erfahrung im Verkauf","Freundlichkeit","frühes Aufstehen, auch sonntags"],
+  vertrag:[["Lohn","14,50 € pro Stunde"],["Arbeitszeit","25–30 Std./Woche, Frühschicht 5:30–12 Uhr oder Spätschicht 12–18:30 Uhr"],["Sonntag","jeden zweiten Sonntag (50 % Zuschlag)"],["Urlaub","26 Tage"],["Probezeit","3 Monate"],["Vertrag","befristet auf 1 Jahr"],["Eintritt","sofort"]],
+  wichtig:["Am Sonntag ist am meisten los – das ist wichtig.","Wenig Erfahrung ist okay, wenn die Person motiviert ist."],
+  bew:{ name:"Hana Tesfaye", alter:19, wohnort:"Preetz", familie:"ledig, wohnt bei den Eltern",
+    lauf:[["seit 2023","Minijob an der Kasse im Supermarkt"],["2022–2023","Berufsvorbereitungsjahr"],["2022","Erster Schulabschluss"]],
+    sprachen:"Tigrinya (Muttersprache), Deutsch (B1/B2), Englisch (A2)", kenntnisse:"Kasse, Kundenkontakt", staerken:"freundlich, pünktlich, lernt schnell",
+    wunsch:[["Arbeitszeit","30 Std./Woche, lieber Frühschicht"],["Sonntag","am liebsten frei (Familie)"],["Zukunft","später eine Ausbildung zur Bäckereifachverkäuferin"]],
+    achtung:["Du hast noch wenig Erfahrung – zeige deine Stärken.","Du möchtest wissen, ob eine Ausbildung möglich ist."],
+    fragen:["Kann ich später hier eine Ausbildung machen?","Muss ich jeden zweiten Sonntag arbeiten?"] } },
+
+{ id:11, firma:"Kanzlei Hansen & Partner", branche:"Anwaltskanzlei", ort:"Kiel", groesse:"12 Mitarbeitende",
+  ansprech:"Frau Ute Hansen (Rechtsanwältin)", stelle:"Kaufmännische/r Mitarbeiter/in (Empfang und Büro)",
+  ueber:"Kanzlei für Arbeitsrecht und Familienrecht. Viele Termine und viele Telefonate.",
+  aufgaben:["Telefon und Empfang","Termine planen","Post und Akten digital bearbeiten"],
+  anforderungen:["kaufmännische Ausbildung oder Studium","sehr gutes Deutsch","MS Office","Diskretion (Datenschutz)"],
+  vertrag:[["Gehalt","2.800–3.000 € brutto"],["Arbeitszeit","39 Std./Woche, 8–16:30 Uhr"],["Urlaub","28 Tage"],["Probezeit","6 Monate"],["Vertrag","unbefristet"],["Eintritt","1. Januar"],["Extras","Jobticket, Weihnachtsgeld"]],
+  wichtig:["Diskretion ist sehr wichtig.","Die Person telefoniert viel – achte auf ihr Deutsch.","Frag, was sie im Studium gelernt hat."],
+  bew:{ name:"Lan Nguyen", alter:28, wohnort:"Kiel", familie:"verheiratet, keine Kinder",
+    lauf:[["seit 2022","Bürokraft in einer Arztpraxis (Teilzeit, 20 Std.)"],["2020–2022","Deutschkurse bis C1"],["2018–2020","Sachbearbeiterin Import/Export in Hanoi (Vietnam)"],["2014–2018","Studium BWL in Hanoi"]],
+    sprachen:"Vietnamesisch (Muttersprache), Deutsch (C1), Englisch (B2)", kenntnisse:"MS Office, Buchhaltung, Terminplanung", staerken:"diskret, genau, freundlich",
+    wunsch:[["Arbeitszeit","Vollzeit"],["Gehalt","3.000 € brutto"],["Eintritt","1. Januar passt"]],
+    achtung:["Dein Studium war in Vietnam – erkläre, was du kannst.","Du kennst Datenschutz schon aus der Arztpraxis."],
+    fragen:["Gibt es eine Einarbeitung?","Kann ich eine Weiterbildung im Bereich Recht machen?"] } },
+
+{ id:12, firma:"CleanService Nord", branche:"Gebäudereinigung", ort:"Kiel", groesse:"150 Mitarbeitende",
+  ansprech:"Herr Ali Demirci (Betriebsleiter)", stelle:"Objektleiter/in (Teamleitung Reinigung)",
+  ueber:"Reinigt Büros, Schulen und Arztpraxen in Kiel und Umgebung.",
+  aufgaben:["ein Team mit 8 Personen leiten","Einsatzpläne schreiben","die Qualität kontrollieren und mit Kund:innen sprechen"],
+  anforderungen:["Erfahrung in der Reinigung","Erfahrung als Teamleitung","Führerschein"],
+  vertrag:[["Gehalt","2.900 € brutto + Dienstwagen"],["Arbeitszeit","40 Std./Woche, 6–14:30 Uhr"],["Urlaub","28 Tage"],["Probezeit","6 Monate"],["Vertrag","unbefristet"],["Eintritt","15. November"],["Extras","Dienstwagen (nur beruflich), Diensthandy"]],
+  wichtig:["Im Team gibt es manchmal Streit – frag, wie die Person mit Konflikten umgeht.","Frag nach der Fahrpraxis (Dienstwagen)."],
+  bew:{ name:"Rosa Iglesias", alter:45, wohnort:"Kiel", familie:"verheiratet, zwei erwachsene Kinder",
+    lauf:[["seit 2015","Vorarbeiterin in einer Reinigungsfirma (Team mit 4 Personen)"],["2006–2015","Reinigungskraft im Krankenhaus"],["1996–2005","Verkäuferin in Madrid (Spanien)"],["1996","Schulabschluss in Spanien"]],
+    sprachen:"Spanisch (Muttersprache), Deutsch (B2)", kenntnisse:"Hygieneregeln, Einsatzpläne", staerken:"organisiert, fair, durchsetzungsstark",
+    wunsch:[["Gehalt","3.200 € brutto"],["Dienstwagen","auch privat nutzen"],["Eintritt","1. Dezember"]],
+    achtung:["Du hast den Führerschein erst seit 2 Jahren.","Ein Team mit 8 Personen ist neu für dich – zeig, dass du das kannst."],
+    fragen:["Darf ich den Dienstwagen privat nutzen?","Gibt es eine Schulung für Teamleitung?"] } }
+];
+
+/* Die 7 Phasen des Vorstellungsgesprächs (Aspekte Beruf B2, S. 155) */
+const PHASEN = [
+ { t:"1 · Aufwärmphase: Begrüßung & Smalltalk", tipp:"Handschlag, Blickkontakt, freundlich lächeln.",
+   firma:["Guten Tag, Frau/Herr …! Schön, dass Sie da sind.","Nehmen Sie doch bitte Platz.","Haben Sie gut hergefunden?","Darf ich Ihnen etwas zu trinken anbieten?"],
+   bew:["Guten Tag, Frau/Herr …! Vielen Dank für die Einladung.","Ja, danke, problemlos.","Ein Glas Wasser, gerne."] },
+ { t:"2 · Qualifikation & Motivation", tipp:"Die Bewerberin/der Bewerber zeigt großes Interesse und nennt Stärken.",
+   firma:["Warum bewerben Sie sich für diese Stelle?","Erzählen Sie doch noch mehr über Ihren Berufsweg.","Was sind Ihre Stärken?","Was haben Sie zwischen … und … gemacht?"],
+   bew:["Nach meiner Ausbildung habe ich …","Ich bewerbe mich, weil die Stelle perfekt zu meiner Berufserfahrung passt.","Meine Stärken sind …","In dieser Zeit habe ich …"] },
+ { t:"3 · Persönlicher Hintergrund", tipp:"Tabu: Fragen zu Religion, Schwangerschaft oder Gesundheit muss man nicht beantworten.",
+   firma:["Wo wohnen Sie zurzeit?","Sie sind verheiratet und haben ein Kind, richtig?","Wie kommen Sie zur Arbeit?"],
+   bew:["Ja, das stimmt. Mein Sohn ist … Jahre alt.","Ich wohne in … und fahre mit dem Bus.","Darauf möchte ich lieber nicht antworten."] },
+ { t:"4 · Informationen über Firma & Arbeitsplatz", tipp:"Die Bewerberin/der Bewerber zeigt, dass sie/er sich informiert hat.",
+   firma:["Ich möchte Ihnen kurz unser Unternehmen vorstellen.","Sie möchten sicher noch etwas über uns erfahren?","Zu Ihren Aufgaben gehört …"],
+   bew:["Ja, daran bin ich sehr interessiert.","Ich habe mich schon auf Ihrer Website informiert.","Darüber würde ich gerne noch mehr erfahren."] },
+ { t:"5 · Arbeitsbedingungen (Vertrag)", tipp:"Eintrittstermin, Gehalt, Arbeitszeiten – hier wird verhandelt!",
+   firma:["Wann wäre es Ihnen möglich anzufangen?","Das Gehalt liegt bei …","Die Probezeit beträgt … Monate.","Da könnten wir uns vielleicht einigen: …"],
+   bew:["Ich könnte frühestens am … anfangen.","Könnten Sie noch etwas über die Höhe des Gehalts sagen?","Meine Gehaltsvorstellung liegt bei …","Wie sind die Arbeitszeiten geregelt?"] },
+ { t:"6 · Fragen der Bewerberin / des Bewerbers", tipp:"Fragen vorbereiten: Einarbeitung, Weiterbildung, Kolleg:innen.",
+   firma:["Haben Sie selbst noch Fragen?","Gibt es noch etwas, das Sie wissen möchten?"],
+   bew:["Ja, ich habe noch eine Frage zu …","Könnten Sie mir noch eine Frage beantworten: …","Wie sieht die Einarbeitung aus?","Gibt es Weiterbildungsmöglichkeiten?"] },
+ { t:"7 · Abschluss des Gesprächs", tipp:"Die Gesprächspartnerin/den Gesprächspartner mit Namen ansprechen, Blickkontakt halten.",
+   firma:["Wir melden uns Ende nächster Woche bei Ihnen.","Vielen Dank für das Gespräch, Frau/Herr …"],
+   bew:["Wann darf ich mit einer Entscheidung rechnen?","Ich danke Ihnen sehr für das Gespräch, Frau/Herr …","Auf Wiedersehen!"] }
+];
+
+/* Berufssprache: Sagen Sie es anders (S. 155) */
+const HOEFLICH = [
+ ["Setzen Sie sich.","Nehmen Sie doch bitte Platz."],
+ ["Trinken Sie etwas?","Darf ich Ihnen etwas zu trinken anbieten?"],
+ ["Erzählen Sie noch mehr.","Darüber würde ich gerne noch mehr erfahren."],
+ ["Wann können Sie anfangen?","Wann wäre es Ihnen möglich anzufangen?"],
+ ["Ich habe noch eine Frage: …","Könnten Sie mir noch eine Frage beantworten: …"],
+ ["Wie viel verdiene ich?","Könnten Sie noch etwas über die Höhe meines Gehalts sagen?"]
+];
+
+/* Bewertungskriterien */
+const KRIT = [
+ {k:"k1", t:"Guter erster Eindruck", s:"Begrüßung, Smalltalk, freundlich"},
+ {k:"k2", t:"Passende Fragen & Antworten", s:"Qualifikation, Motivation, Beispiele"},
+ {k:"k3", t:"Höflich & formell", s:"Sie-Form, „Könnten Sie …?“, gute Redemittel"},
+ {k:"k4", t:"Guter Abschluss", s:"Einigung, Dank, Verabschiedung mit Namen"}
+];
+const HIRE = [["ja","👍 Ja"],["vl","🤔 Vielleicht"],["nein","👎 Nein"]];
+</script>
+<script>
+/* ======================================================================
+   ENGINE
+   ====================================================================== */
+const firebaseConfig = {
+  apiKey: "AIzaSyBDChXlm34Kr7Gg0Dw458GiiwoLnWJAnxM",
+  authDomain: "lern-deutsch-arash.firebaseapp.com",
+  databaseURL: "https://lern-deutsch-arash-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "lern-deutsch-arash",
+  storageBucket: "lern-deutsch-arash.firebasestorage.app",
+  messagingSenderId: "845503292114",
+  appId: "1:845503292114:web:f76ab5fcde1e978d00c30b"
+};
+let db=null, fbReady=false;
+try{ firebase.initializeApp(firebaseConfig); db=firebase.database(); fbReady=true; }
+catch(e){ console.warn("Firebase nicht verfügbar:",e); }
+
+const ROOT="games_bg/";
+let mode=null, gameCode=null, gameRef=null, myId=null, G={};
+let pTab="karte", rateDraft={}, rateEdit={}, obsChecks={}, consolePending=false;
+
+const S=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+/* Datenfelder dürfen &amp; enthalten – vor dem Escapen zurückwandeln */
+const txt=s=>esc(String(s==null?"":s).replace(/&amp;/g,"&"));
+function rand4(){return String(Math.floor(1000+Math.random()*9000));}
+function uid(){return "u"+Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+function setMsg(id,t,c){const e=S(id);if(e)e.innerHTML=`<div class="notice ${c||''}">${t}</div>`;}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function scenById(id){return SZEN.find(s=>s.id===Number(id));}
+const ROLE_LBL={firma:"Unternehmen",bew:"Bewerber:in",beob:"Beobachter:in"};
+
+function hideAll(){["screen-home","screen-join","screen-player","screen-console-login","screen-console"].forEach(s=>S(s).classList.add("hidden"));}
+function goHome(){ if(gameRef)gameRef.off(); hideAll(); S("screen-home").classList.remove("hidden"); mode=null;gameCode=null;gameRef=null;myId=null;G={}; }
+function showJoin(){ hideAll(); S("screen-join").classList.remove("hidden");
+  try{ const q=new URLSearchParams(location.search).get("code"); if(q) S("join-code").value=q; }catch(e){}
+  try{ const n=localStorage.getItem("bg_lastname"); if(n&&!S("join-name").value) S("join-name").value=n; }catch(e){} }
+function showConsoleLogin(){ hideAll(); S("screen-console-login").classList.remove("hidden");
+  try{ const c=localStorage.getItem("bg_console_code"); if(c) S("open-code").value=c; }catch(e){}
+  if(!fbReady) setMsg("console-login-msg","⚠️ Keine Verbindung zu Firebase. Bitte Internet prüfen.","err"); }
+function getDeviceId(code){ const k="bg_pid_"+code;
+  try{ let v=localStorage.getItem(k); if(!v){v=uid();localStorage.setItem(k,v);} return v; }catch(e){ return uid(); } }
+
+/* Teilnehmende (nur mit Namen – keine „?“-Geister) */
+function plist(){ return Object.entries(G.players||{}).map(([id,p])=>({id,...(p||{})})).filter(p=>p.name)
+  .sort((a,b)=>(a.joinedAt||0)-(b.joinedAt||0)); }
+function pairNums(){ const s=new Set(Object.keys(G.pairs||{}).map(Number)); plist().forEach(p=>{if(p.pair)s.add(Number(p.pair));});
+  return [...s].filter(n=>n>0).sort((a,b)=>a-b); }
+function membersOf(k){ const ps=plist().filter(p=>Number(p.pair)===k);
+  return { firma:ps.filter(p=>p.rolle==="firma"), bew:ps.filter(p=>p.rolle==="bew"), beob:ps.filter(p=>p.rolle==="beob") }; }
+function usedScens(){ return Object.values(G.pairs||{}).map(x=>x&&x.scen).filter(Boolean); }
+function freeScen(exclude){ const ex=new Set(exclude||[]); const free=SZEN.map(s=>s.id).filter(id=>!ex.has(id));
+  const pool=free.length?free:SZEN.map(s=>s.id); return pool[Math.floor(Math.random()*pool.length)]; }
+
+/* ============================ KONSOLE ============================ */
+function createGame(){
+  if(!fbReady){setMsg("console-login-msg","⚠️ Keine Verbindung zu Firebase.","err");return;}
+  const code=rand4();
+  db.ref(ROOT+code).get().then(s=>{
+    if(s.exists()) return createGame();
+    return db.ref(ROOT+code).set({createdAt:Date.now(),cardsOn:false}).then(()=>enterConsole(code));
+  });
+}
+function openGame(){
+  const code=S("open-code").value.trim();
+  if(!/^\d{4}$/.test(code)){setMsg("console-login-msg","Bitte den vierstelligen Code eingeben.","err");return;}
+  db.ref(ROOT+code).get().then(s=>{
+    if(!s.exists()){setMsg("console-login-msg","Kein Spiel mit diesem Code gefunden.","err");return;}
+    enterConsole(code);
+  });
+}
+function enterConsole(code){
+  gameCode=code; mode="console";
+  try{ localStorage.setItem("bg_console_code",code); }catch(e){}
+  hideAll(); S("screen-console").classList.remove("hidden");
+  gameRef=db.ref(ROOT+code);
+  gameRef.on("value",snap=>{ G=snap.val()||{}; renderConsole(); });
+}
+/* Nicht neu zeichnen, solange ein Auswahlfeld offen ist */
+document.addEventListener("focusout",()=>{ if(consolePending) setTimeout(renderConsole,60); });
+
+function agg(sid){
+  const R=(G.ratings||{})[sid]||{}; const list=Object.values(R).filter(Boolean);
+  const out={n:list.length, avg:{}, total:0, hire:{ja:0,vl:0,nein:0}};
+  let sum=0,cnt=0;
+  KRIT.forEach(c=>{ let s=0,m=0; list.forEach(r=>{ if(r[c.k]){s+=r[c.k];m++;} });
+    out.avg[c.k]=m?s/m:0; sum+=s; cnt+=m; });
+  out.total=cnt?sum/cnt:0;
+  list.forEach(r=>{ if(r.hire&&out.hire[r.hire]!=null) out.hire[r.hire]++; });
+  return out;
+}
+function fmt(x){ return x?x.toFixed(1).replace(".",","):"–"; }
+
+function renderConsole(){
+  const root=S("screen-console");
+  const ae=document.activeElement;
+  if(ae && ae.tagName==="SELECT" && root.contains(ae)){ consolePending=true; return; }
+  consolePending=false;
+
+  const ps=plist(); const nums=pairNums();
+  const unassigned=ps.filter(p=>!p.pair||!p.rolle);
+  const stage=G.stage && G.stages && G.stages[G.stage] ? G.stages[G.stage] : null;
+
+  let h=`<header class="top"><div class="logo">🤝</div>
+    <div><h1>Spielleitung · Bewerbungsgespräche</h1><div class="tag">${ps.length} angemeldet · ${nums.length} Paare · Karten ${G.cardsOn?'<b style="color:#7fe0c6">sichtbar</b>':'<b style="color:#f2d489">verborgen</b>'}</div></div>
+    <a href="#" class="home" onclick="if(confirm('Konsole schließen? Das Spiel bleibt gespeichert.'))goHome();return false;">← schließen</a></header>`;
+
+  h+=`<div class="card"><div class="codebar">
+      <div><div class="muted">Spielcode – am Handy „Mitspielen“ wählen</div><div class="bigcode">${esc(gameCode)}</div></div>
+      <div class="muted" style="text-align:right">${ps.length} Teilnehmende<br>${unassigned.length?`<span class="pill frei">${unassigned.length} ohne Rolle</span>`:'alle haben eine Rolle ✓'}</div>
+    </div></div>`;
+
+  /* ---- BÜHNE ---- */
+  if(stage){
+    const a=agg(G.stage);
+    const raters=ps.filter(p=>p.id!==stage.firmaId && p.id!==stage.bewId).length;
+    h+=`<div class="card stage">
+      <div class="st-k">🎤 Auf der Bühne · Paar ${esc(stage.pair)}</div>
+      <div class="st-t">${txt(stage.stelle)} – ${txt(stage.firma)}</div>
+      <div class="st-names"><span>🏢 ${esc(stage.firmaName||"—")}</span><span>👤 ${esc(stage.bewName||"—")}</span></div>
+      <div class="st-count">${G.stageOpen?'⭐ Bewertung läuft':'🔒 Bewertung geschlossen'} · ${a.n} von ${raters} haben bewertet</div>
+      <div class="row">
+        ${G.stageOpen?`<button class="btn btn-gold" onclick="setStageOpen(false)">🔒 Bewertung schließen &amp; Ergebnis zeigen</button>`
+                     :`<button class="btn btn-ghost" onclick="setStageOpen(true)">🔓 Bewertung wieder öffnen</button>`}
+        <button class="btn btn-ghost" onclick="endStage()">Bühne beenden</button>
+      </div>
+      ${!G.stageOpen?resultBlock(G.stage):`<p class="muted" style="margin-top:10px">Das Ergebnis erscheint, wenn du die Bewertung schließt – so beeinflusst niemand die anderen.</p>`}
+    </div>`;
+  }
+
+  /* ---- STEUERUNG ---- */
+  h+=`<div class="card"><h2>Steuerung</h2>
+    <p class="muted" style="margin:0">Du entscheidest: automatisch verteilen, einzeln ändern, Karten freigeben.</p>
+    <div class="ctrl-grid">
+      <div class="ctrl"><button class="btn btn-gold" ${ps.length<2?'disabled':''} onclick="autoAll()">🎲 Alle neu verteilen</button>
+        <p>Bildet zufällige Paare (Unternehmen + Bewerber:in) mit je einer Stelle. Bei ungerader Zahl: 1 Beobachter:in.</p></div>
+      <div class="ctrl"><button class="btn btn-teal" ${!unassigned.length?'disabled':''} onclick="assignNew()">➕ Nur Neue zuteilen (${unassigned.length})</button>
+        <p>Für Nachzügler:innen – bestehende Paare bleiben, wie sie sind.</p></div>
+      <div class="ctrl"><button class="btn ${G.cardsOn?'btn-ghost':'btn-blue'}" onclick="toggleCards()">${G.cardsOn?'🙈 Karten verbergen':'👁 Karten freigeben'}</button>
+        <p>${G.cardsOn?'Alle sehen gerade ihre Rollenkarte.':'Alle sehen erst nur ihre Rolle und ihr Gegenüber.'}</p></div>
+      <div class="ctrl"><button class="btn btn-ghost" ${!nums.length?'disabled':''} onclick="swapAll()">⇄ Rollen tauschen (alle)</button>
+        <p>Runde 2: Unternehmen wird Bewerber:in und umgekehrt.</p></div>
+      <div class="ctrl"><button class="btn btn-ghost" ${!nums.length?'disabled':''} onclick="newScens()">🎯 Neue Stellen zulosen</button>
+        <p>Jedes Paar bekommt eine andere Stelle.</p></div>
+      <div class="ctrl"><button class="btn btn-ghost" onclick="resetRoles()">🧹 Rollen zurücksetzen</button>
+        <p>Alle Paare auflösen (Anmeldungen bleiben).</p></div>
+    </div></div>`;
+
+  /* ---- PAARE ---- */
+  h+=`<div class="card"><h2>Paare &amp; Stellen</h2>`;
+  if(!nums.length){ h+=`<p class="muted">Noch keine Paare. Warte, bis sich alle angemeldet haben, dann „🎲 Alle neu verteilen“.</p>`; }
+  else{
+    h+=`<div class="pair-grid">`;
+    nums.forEach(k=>{
+      const pr=(G.pairs||{})[k]||{}; const m=membersOf(k);
+      const onst=stage&&Number(stage.pair)===k;
+      const done=Object.values(G.stages||{}).filter(s=>Number(s.pair)===k).length;
+      const line=(r,arr)=>`<div class="pline"><span class="lbl ${r}">${ROLE_LBL[r]}</span>${
+        arr.length?arr.map(p=>`<span class="who">${esc(p.name)}</span>`).join(", ")+(arr.length>1&&r!=="beob"?' <span class="miss">⚠ doppelt</span>':'')
+        :(r==="beob"?'<span class="muted">–</span>':'<span class="miss">fehlt</span>')}</div>`;
+      const empty=!m.firma.length&&!m.bew.length&&!m.beob.length;
+      h+=`<div class="pairbox ${onst?'onstage':''}">
+        <div class="ph"><span class="pn">${k}</span>
+          <select onchange="setScen(${k},this.value);this.blur()">${SZEN.map(s=>`<option value="${s.id}" ${Number(pr.scen)===s.id?'selected':''}>${txt(s.stelle)} · ${txt(s.firma)}</option>`).join("")}</select></div>
+        ${line("firma",m.firma)}${line("bew",m.bew)}${m.beob.length?line("beob",m.beob):''}
+        <div class="pb-actions">
+          <button class="btn btn-gold small" ${(!m.firma.length||!m.bew.length)?'disabled':''} onclick="toStage(${k})">▶ Auf die Bühne</button>
+          <button class="btn btn-ghost small" onclick="swapPair(${k})">⇄ tauschen</button>
+          ${empty?`<button class="btn btn-danger small" onclick="deletePair(${k})">Paar löschen</button>`:''}
+          ${done?`<span class="muted" style="font-size:.8rem;align-self:center">✓ ${done}× vorgespielt</span>`:''}
+        </div></div>`;
+    });
+    h+=`</div>`;
+  }
+  h+=`</div>`;
+
+  /* ---- ERGEBNISSE ---- */
+  const stages=Object.entries(G.stages||{}).map(([sid,s])=>({sid,...s})).sort((a,b)=>(a.t||0)-(b.t||0));
+  const shown=stages.filter(s=>s.sid!==G.stage||!G.stageOpen);
+  if(shown.length){
+    h+=`<div class="card"><div class="flex-between" style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+      <h2>📊 Ergebnisse (anonym)</h2><span class="muted">Nur Durchschnittswerte – niemand sieht, wer wie bewertet hat.</span></div>
+      <table class="res-table"><tr><th>#</th><th>Gespräch</th>${KRIT.map(c=>`<th>${esc(c.t)}</th>`).join("")}<th>Ø</th><th>Einstellen?</th><th></th></tr>`;
+    shown.forEach((s,i)=>{ const a=agg(s.sid);
+      h+=`<tr><td>${i+1}</td><td><b>${txt(s.stelle)}</b><div class="muted" style="font-size:.8rem">🏢 ${esc(s.firmaName||"—")} · 👤 ${esc(s.bewName||"—")} · ${a.n} Bewertungen</div></td>
+        ${KRIT.map(c=>`<td><div class="bar"><span style="width:${(a.avg[c.k]/5*100).toFixed(0)}%"></span></div><div style="font-size:.78rem;color:var(--ink-soft)">${fmt(a.avg[c.k])}</div></td>`).join("")}
+        <td class="num">⭐ ${fmt(a.total)}</td>
+        <td><div class="hire"><span class="h-ja">👍 ${a.hire.ja}</span><span class="h-vl">🤔 ${a.hire.vl}</span><span class="h-nein">👎 ${a.hire.nein}</span></div></td>
+        <td><button class="btn btn-ghost small" title="Ergebnis löschen" onclick="deleteStage('${s.sid}')">✕</button></td></tr>`;
+    });
+    h+=`</table></div>`;
+  }
+
+  /* ---- TEILNEHMENDE ---- */
+  const maxK=Math.max(0,...nums)+1;
+  h+=`<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+      <h2>Angemeldet (${ps.length})</h2>
+      ${ps.length?`<button class="btn btn-danger small" onclick="clearAll()">Alle entfernen</button>`:''}</div>
+    <p class="muted" style="margin:0">Mit dem Auswahlfeld setzt du eine Person manuell in ein Paar und eine Rolle. ✕ entfernt jemanden (z. B. doppelt angemeldet).</p>
+    <div class="list">`;
+  if(!ps.length) h+=`<p class="muted">Noch niemand angemeldet. Code am Beamer zeigen!</p>`;
+  ps.forEach(p=>{
+    const cur=(p.pair&&p.rolle)?`${p.pair}|${p.rolle}`:"";
+    let opts=`<option value="" ${!cur?'selected':''}>— keine Rolle —</option>`;
+    for(let k=1;k<=maxK;k++){
+      const sc=scenById(((G.pairs||{})[k]||{}).scen);
+      opts+=`<optgroup label="Paar ${k}${sc?' · '+txt(sc.stelle):' (neu)'}">`+
+        ["firma","bew","beob"].map(r=>`<option value="${k}|${r}" ${cur===k+'|'+r?'selected':''}>Paar ${k} · ${ROLE_LBL[r]}</option>`).join("")+`</optgroup>`;
+    }
+    h+=`<div class="list-item"><span class="nm">${esc(p.name)}</span>
+      ${!cur?'<span class="pill frei">ohne Rolle</span>':''}
+      <select onchange="setAssign('${p.id}',this.value);this.blur()">${opts}</select>
+      <button class="btn btn-danger small" title="Entfernen" onclick="removePlayer('${p.id}')">✕</button></div>`;
+  });
+  h+=`</div></div>`;
+
+  root.innerHTML=h;
+}
+function resultBlock(sid){
+  const a=agg(sid);
+  if(!a.n) return `<p class="muted" style="margin-top:10px">Noch keine Bewertungen.</p>`;
+  return `<div style="margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+    ${KRIT.map(c=>`<div class="ctrl"><div style="font-weight:700">${esc(c.t)}</div>
+      <div class="bar" style="margin:6px 0"><span style="width:${(a.avg[c.k]/5*100).toFixed(0)}%"></span></div>
+      <div style="font-size:1.3rem;font-weight:900;color:var(--gold)">${fmt(a.avg[c.k])} / 5</div></div>`).join("")}
+    <div class="ctrl"><div style="font-weight:700">Gesamt</div><div style="font-size:2rem;font-weight:900;color:var(--gold)">⭐ ${fmt(a.total)}</div></div>
+    <div class="ctrl"><div style="font-weight:700">Würden die anderen einstellen?</div>
+      <div class="hire" style="margin-top:8px;font-size:1rem"><span class="h-ja">👍 ${a.hire.ja}</span><span class="h-vl">🤔 ${a.hire.vl}</span><span class="h-nein">👎 ${a.hire.nein}</span></div></div>
+  </div>`;
+}
+
+/* ---- Konsole: Aktionen ---- */
+function autoAll(){
+  const ps=plist();
+  if(ps.length<2){alert("Es müssen mindestens 2 Personen angemeldet sein.");return;}
+  if(ps.some(p=>p.pair)&&!confirm("Alle Paare werden neu gemischt. Fortfahren?"))return;
+  const ids=shuffle(ps.map(p=>p.id)); const nP=Math.floor(ids.length/2);
+  const scens=shuffle(SZEN.map(s=>s.id)); const up={}; const pairs={};
+  for(let k=1;k<=nP;k++){
+    pairs[k]={scen:scens[(k-1)%scens.length]};
+    up[`players/${ids[2*k-2]}/pair`]=k; up[`players/${ids[2*k-2]}/rolle`]="firma";
+    up[`players/${ids[2*k-1]}/pair`]=k; up[`players/${ids[2*k-1]}/rolle`]="bew";
+  }
+  if(ids.length%2===1){ const last=ids[ids.length-1]; const k=1+Math.floor(Math.random()*nP);
+    up[`players/${last}/pair`]=k; up[`players/${last}/rolle`]="beob"; }
+  up.pairs=pairs;
+  gameRef.update(up);
+}
+function assignNew(){
+  const ps=plist(); const pairs=G.pairs||{};
+  const un=shuffle(ps.filter(p=>!p.pair||!p.rolle||!pairs[p.pair]).map(p=>p.id));
+  if(!un.length)return;
+  const up={}; const nums=Object.keys(pairs).map(Number).sort((a,b)=>a-b);
+  const filled=[];
+  nums.forEach(k=>{ const m=membersOf(k);
+    ["firma","bew"].forEach(r=>{ if(!m[r].length&&un.length){ const id=un.shift();
+      up[`players/${id}/pair`]=k; up[`players/${id}/rolle`]=r; filled.push(k);} }); });
+  let next=Math.max(0,...nums)+1; const used=usedScens(); const created=[];
+  while(un.length>=2){ const sc=freeScen(used); used.push(sc); up[`pairs/${next}/scen`]=sc;
+    const a=un.shift(), b=un.shift();
+    up[`players/${a}/pair`]=next; up[`players/${a}/rolle`]="firma";
+    up[`players/${b}/pair`]=next; up[`players/${b}/rolle`]="bew"; created.push(next); next++; }
+  if(un.length===1){ const all=nums.concat(created);
+    if(all.length){ const k=all[Math.floor(Math.random()*all.length)];
+      up[`players/${un[0]}/pair`]=k; up[`players/${un[0]}/rolle`]="beob"; }
+    else alert("Eine Person bleibt übrig – warte auf eine zweite Person oder weise sie manuell zu."); }
+  gameRef.update(up);
+}
+function setAssign(id,val){
+  if(!val){ gameRef.child("players/"+id).update({pair:null,rolle:null}); return; }
+  const [k,r]=val.split("|"); const up={};
+  up[`players/${id}/pair`]=Number(k); up[`players/${id}/rolle`]=r;
+  if(!(G.pairs||{})[k]) up[`pairs/${k}/scen`]=freeScen(usedScens());
+  gameRef.update(up);
+}
+function setScen(k,val){ gameRef.child(`pairs/${k}/scen`).set(Number(val)); }
+function swapPair(k){ const up={}; plist().forEach(p=>{ if(Number(p.pair)===k){
+  if(p.rolle==="firma")up[`players/${p.id}/rolle`]="bew"; else if(p.rolle==="bew")up[`players/${p.id}/rolle`]="firma"; } });
+  gameRef.update(up); }
+function swapAll(){ const up={}; plist().forEach(p=>{
+  if(p.rolle==="firma")up[`players/${p.id}/rolle`]="bew"; else if(p.rolle==="bew")up[`players/${p.id}/rolle`]="firma"; });
+  gameRef.update(up); }
+function newScens(){ const pairs=G.pairs||{}; const used=[]; const up={};
+  Object.keys(pairs).forEach(k=>{ const cur=pairs[k]&&pairs[k].scen; const sc=freeScen(used.concat(cur?[cur]:[])); used.push(sc); up[`pairs/${k}/scen`]=sc; });
+  gameRef.update(up); }
+function deletePair(k){ gameRef.child("pairs/"+k).remove(); }
+function toggleCards(){ gameRef.child("cardsOn").set(!G.cardsOn); }
+function resetRoles(){ if(!confirm("Alle Paare auflösen? Die Anmeldungen bleiben erhalten."))return;
+  const up={pairs:null,cardsOn:false}; plist().forEach(p=>{up[`players/${p.id}/pair`]=null;up[`players/${p.id}/rolle`]=null;});
+  gameRef.update(up); }
+function toStage(k){
+  const m=membersOf(k); const sc=scenById(((G.pairs||{})[k]||{}).scen); if(!sc)return;
+  const sid="s"+Date.now().toString(36);
+  const st={pair:k, scen:sc.id, stelle:sc.stelle, firma:sc.firma,
+    firmaId:m.firma[0]?m.firma[0].id:"", firmaName:m.firma[0]?m.firma[0].name:"",
+    bewId:m.bew[0]?m.bew[0].id:"", bewName:m.bew[0]?m.bew[0].name:"", t:Date.now()};
+  const up={}; up["stages/"+sid]=st; up.stage=sid; up.stageOpen=true;
+  gameRef.update(up);
+}
+function setStageOpen(v){ gameRef.child("stageOpen").set(!!v); }
+function endStage(){ gameRef.update({stage:null,stageOpen:false}); }
+function deleteStage(sid){ if(!confirm("Dieses Ergebnis löschen?"))return;
+  const up={}; up["stages/"+sid]=null; up["ratings/"+sid]=null; if(G.stage===sid){up.stage=null;up.stageOpen=false;}
+  gameRef.update(up); }
+function removePlayer(id){ gameRef.child("players/"+id).remove(); }
+function clearAll(){ if(!confirm("Wirklich ALLE Teilnehmenden entfernen?"))return;
+  gameRef.update({players:null,pairs:null,stage:null,stageOpen:false,cardsOn:false}); }
+
+/* ============================ SPIELER ============================ */
+function joinGame(){
+  if(!fbReady){setMsg("join-msg","⚠️ Keine Verbindung zu Firebase. Bitte Internet prüfen.","err");return;}
+  const code=S("join-code").value.trim(); const name=S("join-name").value.trim();
+  if(!/^\d{4}$/.test(code)){setMsg("join-msg","Bitte den vierstelligen Spielcode eingeben.","err");return;}
+  if(!name){setMsg("join-msg","Bitte deinen Vornamen eingeben.","err");return;}
+  db.ref(ROOT+code).get().then(s=>{
+    if(!s.exists()){setMsg("join-msg","Kein Spiel mit diesem Code gefunden.","err");return;}
+    gameCode=code; mode="player"; myId=getDeviceId(code);
+    try{ localStorage.setItem("bg_lastname",name); }catch(e){}
+    const ex=((s.val().players)||{})[myId]||{};
+    db.ref(`${ROOT}${code}/players/${myId}`).update({name, joinedAt:ex.joinedAt||Date.now()}).then(enterPlayer);
+  });
+}
+function enterPlayer(){
+  hideAll(); S("screen-player").classList.remove("hidden");
+  gameRef=db.ref(ROOT+gameCode);
+  gameRef.on("value",snap=>{ G=snap.val()||{}; renderPlayer(); });
+}
+function rejoin(){
+  const me=(G.players||{})[myId]; let name="";
+  try{ name=localStorage.getItem("bg_lastname")||""; }catch(e){}
+  if(!name){ goHome(); showJoin(); return; }
+  gameRef.child("players/"+myId).update({name, joinedAt:Date.now()});
+}
+function renderPlayer(){
+  const me=(G.players||{})[myId];
+  let h=`<header class="top"><div class="logo">🤝</div>
+    <div><h1>${esc(me&&me.name?me.name:"Mitspielen")}</h1><div class="tag pill-status"><span class="sdot"></span> Spiel ${esc(gameCode)}</div></div>
+    <a href="#" class="home" onclick="if(confirm('Spiel verlassen?'))goHome();return false;">←</a></header>`;
+  if(!me||!me.name){
+    h+=`<div class="card center"><h2>Du bist nicht (mehr) angemeldet</h2>
+      <p class="muted">Die Spielleitung hat dich entfernt oder die Verbindung war unterbrochen.</p>
+      <button class="btn btn-gold" onclick="rejoin()">Wieder anmelden</button></div>`;
+    S("screen-player").innerHTML=h; return;
+  }
+
+  /* Bühne / Bewertung */
+  const st=G.stage&&G.stages?G.stages[G.stage]:null;
+  if(st){
+    if(st.firmaId===myId||st.bewId===myId){
+      h+=`<div class="ratecard center"><h2>🎤 Ihr seid auf der Bühne!</h2>
+        <p class="muted" style="margin:6px 0 0">Führt euer Gespräch vor der Klasse. Die anderen bewerten euch anonym. Viel Erfolg!</p></div>`;
+    } else if(G.stageOpen){ h+=rateCard(G.stage,st); }
+    else { h+=`<div class="ratecard center"><h2>🔒 Bewertung geschlossen</h2><p class="muted" style="margin:6px 0 0">Schaut nach vorne – das Ergebnis ist am Beamer.</p></div>`; }
+  }
+
+  /* Rolle */
+  if(!me.pair||!me.rolle){
+    h+=`<div class="card center"><h2>Du bist angemeldet ✓</h2><p class="muted">Warte, bis die Lehrkraft die Rollen verteilt.</p></div>`;
+    S("screen-player").innerHTML=h; return;
+  }
+  const k=Number(me.pair); const r=me.rolle; const sc=scenById(((G.pairs||{})[k]||{}).scen);
+  const m=membersOf(k);
+  const partner = r==="firma"?m.bew : r==="bew"?m.firma : m.firma.concat(m.bew);
+  const partnerTxt = partner.length?partner.map(p=>esc(p.name)).join(" &amp; "):"noch niemand";
+
+  if(!sc){ h+=`<div class="card center"><p class="muted">Deinem Paar ist noch keine Stelle zugeordnet.</p></div>`; S("screen-player").innerHTML=h; return; }
+
+  if(!G.cardsOn){
+    h+=`<div class="waitrole ${r}"><div style="opacity:.9">Paar ${k}</div>
+      <div class="big">${r==="firma"?"🏢 Du bist das UNTERNEHMEN":r==="bew"?"👤 Du bist BEWERBER:IN":"👀 Du bist BEOBACHTER:IN"}</div>
+      <div>${r==="beob"?"Du beobachtest":"Dein Gegenüber"}: <b>${partnerTxt}</b></div></div>
+      <div class="card center"><p class="muted" style="margin:0">Setzt euch zusammen. Die Rollenkarte erscheint, sobald die Lehrkraft sie freigibt.</p></div>`;
+    S("screen-player").innerHTML=h; return;
+  }
+
+  if(r==="beob"){ h+=beobView(sc,k,m); S("screen-player").innerHTML=h; return; }
+
+  h+=`<div class="tabs">
+    <button aria-selected="${pTab==='karte'}" onclick="setTab('karte')">🪪 Rollenkarte</button>
+    <button aria-selected="${pTab==='ablauf'}" onclick="setTab('ablauf')">🗂 Ablauf &amp; Redemittel</button></div>`;
+  h+= pTab==="karte" ? (r==="firma"?firmaCard(sc,k,partnerTxt):bewCard(sc,k,partnerTxt)) : ablaufView(r);
+  S("screen-player").innerHTML=h;
+}
+function setTab(t){ pTab=t; renderPlayer(); window.scrollTo(0,0); }
+
+function kvTable(rows){ return `<table class="kv">${rows.map(([a,b])=>`<tr><td>${txt(a)}</td><td>${txt(b)}</td></tr>`).join("")}</table>`; }
+function ul(arr){ return `<ul>${arr.map(x=>`<li>${txt(x)}</li>`).join("")}</ul>`; }
+
+function firmaCard(sc,k,partnerTxt){
+  const b=sc.bew; const last=b.lauf[b.lauf.length-1];
+  return `<div class="rolecard firma"><div class="rc-top">
+      <div class="rc-k">🏢 Du bist das Unternehmen · Paar ${k}</div>
+      <div class="rc-t">${txt(sc.firma)}</div>
+      <div class="rc-s">${txt(sc.branche)} · ${txt(sc.ort)} · ${txt(sc.groesse)}</div></div>
+    <div class="rc-body">
+      <div class="sec"><div class="sec-h">Du spielst</div><p><b>${txt(sc.ansprech)}</b></p></div>
+      <div class="sec"><div class="sec-h">Über das Unternehmen</div><p>${txt(sc.ueber)}</p></div>
+      <div class="sec"><div class="sec-h">Offene Stelle</div><p><b>${txt(sc.stelle)}</b></p></div>
+      <div class="sec"><div class="sec-h">Aufgaben</div>${ul(sc.aufgaben)}</div>
+      <div class="sec"><div class="sec-h">Anforderungen</div>${ul(sc.anforderungen)}</div>
+      <div class="sec"><div class="sec-h">Vertrag &amp; Bedingungen</div>${kvTable(sc.vertrag)}</div>
+      <div class="sec"><div class="sec-h">Aus den Bewerbungsunterlagen</div>
+        ${kvTable([["Name",b.name],["Alter",b.alter+" Jahre"],["Zurzeit",b.lauf[0][1]],["Ausbildung",last[1]]])}</div>
+      <div class="sec hl"><div class="sec-h">⭐ Das ist dir wichtig</div>${ul(sc.wichtig)}</div>
+      <div class="sec"><div class="sec-h">Deine Aufgabe im Gespräch</div>
+        <p>Du führst das Gespräch: begrüßen, Fragen stellen, über Firma und Vertrag informieren, verhandeln und das Gespräch beenden. Dein Gegenüber: <b>${partnerTxt}</b></p></div>
+      <div class="tabu">🚫 Keine Fragen zu Religion, Schwangerschaft oder Gesundheit – das ist nicht erlaubt.</div>
+    </div></div>
+    <div class="notice">Zeig dein Handy nicht deinem Gegenüber. Den Lebenslauf und die Wünsche kennst du nur aus dem Gespräch!</div>`;
+}
+function bewCard(sc,k,partnerTxt){
+  const b=sc.bew;
+  return `<div class="rolecard bew"><div class="rc-top">
+      <div class="rc-k">👤 Du bist Bewerber:in · Paar ${k}</div>
+      <div class="rc-t">${txt(b.name)}</div>
+      <div class="rc-s">${b.alter} Jahre · wohnt in ${txt(b.wohnort)}</div></div>
+    <div class="rc-body">
+      <div class="sec"><div class="sec-h">Du bewirbst dich als</div><p><b>${txt(sc.stelle)}</b> bei <b>${txt(sc.firma)}</b> in ${txt(sc.ort)}<br>
+        Gesprächspartner:in: ${txt(sc.ansprech)}</p></div>
+      <div class="sec"><div class="sec-h">Aus der Stellenanzeige</div>${ul(sc.aufgaben)}</div>
+      <div class="sec"><div class="sec-h">Familie</div><p>${txt(b.familie)}</p></div>
+      <div class="sec"><div class="sec-h">Lebenslauf (neueste Station zuerst)</div>${kvTable(b.lauf)}</div>
+      <div class="sec"><div class="sec-h">Sprachen · Kenntnisse · Stärken</div>
+        ${kvTable([["Sprachen",b.sprachen],["Kenntnisse",b.kenntnisse],["Stärken",b.staerken]])}</div>
+      <div class="sec"><div class="sec-h">Deine Wünsche</div>${kvTable(b.wunsch)}</div>
+      <div class="sec hl"><div class="sec-h">⚠️ Das musst du erklären / lösen</div>${ul(b.achtung)}</div>
+      <div class="sec"><div class="sec-h">Deine Fragen an die Firma</div>${ul(b.fragen)}</div>
+      <div class="sec"><div class="sec-h">Dein Gegenüber</div><p><b>${partnerTxt}</b> spielt das Unternehmen.</p></div>
+      <div class="tabu">🛡 Fragen zu Religion, Schwangerschaft oder Gesundheit musst du nicht beantworten.</div>
+    </div></div>
+    <div class="notice">Zeig dein Handy nicht deinem Gegenüber. Gehalt und Vertrag erfährst du erst im Gespräch!</div>`;
+}
+function ablaufView(r){
+  return PHASEN.map(p=>`<div class="phase"><h3>${esc(p.t)}</h3>
+      ${(r==="firma"?p.firma:p.bew).map(x=>`<span class="phrase">${esc(x)}</span>`).join("")}
+      <div class="tipp">💡 ${esc(p.tipp)}</div></div>`).join("")
+   + `<div class="phase"><h3>Höflich formulieren – sag es anders</h3>
+      <table class="polite">${HOEFLICH.map(([a,b])=>`<tr><td>${esc(a)}</td><td>${esc(b)}</td></tr>`).join("")}</table></div>`;
+}
+function beobView(sc,k,m){
+  const key=gameCode+"_"+k; const on=obsChecks[key]||{};
+  return `<div class="rolecard beob"><div class="rc-top">
+      <div class="rc-k">👀 Du bist Beobachter:in · Paar ${k}</div>
+      <div class="rc-t">${txt(sc.stelle)}</div>
+      <div class="rc-s">bei ${txt(sc.firma)}</div></div>
+    <div class="rc-body">
+      <div class="sec"><div class="sec-h">Du beobachtest</div>
+        <p>🏢 Unternehmen: <b>${m.firma.map(p=>esc(p.name)).join(", ")||"—"}</b><br>👤 Bewerber:in: <b>${m.bew.map(p=>esc(p.name)).join(", ")||"—"}</b></p></div>
+      <div class="sec"><div class="sec-h">Welche Phasen kommen vor? Tippe an.</div>
+        ${PHASEN.map((p,i)=>`<div class="check ${on[i]?'on':''}" onclick="toggleObs('${key}',${i})"><span class="bx">✓</span><span>${esc(p.t)}</span></div>`).join("")}</div>
+      <div class="sec hl"><div class="sec-h">Achte auch auf</div>
+        ${ul(["Blickkontakt und Begrüßung mit Namen","Sie-Form und höfliche Fragen („Könnten Sie …?“)","Gibt es eine Einigung bei Gehalt und Starttermin?","Wer hat die bessere Frage gestellt?"])}</div>
+      <div class="sec"><div class="sec-h">Danach</div><p>Gib beiden ein kurzes Feedback: eine Sache, die gut war – und einen Tipp.</p></div>
+    </div></div>`;
+}
+function toggleObs(key,i){ obsChecks[key]=obsChecks[key]||{}; obsChecks[key][i]=!obsChecks[key][i]; renderPlayer(); }
+
+/* ---- Bewertung (anonym) ---- */
+function rateCard(sid,st){
+  const mine=((G.ratings||{})[sid]||{})[myId];
+  if(mine&&!rateEdit[sid]){
+    return `<div class="ratecard center"><h2>✅ Danke!</h2>
+      <p class="muted" style="margin:6px 0 10px">Deine Bewertung für <b>${esc(st.firmaName)} &amp; ${esc(st.bewName)}</b> ist gespeichert – anonym.</p>
+      <button class="btn btn-ghost small" onclick="editRating('${sid}')">Bewertung ändern</button></div>`;
+  }
+  const d=rateDraft[sid]||(rateDraft[sid]=mine?Object.assign({},mine):{});
+  const complete=KRIT.every(c=>d[c.k])&&d.hire;
+  return `<div class="ratecard"><h2>⭐ Jetzt bewerten (anonym)</h2>
+    <p class="muted" style="margin:4px 0 0">${txt(st.stelle)} – 🏢 <b>${esc(st.firmaName)}</b> &amp; 👤 <b>${esc(st.bewName)}</b></p>
+    ${KRIT.map(c=>`<div class="crit"><div class="cl">${esc(c.t)}</div><div class="cs">${esc(c.s)}</div>
+      <div class="stars">${[1,2,3,4,5].map(n=>`<button class="star ${(d[c.k]||0)>=n?'on':''}" aria-label="${n} Sterne" onclick="setStar('${sid}','${c.k}',${n})">★</button>`).join("")}</div></div>`).join("")}
+    <div class="crit"><div class="cl">Würdest du die Bewerberin / den Bewerber einstellen?</div>
+      <div class="hirebtns">${HIRE.map(([v,l])=>`<button class="${v} ${d.hire===v?'on':''}" onclick="setHire('${sid}','${v}')">${l}</button>`).join("")}</div></div>
+    <div style="margin-top:12px"><button class="btn btn-gold" style="width:100%" ${complete?'':'disabled'} onclick="submitRating('${sid}')">Bewertung abschicken</button></div>
+    <p class="muted" style="font-size:.8rem;margin:8px 0 0">Niemand sieht, wie du bewertet hast. Am Beamer erscheinen nur Durchschnittswerte.</p>
+  </div>`;
+}
+function setStar(sid,k,n){ (rateDraft[sid]=rateDraft[sid]||{})[k]=n; renderPlayer(); }
+function setHire(sid,v){ (rateDraft[sid]=rateDraft[sid]||{}).hire=v; renderPlayer(); }
+function editRating(sid){ rateEdit[sid]=true; delete rateDraft[sid]; renderPlayer(); }
+function submitRating(sid){
+  const d=rateDraft[sid]||{}; if(!(KRIT.every(c=>d[c.k])&&d.hire))return;
+  const rec={hire:d.hire,t:Date.now()}; KRIT.forEach(c=>rec[c.k]=d[c.k]);
+  gameRef.child(`ratings/${sid}/${myId}`).set(rec).then(()=>{ rateEdit[sid]=false; delete rateDraft[sid]; renderPlayer(); });
+}
+
+goHome();
+</script>
+</body>
+</html>

@@ -17,7 +17,12 @@ mit Filter nach Thema und Niveau.
 ├─ messe.html                      ← Die große Messe (Bewegungs-Rollenspiel/online)
 ├─ team-puzzle.html                ← Team-Puzzle: Die falsche Lieferung (Kooperationsspiel/online)
 ├─ wortschatz-arena.html           ← Wortschatz-Arena (Vokabel-Team-Quiz/online)
-└─ millionaer-b2.html              ← Wer wird Millionär L1–6 (Team-Quiz/online)
+├─ millionaer-b2.html              ← Wer wird Millionär L1–6 (Team-Quiz/online)
+├─ geschaeftstag.html              ← Der Geschäftstag (Wirtschaftssimulation 3 Firmen/online)
+├─ pruefung-sprechen.html          ← Prüfungstraining Sprechen B2 Teil 1A (Stoppuhr, ohne Login)
+├─ lieferung-problem.html          ← Lieferung mit Problemen (Gastro-B2B-Rollenspiel/online)
+├─ mitarbeitergespraeche.html      ← Mitarbeitergespräche (Chef:in/Mitarbeiter:in Rollenpaare/online)
+└─ bewerbungsgespraeche.html       ← Bewerbungsgespräche (Unternehmen/Bewerber:in, anonyme Bewertung/online)
 ```
 
 Jedes Spiel ist eine eigenständige HTML-Datei (kein Build, kein Server, keine
@@ -81,6 +86,13 @@ Zuordnung und Mitmach-Runden (jedes Mitglied einzeln).
 | Team-Puzzle: Die falsche Lieferung | Kommunikation | B1/B2 | Teams (online) |
 | Wortschatz-Arena | Wortschatz | B2 | Teams (online) |
 | Wer wird Millionär (L1–6) | Spiel & Quiz | B2 | Teams (online) |
+| Der Geschäftstag | Kommunikation | B1/B2 | Gruppe (online) |
+| Prüfungstraining Sprechen · Teil 1A | Beruf & Bewerbung | B2 | Allein / Paar |
+| Mitarbeitergespräche | Kommunikation | B1/B2 | Paare (online) |
+| Bewerbungsgespräche | Beruf & Bewerbung | B1/B2 | Paare (online) |
+| Mitarbeitergespräche | Kommunikation | B1/B2 | Paare (online) |
+| Bewerbungsgespräche | Beruf & Bewerbung | B1/B2 | Paare (online) |
+| Lieferung mit Problemen | Kommunikation | B1/B2 | Gruppe (online) |
 | Forumsbeitrag-Werkstatt | Kommunikation | B2 | Teams (online) |
 | Bewerbungsspiel | Beruf & Bewerbung | B1 | Gruppe (online) |
 | Am Apparat (Agentur für Arbeit) | Beruf & Bewerbung | B1/B2 | Paare / Rotation |

@@ -22,7 +22,8 @@ mit Filter nach Thema und Niveau.
 ├─ pruefung-sprechen.html          ← Prüfungstraining Sprechen B2 Teil 1A (Stoppuhr, ohne Login)
 ├─ lieferung-problem.html          ← Lieferung mit Problemen (Gastro-B2B-Rollenspiel/online)
 ├─ mitarbeitergespraeche.html      ← Mitarbeitergespräche (Chef:in/Mitarbeiter:in Rollenpaare/online)
-└─ bewerbungsgespraeche.html       ← Bewerbungsgespräche (Unternehmen/Bewerber:in, anonyme Bewertung/online)
+├─ bewerbungsgespraeche.html       ← Bewerbungsgespräche (Unternehmen/Bewerber:in, anonyme Bewertung/online)
+└─ beratungsgespraech-agentur.html ← Beratung bei der Agentur für Arbeit (Kund:in/Berater:in/online)
 ```
 
 Jedes Spiel ist eine eigenständige HTML-Datei (kein Build, kein Server, keine
@@ -90,8 +91,10 @@ Zuordnung und Mitmach-Runden (jedes Mitglied einzeln).
 | Prüfungstraining Sprechen · Teil 1A | Beruf & Bewerbung | B2 | Allein / Paar |
 | Mitarbeitergespräche | Kommunikation | B1/B2 | Paare (online) |
 | Bewerbungsgespräche | Beruf & Bewerbung | B1/B2 | Paare (online) |
+| Beratung bei der Agentur für Arbeit | Beruf & Bewerbung | B1/B2 | Paare (online) |
 | Mitarbeitergespräche | Kommunikation | B1/B2 | Paare (online) |
 | Bewerbungsgespräche | Beruf & Bewerbung | B1/B2 | Paare (online) |
+| Beratung bei der Agentur für Arbeit | Beruf & Bewerbung | B1/B2 | Paare (online) |
 | Lieferung mit Problemen | Kommunikation | B1/B2 | Gruppe (online) |
 | Forumsbeitrag-Werkstatt | Kommunikation | B2 | Teams (online) |
 | Bewerbungsspiel | Beruf & Bewerbung | B1 | Gruppe (online) |

@@ -1,0 +1,169 @@
+{
+  "id": "aspekte-b2-l2-quiz",
+  "titel": "Aspekte Beruf B2 · L2 · Bewerbung & Ausbildung",
+  "beschreibung": "Quizfragen (Wortschatz, Grammatik, Redemittel) zu Lektion 2 aus „Wer wird Millionär · Aspekte Beruf B2“.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz",
+      "Grammatik"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "2",
+    "grammatik": [
+      "Konnektoren",
+      "Finalsätze",
+      "Infinitivsätze",
+      "je … desto"
+    ]
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Was ist ein „Lebenslauf“?",
+      "optionen": [
+        "eine Übersicht über Ausbildung und Beruf",
+        "ein Vertrag",
+        "eine Rechnung",
+        "ein Foto"
+      ],
+      "richtig": 0,
+      "erklaerung": "Der Lebenslauf zeigt den beruflichen Werdegang.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Was bedeutet „das Anschreiben“?",
+      "optionen": [
+        "der Lebenslauf",
+        "der Bewerbungsbrief",
+        "ein Zeugnis",
+        "ein Foto"
+      ],
+      "richtig": 1,
+      "erklaerung": "Das Anschreiben ist der Bewerbungsbrief zur Stelle.",
+      "stufe": 1
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ergänze: „Ich habe ___ über Jobportale ___ über Anzeigen gesucht.“",
+      "optionen": [
+        "sowohl … als auch",
+        "weder … noch",
+        "zwar … aber",
+        "je … desto"
+      ],
+      "richtig": 0,
+      "erklaerung": "Aufzählung beider Wege → sowohl … als auch.",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "„Die Arbeit ist ___ anstrengend, ___ sie macht Spaß.“",
+      "optionen": [
+        "zwar … aber",
+        "sowohl … als auch",
+        "weder … noch",
+        "entweder … oder"
+      ],
+      "richtig": 0,
+      "erklaerung": "Einschränkung/Gegensatz → zwar … aber.",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "„Ich gehe zur Messe, ___ mich ___ informieren.“ (Ziel)",
+      "optionen": [
+        "um … zu",
+        "ohne … zu",
+        "anstatt … zu",
+        "weder … noch"
+      ],
+      "richtig": 0,
+      "erklaerung": "Ziel/Absicht → um … zu.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wo lernt man bei der dualen Ausbildung?",
+      "optionen": [
+        "nur an der Uni",
+        "im Betrieb und in der Berufsschule",
+        "nur zu Hause",
+        "nur im Ausland"
+      ],
+      "richtig": 1,
+      "erklaerung": "dual = Betrieb + Berufsschule.",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "„Je mehr Erfahrung man hat, ___ leichter findet man eine Stelle.“",
+      "optionen": [
+        "desto",
+        "als",
+        "sondern",
+        "noch"
+      ],
+      "richtig": 0,
+      "erklaerung": "je …, desto … – zwei Dinge ändern sich zusammen.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welche Modalverben stehen NIE mit „um zu“ oder „damit“?",
+      "optionen": [
+        "können und müssen",
+        "wollen und sollen",
+        "dürfen und mögen",
+        "wollen und können"
+      ],
+      "richtig": 1,
+      "erklaerung": "wollen/sollen passen nicht zu Ziel-Konstruktionen.",
+      "stufe": 3
+    },
+    {
+      "typ": "luecke",
+      "frage": "„Er ging zur Messe, ___ ein Ticket ___ kaufen.“ (er hatte kein Ticket)",
+      "optionen": [
+        "um … zu",
+        "ohne … zu",
+        "anstatt … zu",
+        "damit"
+      ],
+      "richtig": 1,
+      "erklaerung": "etwas fehlt/passiert nicht → ohne … zu.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welcher Satz hat verschiedene Subjekte und braucht „damit“?",
+      "optionen": [
+        "Ich spare, … ich ein Auto kaufe.",
+        "Die Eltern sparen, … die Kinder studieren können.",
+        "Ich lese, … ich mich informiere.",
+        "Er übt, … er besser wird."
+      ],
+      "richtig": 1,
+      "erklaerung": "Eltern – Kinder = verschiedene Subjekte → damit.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Was bedeutet „verhandlungssicher“ bei einer Sprache?",
+      "optionen": [
+        "Anfängerniveau",
+        "man kann auf hohem Niveau verhandeln",
+        "man versteht nur einzelne Wörter",
+        "man kann nur lesen"
+      ],
+      "richtig": 1,
+      "erklaerung": "verhandlungssicher = sehr gutes, sicheres Niveau.",
+      "stufe": 3
+    }
+  ]
+}

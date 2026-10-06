@@ -1,0 +1,152 @@
+{
+  "id": "aa-telefon-redemittel",
+  "titel": "Am Apparat – Redemittel am Telefon",
+  "beschreibung": "Sprachbausteine für das Telefongespräch mit der Agentur für Arbeit (beide Seiten).",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen",
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Beruf & Bewerbung"
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Wie meldet sich die Agentur für Arbeit am Telefon?",
+      "optionen": [
+        "Agentur für Arbeit Kiel, mein Name ist …, was kann ich für Sie tun?",
+        "Hallo, wer ist da?",
+        "Ja, bitte?",
+        "Guten Tag, ich rufe an, weil …"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Habe ich Sie richtig ___, dass Sie seit zwei Wochen arbeitslos sind?",
+      "optionen": [
+        "verstanden",
+        "gesprochen",
+        "erzählt",
+        "erklärt"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Seit wann sind Sie denn ohne ___?",
+      "optionen": [
+        "Beschäftigung",
+        "beschäftigt",
+        "Beschäftigter",
+        "beschäftigen"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Grundsätzlich haben Sie ___ auf Arbeitslosengeld, wenn …",
+      "optionen": [
+        "Anspruch",
+        "Antrag",
+        "Anruf",
+        "Ansicht"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich ___ eine Information zu meinem Arbeitslosengeld.",
+      "optionen": [
+        "bräuchte",
+        "gebraucht",
+        "brauchen",
+        "brauchtet"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich weiß nicht genau, an wen ich mich ___ muss.",
+      "optionen": [
+        "wenden",
+        "fragen",
+        "helfen",
+        "rufen"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Sie haben am Telefon etwas nicht verstanden. Was sagen Sie?",
+      "optionen": [
+        "Könnten Sie das bitte noch einmal wiederholen?",
+        "Das ärgert mich wirklich.",
+        "Vielen Dank für Ihren Anruf.",
+        "Darf ich kurz Ihre Daten aufnehmen?"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ehrlich gesagt mache ich mir große ___.",
+      "optionen": [
+        "Sorgen",
+        "Angst",
+        "Ärger",
+        "Hilfe"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Die Beraterin prüft, ob alles klar ist. Was sagt sie?",
+      "optionen": [
+        "Ist das soweit verständlich für Sie?",
+        "Worum geht es denn?",
+        "Mein Problem ist Folgendes: …",
+        "Das beruhigt mich, danke."
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich schlage Ihnen einen Termin am Dienstag vor. ___ das?",
+      "optionen": [
+        "Passt",
+        "Stimmt",
+        "Gefällt",
+        "Gehört"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Können Sie mir das bitte ___ schicken?",
+      "optionen": [
+        "schriftlich",
+        "schreiben",
+        "geschrieben",
+        "Schrift"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Wie verabschiedet man sich am Telefon?",
+      "optionen": [
+        "Auf Wiederhören!",
+        "Bis gleich im Büro!",
+        "Gute Nacht!",
+        "Herzlich willkommen!"
+      ],
+      "richtig": 0,
+      "erklaerung": "Am Telefon sagt man „Auf Wiederhören“, weil man sich nicht sieht."
+    }
+  ]
+}

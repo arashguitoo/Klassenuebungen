@@ -1,0 +1,299 @@
+{
+  "id": "bewerbungsspiel-quiz",
+  "titel": "Bewerbungsspiel · Wer passt zu wem?",
+  "beschreibung": "Bewerberprofile und Stellenangebote aus dem Bewerbungsspiel zuordnen.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Lesen",
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B1"
+    ],
+    "thema": "Beruf & Bewerbung"
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Tomasz Kowalski: Lagerist, 5 Jahre Lager + Stapler-Schein. Stärken: zuverlässig, kräftig, pünktlich. Er sucht: feste Stelle in Logistik oder Lager. Welche Stelle passt am besten?",
+      "optionen": [
+        "Logistik Nord (Lagermitarbeiter:in)",
+        "TechnoFix GmbH (IT-Support)",
+        "Bäckerei Sonnenschein (Verkäufer:in (Teilzeit))",
+        "Restaurant Bella Italia (Kellner:in)"
+      ],
+      "richtig": 0,
+      "erklaerung": "Logistik Nord sucht: Zuverlässigkeit, Stapler-Schein von Vorteil.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Grace Okafor: Erzieherin, 5 Jahre in einer Kita. Stärken: geduldig, kreativ, herzlich. Sie sucht: Stelle in einer Kita. Welche Stelle passt am besten?",
+      "optionen": [
+        "GrünBau AG (Gärtner:in)",
+        "Kita Regenbogen (Erzieher:in)",
+        "Hotel Seeblick (Rezeptionist:in)",
+        "Pflegehaus Lindenhof (Pflegehelfer:in)"
+      ],
+      "richtig": 1,
+      "erklaerung": "Kita Regenbogen sucht: Geduld, Kreativität, Liebe zu Kindern.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Mohammed Al-Sayed: Kfz-Mechaniker, 15 Jahre eigene Werkstatt. Stärken: erfahren, genau, ruhig. Er sucht: Stelle in einer Werkstatt. Welche Stelle passt am besten?",
+      "optionen": [
+        "AutoService Meyer (Kfz-Mechaniker:in)",
+        "Kita Regenbogen (Erzieher:in)",
+        "GrünBau AG (Gärtner:in)",
+        "Restaurant Bella Italia (Kellner:in)"
+      ],
+      "richtig": 0,
+      "erklaerung": "AutoService Meyer sucht: Technikinteresse, Ausbildung, Genauigkeit.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Lucia Rossi: Hotelfachfrau, 3 Jahre Rezeption. Stärken: organisiert, freundlich, mehrsprachig. Sie sucht: Job an der Rezeption. Welche Stelle passt am besten?",
+      "optionen": [
+        "Hotel Seeblick (Rezeptionist:in)",
+        "GrünBau AG (Gärtner:in)",
+        "SolarTech Energie (Monteur:in für Solaranlagen)",
+        "Logistik Nord (Lagermitarbeiter:in)"
+      ],
+      "richtig": 0,
+      "erklaerung": "Hotel Seeblick sucht: Englisch, freundlich, organisiert.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Daniyar Abenov: Gärtner, 4 Jahre im Garten- und Landschaftsbau. Stärken: fit, fleißig, arbeitet gern draußen. Er sucht: Stelle im Garten- oder Baubereich. Welche Stelle passt am besten?",
+      "optionen": [
+        "GrünBau AG (Gärtner:in)",
+        "Café Mokka (Barista)",
+        "Bäckerei Sonnenschein (Verkäufer:in (Teilzeit))",
+        "Logistik Nord (Lagermitarbeiter:in)"
+      ],
+      "richtig": 0,
+      "erklaerung": "GrünBau AG sucht: körperlich fit, draußen arbeiten, Pünktlichkeit.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Wer stellt im Vorstellungsgespräch diese Frage? „Können Sie morgens um 6 Uhr anfangen?“",
+      "optionen": [
+        "die Firma",
+        "die Bewerberin / der Bewerber"
+      ],
+      "richtig": 0,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Wer stellt im Vorstellungsgespräch diese Frage? „Wird die Schichtarbeit extra bezahlt?“",
+      "optionen": [
+        "die Firma",
+        "die Bewerberin / der Bewerber"
+      ],
+      "richtig": 1,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Wer stellt im Vorstellungsgespräch diese Frage? „Wie beruhigen Sie einen nervösen Patienten?“",
+      "optionen": [
+        "die Firma",
+        "die Bewerberin / der Bewerber"
+      ],
+      "richtig": 0,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Wer stellt im Vorstellungsgespräch diese Frage? „Gibt es eine Einarbeitung?“",
+      "optionen": [
+        "die Firma",
+        "die Bewerberin / der Bewerber"
+      ],
+      "richtig": 1,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Wer stellt im Vorstellungsgespräch diese Frage? „Wie beraten Sie eine unentschlossene Kundin?“",
+      "optionen": [
+        "die Firma",
+        "die Bewerberin / der Bewerber"
+      ],
+      "richtig": 0,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Wer stellt im Vorstellungsgespräch diese Frage? „Brauche ich eine Anerkennung meines Abschlusses?“",
+      "optionen": [
+        "die Firma",
+        "die Bewerberin / der Bewerber"
+      ],
+      "richtig": 1,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Reza Mohammadi: IT-Helfer, Umschulung + 1 Jahr Praktikum. Stärken: geduldig, technikbegeistert, lernwillig. Er sucht: Einstieg im IT-Support. Welche Stelle passt am besten?",
+      "optionen": [
+        "Reinigung Blitzblank (Reinigungskraft)",
+        "Restaurant Bella Italia (Kellner:in)",
+        "TechnoFix GmbH (IT-Support)",
+        "AutoService Meyer (Kfz-Mechaniker:in)"
+      ],
+      "richtig": 2,
+      "erklaerung": "TechnoFix GmbH sucht: Computerkenntnisse, Geduld, gutes Deutsch.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Nguyen Thi Mai: Reinigungskraft, 7 Jahre Erfahrung. Stärken: gründlich, selbstständig, zuverlässig. Sie sucht: feste Stelle, gern morgens. Welche Stelle passt am besten?",
+      "optionen": [
+        "Reinigung Blitzblank (Reinigungskraft)",
+        "Buchhandlung Lesezeit (Buchhändler:in)",
+        "Hotel Seeblick (Rezeptionist:in)",
+        "TechnoFix GmbH (IT-Support)"
+      ],
+      "richtig": 0,
+      "erklaerung": "Reinigung Blitzblank sucht: gründlich, selbstständig, früh oder spät.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Carlos Mendes: Barista / Kellner, 2 Jahre in einer Bar. Stärken: freundlich, schnell, gut mit Menschen. Er sucht: Job im Café oder Restaurant. Welche Stelle passt am besten?",
+      "optionen": [
+        "Reinigung Blitzblank (Reinigungskraft)",
+        "Café Mokka (Barista)",
+        "Hotel Seeblick (Rezeptionist:in)",
+        "Modehaus Klein (Verkaufsberater:in)"
+      ],
+      "richtig": 1,
+      "erklaerung": "Café Mokka sucht: freundlich, flexibel, Teamgeist.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Marija Jovanović: Verkäuferin / Beraterin, 10 Jahre im Modehandel. Stärken: stilsicher, kommunikativ, freundlich. Sie sucht: Stelle in Beratung oder Verkauf. Welche Stelle passt am besten?",
+      "optionen": [
+        "AutoService Meyer (Kfz-Mechaniker:in)",
+        "Pflegehaus Lindenhof (Pflegehelfer:in)",
+        "Modehaus Klein (Verkaufsberater:in)",
+        "GrünBau AG (Gärtner:in)"
+      ],
+      "richtig": 2,
+      "erklaerung": "Modehaus Klein sucht: Stilgefühl, kommunikativ, Beratung.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Olena Petrenko: Krankenschwester, 4 Jahre im Krankenhaus (Ukraine). Stärken: empathisch, belastbar, verantwortungsvoll. Sie sucht: Stelle in Pflege oder Gesundheit. Welche Stelle passt am besten?",
+      "optionen": [
+        "Restaurant Bella Italia (Kellner:in)",
+        "Café Mokka (Barista)",
+        "AutoService Meyer (Kfz-Mechaniker:in)",
+        "Pflegehaus Lindenhof (Pflegehelfer:in)"
+      ],
+      "richtig": 3,
+      "erklaerung": "Pflegehaus Lindenhof sucht: Empathie, Schichtarbeit, Verantwortung.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Fatima Yilmaz: Köchin (Ausbildung), Praktikum in einem Café. Stärken: kreativ, lernt schnell, höflich. Sie sucht: Job in der Gastronomie. Welche Stelle passt am besten?",
+      "optionen": [
+        "Modehaus Klein (Verkaufsberater:in)",
+        "Reinigung Blitzblank (Reinigungskraft)",
+        "Praxis Dr. Wagner (Medizinische:r Fachangestellte:r)",
+        "Restaurant Bella Italia (Kellner:in)"
+      ],
+      "richtig": 3,
+      "erklaerung": "Restaurant Bella Italia sucht: schnell, freundlich, abends verfügbar.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Ahmed Karimi: Elektriker, 6 Jahre, auch auf Baustellen. Stärken: handwerklich, keine Höhenangst, Führerschein. Er sucht: technischer Job, gern draußen. Welche Stelle passt am besten?",
+      "optionen": [
+        "Pflegehaus Lindenhof (Pflegehelfer:in)",
+        "Buchhandlung Lesezeit (Buchhändler:in)",
+        "Kita Regenbogen (Erzieher:in)",
+        "SolarTech Energie (Monteur:in für Solaranlagen)"
+      ],
+      "richtig": 3,
+      "erklaerung": "SolarTech Energie sucht: keine Höhenangst, handwerklich, Führerschein.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Amina Hassan: Verkäuferin, 3 Jahre im Supermarkt. Stärken: freundlich, schnell, Teamplayer. Sie sucht: Stelle im Verkauf, gern Teilzeit. Welche Stelle passt am besten?",
+      "optionen": [
+        "AutoService Meyer (Kfz-Mechaniker:in)",
+        "Kita Regenbogen (Erzieher:in)",
+        "Bäckerei Sonnenschein (Verkäufer:in (Teilzeit))",
+        "GrünBau AG (Gärtner:in)"
+      ],
+      "richtig": 2,
+      "erklaerung": "Bäckerei Sonnenschein sucht: freundlich, früh aufstehen, Erfahrung mit Kasse.",
+      "stufe": 3
+    },
+    {
+      "typ": "paare",
+      "frage": "Welche Stelle bietet die Firma an? Ordne zu.",
+      "paare": [
+        [
+          "TechnoFix GmbH",
+          "IT-Support"
+        ],
+        [
+          "Pflegehaus Lindenhof",
+          "Pflegehelfer:in"
+        ],
+        [
+          "Kita Regenbogen",
+          "Erzieher:in"
+        ],
+        [
+          "Hotel Seeblick",
+          "Rezeptionist:in"
+        ],
+        [
+          "SolarTech Energie",
+          "Monteur:in für Solaranlagen"
+        ]
+      ]
+    },
+    {
+      "typ": "paare",
+      "frage": "Welche Stelle bietet die Firma an? Ordne zu.",
+      "paare": [
+        [
+          "Café Mokka",
+          "Barista"
+        ],
+        [
+          "Logistik Nord",
+          "Lagermitarbeiter:in"
+        ],
+        [
+          "AutoService Meyer",
+          "Kfz-Mechaniker:in"
+        ],
+        [
+          "Reinigung Blitzblank",
+          "Reinigungskraft"
+        ],
+        [
+          "Praxis Dr. Wagner",
+          "Medizinische:r Fachangestellte:r"
+        ]
+      ]
+    }
+  ]
+}

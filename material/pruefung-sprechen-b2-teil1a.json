@@ -1,0 +1,106 @@
+{
+  "id": "pruefung-sprechen-b2-teil1a",
+  "titel": "Prüfungstraining Sprechen B2 – Teil 1A",
+  "beschreibung": "8 Prüfungsthemen (telc B2 Beruf, Teil 1A: über ein Thema sprechen) mit Redemitteln zum Anfangen. Ca. 30 Sek. überlegen, dann 90 Sek. sprechen.",
+  "art": "karten",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen",
+      "Prüfung"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Beruf & Bewerbung"
+  },
+  "inhalt": [
+    {
+      "titel": "Ein Arbeitgeber",
+      "impuls": "Beschreiben Sie einen Arbeitgeber, für den Sie gearbeitet haben oder arbeiten möchten. (z. B. Branche, Produkte und Dienstleistungen, Abteilungen und ihre Aufgaben, Besonderheiten)",
+      "redemittel": [
+        "Ich möchte gern bei … arbeiten, weil …",
+        "Die Firma ist in der Branche … tätig.",
+        "Sie stellt … her / bietet … an.",
+        "Besonders gut finde ich, dass …"
+      ],
+      "dauer": 90
+    },
+    {
+      "titel": "Gutes Arbeitsumfeld",
+      "impuls": "Beschreiben Sie, wie Sie sich ein gutes Arbeitsumfeld vorstellen. (z. B. Jobsicherheit, Lohn/Gehalt, Karrierechancen, Kommunikation in der Firma, Beispiele aus Ihrer Berufserfahrung)",
+      "redemittel": [
+        "Für mich ist wichtig, dass …",
+        "Ein gutes Arbeitsumfeld bedeutet für mich …",
+        "Ich lege Wert auf …",
+        "In meiner Erfahrung war … (nicht) gut, weil …"
+      ],
+      "dauer": 90
+    },
+    {
+      "titel": "Meine Berufswahl",
+      "impuls": "Beschreiben Sie die Ereignisse und Erfahrungen, die Ihre Berufswahl beeinflusst haben. (z. B. Stationen, wichtige Personen, Motivation, Folgen)",
+      "redemittel": [
+        "Schon als Kind wollte ich …",
+        "Eine wichtige Person für mich war …, weil …",
+        "Der Grund für meine Berufswahl ist …",
+        "Das hat dazu geführt, dass …"
+      ],
+      "dauer": 90
+    },
+    {
+      "titel": "Berufliches Vorbild",
+      "impuls": "Beschreiben Sie eine Person aus Ihrem Umfeld, die für Sie ein berufliches Vorbild ist. (z. B. Beziehung zu dieser Person, Eigenschaften, Einfluss auf Sie)",
+      "redemittel": [
+        "Mein Vorbild ist …, weil …",
+        "Sie/Er arbeitet als … und ist sehr …",
+        "Ich bewundere an ihr/ihm, dass …",
+        "Von ihr/ihm habe ich gelernt, …"
+      ],
+      "dauer": 90
+    },
+    {
+      "titel": "Arbeitssuche",
+      "impuls": "Beschreiben Sie das Vorgehen bei der Arbeitssuche für ein Land Ihrer Wahl. (z. B. Angebote finden, Erstkontakt, Bewerbungsunterlagen oder -gespräch)",
+      "redemittel": [
+        "In … sucht man Arbeit meistens über …",
+        "Zuerst … , danach …",
+        "Für die Bewerbung braucht man …",
+        "Beim Erstkontakt sollte man …"
+      ],
+      "dauer": 90
+    },
+    {
+      "titel": "Bewerbungsgespräch",
+      "impuls": "Beschreiben Sie, worauf es bei einem Bewerbungsgespräch ankommt (Land Ihrer Wahl). (z. B. Berufsfeld, Vorbereitung, Kleidung, typische Fragen)",
+      "redemittel": [
+        "Es ist wichtig, dass man sich gut vorbereitet.",
+        "Man sollte … tragen.",
+        "Eine typische Frage ist …",
+        "Man muss unbedingt pünktlich sein."
+      ],
+      "dauer": 90
+    },
+    {
+      "titel": "Ein Produkt / eine Dienstleistung",
+      "impuls": "Beschreiben Sie ein Produkt oder eine Dienstleistung Ihrer Wahl. (z. B. Merkmale, Nutzen für Kunden, Vor- und Nachteile, Erfolg)",
+      "redemittel": [
+        "Ich möchte … vorstellen.",
+        "Das Besondere daran ist …",
+        "Der Vorteil für Kunden ist, dass …",
+        "Ein Nachteil könnte sein, dass …"
+      ],
+      "dauer": 90
+    },
+    {
+      "titel": "Meine Geschäftsidee",
+      "impuls": "Sie möchten sich selbstständig machen. Beschreiben Sie Ihre Geschäftsidee. (z. B. welches Produkt/welche Dienstleistung, Besonderheiten, Zielgruppe)",
+      "redemittel": [
+        "Meine Geschäftsidee ist …",
+        "Ich würde gern … anbieten.",
+        "Das Besondere an meiner Idee ist …",
+        "Meine Zielgruppe sind …"
+      ],
+      "dauer": 90
+    }
+  ]
+}

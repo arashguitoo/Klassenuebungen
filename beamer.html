@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beamer · Klassenspiele</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📺</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kern.css">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<style>
+html,body{height:100%;overflow:hidden}
+.stage{height:100%}
+.fs{position:fixed;right:14px;bottom:14px;z-index:5;opacity:.25;background:rgba(255,255,255,.15);color:#fff;border:0;border-radius:10px;padding:8px 12px;cursor:pointer;font-weight:700}
+.fs:hover{opacity:1}
+body.embed .fs{display:none}
+.code-corner{position:fixed;left:18px;bottom:14px;z-index:5;color:#fff;opacity:.55;font-weight:800;font-size:1rem}
+</style>
+</head>
+<body>
+<div class="stage"><div class="s-in" id="stage"><div class="s-center"><div class="s-title">Verbinde …</div></div></div></div>
+<div class="code-corner" id="corner"></div>
+<button class="fs" id="fs" type="button">⛶ Vollbild</button>
+<script src="kern.js"></script>
+<script src="formate.js"></script>
+<script>
+(function(){
+var code = KX.param("c"), el = KX.$("stage"), DB = KX.init();
+if (KX.param("embed")) document.body.classList.add("embed");
+KX.$("fs").onclick = function(){ if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(function(){}); };
+if (!code || !DB) { el.innerHTML = '<div class="s-center"><div class="s-title">Kein Spielcode angegeben.</div></div>'; return; }
+var last = null;
+function draw(){
+  var s = last; if (!s) return;
+  if (!s.meta) { el.innerHTML = '<div class="s-center"><div class="s-title">Spiel ' + KX.esc(code) + ' nicht gefunden.</div></div>'; el._sig = null; return; }
+  var f = KX.FORMATE[s.meta.format];
+  KX.$("corner").textContent = s.state && s.state.phase !== "lobby" ? "Code " + code + " · " + KX.joinUrl(code).replace(/^https?:\/\//, "").replace(/\?.*$/, "") : "";
+  try { f.stage(s, el, code); } catch(e){ console.error(e); }
+}
+DB.on(KX.sp(code), function(s){ last = s || {}; draw(); });
+setInterval(function(){ if (last && last.state && last.state.phase === "zug") { el._sig = null; } }, 1000);
+})();
+</script>
+</body>
+</html>

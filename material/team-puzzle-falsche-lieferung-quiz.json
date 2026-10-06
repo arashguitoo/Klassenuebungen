@@ -1,0 +1,301 @@
+{
+  "id": "team-puzzle-falsche-lieferung-quiz",
+  "titel": "Team-Puzzle · Die falsche Lieferung",
+  "beschreibung": "Fragen zum Fall „Die falsche Lieferung“ (Nordlicht Büromöbel) und zu Redemitteln für die Teamarbeit.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Lesen",
+      "Sprechen"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Arbeitswelt"
+  },
+  "inhalt": [
+    {
+      "typ": "wf",
+      "frage": "Der Kunde hat graue Bürostühle bestellt, aber schwarze bekommen.",
+      "richtig": true,
+      "erklaerung": "Der Kunde hat am Montag 30 schwarze Bürostühle bekommen. Bestellt hatte er graue.",
+      "stufe": 1
+    },
+    {
+      "typ": "wf",
+      "frage": "Die Kundin hat am Donnerstag noch einmal angerufen, um die Bestellung zu ändern.",
+      "richtig": true,
+      "erklaerung": "Am Donnerstag rief die Kundin noch einmal an. Sie wollte etwas an der Bestellung ändern.",
+      "stufe": 1
+    },
+    {
+      "typ": "wf",
+      "frage": "Herr Sander hat die Lieferung am Donnerstag gepackt.",
+      "richtig": false,
+      "erklaerung": "Herr Sander hat die Lieferung am Freitag gepackt. Am Donnerstag hatte er einen Arzttermin.",
+      "stufe": 1
+    },
+    {
+      "typ": "wf",
+      "frage": "Frau Bergmann hat die Änderung ins Computersystem eingetragen.",
+      "richtig": false,
+      "erklaerung": "Sie hat die Änderung nur auf einen gelben Zettel geschrieben.",
+      "stufe": 2
+    },
+    {
+      "typ": "wf",
+      "frage": "Im Lager wird immer nach der Liste aus dem Computersystem gepackt.",
+      "richtig": true,
+      "erklaerung": "Herr Sander: „Ich habe genau nach der Liste gepackt, die im System stand.“",
+      "stufe": 1
+    },
+    {
+      "typ": "wf",
+      "frage": "Der Fahrer prüft den Inhalt der Kartons.",
+      "richtig": false,
+      "erklaerung": "Der Fahrer prüft nur die Anzahl der Kartons, nicht den Inhalt.",
+      "stufe": 2
+    },
+    {
+      "typ": "wf",
+      "frage": "In der Firma gibt es eine feste Regel für die Übergabe vor dem Urlaub.",
+      "richtig": false,
+      "erklaerung": "In der Firma gibt es keine feste Regel für die Übergabe vor dem Urlaub.",
+      "stufe": 2
+    },
+    {
+      "typ": "wf",
+      "frage": "Niemand hat Herrn Sander von dem Telefonat am Donnerstag erzählt.",
+      "richtig": true,
+      "erklaerung": "Herr Sander war am Donnerstag nicht im Haus – und niemand hat es ihm gesagt.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wer hat den Fehler verursacht?",
+      "optionen": [
+        "Niemand allein – aber die Kette begann bei Frau Bergmann (Vertrieb).",
+        "Herr Sander (Lager) – er hat falsch gepackt.",
+        "Der Fahrer – er hat die falschen Kartons ausgeliefert.",
+        "Die Kundin – sie hat die Änderung nicht durchgegeben."
+      ],
+      "richtig": 0,
+      "erklaerung": "Genau genommen niemand allein – aber die Kette begann bei Frau Bergmann (Vertrieb). Herr Sander hat korrekt nach dem System gepackt.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "An welchem Tag ist der Fehler passiert?",
+      "optionen": [
+        "Am Dienstag – die Bestellung wurde falsch aufgegeben.",
+        "Am Donnerstag kam die Änderung, am Freitag wurde nach der alten Liste gepackt.",
+        "Am Montag – der Fahrer hat falsch ausgeliefert.",
+        "Am Mittwoch – das Lager hat die Liste geändert."
+      ],
+      "richtig": 1,
+      "erklaerung": "Die Änderung kam am Donnerstag. Falsch gepackt wurde am Freitag, geliefert am Montag.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Was war der eigentliche Grund?",
+      "optionen": [
+        "Herr Sander hat nicht nach der Liste gepackt.",
+        "Die Kundin hat zu spät bestellt.",
+        "Die Änderung stand nur auf einem gelben Zettel und nicht im System.",
+        "Der Fahrer hat die Kartons vertauscht."
+      ],
+      "richtig": 2,
+      "erklaerung": "Frau Bergmann notierte die telefonische Änderung nur auf einem gelben Zettel und ging in den Urlaub, ohne sie ins System einzutragen. Herr Sander war am Donnerstag nicht da und packte am Freitag nach der alten Liste im System.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Was muss die Firma ändern, damit es nicht wieder passiert?",
+      "optionen": [
+        "Bestellungen nur noch per Post annehmen.",
+        "Herrn Sander eine Abmahnung geben.",
+        "Der Fahrer soll schneller ausliefern.",
+        "Änderungen sofort ins System eintragen und eine feste Übergabe-Regel vor dem Urlaub einführen."
+      ],
+      "richtig": 3,
+      "erklaerung": "Änderungen sofort ins System eintragen (nicht auf Zettel). Feste Übergabe-Regel vor dem Urlaub. Der Fahrer oder das Lager sollte stichprobenartig den Inhalt prüfen.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Wozu passt dieses Redemittel? „Auf meiner Karte steht, dass …“",
+      "optionen": [
+        "Entscheiden",
+        "Andere einbeziehen",
+        "Widersprechen & abwägen",
+        "Eigene Info einbringen"
+      ],
+      "richtig": 3,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wozu passt dieses Redemittel? „Das passt zu dem, was … gesagt hat.“",
+      "optionen": [
+        "Eigene Info einbringen",
+        "Entscheiden",
+        "Ordnen & zusammenfassen",
+        "Andere einbeziehen"
+      ],
+      "richtig": 0,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wozu passt dieses Redemittel? „Habe ich richtig verstanden, dass …?“",
+      "optionen": [
+        "Nachfragen & sichern",
+        "Entscheiden",
+        "Widersprechen & abwägen",
+        "Andere einbeziehen"
+      ],
+      "richtig": 0,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wozu passt dieses Redemittel? „Kannst du das bitte noch einmal sagen?“",
+      "optionen": [
+        "Widersprechen & abwägen",
+        "Ordnen & zusammenfassen",
+        "Entscheiden",
+        "Nachfragen & sichern"
+      ],
+      "richtig": 3,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wozu passt dieses Redemittel? „Was steht auf deiner Karte?“",
+      "optionen": [
+        "Widersprechen & abwägen",
+        "Nachfragen & sichern",
+        "Andere einbeziehen",
+        "Eigene Info einbringen"
+      ],
+      "richtig": 2,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wozu passt dieses Redemittel? „Du hast noch nichts gesagt – hast du eine Info dazu?“",
+      "optionen": [
+        "Entscheiden",
+        "Andere einbeziehen",
+        "Eigene Info einbringen",
+        "Widersprechen & abwägen"
+      ],
+      "richtig": 1,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wozu passt dieses Redemittel? „Fassen wir mal zusammen: …“",
+      "optionen": [
+        "Widersprechen & abwägen",
+        "Eigene Info einbringen",
+        "Entscheiden",
+        "Ordnen & zusammenfassen"
+      ],
+      "richtig": 3,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wozu passt dieses Redemittel? „Was fehlt uns noch?“",
+      "optionen": [
+        "Andere einbeziehen",
+        "Ordnen & zusammenfassen",
+        "Widersprechen & abwägen",
+        "Eigene Info einbringen"
+      ],
+      "richtig": 1,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wozu passt dieses Redemittel? „Das sehe ich anders, weil …“",
+      "optionen": [
+        "Entscheiden",
+        "Widersprechen & abwägen",
+        "Eigene Info einbringen",
+        "Ordnen & zusammenfassen"
+      ],
+      "richtig": 1,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wozu passt dieses Redemittel? „Vielleicht, aber wie erklärst du dann …?“",
+      "optionen": [
+        "Widersprechen & abwägen",
+        "Nachfragen & sichern",
+        "Eigene Info einbringen",
+        "Ordnen & zusammenfassen"
+      ],
+      "richtig": 0,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wozu passt dieses Redemittel? „Sind wir uns einig, dass …?“",
+      "optionen": [
+        "Andere einbeziehen",
+        "Entscheiden",
+        "Ordnen & zusammenfassen",
+        "Eigene Info einbringen"
+      ],
+      "richtig": 1,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wozu passt dieses Redemittel? „Ich schlage vor, wir antworten: …“",
+      "optionen": [
+        "Nachfragen & sichern",
+        "Ordnen & zusammenfassen",
+        "Entscheiden",
+        "Andere einbeziehen"
+      ],
+      "richtig": 2,
+      "stufe": 2
+    },
+    {
+      "typ": "paare",
+      "frage": "Ordne Redemittel und Funktion zu.",
+      "paare": [
+        [
+          "Auf meiner Karte steht, dass …",
+          "Eigene Info einbringen"
+        ],
+        [
+          "Habe ich richtig verstanden, dass …?",
+          "Nachfragen & sichern"
+        ],
+        [
+          "Was steht auf deiner Karte?",
+          "Andere einbeziehen"
+        ],
+        [
+          "Fassen wir mal zusammen: …",
+          "Ordnen & zusammenfassen"
+        ],
+        [
+          "Das sehe ich anders, weil …",
+          "Widersprechen & abwägen"
+        ],
+        [
+          "Sind wir uns einig, dass …?",
+          "Entscheiden"
+        ]
+      ]
+    }
+  ]
+}

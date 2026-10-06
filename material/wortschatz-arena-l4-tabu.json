@@ -1,0 +1,155 @@
+{
+  "id": "wortschatz-arena-l4-tabu",
+  "titel": "Wortschatz-Arena · L4 · Zusammenarbeiten (Tabu)",
+  "beschreibung": "Tabu-Begriffe zum Wortschatz aus Lektion 4 (Aspekte Beruf B2).",
+  "art": "begriffe",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz",
+      "Sprechen"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "4"
+  },
+  "inhalt": [
+    {
+      "wort": "das Meeting",
+      "tabu": [
+        "Besprechung",
+        "Treffen",
+        "Kollegen",
+        "Termin"
+      ]
+    },
+    {
+      "wort": "die Videokonferenz",
+      "tabu": [
+        "online",
+        "Kamera",
+        "Meeting",
+        "Computer"
+      ]
+    },
+    {
+      "wort": "die Agenda",
+      "tabu": [
+        "Liste",
+        "Themen",
+        "Besprechung",
+        "Plan"
+      ]
+    },
+    {
+      "wort": "stichpunktartig",
+      "tabu": [
+        "Stichwörter",
+        "kurz",
+        "Sätze",
+        "Notizen"
+      ]
+    },
+    {
+      "wort": "die Transparenz",
+      "tabu": [
+        "klar",
+        "offen",
+        "nachvollziehbar",
+        "Information"
+      ]
+    },
+    {
+      "wort": "die Zuverlässigkeit",
+      "tabu": [
+        "verlassen",
+        "pünktlich",
+        "Vertrauen",
+        "sicher"
+      ]
+    },
+    {
+      "wort": "die Wertschätzung",
+      "tabu": [
+        "Anerkennung",
+        "Leistung",
+        "Respekt",
+        "loben"
+      ]
+    },
+    {
+      "wort": "der Kompromiss",
+      "tabu": [
+        "Lösung",
+        "nachgeben",
+        "beide",
+        "Seiten"
+      ]
+    },
+    {
+      "wort": "konstruktiv",
+      "tabu": [
+        "aufbauend",
+        "hilfreich",
+        "Lösung",
+        "positiv"
+      ]
+    },
+    {
+      "wort": "die Übergabe",
+      "tabu": [
+        "Urlaub",
+        "Aufgaben",
+        "weitergeben",
+        "Kollege"
+      ]
+    },
+    {
+      "wort": "das Protokoll",
+      "tabu": [
+        "schriftlich",
+        "Besprechung",
+        "Zusammenfassung",
+        "notieren"
+      ]
+    },
+    {
+      "wort": "eine Entscheidung treffen",
+      "tabu": [
+        "entscheiden",
+        "wählen",
+        "Wahl",
+        "Möglichkeit"
+      ]
+    },
+    {
+      "wort": "unter Druck stehen",
+      "tabu": [
+        "Stress",
+        "gestresst",
+        "Zeit",
+        "viel"
+      ]
+    },
+    {
+      "wort": "eine Rolle spielen",
+      "tabu": [
+        "wichtig",
+        "relevant",
+        "Theater",
+        "spielen"
+      ]
+    },
+    {
+      "wort": "zur Verfügung stehen",
+      "tabu": [
+        "verfügbar",
+        "vorhanden",
+        "da",
+        "frei"
+      ]
+    }
+  ]
+}

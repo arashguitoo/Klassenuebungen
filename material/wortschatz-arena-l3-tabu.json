@@ -1,0 +1,173 @@
+{
+  "id": "wortschatz-arena-l3-tabu",
+  "titel": "Wortschatz-Arena · L3 · Neu in der Firma (Tabu)",
+  "beschreibung": "Tabu-Begriffe zum Wortschatz aus Lektion 3 (Aspekte Beruf B2).",
+  "art": "begriffe",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz",
+      "Sprechen"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "3"
+  },
+  "inhalt": [
+    {
+      "wort": "die Abteilung",
+      "tabu": [
+        "Bereich",
+        "Firma",
+        "Team",
+        "Teil"
+      ]
+    },
+    {
+      "wort": "die Buchhaltung",
+      "tabu": [
+        "Finanzen",
+        "Rechnungen",
+        "Geld",
+        "Zahlen"
+      ]
+    },
+    {
+      "wort": "der Vertrieb",
+      "tabu": [
+        "verkaufen",
+        "Produkte",
+        "Kunden",
+        "Abteilung"
+      ]
+    },
+    {
+      "wort": "die Formalität",
+      "tabu": [
+        "offiziell",
+        "Papiere",
+        "Formular",
+        "Bürokratie"
+      ]
+    },
+    {
+      "wort": "der Empfang",
+      "tabu": [
+        "Besucher",
+        "Eingang",
+        "Rezeption",
+        "empfangen"
+      ]
+    },
+    {
+      "wort": "die Krankmeldung",
+      "tabu": [
+        "krank",
+        "Arzt",
+        "Chef",
+        "Mitteilung"
+      ]
+    },
+    {
+      "wort": "die Chipkarte",
+      "tabu": [
+        "Karte",
+        "Arbeitszeit",
+        "Tür",
+        "Plastik"
+      ]
+    },
+    {
+      "wort": "gestattet",
+      "tabu": [
+        "erlaubt",
+        "dürfen",
+        "verboten",
+        "Erlaubnis"
+      ]
+    },
+    {
+      "wort": "die Rücksprache",
+      "tabu": [
+        "nachfragen",
+        "sprechen",
+        "Kollege",
+        "fragen"
+      ]
+    },
+    {
+      "wort": "der Small Talk",
+      "tabu": [
+        "Gespräch",
+        "Wetter",
+        "locker",
+        "plaudern"
+      ]
+    },
+    {
+      "wort": "der Blickkontakt",
+      "tabu": [
+        "Augen",
+        "sehen",
+        "ansehen",
+        "Gespräch"
+      ]
+    },
+    {
+      "wort": "vermeiden",
+      "tabu": [
+        "nicht",
+        "Weg",
+        "verhindern",
+        "aufpassen"
+      ]
+    },
+    {
+      "wort": "die Teamsitzung",
+      "tabu": [
+        "Team",
+        "Treffen",
+        "Besprechung",
+        "Kollegen"
+      ]
+    },
+    {
+      "wort": "die Tagesordnung",
+      "tabu": [
+        "Liste",
+        "Themen",
+        "Besprechung",
+        "Punkte"
+      ]
+    },
+    {
+      "wort": "der Dienstplan",
+      "tabu": [
+        "Plan",
+        "arbeiten",
+        "Schicht",
+        "wann"
+      ]
+    },
+    {
+      "wort": "zeitnah",
+      "tabu": [
+        "bald",
+        "schnell",
+        "kurz",
+        "sofort"
+      ]
+    },
+    {
+      "wort": "einheitlich",
+      "tabu": [
+        "gleich",
+        "Format",
+        "überall",
+        "Standard"
+      ]
+    }
+  ]
+}

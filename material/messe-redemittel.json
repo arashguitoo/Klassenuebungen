@@ -1,0 +1,221 @@
+{
+  "id": "messe-redemittel",
+  "titel": "Die große Messe – Redemittel am Stand",
+  "beschreibung": "Produkte präsentieren, nach Preis und Rabatt fragen, sich höflich verabschieden.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Kommunikation"
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Sie stehen am Stand und eine Person kommt vorbei. Wie begrüßen Sie sie?",
+      "optionen": [
+        "Guten Tag, herzlich willkommen an unserem Stand!",
+        "Ich melde mich bei Ihnen. Auf Wiedersehen!",
+        "Ich überlege noch – ich schaue mich erst um.",
+        "Haben Sie eine Broschüre?"
+      ],
+      "richtig": 0,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Sie sind Besucher:in und möchten noch nichts kaufen. Was sagen Sie?",
+      "optionen": [
+        "Ich kann Ihnen ein besonderes Angebot machen.",
+        "Ich überlege noch – ich schaue mich erst um.",
+        "Unser Produkt eignet sich besonders für Büros.",
+        "Die Lieferung dauert etwa eine Woche."
+      ],
+      "richtig": 1,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welcher Satz passt zur Rolle Besucher:in?",
+      "optionen": [
+        "Der größte Vorteil ist, dass er sehr leicht ist.",
+        "Ab 50 Stück bekommen Sie 15 Prozent Rabatt.",
+        "Worin unterscheidet sich das von anderen Produkten?",
+        "Kann ich Ihnen unser Produkt kurz vorstellen?"
+      ],
+      "richtig": 2,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Sie möchten nach dem Gespräch in Kontakt bleiben. Was fragen Sie?",
+      "optionen": [
+        "Interessieren Sie sich für Lunchboxen?",
+        "Was kostet das?",
+        "Wie lange dauert die Lieferung?",
+        "Könnten wir Kontaktdaten austauschen?"
+      ],
+      "richtig": 3,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Was bedeutet „Staffelpreise“?",
+      "optionen": [
+        "Der Preis pro Stück sinkt, je mehr man bestellt.",
+        "Der Preis steigt jedes Jahr.",
+        "Man zahlt in mehreren Raten.",
+        "Der Preis gilt nur auf der Messe."
+      ],
+      "richtig": 0,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Was bedeutet „Mengenrabatt“?",
+      "optionen": [
+        "ein Zuschlag für schnelle Lieferung",
+        "ein Preisnachlass bei großer Bestellmenge",
+        "ein Rabatt nur für Stammkunden",
+        "eine kostenlose Probe"
+      ],
+      "richtig": 1,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Eine Lunchbox ist „auslaufsicher“. Das heißt:",
+      "optionen": [
+        "Sie ist sehr leicht.",
+        "Sie kann in die Spülmaschine.",
+        "Es kann nichts herauslaufen.",
+        "Sie hält das Essen warm."
+      ],
+      "richtig": 2,
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Der Preis ___ bei 79 € pro Stück.",
+      "optionen": [
+        "liegt",
+        "legt",
+        "steht",
+        "kostet"
+      ],
+      "richtig": 0,
+      "stufe": 1
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ab 200 Stück bekommen Sie 25 Prozent ___.",
+      "optionen": [
+        "Rechnung",
+        "Rabatt",
+        "Lieferung",
+        "Gewinn"
+      ],
+      "richtig": 1,
+      "stufe": 1
+    },
+    {
+      "typ": "luecke",
+      "frage": "Unser Produkt eignet sich besonders ___ Kantinen und Catering.",
+      "optionen": [
+        "an",
+        "zu",
+        "für",
+        "mit"
+      ],
+      "richtig": 2,
+      "erklaerung": "sich eignen für + Akkusativ",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ihr Produkt gefällt mir besser ___ das andere, weil es leichter ist.",
+      "optionen": [
+        "wie",
+        "als",
+        "dann",
+        "denn"
+      ],
+      "richtig": 1,
+      "erklaerung": "Komparativ + als",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Der größte Vorteil ist, ___ der Roboter 24 Stunden arbeitet.",
+      "optionen": [
+        "dass",
+        "das",
+        "weil",
+        "ob"
+      ],
+      "richtig": 0,
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Im Vergleich ___ anderen Produkten ist unseres sehr leicht.",
+      "optionen": [
+        "mit",
+        "von",
+        "zu",
+        "an"
+      ],
+      "richtig": 2,
+      "stufe": 3
+    },
+    {
+      "typ": "paare",
+      "frage": "Ordne das Produkt der passenden Zielgruppe zu.",
+      "paare": [
+        [
+          "Fahrradhelm „AirLeaf“",
+          "Lieferdienste"
+        ],
+        [
+          "Lager-Roboter „Pick-It“",
+          "Versandhäuser"
+        ],
+        [
+          "Arbeitshandschuh „FlexPro“",
+          "Bau und Handwerk"
+        ],
+        [
+          "Schreibtischlampe „FocusLite“",
+          "Coworking und Homeoffice"
+        ],
+        [
+          "Mehrweg-Lunchbox „EcoMeal“",
+          "Kantinen"
+        ]
+      ]
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Bilde den Satz.",
+      "teile": [
+        "Das klingt interessant.",
+        "Haben Sie",
+        "eine Broschüre?"
+      ]
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Bilde den Satz.",
+      "teile": [
+        "Vielen Dank",
+        "für die Informationen!",
+        "Ich melde mich",
+        "bei Ihnen."
+      ]
+    }
+  ]
+}

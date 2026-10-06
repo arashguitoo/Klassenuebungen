@@ -1,0 +1,128 @@
+{
+  "id": "wortschatz-arena-l6-tabu",
+  "titel": "Wortschatz-Arena · L6 · Kommunikation ist alles (Tabu)",
+  "beschreibung": "Tabu-Begriffe zum Wortschatz aus Lektion 6 (Aspekte Beruf B2).",
+  "art": "begriffe",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz",
+      "Sprechen"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Kommunikation",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "6"
+  },
+  "inhalt": [
+    {
+      "wort": "die Kritikfähigkeit",
+      "tabu": [
+        "Kritik",
+        "annehmen",
+        "Fehler",
+        "Feedback"
+      ]
+    },
+    {
+      "wort": "die Hilfsbereitschaft",
+      "tabu": [
+        "helfen",
+        "anderen",
+        "Hilfe",
+        "bereit"
+      ]
+    },
+    {
+      "wort": "das Arbeitsklima",
+      "tabu": [
+        "Stimmung",
+        "Atmosphäre",
+        "Arbeitsplatz",
+        "Kollegen"
+      ]
+    },
+    {
+      "wort": "die Durchwahl",
+      "tabu": [
+        "Telefonnummer",
+        "direkt",
+        "Telefon",
+        "Nummer"
+      ]
+    },
+    {
+      "wort": "jemanden verbinden",
+      "tabu": [
+        "Telefon",
+        "weiterleiten",
+        "Person",
+        "anrufen"
+      ]
+    },
+    {
+      "wort": "eine Nachricht hinterlassen",
+      "tabu": [
+        "Mitteilung",
+        "Anrufbeantworter",
+        "Telefon",
+        "Mailbox"
+      ]
+    },
+    {
+      "wort": "das Teamevent",
+      "tabu": [
+        "Team",
+        "zusammen",
+        "Aktivität",
+        "Ausflug"
+      ]
+    },
+    {
+      "wort": "der Defekt",
+      "tabu": [
+        "Schaden",
+        "kaputt",
+        "funktionieren",
+        "reparieren"
+      ]
+    },
+    {
+      "wort": "der Ratschlag",
+      "tabu": [
+        "Tipp",
+        "Empfehlung",
+        "Rat",
+        "helfen"
+      ]
+    },
+    {
+      "wort": "entkalken",
+      "tabu": [
+        "Kalk",
+        "Kaffeemaschine",
+        "Gerät",
+        "entfernen"
+      ]
+    },
+    {
+      "wort": "begeistert",
+      "tabu": [
+        "Freude",
+        "positiv",
+        "toll",
+        "super"
+      ]
+    },
+    {
+      "wort": "die Ablehnung",
+      "tabu": [
+        "Nein",
+        "wollen",
+        "Absage",
+        "ablehnen"
+      ]
+    }
+  ]
+}

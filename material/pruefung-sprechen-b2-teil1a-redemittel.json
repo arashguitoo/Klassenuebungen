@@ -1,0 +1,162 @@
+{
+  "id": "pruefung-sprechen-b2-teil1a-redemittel",
+  "titel": "Prüfungstraining Sprechen B2 Teil 1A – Redemittel",
+  "beschreibung": "Redemittel zum Anfangen für die 8 Themen aus Sprechen Teil 1A.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen",
+      "Prüfung"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Beruf & Bewerbung"
+  },
+  "inhalt": [
+    {
+      "typ": "luecke",
+      "frage": "Die Firma ist in der Branche Logistik ___.",
+      "optionen": [
+        "tätig",
+        "getan",
+        "tätigt",
+        "tätlich"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Die Firma stellt Autoteile ___ und bietet einen Reparaturservice an.",
+      "optionen": [
+        "her",
+        "dar",
+        "fest",
+        "zu"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich lege großen Wert ___ ein gutes Team.",
+      "optionen": [
+        "auf",
+        "an",
+        "für",
+        "um"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Eine wichtige Person für mich war mein Onkel, ___ er mir viel beigebracht hat.",
+      "optionen": [
+        "weil",
+        "denn",
+        "deshalb",
+        "darum"
+      ],
+      "richtig": 0,
+      "erklaerung": "Nebensatz mit „weil“ – Verb am Ende."
+    },
+    {
+      "typ": "luecke",
+      "frage": "Das hat dazu ___, dass ich eine Ausbildung gemacht habe.",
+      "optionen": [
+        "geführt",
+        "gebracht",
+        "gemacht",
+        "gegangen"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich bewundere ___ ihr, dass sie immer geduldig ist.",
+      "optionen": [
+        "an",
+        "für",
+        "von",
+        "mit"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Von ihm habe ich ___, wie man mit Kunden spricht.",
+      "optionen": [
+        "gelernt",
+        "gelehrt",
+        "beigebracht",
+        "erklärt"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "In Deutschland sucht man Arbeit meistens ___ das Internet.",
+      "optionen": [
+        "über",
+        "mit",
+        "durch die",
+        "von"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Man sollte zum Gespräch ordentliche Kleidung ___.",
+      "optionen": [
+        "tragen",
+        "bringen",
+        "nehmen",
+        "stellen"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Der Vorteil für Kunden ist, ___ sie Zeit sparen.",
+      "optionen": [
+        "dass",
+        "ob",
+        "weil",
+        "wenn"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Mit welchem Satz beginnen Sie Thema 7 (ein Produkt)?",
+      "optionen": [
+        "Ich möchte … vorstellen.",
+        "Schon als Kind wollte ich …",
+        "Mein Vorbild ist …, weil …",
+        "Für die Bewerbung braucht man …"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Welcher Satz passt zu Thema 8 (Geschäftsidee)?",
+      "optionen": [
+        "Meine Zielgruppe sind …",
+        "Eine typische Frage ist …",
+        "Sie/Er arbeitet als … und ist sehr …",
+        "Beim Erstkontakt sollte man …"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Die Prüferin fragt: „Können Sie ein konkretes Beispiel dafür geben?“ Wie beginnen Sie?",
+      "optionen": [
+        "In meiner Erfahrung war … gut, weil …",
+        "Meine Zielgruppe sind …",
+        "Die Firma ist in der Branche … tätig.",
+        "Ich möchte … vorstellen."
+      ],
+      "richtig": 0
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "id": "aspekte-b2-l5-quiz",
+  "titel": "Aspekte Beruf B2 · L5 · Firmen & Messen",
+  "beschreibung": "Quizfragen (Wortschatz, Grammatik, Redemittel) zu Lektion 5 aus „Wer wird Millionär · Aspekte Beruf B2“.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz",
+      "Grammatik"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "5",
+    "grammatik": [
+      "Passiv",
+      "Indefinitpronomen"
+    ]
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Was ist ein „Firmenporträt“?",
+      "optionen": [
+        "ein Foto vom Chef",
+        "eine Beschreibung, was eine Firma macht",
+        "ein Vertrag",
+        "eine Rechnung"
+      ],
+      "richtig": 1,
+      "erklaerung": "Ein Firmenporträt beschreibt eine Firma.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Was ist ein „Messestand“?",
+      "optionen": [
+        "ein Marktstand",
+        "der Platz einer Firma auf einer Messe",
+        "eine Bushaltestelle",
+        "eine Kantine"
+      ],
+      "richtig": 1,
+      "erklaerung": "Der Messestand ist der Platz einer Firma auf einer Messe.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Was bedeutet „beraten“?",
+      "optionen": [
+        "etwas kaufen",
+        "jemandem mit Rat und Information helfen",
+        "etwas verkaufen",
+        "etwas herstellen"
+      ],
+      "richtig": 1,
+      "erklaerung": "beraten = jemandem mit Rat helfen.",
+      "stufe": 1
+    },
+    {
+      "typ": "luecke",
+      "frage": "„Das Produkt ___ in Deutschland hergestellt.“ (Vorgangspassiv)",
+      "optionen": [
+        "wird",
+        "ist",
+        "hat",
+        "macht"
+      ],
+      "richtig": 0,
+      "erklaerung": "Vorgangspassiv: werden + Partizip II.",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "„___ hat angerufen, aber ich weiß nicht, wer.“ (Indefinitpronomen)",
+      "optionen": [
+        "Jemand",
+        "Niemand",
+        "Etwas",
+        "Nichts"
+      ],
+      "richtig": 0,
+      "erklaerung": "„jemand“ = eine unbekannte Person.",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "„Ich habe ___ gehört, das Büro ist heute geschlossen.“ (Indefinitpronomen)",
+      "optionen": [
+        "niemand",
+        "irgendwo",
+        "irgendwie",
+        "nirgends"
+      ],
+      "richtig": 2,
+      "erklaerung": "„irgendwie“ passt für eine unbestimmte Art und Weise.",
+      "stufe": 3
+    }
+  ]
+}

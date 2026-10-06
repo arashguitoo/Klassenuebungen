@@ -1,0 +1,214 @@
+{
+  "id": "wortschatz-arena-l2-quiz",
+  "titel": "Wortschatz-Arena · L2 · Mein Weg in den Beruf",
+  "beschreibung": "Definition → Wort: Wortschatz aus Lektion 2 (Aspekte Beruf B2), aus der Wortschatz-Arena.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "2"
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine Anzeige, in der eine Firma jemanden sucht“",
+      "optionen": [
+        "verantwortungsvoll",
+        "das Anschreiben",
+        "der Betrieb",
+        "die Stellenanzeige"
+      ],
+      "richtig": 3,
+      "erklaerung": "die Stellenanzeige = eine Anzeige, in der eine Firma jemanden sucht",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine Übersicht über Ausbildung und Beruf“",
+      "optionen": [
+        "die duale Ausbildung",
+        "der Betrieb",
+        "die Muttersprache",
+        "der Lebenslauf"
+      ],
+      "richtig": 3,
+      "erklaerung": "der Lebenslauf = eine Übersicht über Ausbildung und Beruf",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „die Unterlagen, mit denen man sich um eine Stelle bemüht“",
+      "optionen": [
+        "die duale Ausbildung",
+        "die Bewerbung",
+        "das Praktikum",
+        "die Absage"
+      ],
+      "richtig": 1,
+      "erklaerung": "die Bewerbung = die Unterlagen, mit denen man sich um eine Stelle bemüht",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „die negative Antwort auf eine Bewerbung“",
+      "optionen": [
+        "verantwortungsvoll",
+        "der Lebenslauf",
+        "die duale Ausbildung",
+        "die Absage"
+      ],
+      "richtig": 3,
+      "erklaerung": "die Absage = die negative Antwort auf eine Bewerbung",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „die Sprache, die man von Geburt an spricht“",
+      "optionen": [
+        "das Praktikum",
+        "verhandlungssicher",
+        "die Muttersprache",
+        "die duale Ausbildung"
+      ],
+      "richtig": 2,
+      "erklaerung": "die Muttersprache = die Sprache, die man von Geburt an spricht",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine befristete praktische Tätigkeit zum Lernen“",
+      "optionen": [
+        "die duale Ausbildung",
+        "die Muttersprache",
+        "verantwortungsvoll",
+        "das Praktikum"
+      ],
+      "richtig": 3,
+      "erklaerung": "das Praktikum = eine befristete praktische Tätigkeit zum Lernen",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „das Geld, das man für die Arbeit bekommt“",
+      "optionen": [
+        "das Anschreiben",
+        "das Praktikum",
+        "das Gehalt",
+        "die Weiterbildung"
+      ],
+      "richtig": 2,
+      "erklaerung": "das Gehalt = das Geld, das man für die Arbeit bekommt",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine schwierige, aber interessante Aufgabe“",
+      "optionen": [
+        "die Herausforderung",
+        "das Gehalt",
+        "der Lebenslauf",
+        "abwechslungsreich"
+      ],
+      "richtig": 0,
+      "erklaerung": "die Herausforderung = eine schwierige, aber interessante Aufgabe",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „mit vielen verschiedenen Tätigkeiten, nicht monoton“",
+      "optionen": [
+        "das Anschreiben",
+        "abwechslungsreich",
+        "die Bewerbung",
+        "die Herausforderung"
+      ],
+      "richtig": 1,
+      "erklaerung": "abwechslungsreich = mit vielen verschiedenen Tätigkeiten, nicht monoton",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „ein zusätzlicher Kurs nach der Ausbildung“",
+      "optionen": [
+        "das Gehalt",
+        "verantwortungsvoll",
+        "die Weiterbildung",
+        "die Stellenanzeige"
+      ],
+      "richtig": 2,
+      "erklaerung": "die Weiterbildung = ein zusätzlicher Kurs nach der Ausbildung",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine Firma oder ein Unternehmen“",
+      "optionen": [
+        "der Betrieb",
+        "die Weiterbildung",
+        "abwechslungsreich",
+        "das Anschreiben"
+      ],
+      "richtig": 0,
+      "erklaerung": "der Betrieb = eine Firma oder ein Unternehmen",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „der Bewerbungsbrief zur Stelle“",
+      "optionen": [
+        "die Stellenanzeige",
+        "der Lebenslauf",
+        "das Anschreiben",
+        "das Praktikum"
+      ],
+      "richtig": 2,
+      "erklaerung": "das Anschreiben = der Bewerbungsbrief zur Stelle",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine Sprache auf sehr hohem Niveau beherrschend“",
+      "optionen": [
+        "das Gehalt",
+        "die Absage",
+        "verhandlungssicher",
+        "verantwortungsvoll"
+      ],
+      "richtig": 2,
+      "erklaerung": "verhandlungssicher = eine Sprache auf sehr hohem Niveau beherrschend",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „Lernen im Betrieb und in der Berufsschule“",
+      "optionen": [
+        "verantwortungsvoll",
+        "die Absage",
+        "die Bewerbung",
+        "die duale Ausbildung"
+      ],
+      "richtig": 3,
+      "erklaerung": "die duale Ausbildung = Lernen im Betrieb und in der Berufsschule",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „mit viel Verantwortung verbunden“",
+      "optionen": [
+        "die Herausforderung",
+        "verantwortungsvoll",
+        "das Anschreiben",
+        "das Praktikum"
+      ],
+      "richtig": 1,
+      "erklaerung": "verantwortungsvoll = mit viel Verantwortung verbunden",
+      "stufe": 3
+    }
+  ]
+}

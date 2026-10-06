@@ -1,0 +1,729 @@
+{
+  "id": "mein-beruf-quiz",
+  "titel": "Mein Beruf",
+  "beschreibung": "Team-Quiz zu Aspekte Beruf B2, Lektion 1 + 2: Bewerbung, Soft Skills, Konnektoren, um … zu / damit, Negation, Wortstellung.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz",
+      "Grammatik"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2",
+    "grammatik": [
+      "Konnektoren",
+      "Finalsätze",
+      "Negation",
+      "Wortstellung",
+      "Relativsätze"
+    ]
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Was bedeutet „befristet“ bei einer Stelle?",
+      "optionen": [
+        "für eine bestimmte Zeit",
+        "für immer",
+        "im Ausland",
+        "ohne Bezahlung"
+      ],
+      "richtig": 0,
+      "erklaerung": "befristet = zeitlich begrenzt.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Wie endet ein formeller Brief höflich?",
+      "optionen": [
+        "Tschüss!",
+        "Mit freundlichen Grüßen",
+        "Bis bald",
+        "Mach’s gut"
+      ],
+      "richtig": 1,
+      "erklaerung": "Standard-Grußformel im formellen Brief.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Was ist eine „Fachkraft“?",
+      "optionen": [
+        "eine Person ohne Ausbildung",
+        "eine gut ausgebildete Person in einem Beruf",
+        "ein Praktikant",
+        "ein neuer Kunde"
+      ],
+      "richtig": 1,
+      "erklaerung": "Fachkraft = qualifizierte, ausgebildete Person.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort ist ein Soft Skill?",
+      "optionen": [
+        "Führerschein",
+        "Excel-Kenntnisse",
+        "Teamfähigkeit",
+        "Schreibtisch"
+      ],
+      "richtig": 2,
+      "erklaerung": "Teamfähigkeit ist eine soziale Kompetenz.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Was bedeutet „täglich“?",
+      "optionen": [
+        "selten",
+        "jeden Tag",
+        "manchmal",
+        "nie"
+      ],
+      "richtig": 1,
+      "erklaerung": "täglich = jeden Tag.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Was ist ein „Lebenslauf“?",
+      "optionen": [
+        "eine Übersicht über Ausbildung und Beruf",
+        "ein Vertrag",
+        "eine Rechnung",
+        "ein Foto"
+      ],
+      "richtig": 0,
+      "erklaerung": "Der Lebenslauf zeigt den beruflichen Werdegang.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Was bedeutet „Berufserfahrung erwünscht“ in einer Anzeige?",
+      "optionen": [
+        "Erfahrung ist verboten",
+        "Erfahrung wäre gut, ist aber kein Muss",
+        "Erfahrung ist Pflicht",
+        "Erfahrung ist egal"
+      ],
+      "richtig": 1,
+      "erklaerung": "„erwünscht“ = gern gesehen, nicht zwingend.",
+      "stufe": 1
+    },
+    {
+      "typ": "paare",
+      "frage": "Ordne die Begriffe ihren Erklärungen zu.",
+      "paare": [
+        [
+          "Lebenslauf",
+          "Übersicht über Ausbildung und Beruf"
+        ],
+        [
+          "Anschreiben",
+          "Brief mit der Bewerbung"
+        ],
+        [
+          "Zeugnis",
+          "Bewertung einer Leistung"
+        ],
+        [
+          "Vorstellungsgespräch",
+          "persönliches Gespräch mit der Firma"
+        ]
+      ],
+      "erklaerung": "Denke an die Bewerbungsmappe.",
+      "stufe": 1
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Bring die Schritte einer Bewerbung in die richtige Reihenfolge.",
+      "teile": [
+        "Stellenanzeige lesen",
+        "Unterlagen vorbereiten",
+        "Bewerbung abschicken",
+        "Zum Vorstellungsgespräch gehen"
+      ],
+      "erklaerung": "Vom Finden der Stelle bis zum Gespräch.",
+      "stufe": 1
+    },
+    {
+      "typ": "luecke",
+      "frage": "Mit freundlichen ___, Ihre Anna Berg",
+      "optionen": [
+        "Grüßen",
+        "Wünschen",
+        "Worten",
+        "Dank"
+      ],
+      "richtig": 0,
+      "erklaerung": "Grußformel am Briefende.",
+      "stufe": 1
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Setze die Silben zum richtigen Wort zusammen: Das schickt man an eine Firma.",
+      "teile": [
+        "BE",
+        "WER",
+        "BUNG"
+      ],
+      "stufe": 1
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ergänze: „Ich habe ___ über Jobportale ___ über Anzeigen gesucht.“",
+      "optionen": [
+        "sowohl … als auch",
+        "weder … noch",
+        "zwar … aber",
+        "je … desto"
+      ],
+      "richtig": 0,
+      "erklaerung": "Aufzählung beider Wege → sowohl … als auch.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welcher Satz hat die korrekte Wortstellung im Mittelfeld?",
+      "optionen": [
+        "Ich fahre nach Hamburg morgen mit dem Zug.",
+        "Ich fahre morgen mit dem Zug nach Hamburg.",
+        "Ich fahre mit dem Zug nach Hamburg morgen.",
+        "Morgen ich fahre mit dem Zug nach Hamburg."
+      ],
+      "richtig": 1,
+      "erklaerung": "temporal – modal – lokal (te-ka-mo-lo).",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "„Ich gehe zur Messe, ___ mich ___ informieren.“ (Ziel)",
+      "optionen": [
+        "um … zu",
+        "ohne … zu",
+        "anstatt … zu",
+        "weder … noch"
+      ],
+      "richtig": 0,
+      "erklaerung": "Ziel/Absicht → um … zu.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wie verneint man: „Ich habe Erfahrung.“?",
+      "optionen": [
+        "Ich habe nicht Erfahrung.",
+        "Ich habe keine Erfahrung.",
+        "Ich habe kein Erfahrung.",
+        "Ich habe nichts Erfahrung."
+      ],
+      "richtig": 1,
+      "erklaerung": "Vor einem Nomen mit unbestimmtem Artikel steht „kein-“.",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "„Die Arbeit ist ___ anstrengend, ___ sie macht Spaß.“",
+      "optionen": [
+        "zwar … aber",
+        "sowohl … als auch",
+        "weder … noch",
+        "je … desto"
+      ],
+      "richtig": 0,
+      "erklaerung": "Einschränkung/Gegensatz → zwar … aber.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welcher Konnektor drückt eine „negative Aufzählung“ aus?",
+      "optionen": [
+        "sowohl … als auch",
+        "weder … noch",
+        "entweder … oder",
+        "nicht nur … sondern auch"
+      ],
+      "richtig": 1,
+      "erklaerung": "weder … noch = nicht A und nicht B.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wann benutzt man „damit“ statt „um … zu“?",
+      "optionen": [
+        "wenn das Subjekt gleich ist",
+        "wenn die Subjekte verschieden sind",
+        "immer",
+        "nie"
+      ],
+      "richtig": 1,
+      "erklaerung": "Verschiedene Subjekte → damit.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wo lernt man bei der dualen Ausbildung?",
+      "optionen": [
+        "nur an der Uni",
+        "im Betrieb und in der Berufsschule",
+        "nur zu Hause",
+        "nur im Ausland"
+      ],
+      "richtig": 1,
+      "erklaerung": "dual = Betrieb + Berufsschule.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Was bedeutet „gez.“ vor einem Namen in einem Behördenbrief?",
+      "optionen": [
+        "gezeichnet (unterschrieben)",
+        "gezahlt",
+        "gezeigt",
+        "gezogen"
+      ],
+      "richtig": 0,
+      "erklaerung": "gez. = gezeichnet.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welche Formulierung ist am höflichsten?",
+      "optionen": [
+        "Sag mir den Termin!",
+        "Ich will den Termin wissen.",
+        "Könnten Sie mir bitte den Termin nennen?",
+        "Termin, sofort!"
+      ],
+      "richtig": 2,
+      "erklaerung": "Konjunktiv II + „bitte“ wirkt höflich.",
+      "stufe": 2
+    },
+    {
+      "typ": "paare",
+      "frage": "Ordne Konnektor und Bedeutung zu.",
+      "paare": [
+        [
+          "sowohl … als auch",
+          "beides zusammen"
+        ],
+        [
+          "weder … noch",
+          "keines von beiden"
+        ],
+        [
+          "zwar … aber",
+          "Einschränkung"
+        ],
+        [
+          "je … desto",
+          "gemeinsame Veränderung"
+        ]
+      ],
+      "erklaerung": "Achte auf positive und negative Aufzählung.",
+      "stufe": 2
+    },
+    {
+      "typ": "paare",
+      "frage": "Ordne Abkürzung und volle Form zu.",
+      "paare": [
+        [
+          "gez.",
+          "gezeichnet"
+        ],
+        [
+          "z. Hd.",
+          "zu Händen"
+        ],
+        [
+          "i. A.",
+          "im Auftrag"
+        ],
+        [
+          "u. a.",
+          "unter anderem"
+        ]
+      ],
+      "erklaerung": "Formelle Brief- und Behördensprache.",
+      "stufe": 2
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Ordne die Wörter zu einem korrekten Satz (te-ka-mo-lo).",
+      "teile": [
+        "Ich fahre",
+        "morgen",
+        "mit dem Zug",
+        "nach Hamburg."
+      ],
+      "erklaerung": "temporal – modal – lokal.",
+      "stufe": 2
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Ordne zu einem korrekten Finalsatz.",
+      "teile": [
+        "Ich gehe zur Messe,",
+        "um",
+        "mich",
+        "zu informieren."
+      ],
+      "erklaerung": "um … zu am Ende mit Infinitiv.",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich studiere ___, ___ ich arbeite nebenbei.",
+      "optionen": [
+        "zwar … aber",
+        "weder … noch",
+        "sowohl … als auch",
+        "je … desto"
+      ],
+      "richtig": 0,
+      "erklaerung": "Einschränkung: zwar … aber.",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich habe leider ___ Erfahrung in diesem Bereich.",
+      "optionen": [
+        "keine",
+        "nicht",
+        "kein",
+        "nichts"
+      ],
+      "richtig": 0,
+      "erklaerung": "Nomen ohne Artikel → kein-.",
+      "stufe": 2
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Setze die Silben zum richtigen Wort zusammen: Persönliches Treffen mit der Firma.",
+      "teile": [
+        "VOR",
+        "STEL",
+        "LUNGS",
+        "GE",
+        "SPRÄCH"
+      ],
+      "stufe": 2
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Setze die Silben zum richtigen Wort zusammen: Wichtige soziale Kompetenz.",
+      "teile": [
+        "TEAM",
+        "FÄ",
+        "HIG",
+        "KEIT"
+      ],
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Soft Skill oder Hard Skill: „Teamfähigkeit“?",
+      "optionen": [
+        "Soft Skill",
+        "Hard Skill"
+      ],
+      "richtig": 0,
+      "erklaerung": "Soft = sozial/persönlich, Hard = fachlich/messbar.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Soft Skill oder Hard Skill: „Programmierkenntnisse“?",
+      "optionen": [
+        "Soft Skill",
+        "Hard Skill"
+      ],
+      "richtig": 1,
+      "erklaerung": "Soft = sozial/persönlich, Hard = fachlich/messbar.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Soft Skill oder Hard Skill: „Pünktlichkeit“?",
+      "optionen": [
+        "Soft Skill",
+        "Hard Skill"
+      ],
+      "richtig": 0,
+      "erklaerung": "Soft = sozial/persönlich, Hard = fachlich/messbar.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Soft Skill oder Hard Skill: „Schweißerschein“?",
+      "optionen": [
+        "Soft Skill",
+        "Hard Skill"
+      ],
+      "richtig": 1,
+      "erklaerung": "Soft = sozial/persönlich, Hard = fachlich/messbar.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Soft Skill oder Hard Skill: „Kommunikation“?",
+      "optionen": [
+        "Soft Skill",
+        "Hard Skill"
+      ],
+      "richtig": 0,
+      "erklaerung": "Soft = sozial/persönlich, Hard = fachlich/messbar.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Soft Skill oder Hard Skill: „Buchführung“?",
+      "optionen": [
+        "Soft Skill",
+        "Hard Skill"
+      ],
+      "richtig": 1,
+      "erklaerung": "Soft = sozial/persönlich, Hard = fachlich/messbar.",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "„Je mehr Erfahrung man hat, ___ leichter findet man eine Stelle.“",
+      "optionen": [
+        "desto",
+        "als",
+        "sondern",
+        "noch"
+      ],
+      "richtig": 0,
+      "erklaerung": "je …, desto … – zwei Dinge ändern sich zusammen.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welche Modalverben passen NICHT zu „um zu“ / „damit“?",
+      "optionen": [
+        "können und müssen",
+        "wollen und sollen",
+        "dürfen und mögen",
+        "wollen und können"
+      ],
+      "richtig": 1,
+      "erklaerung": "wollen/sollen passen nicht zu Ziel-Konstruktionen.",
+      "stufe": 3
+    },
+    {
+      "typ": "luecke",
+      "frage": "„Er ging zur Messe, ___ ein Ticket ___ kaufen.“ (er hatte kein Ticket)",
+      "optionen": [
+        "um … zu",
+        "ohne … zu",
+        "anstatt … zu",
+        "damit"
+      ],
+      "richtig": 1,
+      "erklaerung": "etwas fehlt/passiert nicht → ohne … zu.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welcher Satz beginnt korrekt mit einer betonten Zeitangabe?",
+      "optionen": [
+        "Ich bin letztes Jahr umgezogen.",
+        "Letztes Jahr bin ich umgezogen.",
+        "Ich bin umgezogen letztes Jahr.",
+        "Umgezogen ich bin letztes Jahr."
+      ],
+      "richtig": 1,
+      "erklaerung": "Angabe auf Position 1, Verb auf Position 2.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Wo steht „nicht“ bei der Verneinung des ganzen Satzes meistens?",
+      "optionen": [
+        "am Satzanfang",
+        "direkt nach dem Subjekt",
+        "am Satzende, vor einem zweiten Verbteil",
+        "vor dem Subjekt"
+      ],
+      "richtig": 2,
+      "erklaerung": "Satznegation steht in der Regel am Ende.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "„Anstatt nur im Internet zu recherchieren, frage ich einen Berater.“ Was drückt der Satz aus?",
+      "optionen": [
+        "ein Ziel",
+        "eine fehlende Handlung",
+        "eine Alternative / einen Gegensatz",
+        "einen Grund"
+      ],
+      "richtig": 2,
+      "erklaerung": "anstatt zu = etwas anderes statt der ersten Sache.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welcher Satz ist korrekt verneint?",
+      "optionen": [
+        "Ich habe nicht Zeit.",
+        "Ich habe keine Zeit.",
+        "Ich habe kein Zeit.",
+        "Ich habe Zeit nicht."
+      ],
+      "richtig": 1,
+      "erklaerung": "„Zeit“ ohne Artikel → Verneinung mit „keine“.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "In welcher Reihenfolge gibt man Stellen im Lebenslauf üblicherweise an?",
+      "optionen": [
+        "älteste Stelle zuerst",
+        "neueste Stelle zuerst",
+        "alphabetisch",
+        "nach Gehalt"
+      ],
+      "richtig": 1,
+      "erklaerung": "antichronologisch: neueste Stelle oben.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welcher Satz hat verschiedene Subjekte und braucht „damit“?",
+      "optionen": [
+        "Ich spare, … ich ein Auto kaufen kann.",
+        "Die Eltern sparen, … die Kinder studieren können.",
+        "Ich lese, … ich mich informiere.",
+        "Er übt, … er besser wird."
+      ],
+      "richtig": 1,
+      "erklaerung": "Eltern – Kinder = verschiedene Subjekte → damit.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welcher Satz ist korrekt?",
+      "optionen": [
+        "Der Mann, den ich über rede, …",
+        "Der Mann, über den ich rede, …",
+        "Der Mann, über dem ich rede, …",
+        "Der Mann, ich über den rede, …"
+      ],
+      "richtig": 1,
+      "erklaerung": "reden über + Akkusativ; Präposition vor dem Relativpronomen.",
+      "stufe": 3
+    },
+    {
+      "typ": "paare",
+      "frage": "Ordne Beruf und Tätigkeit zu.",
+      "paare": [
+        [
+          "Pflegefachkraft",
+          "Menschen versorgen und betreuen"
+        ],
+        [
+          "Mechatroniker:in",
+          "Maschinen bauen und reparieren"
+        ],
+        [
+          "Einzelhandelskaufmann/-frau",
+          "Waren verkaufen und beraten"
+        ],
+        [
+          "Anlagenmechaniker:in",
+          "Heizungen und Rohre installieren"
+        ]
+      ],
+      "erklaerung": "Welche Aufgabe gehört zu welchem Ausbildungsberuf?",
+      "stufe": 3
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Ordne den Relativsatz korrekt.",
+      "teile": [
+        "Der Mann,",
+        "über den",
+        "ich",
+        "rede,",
+        "ist Berater."
+      ],
+      "erklaerung": "Präposition steht vor dem Relativpronomen.",
+      "stufe": 3
+    },
+    {
+      "typ": "luecke",
+      "frage": "Der Beruf, ___ den ich mich bewerbe, ist spannend.",
+      "optionen": [
+        "für",
+        "über",
+        "an",
+        "auf"
+      ],
+      "richtig": 0,
+      "erklaerung": "sich bewerben um/für.",
+      "stufe": 3
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Setze die Silben zum richtigen Wort zusammen: Das bekommt man durch Arbeiten.",
+      "teile": [
+        "BE",
+        "RUFS",
+        "ER",
+        "FAH",
+        "RUNG"
+      ],
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Ziel oder Gegensatz? „Ich lerne, um die Prüfung zu bestehen.“",
+      "optionen": [
+        "Ziel (um…zu/damit)",
+        "Gegensatz (anstatt/ohne)"
+      ],
+      "richtig": 0,
+      "erklaerung": "um…zu / damit = Ziel; anstatt / ohne = Gegensatz.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Ziel oder Gegensatz? „Anstatt zu lernen, sieht er fern.“",
+      "optionen": [
+        "Ziel (um…zu/damit)",
+        "Gegensatz (anstatt/ohne)"
+      ],
+      "richtig": 1,
+      "erklaerung": "um…zu / damit = Ziel; anstatt / ohne = Gegensatz.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Ziel oder Gegensatz? „Sie spart, damit die Kinder studieren.“",
+      "optionen": [
+        "Ziel (um…zu/damit)",
+        "Gegensatz (anstatt/ohne)"
+      ],
+      "richtig": 0,
+      "erklaerung": "um…zu / damit = Ziel; anstatt / ohne = Gegensatz.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Ziel oder Gegensatz? „Er ging, ohne sich zu verabschieden.“",
+      "optionen": [
+        "Ziel (um…zu/damit)",
+        "Gegensatz (anstatt/ohne)"
+      ],
+      "richtig": 1,
+      "erklaerung": "um…zu / damit = Ziel; anstatt / ohne = Gegensatz.",
+      "stufe": 3
+    }
+  ]
+}

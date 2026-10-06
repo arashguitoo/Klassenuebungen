@@ -1,0 +1,270 @@
+{
+  "id": "beratungsgespraech-agentur-karten",
+  "titel": "Beratung bei der Agentur für Arbeit",
+  "beschreibung": "12 Situationen: Kund:in und Berater:in haben unterschiedliche Ziele (Umschulung, Weiterbildung, Stelle) – argumentieren und Kompromiss finden. Situation 1 und 2 aus dem Lehrbuch.",
+  "art": "karten",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Beruf & Bewerbung"
+  },
+  "inhalt": [
+    {
+      "titel": "Umschulung Lager statt Busfahren",
+      "situation": "Beratungsgespräch bei der Agentur für Arbeit. Person A (Kraftfahrer/in) und Person B (Berater/in) haben unterschiedliche Ziele. Findet gemeinsam eine Lösung.",
+      "rolleA": {
+        "name": "Kund:in – Kraftfahrer/in",
+        "aufgabe": "Sie fahren seit vielen Jahren Lkw für Lebensmittel-Großhändler. Alter: 44 Jahre; Beruf: Berufskraftfahrer/in (Lkw), 18 Jahre Erfahrung; Familie: verheiratet, zwei Kinder (10 und 14 Jahre); Situation: Die Firma hat Ihnen gekündigt, weil sie die Lieferungen jetzt einer anderen Firma gibt.. Ziel: Sie möchten eine Umschulung zur Fachkraft für Lagerlogistik machen. Argumente: Sie kennen Lager und Warenwirtschaft schon gut von Ihrer Arbeit. Sie möchten abends und am Wochenende bei Ihrer Familie sein. Nach so vielen Jahren auf der Straße möchten Sie nicht mehr fahren. Im Lager gibt es feste Arbeitszeiten. Kompromiss: Eine kürzere Weiterbildung (z. B. Staplerschein + Lagerkurs) wäre für Sie auch in Ordnung."
+      },
+      "rolleB": {
+        "name": "Berater/in bei der Agentur für Arbeit",
+        "aufgabe": "Akte: Person A ist Berufskraftfahrer/in mit Führerschein Klasse C/CE. 18 Jahre Berufserfahrung, zuverlässig, keine Unfälle. Ziel: Sie möchten, dass Person A eine Qualifizierung zum Busfahrer / zur Busfahrerin macht. Argumente: Busfahrer/innen werden in der Region dringend gesucht. Die Qualifizierung dauert nur wenige Monate – eine Umschulung dauert zwei Jahre. Person A hat schon den Lkw-Führerschein – das ist eine gute Basis. Danach ist eine feste Stelle fast sicher. Förderung: Die Agentur bezahlt die Qualifizierung mit einem Bildungsgutschein. Eine Umschulung ist nur möglich, wenn es gute Gründe gibt. Kompromiss: Wenn Person A gute Gründe nennt, können Sie eine Weiterbildung im Lager (z. B. Staplerschein) anbieten."
+      },
+      "redemittel": [
+        "Ich hätte da einen anderen Vorschlag: …",
+        "Ich bin davon überzeugt, dass …, weil …",
+        "Ein wichtiges Argument ist …",
+        "Da haben Sie recht, aber …",
+        "Wäre es nicht sinnvoller, …?",
+        "Könnten wir uns darauf einigen, dass …?"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Software-Weiterbildung oder Bewerbungstraining",
+      "situation": "Beratungsgespräch bei der Agentur für Arbeit. Person A (Grafiker/in) und Person B (Berater/in) haben unterschiedliche Ziele. Findet gemeinsam eine Lösung.",
+      "rolleA": {
+        "name": "Kund:in – Grafiker/in",
+        "aufgabe": "Sie sind Grafiker/in und seit 5 Monaten arbeitslos. Alter: 31 Jahre; Beruf: Grafiker/in, 6 Jahre in einer Werbeagentur; Familie: ledig; Situation: Ihre Agentur hat geschlossen. In vielen Stellenanzeigen wird eine neue Design-Software verlangt, die Sie nicht gut kennen.. Ziel: Sie möchten eine Weiterbildung für eine neue Software machen. Argumente: In fast allen Stellenanzeigen steht die neue Software. Ohne diese Kenntnisse bekommen Sie keine Einladung zum Gespräch. Mit dem Zertifikat können Sie auch als Freelancer arbeiten. Ihre Bewerbungen sind schon gut – das Problem ist die Software. Kompromiss: Ein kurzes Bewerbungstraining würden Sie machen – aber nur zusammen mit der Software-Weiterbildung."
+      },
+      "rolleB": {
+        "name": "Berater/in bei der Agentur für Arbeit",
+        "aufgabe": "Akte: Person A hat in 5 Monaten 30 Bewerbungen geschrieben, aber nur 1 Einladung bekommen. Die Bewerbungsunterlagen sind sehr lang und haben einige Fehler. Ziel: Sie möchten, dass Person A ein Bewerbungstraining macht. Argumente: Bei 30 Bewerbungen und nur 1 Einladung liegt das Problem vielleicht bei den Unterlagen. Das Bewerbungstraining dauert nur zwei Wochen. Person A lernt auch, wie man sich im Gespräch gut präsentiert. Eine Weiterbildung kostet viel Geld und dauert drei Monate. Förderung: Das Bewerbungstraining ist sofort möglich. Eine Software-Weiterbildung bezahlt die Agentur nur, wenn sie für den Arbeitsmarkt nötig ist. Kompromiss: Wenn Person A zeigt, dass die Software in vielen Anzeigen verlangt wird, können Sie erst das Training und dann die Weiterbildung anbieten."
+      },
+      "redemittel": [
+        "Was halten Sie davon, wenn Sie …?",
+        "Für mich ist besonders wichtig, dass …",
+        "Auf dem Arbeitsmarkt sieht es so aus: …",
+        "Das verstehe ich, trotzdem …",
+        "Ich verstehe Ihren Wunsch, aber …",
+        "Ich wäre bereit, …, wenn …"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Teilzeit-Umschulung oder sofort arbeiten",
+      "situation": "Beratungsgespräch bei der Agentur für Arbeit. Person A (Verkäufer/in) und Person B (Berater/in) haben unterschiedliche Ziele. Findet gemeinsam eine Lösung.",
+      "rolleA": {
+        "name": "Kund:in – Verkäufer/in",
+        "aufgabe": "Sie haben 10 Jahre im Einzelhandel gearbeitet. Alter: 36 Jahre; Beruf: Verkäufer/in im Supermarkt; Familie: alleinerziehend, zwei Kinder (6 und 9 Jahre); Situation: Die Arbeit am Abend und am Samstag passt nicht mehr zu Ihrer Familie. Sie haben gekündigt.. Ziel: Sie möchten eine Umschulung in Teilzeit zur Kauffrau / zum Kaufmann für Büromanagement machen. Argumente: Im Büro arbeitet man meistens von Montag bis Freitag am Tag. Sie können gut organisieren und mit Kund:innen sprechen. Eine Teilzeit-Umschulung passt zu den Schulzeiten der Kinder. Langfristig haben Sie im Büro bessere Chancen. Kompromiss: Eine Stelle im Verkauf nur am Vormittag würden Sie vorübergehend annehmen."
+      },
+      "rolleB": {
+        "name": "Berater/in bei der Agentur für Arbeit",
+        "aufgabe": "Akte: Person A hat 10 Jahre Erfahrung im Verkauf. Im Einzelhandel gibt es viele offene Stellen. Ziel: Sie möchten, dass Person A sofort wieder eine Stelle im Verkauf annimmt. Argumente: Im Verkauf gibt es sofort viele Stellen – auch in Teilzeit. Eine Umschulung in Teilzeit dauert fast drei Jahre. Person A hat viel Erfahrung – das ist ein großer Vorteil. Mit einem Job verdient Person A sofort wieder Geld. Förderung: Eine Teilzeit-Umschulung ist möglich, aber es gibt nur wenige Plätze. Kompromiss: Sie können eine Teilzeitstelle am Vormittag suchen und Person A auf die Warteliste für die Umschulung setzen."
+      },
+      "redemittel": [
+        "Haben Sie schon einmal an … gedacht?",
+        "Ein großer Vorteil ist, dass …",
+        "Bedenken Sie bitte, dass …",
+        "Das Argument überzeugt mich nicht, denn …",
+        "Das stimmt zwar, aber …",
+        "Wie wäre es mit folgendem Kompromiss: …"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Anerkennung oder Helferjob",
+      "situation": "Beratungsgespräch bei der Agentur für Arbeit. Person A (Ingenieur/in) und Person B (Berater/in) haben unterschiedliche Ziele. Findet gemeinsam eine Lösung.",
+      "rolleA": {
+        "name": "Kund:in – Ingenieur/in",
+        "aufgabe": "Sie haben in Ihrem Heimatland als Bauingenieur/in gearbeitet und leben seit 2 Jahren in Deutschland. Alter: 35 Jahre; Beruf: Bauingenieur/in (Studium + 7 Jahre Erfahrung); Familie: verheiratet, ein Kind (3 Jahre); Deutsch: B2; Situation: Ihr Abschluss ist in Deutschland noch nicht anerkannt.. Ziel: Sie möchten zuerst die Anerkennung beantragen und einen Fachsprachkurs C1 machen. Argumente: Sie haben viel Erfahrung und möchten in Ihrem Beruf arbeiten. Ingenieur:innen werden in Deutschland gesucht. Mit C1 und Anerkennung verdienen Sie später viel mehr. Als Helfer:in verlieren Sie Ihre Fachkenntnisse. Kompromiss: Einen Minijob neben dem Kurs würden Sie machen."
+      },
+      "rolleB": {
+        "name": "Berater/in bei der Agentur für Arbeit",
+        "aufgabe": "Akte: Person A hat ein Ingenieurstudium, aber noch keine Anerkennung. Deutsch B2, sucht seit 6 Monaten Arbeit. Ziel: Sie möchten, dass Person A zuerst eine Stelle als Bauhelfer/in annimmt. Argumente: Die Anerkennung kann viele Monate dauern. Auf der Baustelle lernt Person A deutsche Fachwörter. Mit Arbeitserfahrung in Deutschland ist der Lebenslauf besser. Person A verdient sofort Geld für die Familie. Förderung: Die Agentur kann bei den Kosten für die Anerkennung helfen. Den Fachsprachkurs gibt es auch am Abend. Kompromiss: Sie können anbieten: Anerkennung sofort beantragen + Kurs am Abend + Arbeit tagsüber."
+      },
+      "redemittel": [
+        "Ich hätte da einen anderen Vorschlag: …",
+        "Ich bin davon überzeugt, dass …, weil …",
+        "Ein wichtiges Argument ist …",
+        "Da haben Sie recht, aber …",
+        "Wäre es nicht sinnvoller, …?",
+        "Könnten wir uns darauf einigen, dass …?"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Ausbildung Pflegefachkraft oder sofort Pflegehelfer/in",
+      "situation": "Beratungsgespräch bei der Agentur für Arbeit. Person A (Pflegehelfer/in) und Person B (Berater/in) haben unterschiedliche Ziele. Findet gemeinsam eine Lösung.",
+      "rolleA": {
+        "name": "Kund:in – Pflegehelfer/in",
+        "aufgabe": "Sie haben drei Jahre als Pflegehelfer/in in einem Altenheim gearbeitet. Alter: 27 Jahre; Beruf: Pflegehelfer/in (ohne Ausbildung); Familie: ledig; Situation: Ihr Vertrag war befristet und ist zu Ende.. Ziel: Sie möchten eine Ausbildung zur Pflegefachkraft (3 Jahre) machen. Argumente: Die Arbeit macht Ihnen Spaß, aber Sie möchten mehr Verantwortung. Als Fachkraft verdienen Sie deutlich mehr. Pflegefachkräfte werden überall gesucht. Sie haben schon drei Jahre Erfahrung. Kompromiss: Eine Ausbildung, die etwas kürzer ist, weil Sie schon Erfahrung haben, wäre für Sie super."
+      },
+      "rolleB": {
+        "name": "Berater/in bei der Agentur für Arbeit",
+        "aufgabe": "Akte: Person A hat drei Jahre Erfahrung als Pflegehelfer/in. Zwei Pflegeheime suchen sofort Pflegehelfer/innen. Ziel: Sie möchten, dass Person A sofort wieder als Pflegehelfer/in arbeitet. Argumente: Es gibt sofort zwei passende Stellen. Eine Ausbildung dauert drei Jahre und man verdient weniger. Person A kann später immer noch eine Ausbildung machen. Viele Heime bezahlen die Ausbildung später selbst. Förderung: Eine Ausbildung kann gefördert werden. Mit Berufserfahrung ist manchmal eine verkürzte Ausbildung möglich. Kompromiss: Sie können eine Stelle in einem Heim vorschlagen, das die Ausbildung danach bezahlt."
+      },
+      "redemittel": [
+        "Was halten Sie davon, wenn Sie …?",
+        "Für mich ist besonders wichtig, dass …",
+        "Auf dem Arbeitsmarkt sieht es so aus: …",
+        "Das verstehe ich, trotzdem …",
+        "Ich verstehe Ihren Wunsch, aber …",
+        "Ich wäre bereit, …, wenn …"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Traumberuf oder Ausbildung im Handwerk",
+      "situation": "Beratungsgespräch bei der Agentur für Arbeit. Person A (Schulabgänger/in) und Person B (Berater/in) haben unterschiedliche Ziele. Findet gemeinsam eine Lösung.",
+      "rolleA": {
+        "name": "Kund:in – Schulabgänger/in",
+        "aufgabe": "Sie haben den Mittleren Schulabschluss und suchen eine Ausbildung. Alter: 19 Jahre; Schule: Mittlerer Schulabschluss, gute Noten in Kunst und Informatik; Familie: wohnt bei den Eltern; Situation: Sie haben 15 Bewerbungen für Mediengestaltung geschrieben – bisher nur Absagen.. Ziel: Sie möchten unbedingt eine Ausbildung als Mediengestalter/in machen. Argumente: Das ist Ihr Traumberuf – Sie gestalten schon jetzt Flyer und Logos. Sie sind kreativ und gut am Computer. Wenn Ihnen die Arbeit Spaß macht, sind Sie auch gut. Sie möchten nicht etwas lernen, das Sie nicht interessiert. Kompromiss: Ein Praktikum oder ein Jahr Übergang wäre okay, wenn Sie danach wieder Chancen auf Mediengestaltung haben."
+      },
+      "rolleB": {
+        "name": "Berater/in bei der Agentur für Arbeit",
+        "aufgabe": "Akte: Für Mediengestaltung gibt es sehr viele Bewerber/innen und wenige Plätze. Im Handwerk sind viele Ausbildungsplätze frei. Ziel: Sie möchten, dass Person A eine Ausbildung im Handwerk macht, z. B. als Elektroniker/in. Argumente: In der Region gibt es über 40 freie Ausbildungsplätze im Handwerk. Elektroniker/innen haben sehr gute Zukunftschancen. Person A ist gut in Informatik – das passt zur Elektronik. Ohne Ausbildungsplatz verliert Person A ein ganzes Jahr. Förderung: Die Agentur kann ein Praktikum im Handwerk vermitteln, damit Person A den Beruf kennenlernt. Kompromiss: Sie können ein Praktikum vorschlagen – und gleichzeitig weitere Bewerbungen für Mediengestaltung unterstützen."
+      },
+      "redemittel": [
+        "Haben Sie schon einmal an … gedacht?",
+        "Ein großer Vorteil ist, dass …",
+        "Bedenken Sie bitte, dass …",
+        "Das Argument überzeugt mich nicht, denn …",
+        "Das stimmt zwar, aber …",
+        "Wie wäre es mit folgendem Kompromiss: …"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Umschulung Erzieher/in oder Arbeit in der Kantine",
+      "situation": "Beratungsgespräch bei der Agentur für Arbeit. Person A (Koch / Köchin) und Person B (Berater/in) haben unterschiedliche Ziele. Findet gemeinsam eine Lösung.",
+      "rolleA": {
+        "name": "Kund:in – Koch / Köchin",
+        "aufgabe": "Sie haben 12 Jahre als Koch/Köchin im Restaurant gearbeitet. Alter: 38 Jahre; Beruf: Koch/Köchin; Familie: verheiratet, drei Kinder; Situation: Die Arbeitszeiten am Abend und am Wochenende sind für Ihre Familie zu schwierig.. Ziel: Sie möchten eine Umschulung zum Erzieher / zur Erzieherin machen. Argumente: Sie arbeiten gern mit Kindern – Sie haben selbst drei. In Kitas werden viele Erzieher/innen gesucht. In der Kita arbeitet man am Tag. Sie können mit Kindern auch kochen und backen – das ist eine besondere Stärke. Kompromiss: Eine Stelle mit Tagesarbeitszeit würden Sie vielleicht annehmen, wenn das Gehalt stimmt."
+      },
+      "rolleB": {
+        "name": "Berater/in bei der Agentur für Arbeit",
+        "aufgabe": "Akte: Person A hat 12 Jahre Berufserfahrung als Koch/Köchin. Eine Schulmensa und eine Firmenkantine suchen Köche/Köchinnen – Arbeitszeit 7 bis 15 Uhr. Ziel: Sie möchten, dass Person A in einer Kantine oder Schulmensa arbeitet. Argumente: In der Kantine arbeitet man nur am Tag – kein Wochenende. Person A kann den eigenen Beruf weiter ausüben. Eine Umschulung dauert drei Jahre – mit drei Kindern ist das schwer. Person A verdient sofort wieder Geld. Förderung: Eine Umschulung zum/zur Erzieher/in ist möglich, aber es gibt Wartezeiten. Kompromiss: Sie können die Kantinen-Stelle anbieten und erklären, dass später eine berufsbegleitende Ausbildung möglich ist."
+      },
+      "redemittel": [
+        "Ich hätte da einen anderen Vorschlag: …",
+        "Ich bin davon überzeugt, dass …, weil …",
+        "Ein wichtiges Argument ist …",
+        "Da haben Sie recht, aber …",
+        "Wäre es nicht sinnvoller, …?",
+        "Könnten wir uns darauf einigen, dass …?"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Weiterbildung Buchhaltung oder Zeitarbeit",
+      "situation": "Beratungsgespräch bei der Agentur für Arbeit. Person A (Bürokauffrau / Bürokaufmann) und Person B (Berater/in) haben unterschiedliche Ziele. Findet gemeinsam eine Lösung.",
+      "rolleA": {
+        "name": "Kund:in – Bürokauffrau / Bürokaufmann",
+        "aufgabe": "Sie haben 25 Jahre in derselben Firma im Büro gearbeitet. Alter: 52 Jahre; Beruf: Bürokauffrau/-mann; Familie: verheiratet, Kinder sind erwachsen; Situation: Ihre Firma hat geschlossen. Neue Buchhaltungsprogramme kennen Sie nicht.. Ziel: Sie möchten eine Weiterbildung in moderner Buchhaltung machen. Argumente: In vielen Anzeigen werden Buchhaltungsprogramme verlangt. Mit 52 brauchen Sie aktuelle Kenntnisse, um eine Chance zu haben. Sie haben viel Erfahrung – es fehlt nur die neue Software. Sie möchten eine feste Stelle, keine Zeitarbeit. Kompromiss: Zeitarbeit würden Sie machen, wenn die Firma Sie später übernehmen will."
+      },
+      "rolleB": {
+        "name": "Berater/in bei der Agentur für Arbeit",
+        "aufgabe": "Akte: Person A hat 25 Jahre Büroerfahrung. Eine Zeitarbeitsfirma sucht sofort Sachbearbeiter/innen. Ziel: Sie möchten, dass Person A sofort eine Stelle bei der Zeitarbeitsfirma annimmt. Argumente: Über Zeitarbeit bekommen viele Menschen später eine feste Stelle. Person A kann die neuen Programme direkt bei der Arbeit lernen. Je länger man arbeitslos ist, desto schwerer wird es. Die Stelle ist sofort frei. Förderung: Die Agentur kann eine kurze Schulung (4 Wochen) für ein Buchhaltungsprogramm bezahlen. Kompromiss: Sie können erst die kurze Schulung und dann die Zeitarbeitsstelle anbieten."
+      },
+      "redemittel": [
+        "Was halten Sie davon, wenn Sie …?",
+        "Für mich ist besonders wichtig, dass …",
+        "Auf dem Arbeitsmarkt sieht es so aus: …",
+        "Das verstehe ich, trotzdem …",
+        "Ich verstehe Ihren Wunsch, aber …",
+        "Ich wäre bereit, …, wenn …"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Staplerschein oder Berufssprachkurs",
+      "situation": "Beratungsgespräch bei der Agentur für Arbeit. Person A (Lagerhelfer/in) und Person B (Berater/in) haben unterschiedliche Ziele. Findet gemeinsam eine Lösung.",
+      "rolleA": {
+        "name": "Kund:in – Lagerhelfer/in",
+        "aufgabe": "Sie arbeiten seit 2 Jahren als Lagerhelfer/in über eine Zeitarbeitsfirma. Alter: 29 Jahre; Beruf: Lagerhelfer/in; Familie: verheiratet, ein Kind; Deutsch: B1; Situation: Ihr Einsatz ist zu Ende. Mit Staplerschein würden Sie mehr verdienen.. Ziel: Sie möchten so schnell wie möglich einen Staplerschein machen. Argumente: Mit Staplerschein verdienen Sie mehr Geld. Der Kurs dauert nur wenige Tage. Viele Lager suchen Staplerfahrer/innen. Ihr Deutsch reicht für die Arbeit im Lager. Kompromiss: Einen Deutschkurs am Abend würden Sie machen – aber nicht ganztags."
+      },
+      "rolleB": {
+        "name": "Berater/in bei der Agentur für Arbeit",
+        "aufgabe": "Akte: Person A hat Deutsch auf Niveau B1. Im Lager gibt es immer mehr Arbeit mit Computer und Scanner – und Sicherheitsunterweisungen auf Deutsch. Ziel: Sie möchten, dass Person A zuerst einen Berufssprachkurs B2 macht. Argumente: Mit B2 kann Person A später auch Vorarbeiter/in werden. Sicherheitsregeln muss man genau verstehen. Viele Arbeitgeber verlangen gute Deutschkenntnisse. Der Kurs kann auch in Teilzeit gemacht werden. Förderung: Den Staplerschein bezahlt die Agentur, der Berufssprachkurs ist ebenfalls gefördert. Kompromiss: Sie können vorschlagen: zuerst Staplerschein, dann Berufssprachkurs in Teilzeit neben der Arbeit."
+      },
+      "redemittel": [
+        "Haben Sie schon einmal an … gedacht?",
+        "Ein großer Vorteil ist, dass …",
+        "Bedenken Sie bitte, dass …",
+        "Das Argument überzeugt mich nicht, denn …",
+        "Das stimmt zwar, aber …",
+        "Wie wäre es mit folgendem Kompromiss: …"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Eigener Salon oder Anstellung",
+      "situation": "Beratungsgespräch bei der Agentur für Arbeit. Person A (Friseur/in) und Person B (Berater/in) haben unterschiedliche Ziele. Findet gemeinsam eine Lösung.",
+      "rolleA": {
+        "name": "Kund:in – Friseur/in",
+        "aufgabe": "Sie sind ausgebildete/r Friseur/in mit 9 Jahren Erfahrung. Alter: 33 Jahre; Beruf: Friseur/in; Familie: ledig; Situation: Ihr Salon hat Ihnen gekündigt. Viele Stammkund:innen fragen nach Ihnen.. Ziel: Sie möchten sich selbstständig machen und einen kleinen Salon eröffnen. Argumente: Viele Stammkund:innen würden zu Ihnen kommen. Sie haben schon einen günstigen Raum gefunden. Sie haben genaue Ideen für Ihren Salon. Als Chef/in können Sie Ihre Zeit selbst planen. Kompromiss: Einen Kurs für Existenzgründung würden Sie vorher machen."
+      },
+      "rolleB": {
+        "name": "Berater/in bei der Agentur für Arbeit",
+        "aufgabe": "Akte: Person A hat 9 Jahre Erfahrung, aber noch keinen Businessplan. Drei Salons in der Stadt suchen Friseur/innen. Ziel: Sie möchten, dass Person A zuerst eine Stelle als angestellte/r Friseur/in annimmt. Argumente: Selbstständigkeit ist ein großes finanzielles Risiko. Ohne Businessplan gibt es keine Förderung. Viele neue Salons schließen schon im ersten Jahr. Mit einer Anstellung hat Person A ein sicheres Einkommen. Förderung: Für die Gründung gibt es einen Gründungszuschuss – aber nur mit gutem Businessplan und Beratung. Kompromiss: Sie können ein Gründungsseminar anbieten. Mit einem guten Businessplan ist die Förderung möglich."
+      },
+      "redemittel": [
+        "Ich hätte da einen anderen Vorschlag: …",
+        "Ich bin davon überzeugt, dass …, weil …",
+        "Ein wichtiges Argument ist …",
+        "Da haben Sie recht, aber …",
+        "Wäre es nicht sinnvoller, …?",
+        "Könnten wir uns darauf einigen, dass …?"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Vollzeit-Deutschkurs oder IT-Job auf Englisch",
+      "situation": "Beratungsgespräch bei der Agentur für Arbeit. Person A (IT-Fachkraft) und Person B (Berater/in) haben unterschiedliche Ziele. Findet gemeinsam eine Lösung.",
+      "rolleA": {
+        "name": "Kund:in – IT-Fachkraft",
+        "aufgabe": "Sie haben in Ihrem Heimatland als Softwareentwickler/in gearbeitet und leben seit einem Jahr in Deutschland. Alter: 30 Jahre; Beruf: Softwareentwickler/in, 5 Jahre Erfahrung; Familie: verheiratet, keine Kinder; Deutsch: B1, Englisch sehr gut; Situation: Sie möchten in Deutschland bleiben und gut Deutsch sprechen.. Ziel: Sie möchten zuerst einen Vollzeit-Deutschkurs bis C1 machen. Argumente: Ohne gutes Deutsch fühlen Sie sich im Alltag und im Team unsicher. In einem englischen Job lernen Sie kaum Deutsch. Mit C1 haben Sie mehr Auswahl bei Jobs. Sie möchten sich in Deutschland gut integrieren. Kompromiss: Ein Job ist okay, wenn Sie gleichzeitig einen Deutschkurs machen können."
+      },
+      "rolleB": {
+        "name": "Berater/in bei der Agentur für Arbeit",
+        "aufgabe": "Akte: Person A hat sehr gute IT-Kenntnisse und sehr gutes Englisch. Eine internationale Firma sucht sofort Entwickler/innen – Teamsprache Englisch. Ziel: Sie möchten, dass Person A sofort die Stelle in der internationalen Firma annimmt. Argumente: IT-Fachkräfte werden dringend gesucht – das Gehalt ist sehr gut. Die Firma bezahlt einen Deutschkurs für Mitarbeitende. Wer lange nicht arbeitet, verliert den Anschluss in der IT. Deutsch kann man auch neben dem Job lernen. Förderung: Ein Berufssprachkurs ist auch am Abend oder online möglich. Kompromiss: Sie können vorschlagen: Stelle annehmen + Berufssprachkurs am Abend oder online."
+      },
+      "redemittel": [
+        "Was halten Sie davon, wenn Sie …?",
+        "Für mich ist besonders wichtig, dass …",
+        "Auf dem Arbeitsmarkt sieht es so aus: …",
+        "Das verstehe ich, trotzdem …",
+        "Ich verstehe Ihren Wunsch, aber …",
+        "Ich wäre bereit, …, wenn …"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Wiedereinstieg nach der Elternzeit",
+      "situation": "Beratungsgespräch bei der Agentur für Arbeit. Person A (Medizinische/r Fachangestellte/r) und Person B (Berater/in) haben unterschiedliche Ziele. Findet gemeinsam eine Lösung.",
+      "rolleA": {
+        "name": "Kund:in – Medizinische/r Fachangestellte/r",
+        "aufgabe": "Sie waren fünf Jahre zu Hause bei Ihren Kindern. Alter: 34 Jahre; Beruf: Medizinische/r Fachangestellte/r (MFA); Familie: verheiratet, zwei Kinder (3 und 5 Jahre, beide in der Kita); Situation: Sie möchten jetzt wieder arbeiten.. Ziel: Sie möchten sofort eine Teilzeitstelle in einer Arztpraxis. Argumente: Sie haben eine abgeschlossene Ausbildung und Erfahrung. Arztpraxen suchen dringend MFA. Die Kinder sind in der Kita – Sie haben vormittags Zeit. Die Familie braucht das zweite Gehalt. Kompromiss: Eine kurze Auffrischung würden Sie machen, wenn sie nicht länger als vier Wochen dauert."
+      },
+      "rolleB": {
+        "name": "Berater/in bei der Agentur für Arbeit",
+        "aufgabe": "Akte: Person A war fünf Jahre nicht im Beruf. In den Praxen gibt es jetzt neue Computerprogramme und neue Abrechnungsregeln. Ziel: Sie möchten, dass Person A zuerst einen Auffrischungskurs mit Praktikum macht (3 Monate). Argumente: In fünf Jahren hat sich in den Praxen viel verändert. Im Praktikum lernt Person A die neuen Programme. Oft übernimmt die Praxis die Person nach dem Praktikum. Mit dem Kurs fühlt sich Person A sicherer. Förderung: Den Auffrischungskurs bezahlt die Agentur. Es gibt ihn auch in Teilzeit am Vormittag. Kompromiss: Sie können einen kürzeren Kurs in Teilzeit anbieten – oder ein Praktikum direkt in einer Praxis."
+      },
+      "redemittel": [
+        "Haben Sie schon einmal an … gedacht?",
+        "Ein großer Vorteil ist, dass …",
+        "Bedenken Sie bitte, dass …",
+        "Das Argument überzeugt mich nicht, denn …",
+        "Das stimmt zwar, aber …",
+        "Wie wäre es mit folgendem Kompromiss: …"
+      ],
+      "dauer": 300
+    }
+  ]
+}

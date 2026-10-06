@@ -1,0 +1,163 @@
+{
+  "id": "mitarbeitergespraeche-redemittel",
+  "titel": "Mitarbeitergespräche – Redemittel",
+  "beschreibung": "Redemittel für Chef:in und Mitarbeiter:in: Gespräch eröffnen, Wünsche äußern, begründen, verhandeln.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen",
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Kommunikation"
+  },
+  "inhalt": [
+    {
+      "typ": "luecke",
+      "frage": "Ich würde gern mit Ihnen ___ eine Gehaltserhöhung sprechen.",
+      "optionen": [
+        "über",
+        "von",
+        "an",
+        "für"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Mir ist ___, dass Sie in letzter Zeit oft zu spät kommen.",
+      "optionen": [
+        "aufgefallen",
+        "gefallen",
+        "eingefallen",
+        "ausgefallen"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich erwarte von Ihnen, ___ Sie pünktlich kommen.",
+      "optionen": [
+        "dass",
+        "ob",
+        "weil",
+        "wenn"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich verstehe Ihren ___, aber das Budget ist knapp.",
+      "optionen": [
+        "Standpunkt",
+        "Standort",
+        "Standbein",
+        "Abstand"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Als ___ könnte ich Ihnen einen Tag Homeoffice anbieten.",
+      "optionen": [
+        "Kompromiss",
+        "Konflikt",
+        "Kontrolle",
+        "Kündigung"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich ___ vor, dass wir die Spätschichten neu verteilen.",
+      "optionen": [
+        "schlage",
+        "sage",
+        "stelle",
+        "mache"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Der Grund ___ ist, dass der Bus morgens oft unzuverlässig ist.",
+      "optionen": [
+        "dafür",
+        "davon",
+        "darauf",
+        "damit"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Für mich ist das wichtig, ___ ich abends mein Kind betreuen muss.",
+      "optionen": [
+        "weil",
+        "deshalb",
+        "denn",
+        "trotzdem"
+      ],
+      "richtig": 0,
+      "erklaerung": "„weil“ leitet einen Nebensatz ein – das Verb steht am Ende."
+    },
+    {
+      "typ": "luecke",
+      "frage": "Können wir uns in der ___ treffen?",
+      "optionen": [
+        "Mitte",
+        "Hälfte",
+        "Ecke",
+        "Runde"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich wäre ___, wenn die Firma die Hälfte bezahlt.",
+      "optionen": [
+        "einverstanden",
+        "verstanden",
+        "verständlich",
+        "vereinbart"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Sie sind Chef:in und möchten das Gespräch eröffnen. Was passt?",
+      "optionen": [
+        "Ich wollte mit Ihnen über … sprechen.",
+        "Können wir uns in der Mitte treffen?",
+        "Ich wäre einverstanden, wenn …",
+        "Ich arbeite jetzt seit … und …"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Sie sind Mitarbeiter:in und möchten vorsichtig etwas vorschlagen. Was passt?",
+      "optionen": [
+        "Wäre es möglich, dass …?",
+        "Ich erwarte von Ihnen, dass …",
+        "Mir ist aufgefallen, dass …",
+        "Das kann ich leider nicht versprechen."
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Die Chefin kann nichts zusagen. Was sagt sie?",
+      "optionen": [
+        "Das kann ich leider nicht versprechen.",
+        "Es geht mir um Folgendes: …",
+        "Ich habe eine Bitte: …",
+        "Der Grund dafür ist …"
+      ],
+      "richtig": 0
+    }
+  ]
+}

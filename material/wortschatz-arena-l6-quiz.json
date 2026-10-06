@@ -1,0 +1,175 @@
+{
+  "id": "wortschatz-arena-l6-quiz",
+  "titel": "Wortschatz-Arena · L6 · Kommunikation ist alles",
+  "beschreibung": "Definition → Wort: Wortschatz aus Lektion 6 (Aspekte Beruf B2), aus der Wortschatz-Arena.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Kommunikation",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "6"
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „die Bereitschaft, anderen zu helfen“",
+      "optionen": [
+        "begeistert",
+        "die Hilfsbereitschaft",
+        "die Ablehnung",
+        "die Durchwahl"
+      ],
+      "richtig": 1,
+      "erklaerung": "die Hilfsbereitschaft = die Bereitschaft, anderen zu helfen",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine Mitteilung für jemanden dalassen“",
+      "optionen": [
+        "begeistert",
+        "der Ratschlag",
+        "eine Nachricht hinterlassen",
+        "jemanden verbinden"
+      ],
+      "richtig": 2,
+      "erklaerung": "eine Nachricht hinterlassen = eine Mitteilung für jemanden dalassen",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine gemeinsame Aktivität zur Teambildung“",
+      "optionen": [
+        "das Arbeitsklima",
+        "das Teamevent",
+        "begeistert",
+        "jemanden verbinden"
+      ],
+      "richtig": 1,
+      "erklaerung": "das Teamevent = eine gemeinsame Aktivität zur Teambildung",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine Empfehlung, ein guter Tipp“",
+      "optionen": [
+        "die Ablehnung",
+        "die Hilfsbereitschaft",
+        "der Ratschlag",
+        "die Durchwahl"
+      ],
+      "richtig": 2,
+      "erklaerung": "der Ratschlag = eine Empfehlung, ein guter Tipp",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „sehr positiv und voller Freude“",
+      "optionen": [
+        "begeistert",
+        "die Hilfsbereitschaft",
+        "die Kritikfähigkeit",
+        "das Arbeitsklima"
+      ],
+      "richtig": 0,
+      "erklaerung": "begeistert = sehr positiv und voller Freude",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „Kritik annehmen können“",
+      "optionen": [
+        "die Kritikfähigkeit",
+        "begeistert",
+        "entkalken",
+        "die Durchwahl"
+      ],
+      "richtig": 0,
+      "erklaerung": "die Kritikfähigkeit = Kritik annehmen können",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „die Stimmung und Atmosphäre am Arbeitsplatz“",
+      "optionen": [
+        "die Hilfsbereitschaft",
+        "die Durchwahl",
+        "der Defekt",
+        "das Arbeitsklima"
+      ],
+      "richtig": 3,
+      "erklaerung": "das Arbeitsklima = die Stimmung und Atmosphäre am Arbeitsplatz",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „am Telefon zu einer anderen Person weiterleiten“",
+      "optionen": [
+        "die Ablehnung",
+        "der Ratschlag",
+        "jemanden verbinden",
+        "die Hilfsbereitschaft"
+      ],
+      "richtig": 2,
+      "erklaerung": "jemanden verbinden = am Telefon zu einer anderen Person weiterleiten",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „ein Schaden, etwas funktioniert nicht“",
+      "optionen": [
+        "jemanden verbinden",
+        "die Durchwahl",
+        "der Defekt",
+        "das Teamevent"
+      ],
+      "richtig": 2,
+      "erklaerung": "der Defekt = ein Schaden, etwas funktioniert nicht",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „das Nein-Sagen, etwas nicht wollen“",
+      "optionen": [
+        "entkalken",
+        "die Durchwahl",
+        "die Ablehnung",
+        "der Defekt"
+      ],
+      "richtig": 2,
+      "erklaerung": "die Ablehnung = das Nein-Sagen, etwas nicht wollen",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „die direkte Telefonnummer einer Person“",
+      "optionen": [
+        "das Teamevent",
+        "die Durchwahl",
+        "die Hilfsbereitschaft",
+        "die Kritikfähigkeit"
+      ],
+      "richtig": 1,
+      "erklaerung": "die Durchwahl = die direkte Telefonnummer einer Person",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „den Kalk aus einem Gerät entfernen“",
+      "optionen": [
+        "jemanden verbinden",
+        "die Ablehnung",
+        "der Ratschlag",
+        "entkalken"
+      ],
+      "richtig": 3,
+      "erklaerung": "entkalken = den Kalk aus einem Gerät entfernen",
+      "stufe": 3
+    }
+  ]
+}

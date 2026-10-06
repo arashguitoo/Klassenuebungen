@@ -1,0 +1,186 @@
+{
+  "id": "messe-standgespraeche",
+  "titel": "Die große Messe – Standgespräche",
+  "beschreibung": "Rollenkarten für Gespräche zwischen Aussteller:in und Besucher:in auf einer Fachmesse (erfundene Produkte).",
+  "art": "karten",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Kommunikation"
+  },
+  "inhalt": [
+    {
+      "titel": "Messe: den Öko-Fahrradhelm „AirLeaf“",
+      "situation": "Auf einer Fachmesse. Am Stand von GreenGrip GmbH wird den Öko-Fahrradhelm „AirLeaf“ präsentiert: ein leichter Fahrradhelm aus recyceltem Material mit LED-Rücklicht.",
+      "rolleA": {
+        "name": "Aussteller:in (GreenGrip GmbH)",
+        "aufgabe": "Präsentieren Sie Ihr Produkt kurz und klar und nennen Sie mindestens 2 Vorteile (sehr leicht, umweltfreundlich, gut sichtbar im Dunkeln). Preis: 79 € / Stück, ab 50 Stück 15 % Rabatt. Zielgruppe: Fahrradläden, Städte, Lieferdienste. Machen Sie ein konkretes Angebot mit Rabatt."
+      },
+      "rolleB": {
+        "name": "Besucher:in",
+        "aufgabe": "Sie arbeiten für einen Lieferdienst mit 60 Fahrer:innen und suchen sichere Helme. Fragen Sie nach Preis, Rabatt und Lieferzeit. Vergleichen Sie mit einem anderen Produkt und tauschen Sie am Ende Kontaktdaten aus – oder sagen Sie höflich, dass Sie noch überlegen."
+      },
+      "redemittel": [
+        "Kann ich Ihnen unser Produkt kurz vorstellen?",
+        "Das Besondere an unserem Produkt ist …",
+        "Ab … Stück bekommen Sie … Prozent Rabatt.",
+        "Was kostet das? Gibt es einen Mengenrabatt?",
+        "Wie lange dauert die Lieferung?",
+        "Könnten wir Kontaktdaten austauschen?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Messe: die Smart-Kochplatte „HeatWise“",
+      "situation": "Auf einer Fachmesse. Am Stand von KüchenProfi AG wird die Smart-Kochplatte „HeatWise“ präsentiert: eine tragbare Induktionskochplatte mit App-Steuerung.",
+      "rolleA": {
+        "name": "Aussteller:in (KüchenProfi AG)",
+        "aufgabe": "Präsentieren Sie Ihr Produkt kurz und klar und nennen Sie mindestens 2 Vorteile (spart Strom, per Handy steuerbar, sehr sicher). Preis: 129 €, Mengenrabatt auf Anfrage. Zielgruppe: Gastronomie, Catering, Büros. Machen Sie ein konkretes Angebot mit Rabatt."
+      },
+      "rolleB": {
+        "name": "Besucher:in",
+        "aufgabe": "Sie leiten eine Catering-Firma und brauchen 10 mobile Kochplatten für Events. Fragen Sie nach Preis, Rabatt und Lieferzeit. Vergleichen Sie mit einem anderen Produkt und tauschen Sie am Ende Kontaktdaten aus – oder sagen Sie höflich, dass Sie noch überlegen."
+      },
+      "redemittel": [
+        "Kann ich Ihnen unser Produkt kurz vorstellen?",
+        "Das Besondere an unserem Produkt ist …",
+        "Ab … Stück bekommen Sie … Prozent Rabatt.",
+        "Was kostet das? Gibt es einen Mengenrabatt?",
+        "Wie lange dauert die Lieferung?",
+        "Könnten wir Kontaktdaten austauschen?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Messe: den Lager-Roboter „Pick-It“",
+      "situation": "Auf einer Fachmesse. Am Stand von MoveOn Logistics wird den Lager-Roboter „Pick-It“ präsentiert: ein kleiner Roboter, der im Lager Waren transportiert.",
+      "rolleA": {
+        "name": "Aussteller:in (MoveOn Logistics)",
+        "aufgabe": "Präsentieren Sie Ihr Produkt kurz und klar und nennen Sie mindestens 2 Vorteile (spart Zeit, arbeitet 24 h, leicht zu bedienen). Preis: ab 4.900 € oder Miete 199 €/Monat. Zielgruppe: Lager, Versandhäuser, Produktion. Machen Sie ein konkretes Angebot mit Rabatt."
+      },
+      "rolleB": {
+        "name": "Besucher:in",
+        "aufgabe": "Sie sind Lagerleiter:in eines Versandhauses. Kaufen oder mieten – was lohnt sich? Fragen Sie nach Preis, Rabatt und Lieferzeit. Vergleichen Sie mit einem anderen Produkt und tauschen Sie am Ende Kontaktdaten aus – oder sagen Sie höflich, dass Sie noch überlegen."
+      },
+      "redemittel": [
+        "Kann ich Ihnen unser Produkt kurz vorstellen?",
+        "Das Besondere an unserem Produkt ist …",
+        "Ab … Stück bekommen Sie … Prozent Rabatt.",
+        "Was kostet das? Gibt es einen Mengenrabatt?",
+        "Wie lange dauert die Lieferung?",
+        "Könnten wir Kontaktdaten austauschen?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Messe: die Wasserfilter-Flasche „ClearOne“",
+      "situation": "Auf einer Fachmesse. Am Stand von AquaPure wird die Wasserfilter-Flasche „ClearOne“ präsentiert: eine Trinkflasche mit eingebautem Wasserfilter.",
+      "rolleA": {
+        "name": "Aussteller:in (AquaPure)",
+        "aufgabe": "Präsentieren Sie Ihr Produkt kurz und klar und nennen Sie mindestens 2 Vorteile (sauberes Wasser überall, wiederverwendbar, spart Plastik). Preis: 24 €, ab 100 Stück 20 % Rabatt. Zielgruppe: Fitnessstudios, Schulen, Reisebüros. Machen Sie ein konkretes Angebot mit Rabatt."
+      },
+      "rolleB": {
+        "name": "Besucher:in",
+        "aufgabe": "Sie betreiben eine Fitnessstudio-Kette und suchen ein Geschenk für neue Mitglieder. Fragen Sie nach Preis, Rabatt und Lieferzeit. Vergleichen Sie mit einem anderen Produkt und tauschen Sie am Ende Kontaktdaten aus – oder sagen Sie höflich, dass Sie noch überlegen."
+      },
+      "redemittel": [
+        "Kann ich Ihnen unser Produkt kurz vorstellen?",
+        "Das Besondere an unserem Produkt ist …",
+        "Ab … Stück bekommen Sie … Prozent Rabatt.",
+        "Was kostet das? Gibt es einen Mengenrabatt?",
+        "Wie lange dauert die Lieferung?",
+        "Könnten wir Kontaktdaten austauschen?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Messe: den Arbeitshandschuh „FlexPro“",
+      "situation": "Auf einer Fachmesse. Am Stand von SafeHands wird den Arbeitshandschuh „FlexPro“ präsentiert: ein schnittfester Handschuh mit Touchscreen-Fingern.",
+      "rolleA": {
+        "name": "Aussteller:in (SafeHands)",
+        "aufgabe": "Präsentieren Sie Ihr Produkt kurz und klar und nennen Sie mindestens 2 Vorteile (sehr sicher, bequem, Handy bedienbar ohne Ausziehen). Preis: 12 € / Paar, Staffelpreise. Zielgruppe: Handwerk, Bau, Produktion, Lager. Machen Sie ein konkretes Angebot mit Rabatt."
+      },
+      "rolleB": {
+        "name": "Besucher:in",
+        "aufgabe": "Sie sind für die Arbeitssicherheit in einem Bauunternehmen zuständig. Fragen Sie nach Preis, Rabatt und Lieferzeit. Vergleichen Sie mit einem anderen Produkt und tauschen Sie am Ende Kontaktdaten aus – oder sagen Sie höflich, dass Sie noch überlegen."
+      },
+      "redemittel": [
+        "Kann ich Ihnen unser Produkt kurz vorstellen?",
+        "Das Besondere an unserem Produkt ist …",
+        "Ab … Stück bekommen Sie … Prozent Rabatt.",
+        "Was kostet das? Gibt es einen Mengenrabatt?",
+        "Wie lange dauert die Lieferung?",
+        "Könnten wir Kontaktdaten austauschen?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Messe: die Schreibtischlampe „FocusLite“",
+      "situation": "Auf einer Fachmesse. Am Stand von BrightOffice wird die Schreibtischlampe „FocusLite“ präsentiert: eine LED-Lampe, die das Licht an die Tageszeit anpasst.",
+      "rolleA": {
+        "name": "Aussteller:in (BrightOffice)",
+        "aufgabe": "Präsentieren Sie Ihr Produkt kurz und klar und nennen Sie mindestens 2 Vorteile (schont die Augen, spart Strom, modernes Design). Preis: 59 €, ab 20 Stück Rabatt. Zielgruppe: Büros, Coworking, Homeoffice. Machen Sie ein konkretes Angebot mit Rabatt."
+      },
+      "rolleB": {
+        "name": "Besucher:in",
+        "aufgabe": "Sie richten ein Coworking-Büro mit 25 Arbeitsplätzen ein. Fragen Sie nach Preis, Rabatt und Lieferzeit. Vergleichen Sie mit einem anderen Produkt und tauschen Sie am Ende Kontaktdaten aus – oder sagen Sie höflich, dass Sie noch überlegen."
+      },
+      "redemittel": [
+        "Kann ich Ihnen unser Produkt kurz vorstellen?",
+        "Das Besondere an unserem Produkt ist …",
+        "Ab … Stück bekommen Sie … Prozent Rabatt.",
+        "Was kostet das? Gibt es einen Mengenrabatt?",
+        "Wie lange dauert die Lieferung?",
+        "Könnten wir Kontaktdaten austauschen?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Messe: die Mehrweg-Lunchbox „EcoMeal“",
+      "situation": "Auf einer Fachmesse. Am Stand von FreshBox wird die Mehrweg-Lunchbox „EcoMeal“ präsentiert: eine auslaufsichere Lunchbox mit mehreren Fächern.",
+      "rolleA": {
+        "name": "Aussteller:in (FreshBox)",
+        "aufgabe": "Präsentieren Sie Ihr Produkt kurz und klar und nennen Sie mindestens 2 Vorteile (spart Verpackungsmüll, spülmaschinenfest, dicht). Preis: 18 €, ab 200 Stück 25 % Rabatt. Zielgruppe: Kantinen, Catering, Firmen mit Mittagsservice. Machen Sie ein konkretes Angebot mit Rabatt."
+      },
+      "rolleB": {
+        "name": "Besucher:in",
+        "aufgabe": "Sie leiten eine Kantine und wollen weniger Verpackungsmüll. Fragen Sie nach Preis, Rabatt und Lieferzeit. Vergleichen Sie mit einem anderen Produkt und tauschen Sie am Ende Kontaktdaten aus – oder sagen Sie höflich, dass Sie noch überlegen."
+      },
+      "redemittel": [
+        "Kann ich Ihnen unser Produkt kurz vorstellen?",
+        "Das Besondere an unserem Produkt ist …",
+        "Ab … Stück bekommen Sie … Prozent Rabatt.",
+        "Was kostet das? Gibt es einen Mengenrabatt?",
+        "Wie lange dauert die Lieferung?",
+        "Könnten wir Kontaktdaten austauschen?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Messe: die beheizbare Einlegesohle „ToastyFeet“",
+      "situation": "Auf einer Fachmesse. Am Stand von WarmStep wird die beheizbare Einlegesohle „ToastyFeet“ präsentiert: eine Schuheinlage, die sich per Akku erwärmt.",
+      "rolleA": {
+        "name": "Aussteller:in (WarmStep)",
+        "aufgabe": "Präsentieren Sie Ihr Produkt kurz und klar und nennen Sie mindestens 2 Vorteile (warme Füße im Winter, per App regelbar, aufladbar). Preis: 39 € / Paar, Staffelpreise. Zielgruppe: Outdoor-Läden, Bau, Sicherheitsdienste. Machen Sie ein konkretes Angebot mit Rabatt."
+      },
+      "rolleB": {
+        "name": "Besucher:in",
+        "aufgabe": "Sie arbeiten für einen Sicherheitsdienst, dessen Mitarbeitende nachts draußen stehen. Fragen Sie nach Preis, Rabatt und Lieferzeit. Vergleichen Sie mit einem anderen Produkt und tauschen Sie am Ende Kontaktdaten aus – oder sagen Sie höflich, dass Sie noch überlegen."
+      },
+      "redemittel": [
+        "Kann ich Ihnen unser Produkt kurz vorstellen?",
+        "Das Besondere an unserem Produkt ist …",
+        "Ab … Stück bekommen Sie … Prozent Rabatt.",
+        "Was kostet das? Gibt es einen Mengenrabatt?",
+        "Wie lange dauert die Lieferung?",
+        "Könnten wir Kontaktdaten austauschen?"
+      ],
+      "dauer": 240
+    }
+  ]
+}

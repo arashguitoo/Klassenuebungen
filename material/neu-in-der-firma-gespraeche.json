@@ -1,0 +1,190 @@
+{
+  "id": "neu-in-der-firma-gespraeche",
+  "titel": "Neu in der Firma – Abteilungen kennenlernen",
+  "beschreibung": "Rollenkarten: Neue Mitarbeitende fragen Kolleg:innen nach Aufgaben und Zuständigkeiten (nach Aspekte Beruf B2, S. 40).",
+  "art": "karten",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Kommunikation",
+    "lehrwerk": "Aspekte Beruf B2"
+  },
+  "inhalt": [
+    {
+      "titel": "Neu in der Firma: Personalabteilung",
+      "situation": "Erster Arbeitstag. Die neue Mitarbeiterin / der neue Mitarbeiter lernt eine Kollegin / einen Kollegen aus der Personalabteilung kennen.",
+      "rolleA": {
+        "name": "Neue:r Mitarbeiter:in",
+        "aufgabe": "Stellen Sie sich vor. Sie haben eine Frage zu Ihrem Vertrag und möchten wissen, wie Sie Urlaub beantragen. Fragen Sie nach."
+      },
+      "rolleB": {
+        "name": "Kolleg:in (Personalabteilung)",
+        "aufgabe": "Sie kümmern sich um die Mitarbeiterinnen und Mitarbeiter: Bewerbungen prüfen, Verträge, Urlaub, Krankmeldungen, Gehalt. Erklären Sie Ihre Aufgaben und sagen Sie, wann man sich an Sie wenden soll."
+      },
+      "redemittel": [
+        "Guten Tag, ich bin neu hier. Darf ich mich kurz vorstellen?",
+        "Zu meinen Aufgaben gehört …",
+        "An wen wende ich mich, wenn …?",
+        "Wenden Sie sich an mich, wenn …"
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Neu in der Firma: IT-Abteilung",
+      "situation": "Erster Arbeitstag. Die neue Mitarbeiterin / der neue Mitarbeiter lernt eine Kollegin / einen Kollegen aus der IT-Abteilung kennen.",
+      "rolleA": {
+        "name": "Neue:r Mitarbeiter:in",
+        "aufgabe": "Ihr Login funktioniert noch nicht und Sie brauchen ein Passwort. Stellen Sie sich vor und fragen Sie, wer Ihnen helfen kann."
+      },
+      "rolleB": {
+        "name": "Kolleg:in (IT-Abteilung)",
+        "aufgabe": "Sie halten Computer, Netzwerk und Programme am Laufen: Zugänge einrichten, bei technischen Problemen helfen, Passwörter, Geräte. Erklären Sie das und bieten Sie Hilfe an."
+      },
+      "redemittel": [
+        "Hallo, ich arbeite in der … Und Sie? In welcher Abteilung sind Sie?",
+        "Ich bin verantwortlich für …",
+        "Da kann ich Ihnen weiterhelfen.",
+        "Könnten Sie das noch mal wiederholen, bitte?"
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Neu in der Firma: Buchhaltung",
+      "situation": "Erster Arbeitstag. Die neue Mitarbeiterin / der neue Mitarbeiter lernt eine Kollegin / einen Kollegen aus der Buchhaltung kennen.",
+      "rolleA": {
+        "name": "Neue:r Mitarbeiter:in",
+        "aufgabe": "Sie haben eine Rechnung von einem Kunden bekommen und wissen nicht, wohin damit. Fragen Sie nach der Zuständigkeit."
+      },
+      "rolleB": {
+        "name": "Kolleg:in (Buchhaltung)",
+        "aufgabe": "Sie verwalten alle Zahlungen und Rechnungen: Rechnungen schreiben und prüfen, Zahlungen kontrollieren, Belege buchen. Erklären Sie Ihr Aufgabengebiet."
+      },
+      "redemittel": [
+        "Mein Aufgabengebiet umfasst …",
+        "Habe ich Sie richtig verstanden, dass …?",
+        "Wenden Sie sich an mich, wenn …",
+        "Vielen Dank für die Informationen!"
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Neu in der Firma: Kundenservice",
+      "situation": "Erster Arbeitstag. Die neue Mitarbeiterin / der neue Mitarbeiter lernt eine Kollegin / einen Kollegen aus dem Kundenservice kennen.",
+      "rolleA": {
+        "name": "Neue:r Mitarbeiter:in",
+        "aufgabe": "Ein Kunde hat Sie angerufen und sich über eine Bestellung beschwert. Fragen Sie, wer dafür zuständig ist und wie man Beschwerden bearbeitet."
+      },
+      "rolleB": {
+        "name": "Kolleg:in (Kundenservice)",
+        "aufgabe": "Sie helfen Kundinnen und Kunden bei Fragen und Problemen: Anrufe und E-Mails beantworten, Beschwerden bearbeiten, Lösungen anbieten. Erklären Sie, wie Sie arbeiten."
+      },
+      "redemittel": [
+        "Bei uns geht es vor allem um …",
+        "Was bedeutet das genau?",
+        "Da kann ich Ihnen weiterhelfen.",
+        "Schön, dass wir gesprochen haben. Bis später!"
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Neu in der Firma: Logistik",
+      "situation": "Erster Arbeitstag. Die neue Mitarbeiterin / der neue Mitarbeiter lernt eine Kollegin / einen Kollegen aus der Logistik kennen.",
+      "rolleA": {
+        "name": "Neue:r Mitarbeiter:in",
+        "aufgabe": "Sie möchten wissen, wann eine Lieferung an einen wichtigen Kunden rausgeht. Stellen Sie sich vor und fragen Sie nach."
+      },
+      "rolleB": {
+        "name": "Kolleg:in (Logistik)",
+        "aufgabe": "Sie organisieren den Transport und die Lieferung der Waren: Lieferungen planen, Transportwege koordinieren, Termine einhalten. Erklären Sie das. Für Fragen zu Beständen ist eher das Lager zuständig."
+      },
+      "redemittel": [
+        "Freut mich, Sie kennenzulernen.",
+        "Zu meinen Aufgaben gehört …",
+        "Dafür ist eher die Abteilung … zuständig.",
+        "An wen wende ich mich, wenn …?"
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Neu in der Firma: Marketing",
+      "situation": "Erster Arbeitstag. Die neue Mitarbeiterin / der neue Mitarbeiter lernt eine Kollegin / einen Kollegen aus dem Marketing kennen.",
+      "rolleA": {
+        "name": "Neue:r Mitarbeiter:in",
+        "aufgabe": "Sie haben eine Idee für einen Social-Media-Beitrag. Stellen Sie sich vor und fragen Sie, wer sich um die Website und Social Media kümmert."
+      },
+      "rolleB": {
+        "name": "Kolleg:in (Marketing)",
+        "aufgabe": "Sie machen das Unternehmen und seine Produkte bekannt: Werbung planen, Social Media betreuen, Kampagnen entwickeln. Erklären Sie Ihr Aufgabengebiet und reagieren Sie auf die Idee."
+      },
+      "redemittel": [
+        "Ich bin verantwortlich für …",
+        "Bei uns geht es vor allem um …",
+        "Habe ich Sie richtig verstanden, dass …?",
+        "Wir sehen uns sicher noch."
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Neu in der Firma: Vertrieb",
+      "situation": "Erster Arbeitstag. Die neue Mitarbeiterin / der neue Mitarbeiter lernt eine Kollegin / einen Kollegen aus dem Vertrieb kennen.",
+      "rolleA": {
+        "name": "Neue:r Mitarbeiter:in",
+        "aufgabe": "Ein Interessent möchte ein Angebot. Fragen Sie, wer Angebote erstellt und wie der Vertrieb arbeitet."
+      },
+      "rolleB": {
+        "name": "Kolleg:in (Vertrieb)",
+        "aufgabe": "Sie verkaufen die Produkte und gewinnen neue Kunden: Angebote erstellen, Verkaufsgespräche führen, Kundenkontakte pflegen. Erklären Sie, wann man sich an Sie wendet."
+      },
+      "redemittel": [
+        "Mein Aufgabengebiet umfasst …",
+        "Wenden Sie sich an mich, wenn …",
+        "Was bedeutet das genau?",
+        "Vielen Dank für die Informationen!"
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Neu in der Firma: Lager",
+      "situation": "Erster Arbeitstag. Die neue Mitarbeiterin / der neue Mitarbeiter lernt eine Kollegin / einen Kollegen aus dem Lager kennen.",
+      "rolleA": {
+        "name": "Neue:r Mitarbeiter:in",
+        "aufgabe": "Sie möchten wissen, ob eine bestimmte Ware da ist und ob ein Kunde sie abholen kann. Fragen Sie nach."
+      },
+      "rolleB": {
+        "name": "Kolleg:in (Lager)",
+        "aufgabe": "Sie lagern Waren und stellen sie für den Versand bereit: Waren annehmen, einräumen, Bestände prüfen, Bestellungen zusammenstellen. Erklären Sie Ihre Aufgaben."
+      },
+      "redemittel": [
+        "Hallo, ich arbeite in der … Und Sie? In welcher Abteilung sind Sie?",
+        "Zu meinen Aufgaben gehört …",
+        "Könnten Sie das noch mal wiederholen, bitte?",
+        "Da kann ich Ihnen weiterhelfen."
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Duzen oder siezen?",
+      "situation": "In der Kaffeeküche treffen Sie eine Kollegin / einen Kollegen aus dem Controlling. In der Firma duzen sich viele, aber nicht alle.",
+      "rolleA": {
+        "name": "Neue:r Mitarbeiter:in",
+        "aufgabe": "Stellen Sie sich vor und fragen Sie nach den Aufgaben im Controlling. Sie siezen lieber, bis Sie die Firma besser kennen."
+      },
+      "rolleB": {
+        "name": "Kolleg:in (Controlling)",
+        "aufgabe": "Erklären Sie Ihre Aufgaben (Budgetpläne erstellen, Kosten kontrollieren, Zahlen analysieren). Bieten Sie das Du an."
+      },
+      "redemittel": [
+        "Sollen wir uns duzen? – Gern, ich bin …",
+        "Bei uns sagen alle „du“. – Dann gern auch bei mir.",
+        "Ich bleibe lieber beim „Sie“, wenn das in Ordnung ist.",
+        "Mein Aufgabengebiet umfasst …"
+      ],
+      "dauer": 180
+    }
+  ]
+}

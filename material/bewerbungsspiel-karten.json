@@ -1,0 +1,332 @@
+{
+  "id": "bewerbungsspiel-karten",
+  "titel": "Bewerbungsspiel · Vorstellungsgespräche",
+  "beschreibung": "Rollenkarten Firma ↔ Bewerber:in aus dem Bewerbungsspiel: Profile, Angebot und je eine Frage im Gespräch.",
+  "art": "karten",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen"
+    ],
+    "niveau": [
+      "B1"
+    ],
+    "thema": "Beruf & Bewerbung"
+  },
+  "inhalt": [
+    {
+      "titel": "Vorstellungsgespräch: Verkäufer:in (Teilzeit) bei Bäckerei Sonnenschein",
+      "situation": "Bäckerei Sonnenschein in Kiel sucht: Verkäufer:in (Teilzeit). Amina Hassan (Verkäuferin) bewirbt sich.",
+      "rolleA": {
+        "name": "Firma: Bäckerei Sonnenschein",
+        "aufgabe": "Sie suchen eine:n Mitarbeiter:in (freundlich, früh aufstehen, Erfahrung mit Kasse). Sie bieten: 30 Std./Woche, Wochenende frei, nettes Team, 2.100 € brutto. Stellen Sie Fragen und finden Sie heraus, ob die Person passt. Ihre Frage im Gespräch: „Können Sie morgens um 6 Uhr anfangen?“"
+      },
+      "rolleB": {
+        "name": "Bewerberin: Amina Hassan",
+        "aufgabe": "Verkäuferin, 28 Jahre. Erfahrung: 3 Jahre im Supermarkt. Stärken: freundlich, schnell, Teamplayer. Sprachen: Arabisch, Deutsch (B1), etwas Englisch. Sie suchen: Stelle im Verkauf, gern Teilzeit. Stellen Sie sich vor, erzählen Sie von Ihrer Erfahrung und überzeugen Sie die Firma! Ihre Frage im Gespräch: „Gibt es feste Arbeitszeiten?“"
+      },
+      "redemittel": [
+        "Ich interessiere mich für die Stelle als …",
+        "Ich habe … Jahre Erfahrung als/im …",
+        "Meine Stärken sind …",
+        "Erzählen Sie bitte etwas über sich.",
+        "Warum möchten Sie bei uns arbeiten?",
+        "Ich hätte noch eine Frage: …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Vorstellungsgespräch: IT-Support bei TechnoFix GmbH",
+      "situation": "TechnoFix GmbH in Hamburg sucht: IT-Support. Reza Mohammadi (IT-Helfer) bewirbt sich.",
+      "rolleA": {
+        "name": "Firma: TechnoFix GmbH",
+        "aufgabe": "Sie suchen eine:n Mitarbeiter:in (Computerkenntnisse, Geduld, gutes Deutsch). Sie bieten: Homeoffice möglich, Weiterbildung, 40 Std., 3.200 € brutto. Stellen Sie Fragen und finden Sie heraus, ob die Person passt. Ihre Frage im Gespräch: „Wie helfen Sie einem Kunden, der wütend ist?“"
+      },
+      "rolleB": {
+        "name": "Bewerber: Reza Mohammadi",
+        "aufgabe": "IT-Helfer, 25 Jahre. Erfahrung: Umschulung + 1 Jahr Praktikum. Stärken: geduldig, technikbegeistert, lernwillig. Sprachen: Persisch, Deutsch (B1), Englisch. Sie suchen: Einstieg im IT-Support. Stellen Sie sich vor, erzählen Sie von Ihrer Erfahrung und überzeugen Sie die Firma! Ihre Frage im Gespräch: „Gibt es eine Einarbeitung?“"
+      },
+      "redemittel": [
+        "Ich interessiere mich für die Stelle als …",
+        "Ich habe … Jahre Erfahrung als/im …",
+        "Meine Stärken sind …",
+        "Erzählen Sie bitte etwas über sich.",
+        "Warum möchten Sie bei uns arbeiten?",
+        "Ich hätte noch eine Frage: …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Vorstellungsgespräch: Barista bei Café Mokka",
+      "situation": "Café Mokka in Lübeck sucht: Barista. Carlos Mendes (Barista / Kellner) bewirbt sich.",
+      "rolleA": {
+        "name": "Firma: Café Mokka",
+        "aufgabe": "Sie suchen eine:n Mitarbeiter:in (freundlich, flexibel, Teamgeist). Sie bieten: Trinkgeld, kostenloser Kaffee, junges Team, 2.000 € + Trinkgeld. Stellen Sie Fragen und finden Sie heraus, ob die Person passt. Ihre Frage im Gespräch: „Arbeiten Sie gern mit vielen Menschen?“"
+      },
+      "rolleB": {
+        "name": "Bewerber: Carlos Mendes",
+        "aufgabe": "Barista / Kellner, 26 Jahre. Erfahrung: 2 Jahre in einer Bar. Stärken: freundlich, schnell, gut mit Menschen. Sprachen: Portugiesisch, Spanisch, Deutsch (B1). Sie suchen: Job im Café oder Restaurant. Stellen Sie sich vor, erzählen Sie von Ihrer Erfahrung und überzeugen Sie die Firma! Ihre Frage im Gespräch: „Muss ich am Wochenende arbeiten?“"
+      },
+      "redemittel": [
+        "Ich interessiere mich für die Stelle als …",
+        "Ich habe … Jahre Erfahrung als/im …",
+        "Meine Stärken sind …",
+        "Erzählen Sie bitte etwas über sich.",
+        "Warum möchten Sie bei uns arbeiten?",
+        "Ich hätte noch eine Frage: …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Vorstellungsgespräch: Gärtner:in bei GrünBau AG",
+      "situation": "GrünBau AG in Plön sucht: Gärtner:in. Daniyar Abenov (Gärtner) bewirbt sich.",
+      "rolleA": {
+        "name": "Firma: GrünBau AG",
+        "aufgabe": "Sie suchen eine:n Mitarbeiter:in (körperlich fit, draußen arbeiten, Pünktlichkeit). Sie bieten: frische Luft, festes Team, Firmenwagen, 2.600 € brutto. Stellen Sie Fragen und finden Sie heraus, ob die Person passt. Ihre Frage im Gespräch: „Macht Ihnen Arbeit bei Regen etwas aus?“"
+      },
+      "rolleB": {
+        "name": "Bewerber: Daniyar Abenov",
+        "aufgabe": "Gärtner, 30 Jahre. Erfahrung: 4 Jahre im Garten- und Landschaftsbau. Stärken: fit, fleißig, arbeitet gern draußen. Sprachen: Kasachisch, Russisch, Deutsch (B1). Sie suchen: Stelle im Garten- oder Baubereich. Stellen Sie sich vor, erzählen Sie von Ihrer Erfahrung und überzeugen Sie die Firma! Ihre Frage im Gespräch: „Arbeitet man auch im Winter draußen?“"
+      },
+      "redemittel": [
+        "Ich interessiere mich für die Stelle als …",
+        "Ich habe … Jahre Erfahrung als/im …",
+        "Meine Stärken sind …",
+        "Erzählen Sie bitte etwas über sich.",
+        "Warum möchten Sie bei uns arbeiten?",
+        "Ich hätte noch eine Frage: …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Vorstellungsgespräch: Pflegehelfer:in bei Pflegehaus Lindenhof",
+      "situation": "Pflegehaus Lindenhof in Kiel sucht: Pflegehelfer:in. Samuel Tesfaye (Helfer (vielseitig)) bewirbt sich.",
+      "rolleA": {
+        "name": "Firma: Pflegehaus Lindenhof",
+        "aufgabe": "Sie suchen eine:n Mitarbeiter:in (Empathie, Schichtarbeit, Verantwortung). Sie bieten: sicherer Job, Zuschläge, Fortbildung, 2.800 € brutto. Stellen Sie Fragen und finden Sie heraus, ob die Person passt. Ihre Frage im Gespräch: „Warum möchten Sie mit älteren Menschen arbeiten?“"
+      },
+      "rolleB": {
+        "name": "Bewerber: Samuel Tesfaye",
+        "aufgabe": "Helfer (vielseitig), 23 Jahre. Erfahrung: Aushilfe in Bäckerei und Lager. Stärken: motiviert, pünktlich, lernt schnell. Sprachen: Amharisch, Deutsch (B1). Sie suchen: Einstiegsjob, offen für alles. Stellen Sie sich vor, erzählen Sie von Ihrer Erfahrung und überzeugen Sie die Firma! Ihre Frage im Gespräch: „Kann ich mich zu einer Fachkraft entwickeln?“"
+      },
+      "redemittel": [
+        "Ich interessiere mich für die Stelle als …",
+        "Ich habe … Jahre Erfahrung als/im …",
+        "Meine Stärken sind …",
+        "Erzählen Sie bitte etwas über sich.",
+        "Warum möchten Sie bei uns arbeiten?",
+        "Ich hätte noch eine Frage: …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Vorstellungsgespräch: Verkaufsberater:in bei Modehaus Klein",
+      "situation": "Modehaus Klein in Hamburg sucht: Verkaufsberater:in. Marija Jovanović (Verkäuferin / Beraterin) bewirbt sich.",
+      "rolleA": {
+        "name": "Firma: Modehaus Klein",
+        "aufgabe": "Sie suchen eine:n Mitarbeiter:in (Stilgefühl, kommunikativ, Beratung). Sie bieten: Personalrabatt, Provision, Innenstadt, 2.300 € brutto. Stellen Sie Fragen und finden Sie heraus, ob die Person passt. Ihre Frage im Gespräch: „Wie beraten Sie eine unentschlossene Kundin?“"
+      },
+      "rolleB": {
+        "name": "Bewerberin: Marija Jovanović",
+        "aufgabe": "Verkäuferin / Beraterin, 38 Jahre. Erfahrung: 10 Jahre im Modehandel. Stärken: stilsicher, kommunikativ, freundlich. Sprachen: Serbisch, Deutsch (B1). Sie suchen: Stelle in Beratung oder Verkauf. Stellen Sie sich vor, erzählen Sie von Ihrer Erfahrung und überzeugen Sie die Firma! Ihre Frage im Gespräch: „Gibt es eine Provision?“"
+      },
+      "redemittel": [
+        "Ich interessiere mich für die Stelle als …",
+        "Ich habe … Jahre Erfahrung als/im …",
+        "Meine Stärken sind …",
+        "Erzählen Sie bitte etwas über sich.",
+        "Warum möchten Sie bei uns arbeiten?",
+        "Ich hätte noch eine Frage: …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Vorstellungsgespräch: Lagermitarbeiter:in bei Logistik Nord",
+      "situation": "Logistik Nord in Neumünster sucht: Lagermitarbeiter:in. Tomasz Kowalski (Lagerist) bewirbt sich.",
+      "rolleA": {
+        "name": "Firma: Logistik Nord",
+        "aufgabe": "Sie suchen eine:n Mitarbeiter:in (Zuverlässigkeit, Stapler-Schein von Vorteil). Sie bieten: Schichtzulage, unbefristet, Kantine, 2.500 € brutto. Stellen Sie Fragen und finden Sie heraus, ob die Person passt. Ihre Frage im Gespräch: „Haben Sie schon einmal im Lager gearbeitet?“"
+      },
+      "rolleB": {
+        "name": "Bewerber: Tomasz Kowalski",
+        "aufgabe": "Lagerist, 35 Jahre. Erfahrung: 5 Jahre Lager + Stapler-Schein. Stärken: zuverlässig, kräftig, pünktlich. Sprachen: Polnisch, Deutsch (B1). Sie suchen: feste Stelle in Logistik oder Lager. Stellen Sie sich vor, erzählen Sie von Ihrer Erfahrung und überzeugen Sie die Firma! Ihre Frage im Gespräch: „Wird die Schichtarbeit extra bezahlt?“"
+      },
+      "redemittel": [
+        "Ich interessiere mich für die Stelle als …",
+        "Ich habe … Jahre Erfahrung als/im …",
+        "Meine Stärken sind …",
+        "Erzählen Sie bitte etwas über sich.",
+        "Warum möchten Sie bei uns arbeiten?",
+        "Ich hätte noch eine Frage: …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Vorstellungsgespräch: Erzieher:in bei Kita Regenbogen",
+      "situation": "Kita Regenbogen in Preetz sucht: Erzieher:in. Grace Okafor (Erzieherin) bewirbt sich.",
+      "rolleA": {
+        "name": "Firma: Kita Regenbogen",
+        "aufgabe": "Sie suchen eine:n Mitarbeiter:in (Geduld, Kreativität, Liebe zu Kindern). Sie bieten: familiäres Team, 30 Tage Urlaub, 3.000 € brutto. Stellen Sie Fragen und finden Sie heraus, ob die Person passt. Ihre Frage im Gespräch: „Welches Spiel würden Sie mit Kindern machen?“"
+      },
+      "rolleB": {
+        "name": "Bewerberin: Grace Okafor",
+        "aufgabe": "Erzieherin, 34 Jahre. Erfahrung: 5 Jahre in einer Kita. Stärken: geduldig, kreativ, herzlich. Sprachen: Englisch, Igbo, Deutsch (B1). Sie suchen: Stelle in einer Kita. Stellen Sie sich vor, erzählen Sie von Ihrer Erfahrung und überzeugen Sie die Firma! Ihre Frage im Gespräch: „Wie groß ist die Gruppe der Kinder?“"
+      },
+      "redemittel": [
+        "Ich interessiere mich für die Stelle als …",
+        "Ich habe … Jahre Erfahrung als/im …",
+        "Meine Stärken sind …",
+        "Erzählen Sie bitte etwas über sich.",
+        "Warum möchten Sie bei uns arbeiten?",
+        "Ich hätte noch eine Frage: …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Vorstellungsgespräch: Kfz-Mechaniker:in bei AutoService Meyer",
+      "situation": "AutoService Meyer in Rendsburg sucht: Kfz-Mechaniker:in. Mohammed Al-Sayed (Kfz-Mechaniker) bewirbt sich.",
+      "rolleA": {
+        "name": "Firma: AutoService Meyer",
+        "aufgabe": "Sie suchen eine:n Mitarbeiter:in (Technikinteresse, Ausbildung, Genauigkeit). Sie bieten: moderne Werkstatt, Überstunden bezahlt, 2.900 € brutto. Stellen Sie Fragen und finden Sie heraus, ob die Person passt. Ihre Frage im Gespräch: „Welche Reparatur fällt Ihnen leicht?“"
+      },
+      "rolleB": {
+        "name": "Bewerber: Mohammed Al-Sayed",
+        "aufgabe": "Kfz-Mechaniker, 40 Jahre. Erfahrung: 15 Jahre eigene Werkstatt. Stärken: erfahren, genau, ruhig. Sprachen: Arabisch, Deutsch (B1). Sie suchen: Stelle in einer Werkstatt. Stellen Sie sich vor, erzählen Sie von Ihrer Erfahrung und überzeugen Sie die Firma! Ihre Frage im Gespräch: „Kann ich mich weiterbilden?“"
+      },
+      "redemittel": [
+        "Ich interessiere mich für die Stelle als …",
+        "Ich habe … Jahre Erfahrung als/im …",
+        "Meine Stärken sind …",
+        "Erzählen Sie bitte etwas über sich.",
+        "Warum möchten Sie bei uns arbeiten?",
+        "Ich hätte noch eine Frage: …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Vorstellungsgespräch: Rezeptionist:in bei Hotel Seeblick",
+      "situation": "Hotel Seeblick in Eckernförde sucht: Rezeptionist:in. Lucia Rossi (Hotelfachfrau) bewirbt sich.",
+      "rolleA": {
+        "name": "Firma: Hotel Seeblick",
+        "aufgabe": "Sie suchen eine:n Mitarbeiter:in (Englisch, freundlich, organisiert). Sie bieten: Blick aufs Meer, Trinkgeld, Schichten, 2.400 € brutto. Stellen Sie Fragen und finden Sie heraus, ob die Person passt. Ihre Frage im Gespräch: „Wie begrüßen Sie einen internationalen Gast?“"
+      },
+      "rolleB": {
+        "name": "Bewerberin: Lucia Rossi",
+        "aufgabe": "Hotelfachfrau, 27 Jahre. Erfahrung: 3 Jahre Rezeption. Stärken: organisiert, freundlich, mehrsprachig. Sprachen: Italienisch, Englisch, Deutsch (B1). Sie suchen: Job an der Rezeption. Stellen Sie sich vor, erzählen Sie von Ihrer Erfahrung und überzeugen Sie die Firma! Ihre Frage im Gespräch: „Gibt es Schichtdienst?“"
+      },
+      "redemittel": [
+        "Ich interessiere mich für die Stelle als …",
+        "Ich habe … Jahre Erfahrung als/im …",
+        "Meine Stärken sind …",
+        "Erzählen Sie bitte etwas über sich.",
+        "Warum möchten Sie bei uns arbeiten?",
+        "Ich hätte noch eine Frage: …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Vorstellungsgespräch: Reinigungskraft bei Reinigung Blitzblank",
+      "situation": "Reinigung Blitzblank in Kiel sucht: Reinigungskraft. Nguyen Thi Mai (Reinigungskraft) bewirbt sich.",
+      "rolleA": {
+        "name": "Firma: Reinigung Blitzblank",
+        "aufgabe": "Sie suchen eine:n Mitarbeiter:in (gründlich, selbstständig, früh oder spät). Sie bieten: feste Stunden, in der Nähe, freundlicher Chef, 1.900 € brutto. Stellen Sie Fragen und finden Sie heraus, ob die Person passt. Ihre Frage im Gespräch: „Können Sie auch am frühen Morgen arbeiten?“"
+      },
+      "rolleB": {
+        "name": "Bewerberin: Nguyen Thi Mai",
+        "aufgabe": "Reinigungskraft, 33 Jahre. Erfahrung: 7 Jahre Erfahrung. Stärken: gründlich, selbstständig, zuverlässig. Sprachen: Vietnamesisch, Deutsch (A2-B1). Sie suchen: feste Stelle, gern morgens. Stellen Sie sich vor, erzählen Sie von Ihrer Erfahrung und überzeugen Sie die Firma! Ihre Frage im Gespräch: „Wie viele Stunden pro Woche sind das?“"
+      },
+      "redemittel": [
+        "Ich interessiere mich für die Stelle als …",
+        "Ich habe … Jahre Erfahrung als/im …",
+        "Meine Stärken sind …",
+        "Erzählen Sie bitte etwas über sich.",
+        "Warum möchten Sie bei uns arbeiten?",
+        "Ich hätte noch eine Frage: …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Vorstellungsgespräch: Buchhändler:in bei Buchhandlung Lesezeit",
+      "situation": "Buchhandlung Lesezeit in Lübeck sucht: Buchhändler:in. Sara Nowak (Studentin (sucht Nebenjob)) bewirbt sich.",
+      "rolleA": {
+        "name": "Firma: Buchhandlung Lesezeit",
+        "aufgabe": "Sie suchen eine:n Mitarbeiter:in (liest gern, berät gut, ruhig). Sie bieten: ruhige Atmosphäre, Mitarbeiterrabatt, 2.200 € brutto. Stellen Sie Fragen und finden Sie heraus, ob die Person passt. Ihre Frage im Gespräch: „Welches Buch würden Sie empfehlen?“"
+      },
+      "rolleB": {
+        "name": "Bewerberin: Sara Nowak",
+        "aufgabe": "Studentin (sucht Nebenjob), 22 Jahre. Erfahrung: Aushilfe im Einzelhandel. Stärken: kommunikativ, flexibel, motiviert. Sprachen: Polnisch, Deutsch (B1), Englisch (gut). Sie suchen: Teilzeit oder Minijob. Stellen Sie sich vor, erzählen Sie von Ihrer Erfahrung und überzeugen Sie die Firma! Ihre Frage im Gespräch: „Kann ich die Schichten mit der Uni vereinbaren?“"
+      },
+      "redemittel": [
+        "Ich interessiere mich für die Stelle als …",
+        "Ich habe … Jahre Erfahrung als/im …",
+        "Meine Stärken sind …",
+        "Erzählen Sie bitte etwas über sich.",
+        "Warum möchten Sie bei uns arbeiten?",
+        "Ich hätte noch eine Frage: …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Vorstellungsgespräch: Medizinische:r Fachangestellte:r bei Praxis Dr. Wagner",
+      "situation": "Praxis Dr. Wagner in Kiel sucht: Medizinische:r Fachangestellte:r. Olena Petrenko (Krankenschwester) bewirbt sich.",
+      "rolleA": {
+        "name": "Firma: Praxis Dr. Wagner",
+        "aufgabe": "Sie suchen eine:n Mitarbeiter:in (organisiert, freundlich, diskret). Sie bieten: geregelte Zeiten, kein Wochenende, 2.700 € brutto. Stellen Sie Fragen und finden Sie heraus, ob die Person passt. Ihre Frage im Gespräch: „Wie beruhigen Sie einen nervösen Patienten?“"
+      },
+      "rolleB": {
+        "name": "Bewerberin: Olena Petrenko",
+        "aufgabe": "Krankenschwester, 29 Jahre. Erfahrung: 4 Jahre im Krankenhaus (Ukraine). Stärken: empathisch, belastbar, verantwortungsvoll. Sprachen: Ukrainisch, Russisch, Deutsch (B1). Sie suchen: Stelle in Pflege oder Gesundheit. Stellen Sie sich vor, erzählen Sie von Ihrer Erfahrung und überzeugen Sie die Firma! Ihre Frage im Gespräch: „Brauche ich eine Anerkennung meines Abschlusses?“"
+      },
+      "redemittel": [
+        "Ich interessiere mich für die Stelle als …",
+        "Ich habe … Jahre Erfahrung als/im …",
+        "Meine Stärken sind …",
+        "Erzählen Sie bitte etwas über sich.",
+        "Warum möchten Sie bei uns arbeiten?",
+        "Ich hätte noch eine Frage: …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Vorstellungsgespräch: Kellner:in bei Restaurant Bella Italia",
+      "situation": "Restaurant Bella Italia in Hamburg sucht: Kellner:in. Fatima Yilmaz (Köchin (Ausbildung)) bewirbt sich.",
+      "rolleA": {
+        "name": "Firma: Restaurant Bella Italia",
+        "aufgabe": "Sie suchen eine:n Mitarbeiter:in (schnell, freundlich, abends verfügbar). Sie bieten: gutes Trinkgeld, Essen inklusive, 2.100 € + Trinkgeld. Stellen Sie Fragen und finden Sie heraus, ob die Person passt. Ihre Frage im Gespräch: „Was machen Sie, wenn ein Gast sich beschwert?“"
+      },
+      "rolleB": {
+        "name": "Bewerberin: Fatima Yilmaz",
+        "aufgabe": "Köchin (Ausbildung), 24 Jahre. Erfahrung: Praktikum in einem Café. Stärken: kreativ, lernt schnell, höflich. Sprachen: Türkisch, Deutsch (B1). Sie suchen: Job in der Gastronomie. Stellen Sie sich vor, erzählen Sie von Ihrer Erfahrung und überzeugen Sie die Firma! Ihre Frage im Gespräch: „Bekomme ich auch das Trinkgeld?“"
+      },
+      "redemittel": [
+        "Ich interessiere mich für die Stelle als …",
+        "Ich habe … Jahre Erfahrung als/im …",
+        "Meine Stärken sind …",
+        "Erzählen Sie bitte etwas über sich.",
+        "Warum möchten Sie bei uns arbeiten?",
+        "Ich hätte noch eine Frage: …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Vorstellungsgespräch: Monteur:in für Solaranlagen bei SolarTech Energie",
+      "situation": "SolarTech Energie in Schleswig sucht: Monteur:in für Solaranlagen. Ahmed Karimi (Elektriker) bewirbt sich.",
+      "rolleA": {
+        "name": "Firma: SolarTech Energie",
+        "aufgabe": "Sie suchen eine:n Mitarbeiter:in (keine Höhenangst, handwerklich, Führerschein). Sie bieten: Zukunftsbranche, gutes Gehalt, Team, 3.100 € brutto. Stellen Sie Fragen und finden Sie heraus, ob die Person passt. Ihre Frage im Gespräch: „Arbeiten Sie gern auch in der Höhe?“"
+      },
+      "rolleB": {
+        "name": "Bewerber: Ahmed Karimi",
+        "aufgabe": "Elektriker, 31 Jahre. Erfahrung: 6 Jahre, auch auf Baustellen. Stärken: handwerklich, keine Höhenangst, Führerschein. Sprachen: Dari, Deutsch (B1), Englisch. Sie suchen: technischer Job, gern draußen. Stellen Sie sich vor, erzählen Sie von Ihrer Erfahrung und überzeugen Sie die Firma! Ihre Frage im Gespräch: „Stellen Sie Arbeitskleidung?“"
+      },
+      "redemittel": [
+        "Ich interessiere mich für die Stelle als …",
+        "Ich habe … Jahre Erfahrung als/im …",
+        "Meine Stärken sind …",
+        "Erzählen Sie bitte etwas über sich.",
+        "Warum möchten Sie bei uns arbeiten?",
+        "Ich hätte noch eine Frage: …"
+      ],
+      "dauer": 240
+    }
+  ]
+}

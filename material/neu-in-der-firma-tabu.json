@@ -1,0 +1,136 @@
+{
+  "id": "neu-in-der-firma-tabu",
+  "titel": "Neu in der Firma – Abteilungen erklären (Tabu)",
+  "beschreibung": "Abteilungen eines Unternehmens umschreiben, ohne die Tabu-Wörter zu benutzen.",
+  "art": "begriffe",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2"
+  },
+  "inhalt": [
+    {
+      "wort": "der Kundenservice",
+      "tabu": [
+        "Kunde",
+        "Beschwerde",
+        "Anruf",
+        "Problem"
+      ]
+    },
+    {
+      "wort": "das Marketing",
+      "tabu": [
+        "Werbung",
+        "Social Media",
+        "Kampagne",
+        "bekannt"
+      ]
+    },
+    {
+      "wort": "der Vertrieb",
+      "tabu": [
+        "verkaufen",
+        "Angebot",
+        "Kunden",
+        "Verkauf"
+      ]
+    },
+    {
+      "wort": "die Personalabteilung",
+      "tabu": [
+        "Mitarbeiter",
+        "Vertrag",
+        "Urlaub",
+        "Gehalt"
+      ]
+    },
+    {
+      "wort": "die Buchhaltung",
+      "tabu": [
+        "Rechnung",
+        "Zahlung",
+        "Beleg",
+        "Geld"
+      ]
+    },
+    {
+      "wort": "die Produktion",
+      "tabu": [
+        "herstellen",
+        "Maschine",
+        "Fabrik",
+        "Qualität"
+      ]
+    },
+    {
+      "wort": "die IT-Abteilung",
+      "tabu": [
+        "Computer",
+        "Passwort",
+        "Netzwerk",
+        "technisch"
+      ]
+    },
+    {
+      "wort": "die Forschung und Entwicklung",
+      "tabu": [
+        "neu",
+        "Idee",
+        "Prototyp",
+        "testen"
+      ]
+    },
+    {
+      "wort": "die Rechtsabteilung",
+      "tabu": [
+        "Vertrag",
+        "Gesetz",
+        "rechtlich",
+        "Anwalt"
+      ]
+    },
+    {
+      "wort": "die Logistik",
+      "tabu": [
+        "Transport",
+        "Lieferung",
+        "Lkw",
+        "Termin"
+      ]
+    },
+    {
+      "wort": "das Controlling",
+      "tabu": [
+        "Kosten",
+        "Budget",
+        "Zahlen",
+        "analysieren"
+      ]
+    },
+    {
+      "wort": "die Geschäftsleitung",
+      "tabu": [
+        "Chef",
+        "Entscheidung",
+        "Strategie",
+        "leiten"
+      ]
+    },
+    {
+      "wort": "das Lager",
+      "tabu": [
+        "Ware",
+        "Bestand",
+        "Versand",
+        "Regal"
+      ]
+    }
+  ]
+}

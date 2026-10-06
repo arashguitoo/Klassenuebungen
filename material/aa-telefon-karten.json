@@ -1,0 +1,438 @@
+{
+  "id": "aa-telefon-karten",
+  "titel": "Am Apparat – Telefonberatung Agentur für Arbeit",
+  "beschreibung": "20 Kunden-Rollenkarten (nicht-akademische Berufe, junge Menschen/Azubis) für das Telefongespräch mit der Agentur für Arbeit.",
+  "art": "karten",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Beruf & Bewerbung"
+  },
+  "inhalt": [
+    {
+      "titel": "Gelernte Friseurin: Yasmin Khoury",
+      "situation": "Telefonische Beratung: Yasmin Khoury (Gelernte Friseurin) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Yasmin Khoury",
+        "aufgabe": "Situation: Der Salon hat geschlossen, sie ist seit zwei Wochen arbeitslos. Anliegen: Sie möchte Arbeitslosengeld beantragen und weiß nicht, welche Unterlagen sie braucht. So sprechen Sie: Sie hat den Kündigungsbrief, aber keine Arbeitsbescheinigung. Sie ist nervös und spricht schnell. Gesprächsziel: Herausfinden: Welche Dokumente? Wie hoch ist das Geld ungefähr? Termin nötig?"
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Guten Tag, ich rufe an, weil …",
+        "Könnten Sie das bitte noch einmal wiederholen?",
+        "Ehrlich gesagt mache ich mir große Sorgen.",
+        "Habe ich Sie richtig verstanden, dass …?",
+        "Ich erkläre Ihnen das gern Schritt für Schritt.",
+        "Ich schlage Ihnen einen Termin am … vor. Passt das?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Lkw-Fahrer: Dragan Petrović",
+      "situation": "Telefonische Beratung: Dragan Petrović (Lkw-Fahrer) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Dragan Petrović",
+        "aufgabe": "Situation: Seine Firma geht insolvent. Er soll Ende des Monats gehen. Anliegen: Er fragt, ob er sich schon jetzt arbeitssuchend melden muss, obwohl er noch arbeitet. So sprechen Sie: Er ärgert sich über die Situation und wird leicht laut. Er hat einen Termin nur abends frei. Gesprächsziel: Klären: Frist für die Meldung, drohende Sperrzeit vermeiden, Umschulung möglich?"
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Mein Problem ist Folgendes: …",
+        "Was bedeutet das genau?",
+        "Das beruhigt mich, danke.",
+        "Können Sie mir das bitte etwas genauer beschreiben?",
+        "Das lässt sich am besten in einem persönlichen Termin klären.",
+        "Ich schicke Ihnen die Informationen schriftlich zu."
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Bäckereifachverkäuferin: Renate Möller",
+      "situation": "Telefonische Beratung: Renate Möller (Bäckereifachverkäuferin) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Renate Möller",
+        "aufgabe": "Situation: Mit 58 nach 30 Jahren betriebsbedingt gekündigt. Anliegen: Sie hat Angst, in ihrem Alter keine neue Stelle zu finden. So sprechen Sie: Sie ist mit Computern unsicher und bittet, alles langsam zu erklären. Sie weint fast. Gesprächsziel: Beruhigen, nächste Schritte erklären, Vermittlung & Weiterbildung 50+ ansprechen."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Ich bräuchte eine Information zu …",
+        "Welche Unterlagen brauche ich dafür?",
+        "Das ärgert mich wirklich.",
+        "Seit wann sind Sie denn ohne Beschäftigung?",
+        "Dafür brauchen wir folgende Unterlagen: …",
+        "Vielen Dank für Ihren Anruf. Auf Wiederhören!"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Maler & Lackierer: Tomasz Nowak",
+      "situation": "Telefonische Beratung: Tomasz Nowak (Maler & Lackierer) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Tomasz Nowak",
+        "aufgabe": "Situation: Saisonbedingt im Winter ohne Arbeit. Anliegen: Er will wissen, ob er Geld bekommt, bis die Saison wieder startet. So sprechen Sie: Sein Deutsch ist einfach, er fragt oft nach. Höflich, aber ungeduldig. Gesprächsziel: Saisonale Arbeitslosigkeit erklären, Anspruch prüfen, Wiedereinstellung dokumentieren."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Ich weiß nicht genau, an wen ich mich wenden muss.",
+        "Entschuldigung, das habe ich nicht ganz verstanden.",
+        "Können Sie mir da weiterhelfen?",
+        "Darf ich kurz Ihre Daten aufnehmen?",
+        "Grundsätzlich haben Sie Anspruch auf …, wenn …",
+        "Ich schlage Ihnen einen Termin am … vor. Passt das?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Pflegehelferin: Grace Adeyemi",
+      "situation": "Telefonische Beratung: Grace Adeyemi (Pflegehelferin) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Grace Adeyemi",
+        "aufgabe": "Situation: Befristeter Vertrag läuft in vier Wochen aus. Anliegen: Sie möchte eine Weiterbildung zur examinierten Pflegefachkraft machen. So sprechen Sie: Sehr motiviert, stellt viele Fragen zur Finanzierung. Notiert alles mit. Gesprächsziel: Bildungsgutschein erklären, Voraussetzungen, Beratungstermin vereinbaren."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Guten Tag, ich rufe an, weil …",
+        "Könnten Sie das bitte noch einmal wiederholen?",
+        "Ehrlich gesagt mache ich mir große Sorgen.",
+        "Habe ich Sie richtig verstanden, dass …?",
+        "Ich erkläre Ihnen das gern Schritt für Schritt.",
+        "Ich schicke Ihnen die Informationen schriftlich zu."
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Kfz-Mechatroniker: Ali Demir",
+      "situation": "Telefonische Beratung: Ali Demir (Kfz-Mechatroniker) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Ali Demir",
+        "aufgabe": "Situation: Wegen Rückenproblemen kann er den Beruf nicht mehr ausüben. Anliegen: Er fragt nach einer Umschulung in einen körperlich leichteren Beruf. So sprechen Sie: Etwas resigniert, glaubt nicht recht an seine Chancen. Braucht Ermutigung. Gesprächsziel: Reha/Umschulung thematisieren, ärztliches Attest, Beratungsangebot machen."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Mein Problem ist Folgendes: …",
+        "Was bedeutet das genau?",
+        "Das beruhigt mich, danke.",
+        "Können Sie mir das bitte etwas genauer beschreiben?",
+        "Das lässt sich am besten in einem persönlichen Termin klären.",
+        "Vielen Dank für Ihren Anruf. Auf Wiederhören!"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Köchin: Marta Silva",
+      "situation": "Telefonische Beratung: Marta Silva (Köchin) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Marta Silva",
+        "aufgabe": "Situation: Sie ist aus Portugal zugezogen, sucht erstmals in Deutschland Arbeit. Anliegen: Sie will sich als arbeitssuchend melden und ihren Lebenslauf anerkennen lassen. So sprechen Sie: Spricht B1, manchmal fehlt das Wort. Freundlich und geduldig. Gesprächsziel: Registrierung erklären, Anerkennung Berufsabschluss, Stellenangebote Gastronomie."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Ich bräuchte eine Information zu …",
+        "Welche Unterlagen brauche ich dafür?",
+        "Das ärgert mich wirklich.",
+        "Seit wann sind Sie denn ohne Beschäftigung?",
+        "Dafür brauchen wir folgende Unterlagen: …",
+        "Ich schlage Ihnen einen Termin am … vor. Passt das?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Lagerist: Kevin Schulz",
+      "situation": "Telefonische Beratung: Kevin Schulz (Lagerist) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Kevin Schulz",
+        "aufgabe": "Situation: In der Probezeit gekündigt worden. Anliegen: Er weiß nicht, ob ihm eine Sperrzeit droht. So sprechen Sie: Locker, fast zu lässig. Nimmt es zunächst nicht ernst. Gesprächsziel: Sperrzeit-Regeln erklären, sofortige Meldung, neue Bewerbungen anstoßen."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Ich weiß nicht genau, an wen ich mich wenden muss.",
+        "Entschuldigung, das habe ich nicht ganz verstanden.",
+        "Können Sie mir da weiterhelfen?",
+        "Darf ich kurz Ihre Daten aufnehmen?",
+        "Grundsätzlich haben Sie Anspruch auf …, wenn …",
+        "Ich schicke Ihnen die Informationen schriftlich zu."
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Erzieherin (Berufsfachschule): Aylin Yıldız",
+      "situation": "Telefonische Beratung: Aylin Yıldız (Erzieherin (Berufsfachschule)) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Aylin Yıldız",
+        "aufgabe": "Situation: Sie kehrt nach drei Jahren Elternzeit zurück. Anliegen: Sie sucht eine Teilzeitstelle und fragt nach Kinderbetreuung. So sprechen Sie: Organisiert, aber zeitlich knapp. Fragt konkret nach Öffnungszeiten der Beratung. Gesprächsziel: Teilzeit-Vermittlung, Vereinbarkeit Familie/Beruf, passende Angebote."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Guten Tag, ich rufe an, weil …",
+        "Könnten Sie das bitte noch einmal wiederholen?",
+        "Ehrlich gesagt mache ich mir große Sorgen.",
+        "Habe ich Sie richtig verstanden, dass …?",
+        "Ich erkläre Ihnen das gern Schritt für Schritt.",
+        "Vielen Dank für Ihren Anruf. Auf Wiederhören!"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Elektroniker: Hassan Karimi",
+      "situation": "Telefonische Beratung: Hassan Karimi (Elektroniker) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Hassan Karimi",
+        "aufgabe": "Situation: Sein ausländischer Abschluss ist noch nicht anerkannt. Anliegen: Er möchte wissen, wie er als Fachkraft arbeiten darf. So sprechen Sie: Höflich und genau, möchte schriftliche Infos per Post. Gut vorbereitet. Gesprächsziel: Anerkennungsverfahren erklären, Beratungsstelle nennen, Brückenmaßnahme."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Mein Problem ist Folgendes: …",
+        "Was bedeutet das genau?",
+        "Das beruhigt mich, danke.",
+        "Können Sie mir das bitte etwas genauer beschreiben?",
+        "Das lässt sich am besten in einem persönlichen Termin klären.",
+        "Ich schlage Ihnen einen Termin am … vor. Passt das?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Hotelfachfrau: Beata Kowalczyk",
+      "situation": "Telefonische Beratung: Beata Kowalczyk (Hotelfachfrau) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Beata Kowalczyk",
+        "aufgabe": "Situation: Nach der Pandemie wurde ihre Stelle gestrichen. Anliegen: Sie überlegt, die Branche zu wechseln, und braucht Orientierung. So sprechen Sie: Unsicher, was sie will. Schwankt zwischen mehreren Ideen. Gesprächsziel: Berufliche Neuorientierung, Kompetenzen klären, Beratungstermin anbieten."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Ich bräuchte eine Information zu …",
+        "Welche Unterlagen brauche ich dafür?",
+        "Das ärgert mich wirklich.",
+        "Seit wann sind Sie denn ohne Beschäftigung?",
+        "Dafür brauchen wir folgende Unterlagen: …",
+        "Ich schicke Ihnen die Informationen schriftlich zu."
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Dachdecker: Stefan Wagner",
+      "situation": "Telefonische Beratung: Stefan Wagner (Dachdecker) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Stefan Wagner",
+        "aufgabe": "Situation: Nach einem Arbeitsunfall sechs Monate krank, jetzt wieder fit. Anliegen: Er will zurück in den Job, sein alter Betrieb hat aber niemanden mehr frei. So sprechen Sie: Stolz, will keine Almosen, nur eine faire Chance. Spricht knapp. Gesprächsziel: Vermittlung im Handwerk, Wiedereingliederung, evtl. Mobilitätshilfe."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Ich weiß nicht genau, an wen ich mich wenden muss.",
+        "Entschuldigung, das habe ich nicht ganz verstanden.",
+        "Können Sie mir da weiterhelfen?",
+        "Darf ich kurz Ihre Daten aufnehmen?",
+        "Grundsätzlich haben Sie Anspruch auf …, wenn …",
+        "Vielen Dank für Ihren Anruf. Auf Wiederhören!"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Schulabgänger (Realschule): Luca Brinkmann (17)",
+      "situation": "Telefonische Beratung: Luca Brinkmann (17) (Schulabgänger (Realschule)) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Luca Brinkmann (17)",
+        "aufgabe": "Situation: Er hat gerade den Realschulabschluss gemacht und noch keinen Ausbildungsplatz. Anliegen: Er weiß nicht, welcher Beruf zu ihm passt, und braucht Orientierung. So sprechen Sie: Schüchtern, antwortet kurz, sagt oft „keine Ahnung“. Braucht offene Fragen. Gesprächsziel: Berufsberatung anbieten, Stärken/Interessen klären, Termin im BIZ vereinbaren."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Guten Tag, ich rufe an, weil …",
+        "Könnten Sie das bitte noch einmal wiederholen?",
+        "Ehrlich gesagt mache ich mir große Sorgen.",
+        "Habe ich Sie richtig verstanden, dass …?",
+        "Ich erkläre Ihnen das gern Schritt für Schritt.",
+        "Ich schlage Ihnen einen Termin am … vor. Passt das?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Azubi Einzelhandel (1. Lehrjahr): Sophie Lange (18)",
+      "situation": "Telefonische Beratung: Sophie Lange (18) (Azubi Einzelhandel (1. Lehrjahr)) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Sophie Lange (18)",
+        "aufgabe": "Situation: Sie hat die Ausbildung nach drei Monaten abgebrochen, weil das Team schwierig war. Anliegen: Sie möchte einen neuen Ausbildungsplatz, hat aber Angst, dass das schlecht aussieht. So sprechen Sie: Unsicher und etwas verlegen, redet leise. Braucht Ermutigung. Gesprächsziel: Ausbildungsvermittlung, Abbruch sachlich einordnen, neue Betriebe ansprechen."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Mein Problem ist Folgendes: …",
+        "Was bedeutet das genau?",
+        "Das beruhigt mich, danke.",
+        "Können Sie mir das bitte etwas genauer beschreiben?",
+        "Das lässt sich am besten in einem persönlichen Termin klären.",
+        "Ich schicke Ihnen die Informationen schriftlich zu."
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Azubi Anlagenmechaniker (2. Lehrjahr): Emre Aslan (19)",
+      "situation": "Telefonische Beratung: Emre Aslan (19) (Azubi Anlagenmechaniker (2. Lehrjahr)) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Emre Aslan (19)",
+        "aufgabe": "Situation: Sein Ausbildungsbetrieb hat Insolvenz angemeldet. Anliegen: Er will wissen, ob er die Ausbildung woanders zu Ende machen kann. So sprechen Sie: Sachlich, aber nervös wegen der Prüfung. Stellt konkrete Fragen. Gesprächsziel: Fortsetzung der Ausbildung klären, Kammer einbeziehen, schnelle Vermittlung."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Ich bräuchte eine Information zu …",
+        "Welche Unterlagen brauche ich dafür?",
+        "Das ärgert mich wirklich.",
+        "Seit wann sind Sie denn ohne Beschäftigung?",
+        "Dafür brauchen wir folgende Unterlagen: …",
+        "Vielen Dank für Ihren Anruf. Auf Wiederhören!"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Schulabgängerin ohne Abschluss: Jacqueline Voss (16)",
+      "situation": "Telefonische Beratung: Jacqueline Voss (16) (Schulabgängerin ohne Abschluss) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Jacqueline Voss (16)",
+        "aufgabe": "Situation: Sie hat die Schule ohne Abschluss verlassen. Anliegen: Sie fragt, ob sie trotzdem eine Ausbildung anfangen kann. So sprechen Sie: Wirkt abweisend, traut sich wenig zu. Reagiert positiv auf Wertschätzung. Gesprächsziel: Berufsvorbereitung (BvB) erklären, Mut machen, niedrigschwelliges Angebot."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Ich weiß nicht genau, an wen ich mich wenden muss.",
+        "Entschuldigung, das habe ich nicht ganz verstanden.",
+        "Können Sie mir da weiterhelfen?",
+        "Darf ich kurz Ihre Daten aufnehmen?",
+        "Grundsätzlich haben Sie Anspruch auf …, wenn …",
+        "Ich schlage Ihnen einen Termin am … vor. Passt das?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "FSJ-Absolvent: Niklas Henning (19)",
+      "situation": "Telefonische Beratung: Niklas Henning (19) (FSJ-Absolvent) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Niklas Henning (19)",
+        "aufgabe": "Situation: Er hat ein Freiwilliges Soziales Jahr im Krankenhaus beendet. Anliegen: Er überlegt zwischen Ausbildung und Studium und braucht Beratung. So sprechen Sie: Aufgeschlossen, redet viel, schweift ab. Muss freundlich fokussiert werden. Gesprächsziel: Optionen strukturieren, Bewerbungsfristen nennen, Beratungstermin anbieten."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Guten Tag, ich rufe an, weil …",
+        "Könnten Sie das bitte noch einmal wiederholen?",
+        "Ehrlich gesagt mache ich mir große Sorgen.",
+        "Habe ich Sie richtig verstanden, dass …?",
+        "Ich erkläre Ihnen das gern Schritt für Schritt.",
+        "Ich schicke Ihnen die Informationen schriftlich zu."
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Azubi Friseurin (3. Lehrjahr): Melike Çetin (20)",
+      "situation": "Telefonische Beratung: Melike Çetin (20) (Azubi Friseurin (3. Lehrjahr)) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Melike Çetin (20)",
+        "aufgabe": "Situation: Sie steht kurz vor der Abschlussprüfung, der Betrieb übernimmt sie aber nicht. Anliegen: Sie möchte sich frühzeitig arbeitssuchend melden. So sprechen Sie: Zielstrebig, gut vorbereitet, fragt nach Fristen. Etwas in Eile. Gesprächsziel: Frist zur Arbeitssuchend-Meldung erklären, Sperrzeit vermeiden, Stellen Friseurhandwerk."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Mein Problem ist Folgendes: …",
+        "Was bedeutet das genau?",
+        "Das beruhigt mich, danke.",
+        "Können Sie mir das bitte etwas genauer beschreiben?",
+        "Das lässt sich am besten in einem persönlichen Termin klären.",
+        "Vielen Dank für Ihren Anruf. Auf Wiederhören!"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Junger Geflüchteter, sucht Ausbildung: Amir Rahimi (18)",
+      "situation": "Telefonische Beratung: Amir Rahimi (18) (Junger Geflüchteter, sucht Ausbildung) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Amir Rahimi (18)",
+        "aufgabe": "Situation: Er hat einen Integrationskurs (B1) abgeschlossen und möchte eine Lehre beginnen. Anliegen: Er fragt, welche Ausbildung möglich ist und ob er gefördert wird. So sprechen Sie: Sehr motiviert, manchmal fehlen Wörter. Bittet, langsam zu sprechen. Gesprächsziel: Einstiegsqualifizierung (EQ) erklären, Sprachförderung, passende Betriebe."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Ich bräuchte eine Information zu …",
+        "Welche Unterlagen brauche ich dafür?",
+        "Das ärgert mich wirklich.",
+        "Seit wann sind Sie denn ohne Beschäftigung?",
+        "Dafür brauchen wir folgende Unterlagen: …",
+        "Ich schlage Ihnen einen Termin am … vor. Passt das?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Abiturient, Studienabbrecher: Finn Petersen (21)",
+      "situation": "Telefonische Beratung: Finn Petersen (21) (Abiturient, Studienabbrecher) ruft bei der Agentur für Arbeit an. Die Agentur-Seite kennt das Anliegen vorher nicht.",
+      "rolleA": {
+        "name": "Kund:in – Finn Petersen (21)",
+        "aufgabe": "Situation: Er hat das Studium nach zwei Semestern abgebrochen. Anliegen: Er sucht jetzt eine duale Ausbildung statt Uni. So sprechen Sie: Reflektiert, aber etwas frustriert über sich selbst. Höflich. Gesprächsziel: Umstieg Studium→Ausbildung begleiten, Stärken nutzen, Betriebe vorschlagen."
+      },
+      "rolleB": {
+        "name": "Agentur für Arbeit – Berater:in am Telefon",
+        "aufgabe": "Melden Sie sich mit Namen. Klären Sie das Anliegen mit Nachfragen und nehmen Sie die Daten auf. Erklären Sie die nächsten Schritte (Unterlagen, Anspruch, Angebote) verständlich, prüfen Sie, ob alles klar ist, und vereinbaren Sie einen Termin oder schicken Sie Informationen schriftlich."
+      },
+      "redemittel": [
+        "Ich weiß nicht genau, an wen ich mich wenden muss.",
+        "Entschuldigung, das habe ich nicht ganz verstanden.",
+        "Können Sie mir da weiterhelfen?",
+        "Darf ich kurz Ihre Daten aufnehmen?",
+        "Grundsätzlich haben Sie Anspruch auf …, wenn …",
+        "Ich schicke Ihnen die Informationen schriftlich zu."
+      ],
+      "dauer": 240
+    }
+  ]
+}

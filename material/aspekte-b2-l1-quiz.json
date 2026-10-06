@@ -1,0 +1,102 @@
+{
+  "id": "aspekte-b2-l1-quiz",
+  "titel": "Aspekte Beruf B2 · L1 · Berufsalltag",
+  "beschreibung": "Quizfragen (Wortschatz, Grammatik, Redemittel) zu Lektion 1 aus „Wer wird Millionär · Aspekte Beruf B2“.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz",
+      "Grammatik",
+      "Sprechen"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "1",
+    "grammatik": [
+      "Negation"
+    ]
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Was bedeutet „pendeln“?",
+      "optionen": [
+        "von zu Hause arbeiten",
+        "regelmäßig zur Arbeit fahren",
+        "den Job wechseln",
+        "in Rente gehen"
+      ],
+      "richtig": 1,
+      "erklaerung": "pendeln = regelmäßig eine Strecke zur Arbeit fahren.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Wie endet ein formeller Brief höflich?",
+      "optionen": [
+        "Tschüss!",
+        "Mit freundlichen Grüßen",
+        "Bis bald",
+        "Mach's gut"
+      ],
+      "richtig": 1,
+      "erklaerung": "Standard-Grußformel im formellen Brief.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Was ist eine „Fachkraft“?",
+      "optionen": [
+        "eine Person ohne Ausbildung",
+        "eine gut ausgebildete Person",
+        "ein Praktikant",
+        "ein neuer Kunde"
+      ],
+      "richtig": 1,
+      "erklaerung": "Fachkraft = qualifizierte, ausgebildete Person.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort ist ein Soft Skill?",
+      "optionen": [
+        "Führerschein",
+        "Excel-Kenntnisse",
+        "Teamfähigkeit",
+        "Schreibtisch"
+      ],
+      "richtig": 2,
+      "erklaerung": "Teamfähigkeit ist eine soziale Kompetenz.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Was bedeutet „befristet“ bei einer Stelle?",
+      "optionen": [
+        "für eine bestimmte Zeit",
+        "für immer",
+        "im Ausland",
+        "ohne Bezahlung"
+      ],
+      "richtig": 0,
+      "erklaerung": "befristet = zeitlich begrenzt.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Wie verneint man „Ich habe Erfahrung.“?",
+      "optionen": [
+        "Ich habe nicht Erfahrung.",
+        "Ich habe keine Erfahrung.",
+        "Ich habe kein Erfahrung.",
+        "Ich habe nichts Erfahrung."
+      ],
+      "richtig": 1,
+      "erklaerung": "Vor einem Nomen ohne Artikel steht „kein-“.",
+      "stufe": 2
+    }
+  ]
+}

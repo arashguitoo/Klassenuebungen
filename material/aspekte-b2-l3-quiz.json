@@ -1,0 +1,116 @@
+{
+  "id": "aspekte-b2-l3-quiz",
+  "titel": "Aspekte Beruf B2 · L3 · Kollegen & Small Talk",
+  "beschreibung": "Quizfragen (Wortschatz, Grammatik, Redemittel) zu Lektion 3 aus „Wer wird Millionär · Aspekte Beruf B2“.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz",
+      "Grammatik",
+      "Sprechen"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Kommunikation",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "3",
+    "grammatik": [
+      "Komparativ",
+      "Pronomen „es“"
+    ]
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Was ist eine „Abteilung“?",
+      "optionen": [
+        "eine andere Firma",
+        "ein Bereich innerhalb einer Firma",
+        "eine Pause",
+        "ein Kunde"
+      ],
+      "richtig": 1,
+      "erklaerung": "Eine Abteilung ist ein Bereich innerhalb einer Firma.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Thema passt gut für Small Talk?",
+      "optionen": [
+        "Gehalt",
+        "Politik",
+        "das Wetter",
+        "Religion"
+      ],
+      "richtig": 2,
+      "erklaerung": "Das Wetter ist ein einfacher, guter Einstieg.",
+      "stufe": 1
+    },
+    {
+      "typ": "luecke",
+      "frage": "„Er hat längere Pausen, ___ er in seiner alten Firma hatte.“",
+      "optionen": [
+        "als",
+        "wie",
+        "wenn",
+        "dass"
+      ],
+      "richtig": 0,
+      "erklaerung": "Komparativ „längere“ → „als“.",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "„___ regnet heute schon wieder.“ (Wetter)",
+      "optionen": [
+        "Es",
+        "Er",
+        "Sie",
+        "Das"
+      ],
+      "richtig": 0,
+      "erklaerung": "Wetterverben: „es“ als Subjekt.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wie signalisiert man, dass man etwas NICHT verstanden hat?",
+      "optionen": [
+        "Ah ja, klar.",
+        "Entschuldigung, das habe ich nicht ganz verstanden.",
+        "Genau so ist es.",
+        "Das kenne ich auch."
+      ],
+      "richtig": 1,
+      "erklaerung": "So signalisiert man höflich Nicht-Verstehen.",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "„___ ich richtig verstanden, dass die Pause 30 Minuten dauert?“",
+      "optionen": [
+        "Habe",
+        "Bin",
+        "Werde",
+        "Kann"
+      ],
+      "richtig": 0,
+      "erklaerung": "„Habe ich richtig verstanden, dass …?“",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "In welchem Satz ist „es“ das Objekt?",
+      "optionen": [
+        "Es regnet.",
+        "Es klingelt.",
+        "Ich habe es eilig.",
+        "Es wird Abend."
+      ],
+      "richtig": 2,
+      "erklaerung": "„Ich habe es eilig“ – es ist Objekt.",
+      "stufe": 3
+    }
+  ]
+}

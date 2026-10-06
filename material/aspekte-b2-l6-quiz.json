@@ -1,0 +1,143 @@
+{
+  "id": "aspekte-b2-l6-quiz",
+  "titel": "Aspekte Beruf B2 · L6 · Telefon & Kundenkontakt",
+  "beschreibung": "Quizfragen (Wortschatz, Grammatik, Redemittel) zu Lektion 6 aus „Wer wird Millionär · Aspekte Beruf B2“.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz",
+      "Grammatik",
+      "Sprechen"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Kommunikation",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "6",
+    "grammatik": [
+      "Passiv",
+      "Zustandspassiv",
+      "Irreale Vergleichssätze"
+    ]
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Was sagt man am Telefon zum Abschied?",
+      "optionen": [
+        "Auf Wiedersehen",
+        "Auf Wiederhören",
+        "Bis gleich",
+        "Tschüss zusammen"
+      ],
+      "richtig": 1,
+      "erklaerung": "Am Telefon: „Auf Wiederhören.“",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Was ist ein „Defekt“?",
+      "optionen": [
+        "ein neues Gerät",
+        "ein Schaden",
+        "eine Bestellung",
+        "eine Reparatur"
+      ],
+      "richtig": 1,
+      "erklaerung": "Ein Defekt ist ein Schaden – etwas funktioniert nicht.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welche Formulierung ist am höflichsten?",
+      "optionen": [
+        "Sag mir den Termin!",
+        "Ich will den Termin wissen.",
+        "Könnten Sie mir bitte den Termin nennen?",
+        "Termin, sofort!"
+      ],
+      "richtig": 2,
+      "erklaerung": "Konjunktiv II + „bitte“ wirkt höflich.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wie bittet man höflich, verbunden zu werden?",
+      "optionen": [
+        "Verbinden Sie mich!",
+        "Könnten Sie mich bitte mit Herrn Weber verbinden?",
+        "Ich will Herrn Weber.",
+        "Wo ist Herr Weber?"
+      ],
+      "richtig": 1,
+      "erklaerung": "Höfliche Bitte mit Konjunktiv II.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welcher Satz beschreibt einen Vorgang (was gerade passiert)?",
+      "optionen": [
+        "Die Tische sind gedeckt.",
+        "Die Tische werden gedeckt.",
+        "Die Tische waren gedeckt.",
+        "Die Tische bleiben gedeckt."
+      ],
+      "richtig": 1,
+      "erklaerung": "werden + Partizip II = Vorgangspassiv.",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "„Die Kollegen tun so, ___ ob sie alle perfekt wären.“",
+      "optionen": [
+        "als",
+        "wie",
+        "wenn",
+        "dass"
+      ],
+      "richtig": 0,
+      "erklaerung": "irrealer Vergleich → „als ob“ + Konjunktiv II.",
+      "stufe": 3
+    },
+    {
+      "typ": "luecke",
+      "frage": "„Der Chef behandelt uns, ___ wären wir gleichberechtigte Partner.“",
+      "optionen": [
+        "als",
+        "als ob",
+        "wie",
+        "wenn"
+      ],
+      "richtig": 0,
+      "erklaerung": "Bei „als“ steht das Verb direkt danach (wären).",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "„Das Boot ist gebaut.“ – Was für ein Passiv ist das?",
+      "optionen": [
+        "Vorgangspassiv",
+        "Zustandspassiv (sein)",
+        "kein Passiv",
+        "Futur"
+      ],
+      "richtig": 1,
+      "erklaerung": "sein + Partizip II = Zustandspassiv (Ergebnis).",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welcher Satz ist ein Zustandspassiv im Präteritum?",
+      "optionen": [
+        "Das Boot wird gebaut.",
+        "Das Boot war gebaut.",
+        "Das Boot wurde gebaut.",
+        "Das Boot ist gebaut."
+      ],
+      "richtig": 1,
+      "erklaerung": "war + Partizip II = Zustandspassiv im Präteritum.",
+      "stufe": 3
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1b3d">
+<title>Mitspielen · Klassenspiele</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="kern.css">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<style>
+.join{min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:20px}
+.join .box{width:min(400px,100%);background:var(--card);border-radius:24px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.join h1{margin:0 0 4px;font-size:1.6rem;font-weight:900}
+.join .codein{text-align:center;font-size:2rem;font-weight:900;letter-spacing:.3em;height:64px}
+.err{color:var(--bad);font-size:.9rem;min-height:1.2em;margin-top:8px;text-align:center}
+</style>
+</head>
+<body>
+<div class="join stage" id="join">
+  <form class="box" id="joinForm" autocomplete="off">
+    <div style="font-size:2.4rem">🎮</div>
+    <h1>Mitspielen</h1>
+    <div class="muted" style="margin-bottom:16px">Spielcode von der Tafel und dein Name</div>
+    <label class="fld"><span>Spielcode</span><input class="inp codein" id="jCode" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" required></label>
+    <label class="fld"><span>Dein Name</span><input class="inp" id="jName" maxlength="24" required style="height:52px;font-size:1.15rem;font-weight:700"></label>
+    <button class="btn primary big" style="width:100%" type="submit">Los geht’s ▶</button>
+    <div class="err" id="jErr"></div>
+  </form>
+</div>
+<div class="pl hide" id="game">
+  <div class="pl-head"><span class="t" id="hTitle"></span><span id="hTeam"></span><span class="conn" id="conn"><i></i></span></div>
+  <div class="pl-body" id="body"></div>
+</div>
+<script src="kern.js"></script>
+<script src="formate.js"></script>
+<script>
+(function(){
+var $ = KX.$, DB = KX.init(), code = KX.param("c") || "", pid = null, off = null, last = null, wake = null;
+try { $("jName").value = localStorage.getItem("kx.name") || ""; } catch(e){}
+$("jCode").value = code;
+if (code && $("jName").value) $("jName").focus(); else if (code) $("jName").focus(); else $("jCode").focus();
+function start(c, p){
+  code = c; pid = p;
+  $("join").classList.add("hide"); $("game").classList.remove("hide");
+  KX.connBadge($("conn"));
+  if (navigator.wakeLock) navigator.wakeLock.request("screen").then(function(w){ wake = w; }).catch(function(){});
+  history.replaceState(null, "", "?c=" + c + (KX.MOCK ? "&mock=1" : ""));
+  off = DB.on(KX.sp(c), function(s){ last = s; draw(); });
+}
+function draw(){
+  var s = last, el = $("body");
+  if (!s || !s.meta) { el.innerHTML = '<div class="pl-center"><b>Dieses Spiel gibt es nicht mehr.</b></div>'; el._sig = null; return; }
+  if (!s.players || !s.players[pid]) { if (off) off(); $("game").classList.add("hide"); $("join").classList.remove("hide"); $("jErr").textContent = "Du wurdest aus dem Spiel entfernt. Du kannst neu beitreten."; return; }
+  var f = KX.FORMATE[s.meta.format], me = s.players[pid], tid = me.team;
+  $("hTitle").textContent = f.emoji + " " + me.name;
+  var tSig = tid + s.meta.modus;
+  if ($("hTeam")._sig !== tSig) { $("hTeam")._sig = tSig; var ti = tid && s.meta.modus !== "einzeln" && s.meta.format !== "sprechduell" ? KX.teamInfo(tid) : null;
+    $("hTeam").innerHTML = ti ? '<span class="team" style="background:' + ti.color + '">' + KX.esc((s.meta.teamNames && s.meta.teamNames[tid]) || ti.name) + '</span>' : ''; }
+  try { f.player(s, el, code, pid); } catch(e){ console.error(e); }
+}
+setInterval(function(){ if (last) draw(); }, 1000);
+$("joinForm").addEventListener("submit", function(e){
+  e.preventDefault(); var c = $("jCode").value.trim(), n = $("jName").value.trim();
+  if (!/^\d{4}$/.test(c)) { $("jErr").textContent = "Der Spielcode hat 4 Ziffern."; return; }
+  $("jErr").textContent = "";
+  try { localStorage.setItem("kx.name", n); } catch(e2){}
+  KX.join(c, n).then(function(p){ start(c, p); }).catch(function(err){ $("jErr").textContent = err.message; });
+});
+/* Automatisch wieder verbinden nach Neuladen */
+var saved = code && KX.myPid(code, true);
+if (saved && DB) DB.get(KX.sp(code)).then(function(s){
+  if (s && s.meta && s.meta.status !== "ende" && s.players && s.players[saved]) KX.join(code, s.players[saved].name).then(function(p){ start(code, p); });
+});
+document.addEventListener("visibilitychange", function(){ if (document.visibilityState === "visible" && navigator.wakeLock && pid) navigator.wakeLock.request("screen").then(function(w){ wake = w; }).catch(function(){}); });
+})();
+</script>
+<script data-goatcounter="https://aguitoo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

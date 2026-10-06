@@ -1,0 +1,80 @@
+{
+  "id": "forum-themen-karten",
+  "titel": "Forumsbeitrag-Werkstatt · Pro & Contra",
+  "beschreibung": "Sprechkarten zu den Forumsthemen „Homeoffice-Tage frei wählen“ und „Vier-Tage-Woche“ – als Vorbereitung auf den Forumsbeitrag.",
+  "art": "karten",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen",
+      "Schreiben"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Arbeitswelt"
+  },
+  "inhalt": [
+    {
+      "titel": "Homeoffice-Tage frei wählen",
+      "situation": "In Ihrer Firma sollen alle Mitarbeitenden künftig selbst entscheiden, an welchen Tagen sie im Homeoffice arbeiten. Die Anwesenheit im Büro wird nicht mehr kontrolliert.",
+      "rolleA": {
+        "name": "Pro",
+        "aufgabe": "Sie sind dafür. Begründen Sie Ihre Meinung mit Argument und Beispiel (z. B. Zeit für den Arbeitsweg sparen, konzentrierter arbeiten)."
+      },
+      "rolleB": {
+        "name": "Contra",
+        "aufgabe": "Sie sind dagegen. Nennen Sie Nachteile mit Beispiel (z. B. weniger Kontakt zu den Kolleg:innen, Arbeit und Freizeit schlechter trennen)."
+      },
+      "redemittel": [
+        "Ich bin der Meinung, dass …",
+        "Zum Beispiel …",
+        "Natürlich gibt es auch Nachteile, …",
+        "Wie seht ihr das?"
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Vier-Tage-Woche im Betrieb",
+      "situation": "Ihre Firma überlegt, eine Vier-Tage-Woche einzuführen. Alle arbeiten dann an vier statt fünf Tagen, bei gleichem Gehalt, müssen die Stunden aber auf vier Tage verteilen.",
+      "rolleA": {
+        "name": "Pro",
+        "aufgabe": "Sie sind dafür. Begründen Sie Ihre Meinung mit Argument und Beispiel (z. B. mehr Zeit für Familie und Erholung, motivierter arbeiten)."
+      },
+      "rolleB": {
+        "name": "Contra",
+        "aufgabe": "Sie sind dagegen. Nennen Sie Nachteile mit Beispiel (z. B. längere, anstrengendere Arbeitstage, schlechtere Erreichbarkeit für Kund:innen)."
+      },
+      "redemittel": [
+        "Ich bin der Meinung, dass …",
+        "Zum Beispiel …",
+        "Natürlich gibt es auch Nachteile, …",
+        "Wie seht ihr das?"
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Forumsbeitrag mündlich: Homeoffice",
+      "impuls": "In Ihrer Firma sollen alle Mitarbeitenden künftig selbst entscheiden, an welchen Tagen sie im Homeoffice arbeiten. Die Anwesenheit im Büro wird nicht mehr kontrolliert. Formulieren Sie mündlich einen Forumsbeitrag: Anrede & Einleitung – klare eigene Meinung – Argument mit Beispiel – Gegenargument – Schluss mit Frage an die anderen.",
+      "redemittel": [
+        "Liebe Kolleginnen und Kollegen, …",
+        "Ich bin der Meinung, dass …",
+        "Zum Beispiel …",
+        "Natürlich gibt es auch Nachteile, …",
+        "Wie seht ihr das?",
+        "Ich freue mich auf eure Meinungen!"
+      ]
+    },
+    {
+      "titel": "Forumsbeitrag mündlich: Vier-Tage-Woche",
+      "impuls": "Ihre Firma überlegt, eine Vier-Tage-Woche einzuführen. Alle arbeiten dann an vier statt fünf Tagen, bei gleichem Gehalt, müssen die Stunden aber auf vier Tage verteilen. Formulieren Sie mündlich einen Forumsbeitrag: Anrede & Einleitung – klare eigene Meinung – Argument mit Beispiel – Gegenargument – Schluss mit Frage an die anderen.",
+      "redemittel": [
+        "Liebe Kolleginnen und Kollegen, …",
+        "Ich bin der Meinung, dass …",
+        "Zum Beispiel …",
+        "Natürlich gibt es auch Nachteile, …",
+        "Wie seht ihr das?",
+        "Ich freue mich auf eure Meinungen!"
+      ]
+    }
+  ]
+}

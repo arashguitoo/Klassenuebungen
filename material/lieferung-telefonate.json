@@ -1,0 +1,226 @@
+{
+  "id": "lieferung-telefonate",
+  "titel": "Lieferung mit Problemen – Bestellen und reklamieren",
+  "beschreibung": "Gastro-B2B-Rollenspiel: Gastronomie bestellt telefonisch beim Großhandel und reklamiert Lieferprobleme.",
+  "art": "karten",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Kommunikation"
+  },
+  "inhalt": [
+    {
+      "titel": "Bestellung: Ristorante Bella Vista",
+      "situation": "Das italienische Restaurant „Bella Vista“ bestellt telefonisch beim Lebensmittel-Großhandel FreshFood.",
+      "rolleA": {
+        "name": "Einkauf (Ristorante Bella Vista)",
+        "aufgabe": "Bestellen Sie Mozzarella und frische Tomaten für das Wochenende. Achten Sie auf Preis und Liefertermin und fragen Sie nach Mengenrabatt."
+      },
+      "rolleB": {
+        "name": "Vertrieb (FreshFood Großhandel)",
+        "aufgabe": "Nehmen Sie die Bestellung an. Preise: Mozzarella (1 kg) 8,50 €, Tomaten frisch (5 kg) 9,00 €. Bestätigen Sie Menge und Termin."
+      },
+      "redemittel": [
+        "Guten Tag, ich möchte gern eine Bestellung aufgeben.",
+        "Ich hätte gern … / Wir brauchen … Kilo / Liter / Stück.",
+        "Bis wann können Sie liefern?",
+        "Der Preis liegt bei … pro Einheit.",
+        "Ich fasse zusammen: Sie bestellen …",
+        "Wir können am … liefern. Passt das?"
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Bestellung: Café Morgenrot",
+      "situation": "Das Café Morgenrot bestellt Getränke für das Frühstücksgeschäft bei der GetränkeProfi GmbH.",
+      "rolleA": {
+        "name": "Einkauf (Café Morgenrot)",
+        "aufgabe": "Bestellen Sie Kaffeebohnen und Milch für die nächste Woche. Handeln Sie einen guten Preis und einen frühen Liefertermin aus."
+      },
+      "rolleB": {
+        "name": "Vertrieb (GetränkeProfi GmbH)",
+        "aufgabe": "Preise: Kaffeebohnen (1 kg) 18,00 €, Milch für Kaffee (10 l) 12,00 €. Fragen Sie nach der Menge und bestätigen Sie den Termin."
+      },
+      "redemittel": [
+        "Guten Tag, ich möchte gern eine Bestellung aufgeben.",
+        "Ich hätte gern … / Wir brauchen … Kilo / Liter / Stück.",
+        "Bis wann können Sie liefern?",
+        "Der Preis liegt bei … pro Einheit.",
+        "Ich fasse zusammen: Sie bestellen …",
+        "Wir können am … liefern. Passt das?"
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Bestellung: Kantine TechPark",
+      "situation": "Die Betriebskantine TechPark braucht Ware für das Mittagessen von 200 Mitarbeitenden.",
+      "rolleA": {
+        "name": "Küchenchef:in (Kantine TechPark)",
+        "aufgabe": "Sagen Sie genau, welche Ware und wie viel Sie brauchen: Kartoffeln, Hähnchenbrust, Gemüsemischung (TK)."
+      },
+      "rolleB": {
+        "name": "Lager (FreshFood Großhandel)",
+        "aufgabe": "Preise: Kartoffeln (10 kg) 7,50 €, Hähnchenbrust (5 kg) 32,00 €, Gemüsemischung TK (5 kg) 14,00 €. Von der Hähnchenbrust haben Sie nur die Hälfte auf Lager – sagen Sie das ehrlich und bieten Sie eine Lösung an."
+      },
+      "redemittel": [
+        "Wie viel brauchen Sie davon?",
+        "Also: … Stück bis …, richtig?",
+        "Können Sie das bitte wiederholen?",
+        "Vielen Dank, die Bestellung ist notiert."
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Bestellung: Verbrauchsmaterial",
+      "situation": "Das Ristorante Bella Vista bietet jetzt auch Pizza zum Mitnehmen an und bestellt bei GastroBedarf24.",
+      "rolleA": {
+        "name": "Einkauf (Ristorante Bella Vista)",
+        "aufgabe": "Bestellen Sie Pizzakartons und Servietten. Fragen Sie nach einem Rabatt bei größerer Menge."
+      },
+      "rolleB": {
+        "name": "Vertrieb (GastroBedarf24)",
+        "aufgabe": "Preise: Pizzakartons (100 St.) 22,00 €, Servietten (1000 St.) 9,00 €. Bieten Sie bei großer Menge einen kleinen Rabatt an und fassen Sie die Bestellung zusammen."
+      },
+      "redemittel": [
+        "Guten Tag, ich möchte gern eine Bestellung aufgeben.",
+        "Ich hätte gern … / Wir brauchen … Kilo / Liter / Stück.",
+        "Bis wann können Sie liefern?",
+        "Der Preis liegt bei … pro Einheit.",
+        "Ich fasse zusammen: Sie bestellen …",
+        "Wir können am … liefern. Passt das?"
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Reklamation: Falsche Menge",
+      "situation": "Es wurde nur die Hälfte der bestellten Ware geliefert: statt 10 Kästen Mineralwasser nur 5.",
+      "rolleA": {
+        "name": "Restaurantleitung (Kantine TechPark)",
+        "aufgabe": "Melden Sie das Problem genau. Heute Mittag essen 200 Personen in der Kantine. Setzen Sie eine faire Lösung durch."
+      },
+      "rolleB": {
+        "name": "Fahrer:in / Vertrieb (GetränkeProfi GmbH)",
+        "aufgabe": "Bleiben Sie ruhig und fragen Sie genau nach. Bieten Sie an, die fehlende Ware umgehend nachzuliefern."
+      },
+      "redemittel": [
+        "Leider gibt es ein Problem mit der Lieferung.",
+        "So können wir das nicht annehmen.",
+        "Wir erwarten eine Lösung: Ersatz / Rückerstattung / Rabatt.",
+        "Das tut mir sehr leid, das war unser Fehler.",
+        "Wir schicken umgehend Ersatz.",
+        "Als Entschuldigung bieten wir Ihnen … an."
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Reklamation: Beschädigte Ware",
+      "situation": "Mehrere Kartons sind kaputt, die Ware ist teilweise unbrauchbar: Zwei von sechs Flaschen Rotwein sind zerbrochen.",
+      "rolleA": {
+        "name": "Restaurantleitung (Ristorante Bella Vista)",
+        "aufgabe": "Melden Sie das Problem genau. Heute Abend ist das Restaurant ausgebucht. Setzen Sie eine faire Lösung durch."
+      },
+      "rolleB": {
+        "name": "Fahrer:in / Vertrieb (GetränkeProfi GmbH)",
+        "aufgabe": "Bleiben Sie ruhig und fragen Sie genau nach. Bieten Sie Ersatz oder eine Gutschrift an."
+      },
+      "redemittel": [
+        "Leider gibt es ein Problem mit der Lieferung.",
+        "So können wir das nicht annehmen.",
+        "Wir erwarten eine Lösung: Ersatz / Rückerstattung / Rabatt.",
+        "Das tut mir sehr leid, das war unser Fehler.",
+        "Wir schicken umgehend Ersatz.",
+        "Als Entschuldigung bieten wir Ihnen … an."
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Reklamation: Zu spät geliefert",
+      "situation": "Die Lieferung kam Stunden zu spät – das Mittagsgeschäft war schon vorbei. Die Kartoffeln und das Gemüse kamen erst um 15 Uhr.",
+      "rolleA": {
+        "name": "Restaurantleitung (Kantine TechPark)",
+        "aufgabe": "Melden Sie das Problem genau. Verlangen Sie einen Rabatt auf diese Lieferung. Setzen Sie eine faire Lösung durch."
+      },
+      "rolleB": {
+        "name": "Fahrer:in / Vertrieb (FreshFood Großhandel)",
+        "aufgabe": "Bleiben Sie ruhig und fragen Sie genau nach. Entschuldigen Sie sich und bieten Sie als Entschuldigung etwas an."
+      },
+      "redemittel": [
+        "Leider gibt es ein Problem mit der Lieferung.",
+        "So können wir das nicht annehmen.",
+        "Wir erwarten eine Lösung: Ersatz / Rückerstattung / Rabatt.",
+        "Das tut mir sehr leid, das war unser Fehler.",
+        "Wir schicken umgehend Ersatz.",
+        "Als Entschuldigung bieten wir Ihnen … an."
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Reklamation: Falsches Produkt",
+      "situation": "Es wurde ein anderes Produkt geliefert als bestellt: Statt Kaffeebohnen kam gemahlener Kaffee.",
+      "rolleA": {
+        "name": "Restaurantleitung (Café Morgenrot)",
+        "aufgabe": "Melden Sie das Problem genau. Ihre Kaffeemaschine braucht ganze Bohnen. Setzen Sie eine faire Lösung durch."
+      },
+      "rolleB": {
+        "name": "Fahrer:in / Vertrieb (GetränkeProfi GmbH)",
+        "aufgabe": "Bleiben Sie ruhig und fragen Sie genau nach. Klären Sie, wie das passiert ist, und schicken Sie das richtige Produkt."
+      },
+      "redemittel": [
+        "Leider gibt es ein Problem mit der Lieferung.",
+        "So können wir das nicht annehmen.",
+        "Wir erwarten eine Lösung: Ersatz / Rückerstattung / Rabatt.",
+        "Das tut mir sehr leid, das war unser Fehler.",
+        "Wir schicken umgehend Ersatz.",
+        "Als Entschuldigung bieten wir Ihnen … an."
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Reklamation: Verdorbene Ware",
+      "situation": "Die frische Ware war nicht mehr gut (abgelaufen / falsch gekühlt): Der Mozzarella war abgelaufen.",
+      "rolleA": {
+        "name": "Restaurantleitung (Ristorante Bella Vista)",
+        "aufgabe": "Melden Sie das Problem genau. Die Ware kann so nicht angenommen werden. Setzen Sie eine faire Lösung durch."
+      },
+      "rolleB": {
+        "name": "Fahrer:in / Vertrieb (FreshFood Großhandel)",
+        "aufgabe": "Bleiben Sie ruhig und fragen Sie genau nach. Bieten Sie umgehend Ersatz und eine Rückerstattung an."
+      },
+      "redemittel": [
+        "Leider gibt es ein Problem mit der Lieferung.",
+        "So können wir das nicht annehmen.",
+        "Wir erwarten eine Lösung: Ersatz / Rückerstattung / Rabatt.",
+        "Das tut mir sehr leid, das war unser Fehler.",
+        "Wir schicken umgehend Ersatz.",
+        "Als Entschuldigung bieten wir Ihnen … an."
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Reklamation: Falsche Rechnung",
+      "situation": "Auf der Rechnung stehen ein zu hoher Preis und Waren, die nie bestellt wurden: 2 Kartons Küchentücher, die niemand bestellt hat.",
+      "rolleA": {
+        "name": "Restaurantleitung (Café Morgenrot)",
+        "aufgabe": "Melden Sie das Problem genau. Verlangen Sie eine korrigierte Rechnung. Setzen Sie eine faire Lösung durch."
+      },
+      "rolleB": {
+        "name": "Fahrer:in / Vertrieb (GastroBedarf24)",
+        "aufgabe": "Bleiben Sie ruhig und fragen Sie genau nach. Prüfen Sie die Bestellung und bieten Sie eine neue Rechnung an."
+      },
+      "redemittel": [
+        "Leider gibt es ein Problem mit der Lieferung.",
+        "So können wir das nicht annehmen.",
+        "Wir erwarten eine Lösung: Ersatz / Rückerstattung / Rabatt.",
+        "Das tut mir sehr leid, das war unser Fehler.",
+        "Wir schicken umgehend Ersatz.",
+        "Als Entschuldigung bieten wir Ihnen … an."
+      ],
+      "dauer": 240
+    }
+  ]
+}

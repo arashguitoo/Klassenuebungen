@@ -1,0 +1,173 @@
+{
+  "id": "wortschatz-arena-l1-tabu",
+  "titel": "Wortschatz-Arena · L1 · Mein Beruf (Tabu)",
+  "beschreibung": "Tabu-Begriffe zum Wortschatz aus Lektion 1 (Aspekte Beruf B2).",
+  "art": "begriffe",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz",
+      "Sprechen"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "1"
+  },
+  "inhalt": [
+    {
+      "wort": "pendeln",
+      "tabu": [
+        "Arbeit",
+        "fahren",
+        "Zug",
+        "weit"
+      ]
+    },
+    {
+      "wort": "die Entfernung",
+      "tabu": [
+        "Abstand",
+        "Kilometer",
+        "weit",
+        "Ort"
+      ]
+    },
+    {
+      "wort": "im Homeoffice arbeiten",
+      "tabu": [
+        "zu Hause",
+        "Computer",
+        "Büro",
+        "Firma"
+      ]
+    },
+    {
+      "wort": "das Netzwerk",
+      "tabu": [
+        "Kontakte",
+        "Leute",
+        "kennen",
+        "beruflich"
+      ]
+    },
+    {
+      "wort": "die Behörde",
+      "tabu": [
+        "Amt",
+        "Staat",
+        "Formular",
+        "Stadt"
+      ]
+    },
+    {
+      "wort": "arbeitssuchend",
+      "tabu": [
+        "Arbeit",
+        "suchen",
+        "Stelle",
+        "Jobcenter"
+      ]
+    },
+    {
+      "wort": "die Unterlagen",
+      "tabu": [
+        "Dokumente",
+        "Papiere",
+        "Ordner",
+        "wichtig"
+      ]
+    },
+    {
+      "wort": "befristet",
+      "tabu": [
+        "Zeit",
+        "Vertrag",
+        "Ende",
+        "unbefristet"
+      ]
+    },
+    {
+      "wort": "die Teamfähigkeit",
+      "tabu": [
+        "Team",
+        "zusammenarbeiten",
+        "Kollegen",
+        "Fähigkeit"
+      ]
+    },
+    {
+      "wort": "die Eigenverantwortung",
+      "tabu": [
+        "selbst",
+        "verantwortlich",
+        "allein",
+        "Arbeit"
+      ]
+    },
+    {
+      "wort": "die Kompetenz",
+      "tabu": [
+        "Fähigkeit",
+        "können",
+        "Bereich",
+        "gut"
+      ]
+    },
+    {
+      "wort": "vermitteln",
+      "tabu": [
+        "beibringen",
+        "weitergeben",
+        "lehren",
+        "Wissen"
+      ]
+    },
+    {
+      "wort": "die Anerkennung",
+      "tabu": [
+        "Abschluss",
+        "offiziell",
+        "Bestätigung",
+        "Ausland"
+      ]
+    },
+    {
+      "wort": "einen Antrag einreichen",
+      "tabu": [
+        "Formular",
+        "abgeben",
+        "Amt",
+        "offiziell"
+      ]
+    },
+    {
+      "wort": "erforderlich",
+      "tabu": [
+        "notwendig",
+        "nötig",
+        "brauchen",
+        "müssen"
+      ]
+    },
+    {
+      "wort": "das Herkunftsland",
+      "tabu": [
+        "Land",
+        "kommen",
+        "Heimat",
+        "geboren"
+      ]
+    },
+    {
+      "wort": "das Zeugnis",
+      "tabu": [
+        "Noten",
+        "Schule",
+        "Dokument",
+        "Leistung"
+      ]
+    }
+  ]
+}

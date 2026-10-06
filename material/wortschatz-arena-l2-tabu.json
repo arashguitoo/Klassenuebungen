@@ -1,0 +1,155 @@
+{
+  "id": "wortschatz-arena-l2-tabu",
+  "titel": "Wortschatz-Arena · L2 · Mein Weg in den Beruf (Tabu)",
+  "beschreibung": "Tabu-Begriffe zum Wortschatz aus Lektion 2 (Aspekte Beruf B2).",
+  "art": "begriffe",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz",
+      "Sprechen"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "2"
+  },
+  "inhalt": [
+    {
+      "wort": "die Stellenanzeige",
+      "tabu": [
+        "Firma",
+        "suchen",
+        "Job",
+        "Zeitung"
+      ]
+    },
+    {
+      "wort": "der Lebenslauf",
+      "tabu": [
+        "Ausbildung",
+        "Beruf",
+        "Bewerbung",
+        "Tabelle"
+      ]
+    },
+    {
+      "wort": "die Bewerbung",
+      "tabu": [
+        "Stelle",
+        "Unterlagen",
+        "Firma",
+        "Job"
+      ]
+    },
+    {
+      "wort": "die Absage",
+      "tabu": [
+        "Nein",
+        "negativ",
+        "Antwort",
+        "Bewerbung"
+      ]
+    },
+    {
+      "wort": "die Herausforderung",
+      "tabu": [
+        "schwierig",
+        "Aufgabe",
+        "interessant",
+        "Problem"
+      ]
+    },
+    {
+      "wort": "abwechslungsreich",
+      "tabu": [
+        "verschieden",
+        "monoton",
+        "langweilig",
+        "Tätigkeiten"
+      ]
+    },
+    {
+      "wort": "verhandlungssicher",
+      "tabu": [
+        "Sprache",
+        "Niveau",
+        "perfekt",
+        "sprechen"
+      ]
+    },
+    {
+      "wort": "die Muttersprache",
+      "tabu": [
+        "Sprache",
+        "Geburt",
+        "Mutter",
+        "erste"
+      ]
+    },
+    {
+      "wort": "die Weiterbildung",
+      "tabu": [
+        "Kurs",
+        "lernen",
+        "Ausbildung",
+        "zusätzlich"
+      ]
+    },
+    {
+      "wort": "das Praktikum",
+      "tabu": [
+        "lernen",
+        "Firma",
+        "Student",
+        "Schule"
+      ]
+    },
+    {
+      "wort": "die duale Ausbildung",
+      "tabu": [
+        "Betrieb",
+        "Berufsschule",
+        "lernen",
+        "Azubi"
+      ]
+    },
+    {
+      "wort": "der Betrieb",
+      "tabu": [
+        "Firma",
+        "Unternehmen",
+        "arbeiten",
+        "Chef"
+      ]
+    },
+    {
+      "wort": "das Gehalt",
+      "tabu": [
+        "Geld",
+        "Monat",
+        "Arbeit",
+        "verdienen"
+      ]
+    },
+    {
+      "wort": "das Anschreiben",
+      "tabu": [
+        "Brief",
+        "Bewerbung",
+        "Stelle",
+        "schreiben"
+      ]
+    },
+    {
+      "wort": "verantwortungsvoll",
+      "tabu": [
+        "Verantwortung",
+        "wichtig",
+        "Aufgabe",
+        "Fehler"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,318 @@
+{
+  "id": "forum-struktur-quiz",
+  "titel": "Forumsbeitrag-Werkstatt · Struktur & Argumente",
+  "beschreibung": "Aufbau, Redemittel und Pro-/Contra-Argumente eines Forumsbeitrags (Themen: Homeoffice frei wählen, Vier-Tage-Woche).",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Schreiben",
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "grammatik": [
+      "Konnektoren"
+    ]
+  },
+  "inhalt": [
+    {
+      "typ": "reihenfolge",
+      "frage": "Bring die Teile eines Forumsbeitrags in die typische Reihenfolge.",
+      "teile": [
+        "Liebe Kolleginnen und Kollegen, habt ihr schon von der neuen Regelung gehört?",
+        "Ich finde diese Idee insgesamt sehr gut.",
+        "Denn wer flexibel arbeitet, ist oft motivierter – bei mir war das jedenfalls so.",
+        "Natürlich gibt es auch Nachteile, zum Beispiel weniger persönlichen Kontakt.",
+        "Wie seht ihr das? Ich freue mich auf eure Meinungen!"
+      ],
+      "erklaerung": "Anrede/Einleitung → Meinung → Argument+Beispiel → Gegenargument → Schluss mit Frage.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Einleitung oder Schluss? „Habt ihr schon gehört, dass wir bald flexibler arbeiten dürfen?“",
+      "optionen": [
+        "Einleitung",
+        "Schluss"
+      ],
+      "richtig": 0,
+      "erklaerung": "Einleitung führt ins Thema ein; der Schluss fasst zusammen und fragt die anderen.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Einleitung oder Schluss? „Eben habe ich gelesen, dass sich etwas ändern soll.“",
+      "optionen": [
+        "Einleitung",
+        "Schluss"
+      ],
+      "richtig": 0,
+      "erklaerung": "Einleitung führt ins Thema ein; der Schluss fasst zusammen und fragt die anderen.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Einleitung oder Schluss? „Was sagt ihr denn dazu? Viele Grüße!“",
+      "optionen": [
+        "Einleitung",
+        "Schluss"
+      ],
+      "richtig": 1,
+      "erklaerung": "Einleitung führt ins Thema ein; der Schluss fasst zusammen und fragt die anderen.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Einleitung oder Schluss? „Das ist aber nur meine Meinung – wie seht ihr das?“",
+      "optionen": [
+        "Einleitung",
+        "Schluss"
+      ],
+      "richtig": 1,
+      "erklaerung": "Einleitung führt ins Thema ein; der Schluss fasst zusammen und fragt die anderen.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "„Ich bin der Meinung, dass die Vier-Tage-Woche eine gute Idee ist.“ – Welche Funktion hat dieser Satz?",
+      "optionen": [
+        "Einleitung",
+        "eigene Meinung / Position",
+        "Gegenargument",
+        "Schluss"
+      ],
+      "richtig": 1,
+      "erklaerung": "Mit „Ich bin der Meinung, dass …“ beziehst du klar Position.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welcher Satz nennt ein BEISPIEL zur Begründung?",
+      "optionen": [
+        "Zum Beispiel konnte ich neulich mein Kind selbst von der Kita abholen.",
+        "Ich finde die Idee gut.",
+        "Liebe Kolleginnen und Kollegen,",
+        "Wie seht ihr das?"
+      ],
+      "richtig": 0,
+      "erklaerung": "„Zum Beispiel …“ leitet ein konkretes Beispiel ein.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welcher Satz leitet ein GEGENARGUMENT ein?",
+      "optionen": [
+        "Außerdem spart man viel Fahrzeit.",
+        "Natürlich gibt es auch Nachteile, …",
+        "Ich bin absolut dafür.",
+        "Deshalb finde ich die Idee super."
+      ],
+      "richtig": 1,
+      "erklaerung": "„Natürlich gibt es auch Nachteile …“ zeigt die andere Seite.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Thema A „Homeoffice frei wählen“: „Man spart jeden Tag viel Zeit für den Arbeitsweg.“",
+      "optionen": [
+        "Argument dafür (+)",
+        "Argument dagegen (–)"
+      ],
+      "richtig": 0,
+      "erklaerung": "Zeit sparen und Ruhe sind Vorteile; weniger Kontakt und schlechtere Trennung sind Nachteile.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Thema A „Homeoffice frei wählen“: „Man kann konzentrierter arbeiten, weil es zu Hause ruhiger ist.“",
+      "optionen": [
+        "Argument dafür (+)",
+        "Argument dagegen (–)"
+      ],
+      "richtig": 0,
+      "erklaerung": "Zeit sparen und Ruhe sind Vorteile; weniger Kontakt und schlechtere Trennung sind Nachteile.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Thema A „Homeoffice frei wählen“: „Der Kontakt zu den Kolleginnen und Kollegen wird weniger.“",
+      "optionen": [
+        "Argument dafür (+)",
+        "Argument dagegen (–)"
+      ],
+      "richtig": 1,
+      "erklaerung": "Zeit sparen und Ruhe sind Vorteile; weniger Kontakt und schlechtere Trennung sind Nachteile.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Thema A „Homeoffice frei wählen“: „Manche trennen Arbeit und Freizeit zu Hause schlechter.“",
+      "optionen": [
+        "Argument dafür (+)",
+        "Argument dagegen (–)"
+      ],
+      "richtig": 1,
+      "erklaerung": "Zeit sparen und Ruhe sind Vorteile; weniger Kontakt und schlechtere Trennung sind Nachteile.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Thema B „Vier-Tage-Woche“: „Man hat einen Tag mehr Zeit für Familie und Erholung.“",
+      "optionen": [
+        "Argument dafür (+)",
+        "Argument dagegen (–)"
+      ],
+      "richtig": 0,
+      "erklaerung": "Mehr Freizeit und Motivation sprechen dafür; längere Tage und Erreichbarkeit dagegen.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Thema B „Vier-Tage-Woche“: „Viele arbeiten an vier Tagen motivierter und effektiver.“",
+      "optionen": [
+        "Argument dafür (+)",
+        "Argument dagegen (–)"
+      ],
+      "richtig": 0,
+      "erklaerung": "Mehr Freizeit und Motivation sprechen dafür; längere Tage und Erreichbarkeit dagegen.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Thema B „Vier-Tage-Woche“: „Die einzelnen Arbeitstage werden länger und anstrengender.“",
+      "optionen": [
+        "Argument dafür (+)",
+        "Argument dagegen (–)"
+      ],
+      "richtig": 1,
+      "erklaerung": "Mehr Freizeit und Motivation sprechen dafür; längere Tage und Erreichbarkeit dagegen.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Thema B „Vier-Tage-Woche“: „Für Kundinnen und Kunden ist man einen Tag weniger erreichbar.“",
+      "optionen": [
+        "Argument dafür (+)",
+        "Argument dagegen (–)"
+      ],
+      "richtig": 1,
+      "erklaerung": "Mehr Freizeit und Motivation sprechen dafür; längere Tage und Erreichbarkeit dagegen.",
+      "stufe": 2
+    },
+    {
+      "typ": "paare",
+      "frage": "Ordne Redemittel und Funktion zu.",
+      "paare": [
+        [
+          "Ich bin der Meinung, dass …",
+          "Meinung sagen"
+        ],
+        [
+          "Zum Beispiel …",
+          "Beispiel geben"
+        ],
+        [
+          "Natürlich gibt es auch Nachteile, …",
+          "Gegenargument"
+        ],
+        [
+          "Wie seht ihr das?",
+          "Schlussfrage"
+        ]
+      ],
+      "erklaerung": "Feste Redemittel für die Teile eines Beitrags."
+    },
+    {
+      "typ": "mc",
+      "frage": "Wie schreibt man in einem Mitarbeiterforum normalerweise?",
+      "optionen": [
+        "streng formell wie in einem Amtsbrief",
+        "eher locker, aber höflich",
+        "in Stichwörtern ohne Sätze",
+        "ganz ohne Anrede"
+      ],
+      "richtig": 1,
+      "erklaerung": "Ein Forum ist halb-formell: locker, aber höflich und in ganzen Sätzen.",
+      "stufe": 2
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Bring ein vollständiges Argument in die logische Reihenfolge.",
+      "teile": [
+        "Ich bin dafür, weil man flexibler planen kann.",
+        "So konnte ich letzte Woche einen Arzttermin ohne Stress wahrnehmen.",
+        "Dadurch ist man insgesamt zufriedener bei der Arbeit.",
+        "Deshalb sollten wir die neue Regelung ausprobieren."
+      ],
+      "erklaerung": "Behauptung → Beispiel → Folge → Schlussfolgerung.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "In der Prüfungsaufgabe sollst du einen Forumsbeitrag schreiben. Was ist besonders wichtig?",
+      "optionen": [
+        "möglichst viele Fremdwörter benutzen",
+        "die Meinung begründen und Beispiele nennen",
+        "nur Vorteile aufzählen, keine Nachteile",
+        "den Text nicht in Abschnitte gliedern"
+      ],
+      "richtig": 1,
+      "erklaerung": "Meinung begründen, Beispiele nennen und sinnvoll gliedern – genau das wird bewertet.",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich bin der ___, dass die Vier-Tage-Woche eine gute Idee ist.",
+      "optionen": [
+        "Meinung",
+        "Idee",
+        "Gedanke",
+        "Position"
+      ],
+      "richtig": 0,
+      "erklaerung": "Redemittel: Ich bin der Meinung, dass …",
+      "stufe": 1
+    },
+    {
+      "typ": "luecke",
+      "frage": "___ Beispiel konnte ich neulich mein Kind selbst von der Kita abholen.",
+      "optionen": [
+        "Zum",
+        "Beim",
+        "Für",
+        "Als"
+      ],
+      "richtig": 0,
+      "erklaerung": "Redemittel: Zum Beispiel …",
+      "stufe": 1
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich bin dafür, ___ man flexibler planen kann.",
+      "optionen": [
+        "deshalb",
+        "weil",
+        "trotzdem",
+        "denn"
+      ],
+      "richtig": 1,
+      "erklaerung": "weil + Verb am Ende: Begründung der eigenen Meinung.",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "___ sollten wir die neue Regelung ausprobieren.",
+      "optionen": [
+        "Weil",
+        "Obwohl",
+        "Deshalb",
+        "Denn"
+      ],
+      "richtig": 2,
+      "erklaerung": "deshalb + Verb auf Position 2: Schlussfolgerung.",
+      "stufe": 3
+    }
+  ]
+}

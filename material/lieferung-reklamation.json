@@ -1,0 +1,240 @@
+{
+  "id": "lieferung-reklamation",
+  "titel": "Lieferung mit Problemen – Bestellung und Reklamation",
+  "beschreibung": "Redemittel und Wortschatz für Bestellungen am Telefon und Reklamationen (mündlich und schriftlich).",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Kommunikation"
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Sie rufen beim Lieferanten an und möchten bestellen. Wie beginnen Sie?",
+      "optionen": [
+        "Guten Tag, ich möchte gern eine Bestellung aufgeben.",
+        "Gern, was darf es sein?",
+        "Das tut mir sehr leid, das war unser Fehler.",
+        "Vielen Dank, die Bestellung ist notiert."
+      ],
+      "richtig": 0,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welcher Satz passt zur Rolle Lieferant?",
+      "optionen": [
+        "Bis wann können Sie liefern?",
+        "Wie viel brauchen Sie davon?",
+        "Bekommen wir einen Mengenrabatt?",
+        "So können wir das nicht annehmen."
+      ],
+      "richtig": 1,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Sie möchten die Bestellung am Ende sichern. Was sagen Sie?",
+      "optionen": [
+        "Leider gibt es ein Problem mit der Lieferung.",
+        "Wir schicken umgehend Ersatz.",
+        "Ich fasse zusammen: Sie bestellen 5 kg Tomaten bis Freitag.",
+        "Gern, was darf es sein?"
+      ],
+      "richtig": 2,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Ein Kunde reklamiert. Wie reagieren Sie als Lieferant zuerst?",
+      "optionen": [
+        "Wir erwarten eine Lösung.",
+        "Die Ware ist beschädigt.",
+        "Ich hätte gern 10 Liter Milch.",
+        "Das tut mir sehr leid. Können Sie mir genau sagen, was fehlt?"
+      ],
+      "richtig": 3,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Die Ware war falsch gekühlt und ist nicht mehr gut. Welches Wort passt?",
+      "optionen": [
+        "verdorben",
+        "beschädigt",
+        "verspätet",
+        "vertauscht"
+      ],
+      "richtig": 0,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Was ist eine „Rückerstattung“?",
+      "optionen": [
+        "Die Ware wird noch einmal geliefert.",
+        "Man bekommt das Geld zurück.",
+        "Der Preis wird erhöht.",
+        "Die Rechnung wird später bezahlt."
+      ],
+      "richtig": 1,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Was macht das Lager beim „Kommissionieren“?",
+      "optionen": [
+        "Es schreibt die Rechnung.",
+        "Es nimmt Reklamationen an.",
+        "Es stellt die bestellte Ware für eine Lieferung zusammen.",
+        "Es verhandelt den Preis."
+      ],
+      "richtig": 2,
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welcher Satz passt in eine formelle Reklamation?",
+      "optionen": [
+        "Hey, eure Lieferung war echt schlecht!",
+        "Leider mussten wir feststellen, dass die Ware beschädigt ist.",
+        "Kein Problem, das kann passieren.",
+        "Gern, was darf es sein?"
+      ],
+      "richtig": 1,
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Leider gibt es ein Problem ___ der Lieferung.",
+      "optionen": [
+        "mit",
+        "von",
+        "bei",
+        "für"
+      ],
+      "richtig": 0,
+      "stufe": 1
+    },
+    {
+      "typ": "luecke",
+      "frage": "Wir bitten Sie, bis Freitag ___ Ersatz zu sorgen.",
+      "optionen": [
+        "um",
+        "für",
+        "nach",
+        "auf"
+      ],
+      "richtig": 1,
+      "erklaerung": "sorgen für + Akkusativ",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Am 3. Mai ___ wir bei Ihnen 10 kg Kartoffeln bestellt.",
+      "optionen": [
+        "sind",
+        "hatten",
+        "haben",
+        "werden"
+      ],
+      "richtig": 2,
+      "stufe": 1
+    },
+    {
+      "typ": "luecke",
+      "frage": "Wir schicken ___ Ersatz.",
+      "optionen": [
+        "umsonst",
+        "ungefähr",
+        "umgehend",
+        "unbedingt"
+      ],
+      "richtig": 2,
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Als Entschuldigung ___ wir Ihnen 10 Prozent Rabatt an.",
+      "optionen": [
+        "bitten",
+        "bieten",
+        "bestellen",
+        "beten"
+      ],
+      "richtig": 1,
+      "stufe": 2
+    },
+    {
+      "typ": "paare",
+      "frage": "Ordne das Problem der Beschreibung zu.",
+      "paare": [
+        [
+          "Falsche Menge",
+          "Es wurde nur die Hälfte der bestellten Ware geliefert."
+        ],
+        [
+          "Beschädigte Ware",
+          "Mehrere Kartons sind kaputt."
+        ],
+        [
+          "Zu spät geliefert",
+          "Das Mittagsgeschäft war schon vorbei."
+        ],
+        [
+          "Falsches Produkt",
+          "Es wurde ein anderes Produkt geliefert als bestellt."
+        ],
+        [
+          "Falsche Rechnung",
+          "Auf der Rechnung steht ein zu hoher Preis."
+        ]
+      ]
+    },
+    {
+      "typ": "paare",
+      "frage": "Welcher Lieferant liefert was?",
+      "paare": [
+        [
+          "FreshFood Großhandel",
+          "Obst, Gemüse, Molkereiprodukte"
+        ],
+        [
+          "GetränkeProfi GmbH",
+          "Kaffee, Wasser, Wein"
+        ],
+        [
+          "GastroBedarf24",
+          "Servietten, Geschirr, Reinigungsmittel"
+        ]
+      ]
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Bringe die Teile der Reklamation in die richtige Reihenfolge.",
+      "teile": [
+        "Sehr geehrte Damen und Herren,",
+        "am 3. Mai haben wir bei Ihnen 6 Flaschen Rotwein bestellt.",
+        "Leider mussten wir feststellen, dass zwei Flaschen zerbrochen sind.",
+        "Wir bitten Sie, bis Freitag für Ersatz zu sorgen.",
+        "Mit freundlichen Grüßen"
+      ]
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Bilde den Satz.",
+      "teile": [
+        "So",
+        "können wir",
+        "das nicht",
+        "annehmen."
+      ]
+    }
+  ]
+}

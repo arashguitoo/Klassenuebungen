@@ -1,0 +1,218 @@
+{
+  "id": "buerobedarf-verkaufsgespraeche",
+  "titel": "Bürobedarf bestellen – Verkaufsgespräche",
+  "beschreibung": "Kund:innen mit Budget und Anforderungen verhandeln mit einem Discount- (SparBüro) oder Premium-Händler (KontorPlus).",
+  "art": "karten",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Arbeitswelt"
+  },
+  "inhalt": [
+    {
+      "titel": "Bürobedarf: Start-up „PixelWerk“ (Webdesign)",
+      "situation": "Frau Berger (Start-up „PixelWerk“ (Webdesign)) richtet ein Büro ein und ruft beim Bürobedarf-Händler KontorPlus an. Budget: 1200 €.",
+      "rolleA": {
+        "name": "Kund:in (Frau Berger)",
+        "aufgabe": "Modernes, kreatives Büro – Image zählt! Stühle MÜSSEN ergonomisch sein (viel Bildschirmarbeit) – hier NICHT sparen. 5 Arbeitsplätze einrichten. Bedarf: 5× Bürostuhl (ergonomisch!), 3× Schreibtisch, 1× Whiteboard, Kopierpapier, Lampen. Bleiben Sie im Budget von 1200 € und verhandeln Sie über Rabatt und Lieferung."
+      },
+      "rolleB": {
+        "name": "Verkäufer:in (KontorPlus)",
+        "aufgabe": "Beraten Sie die Kundin / den Kunden und machen Sie ein Angebot. Ihr Handlungsspielraum: KontorPlus (Qualität: bis 10 % Rabatt ab 500 €, bis 15 % ab 1000 €, Express-Lieferung 48 h gegen Aufpreis, 5 Jahre Garantie auf Möbel, Beratung & Aufbau-Service ab 800 €). Beispiele: Ergonomischer Bürostuhl „Profi“ 189 €, Chefsessel Leder 349 €, höhenverstellbarer Schreibtisch 399 €, Massivholz-Schreibtisch 229 €, Design-Aktenschrank abschließbar 179 €, Glas-Whiteboard 99 €."
+      },
+      "redemittel": [
+        "Bürobedarf …, mein Name ist …, was kann ich für Sie tun?",
+        "Für wie viele Arbeitsplätze brauchen Sie das?",
+        "Darf es etwas Hochwertigeres sein?",
+        "Bei dieser Menge kann ich Ihnen … % entgegenkommen.",
+        "Ich fasse zusammen: Sie bestellen … Die Lieferung erfolgt in …"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Bürobedarf: Steuerkanzlei Yılmaz",
+      "situation": "Herr Yılmaz (Steuerkanzlei Yılmaz) richtet ein Büro ein und ruft beim Bürobedarf-Händler KontorPlus an. Budget: 1500 €.",
+      "rolleA": {
+        "name": "Kund:in (Herr Yılmaz)",
+        "aufgabe": "Seriös & repräsentativ (Kundenkontakt). Abschließbarer Aktenschrank Pflicht (Datenschutz!). Chefsessel fürs Besprechungszimmer. Bedarf: 1× Chefsessel, 3× Bürostuhl, 2× abschließbarer Schrank, Schreibtische, Kopierpapier (viel). Bleiben Sie im Budget von 1500 € und verhandeln Sie über Rabatt und Lieferung."
+      },
+      "rolleB": {
+        "name": "Verkäufer:in (KontorPlus)",
+        "aufgabe": "Beraten Sie die Kundin / den Kunden und machen Sie ein Angebot. Ihr Handlungsspielraum: KontorPlus (Qualität: bis 10 % Rabatt ab 500 €, bis 15 % ab 1000 €, Express-Lieferung 48 h gegen Aufpreis, 5 Jahre Garantie auf Möbel, Beratung & Aufbau-Service ab 800 €). Beispiele: Ergonomischer Bürostuhl „Profi“ 189 €, Chefsessel Leder 349 €, höhenverstellbarer Schreibtisch 399 €, Massivholz-Schreibtisch 229 €, Design-Aktenschrank abschließbar 179 €, Glas-Whiteboard 99 €."
+      },
+      "redemittel": [
+        "Bürobedarf …, mein Name ist …, was kann ich für Sie tun?",
+        "Für wie viele Arbeitsplätze brauchen Sie das?",
+        "Darf es etwas Hochwertigeres sein?",
+        "Bei dieser Menge kann ich Ihnen … % entgegenkommen.",
+        "Ich fasse zusammen: Sie bestellen … Die Lieferung erfolgt in …"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Bürobedarf: Verein „Hand in Hand“ (gemeinnützig)",
+      "situation": "Frau Novak (Verein „Hand in Hand“ (gemeinnützig)) richtet ein Büro ein und ruft beim Bürobedarf-Händler SparBüro an. Budget: 500 €.",
+      "rolleA": {
+        "name": "Kund:in (Frau Novak)",
+        "aufgabe": "Jeder Euro zählt – möglichst günstig! Funktional, kein Luxus. Für 4 Ehrenamtliche. Bedarf: 4× Bürostuhl (Basic ok), 2× Schreibtisch, 1× Aktenregal, Kugelschreiber, Mülleimer. Bleiben Sie im Budget von 500 € und verhandeln Sie über Rabatt und Lieferung."
+      },
+      "rolleB": {
+        "name": "Verkäufer:in (SparBüro)",
+        "aufgabe": "Beraten Sie die Kundin / den Kunden und machen Sie ein Angebot. Ihr Handlungsspielraum: SparBüro (günstig: ab 200 € Bestellwert 5 % Rabatt, Versand kostenlos ab 150 €, keine Verhandlung über Einzelpreise, Lieferzeit 5–7 Tage, keine 2-Jahres-Garantie auf Möbel). Beispiele: Bürostuhl „Basic“ 39 €, Bürostuhl „Komfort“ 79 €, Schreibtisch 120×60 cm 59 €, Aktenregal 49 €, Whiteboard 24 €, Kopierpapier 4 €."
+      },
+      "redemittel": [
+        "Bürobedarf …, mein Name ist …, was kann ich für Sie tun?",
+        "Für wie viele Arbeitsplätze brauchen Sie das?",
+        "Darf es etwas Hochwertigeres sein?",
+        "Bei dieser Menge kann ich Ihnen … % entgegenkommen.",
+        "Ich fasse zusammen: Sie bestellen … Die Lieferung erfolgt in …"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Bürobedarf: Arztpraxis Dr. Klein",
+      "situation": "Dr. Klein (Arztpraxis Dr. Klein) richtet ein Büro ein und ruft beim Bürobedarf-Händler KontorPlus an. Budget: 1000 €.",
+      "rolleA": {
+        "name": "Kund:in (Dr. Klein)",
+        "aufgabe": "Empfang muss ordentlich wirken. Rollcontainer abschließbar (Patientendaten). Gute Lampen fürs Lesen. Bedarf: 3× Bürostuhl, 2× Rollcontainer (abschließbar), 3× Lampe (dimmbar bevorzugt), Garderobe. Bleiben Sie im Budget von 1000 € und verhandeln Sie über Rabatt und Lieferung."
+      },
+      "rolleB": {
+        "name": "Verkäufer:in (KontorPlus)",
+        "aufgabe": "Beraten Sie die Kundin / den Kunden und machen Sie ein Angebot. Ihr Handlungsspielraum: KontorPlus (Qualität: bis 10 % Rabatt ab 500 €, bis 15 % ab 1000 €, Express-Lieferung 48 h gegen Aufpreis, 5 Jahre Garantie auf Möbel, Beratung & Aufbau-Service ab 800 €). Beispiele: Rollcontainer Massivholz 119 €, Schreibtischlampe dimmbar 49 €, Ergonomischer Bürostuhl „Profi“ 189 €, Design-Garderobe 64 €."
+      },
+      "redemittel": [
+        "Bürobedarf …, mein Name ist …, was kann ich für Sie tun?",
+        "Für wie viele Arbeitsplätze brauchen Sie das?",
+        "Darf es etwas Hochwertigeres sein?",
+        "Bei dieser Menge kann ich Ihnen … % entgegenkommen.",
+        "Ich fasse zusammen: Sie bestellen … Die Lieferung erfolgt in …"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Bürobedarf: Handwerksbetrieb Schäfer GmbH",
+      "situation": "Herr Schäfer (Handwerksbetrieb Schäfer GmbH) richtet ein Büro ein und ruft beim Bürobedarf-Händler SparBüro an. Budget: 700 €.",
+      "rolleA": {
+        "name": "Kund:in (Herr Schäfer)",
+        "aufgabe": "Robust & langlebig wichtiger als schön. 1 Büro für die Buchhaltung. Großes Whiteboard für Planung. Bedarf: 2× Bürostuhl, 2× Schreibtisch (robust), 1× großes Whiteboard, Aktenregal, Kopierpapier. Bleiben Sie im Budget von 700 € und verhandeln Sie über Rabatt und Lieferung."
+      },
+      "rolleB": {
+        "name": "Verkäufer:in (SparBüro)",
+        "aufgabe": "Beraten Sie die Kundin / den Kunden und machen Sie ein Angebot. Ihr Handlungsspielraum: SparBüro (günstig: ab 200 € Bestellwert 5 % Rabatt, Versand kostenlos ab 150 €, keine Verhandlung über Einzelpreise, Lieferzeit 5–7 Tage, keine 2-Jahres-Garantie auf Möbel). Beispiele: Bürostuhl „Basic“ 39 €, Bürostuhl „Komfort“ 79 €, Schreibtisch 120×60 cm 59 €, Aktenregal 49 €, Whiteboard 24 €, Kopierpapier 4 €."
+      },
+      "redemittel": [
+        "Bürobedarf …, mein Name ist …, was kann ich für Sie tun?",
+        "Für wie viele Arbeitsplätze brauchen Sie das?",
+        "Darf es etwas Hochwertigeres sein?",
+        "Bei dieser Menge kann ich Ihnen … % entgegenkommen.",
+        "Ich fasse zusammen: Sie bestellen … Die Lieferung erfolgt in …"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Bürobedarf: Café & Co-Working „Bohne“",
+      "situation": "Frau Costa (Café & Co-Working „Bohne“) richtet ein Büro ein und ruft beim Bürobedarf-Händler KontorPlus an. Budget: 900 €.",
+      "rolleA": {
+        "name": "Kund:in (Frau Costa)",
+        "aufgabe": "Gemütlich & stylisch – Gäste sehen es! Design zählt, Garderobe schön. Flexibel für wechselnde Nutzer. Bedarf: 4× Bürostuhl (Komfort), 2× Schreibtisch, 1× Design-Garderobe, Lampen, Whiteboard. Bleiben Sie im Budget von 900 € und verhandeln Sie über Rabatt und Lieferung."
+      },
+      "rolleB": {
+        "name": "Verkäufer:in (KontorPlus)",
+        "aufgabe": "Beraten Sie die Kundin / den Kunden und machen Sie ein Angebot. Ihr Handlungsspielraum: KontorPlus (Qualität: bis 10 % Rabatt ab 500 €, bis 15 % ab 1000 €, Express-Lieferung 48 h gegen Aufpreis, 5 Jahre Garantie auf Möbel, Beratung & Aufbau-Service ab 800 €). Beispiele: Design-Garderobe Holz/Metall 64 €, Schreibtischlampe dimmbar 49 €, Massivholz-Schreibtisch 229 €, Glas-Whiteboard 99 €."
+      },
+      "redemittel": [
+        "Bürobedarf …, mein Name ist …, was kann ich für Sie tun?",
+        "Für wie viele Arbeitsplätze brauchen Sie das?",
+        "Darf es etwas Hochwertigeres sein?",
+        "Bei dieser Menge kann ich Ihnen … % entgegenkommen.",
+        "Ich fasse zusammen: Sie bestellen … Die Lieferung erfolgt in …"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Bürobedarf: Logistik-Büro „FastWay“",
+      "situation": "Herr Adeyemi (Logistik-Büro „FastWay“) richtet ein Büro ein und ruft beim Bürobedarf-Händler KontorPlus an. Budget: 1100 €.",
+      "rolleA": {
+        "name": "Kund:in (Herr Adeyemi)",
+        "aufgabe": "Höhenverstellbarer Tisch gewünscht (Rücken!). Effizient, viel Stauraum. 3 Schichtarbeitsplätze. Bedarf: 1× höhenverstellbarer Schreibtisch, 3× Bürostuhl (ergonomisch), 3× Rollcontainer, Druckerpatronen. Bleiben Sie im Budget von 1100 € und verhandeln Sie über Rabatt und Lieferung."
+      },
+      "rolleB": {
+        "name": "Verkäufer:in (KontorPlus)",
+        "aufgabe": "Beraten Sie die Kundin / den Kunden und machen Sie ein Angebot. Ihr Handlungsspielraum: KontorPlus (Qualität: bis 10 % Rabatt ab 500 €, bis 15 % ab 1000 €, Express-Lieferung 48 h gegen Aufpreis, 5 Jahre Garantie auf Möbel, Beratung & Aufbau-Service ab 800 €). Beispiele: Ergonomischer Bürostuhl „Profi“ 189 €, Chefsessel Leder 349 €, höhenverstellbarer Schreibtisch 399 €, Massivholz-Schreibtisch 229 €, Design-Aktenschrank abschließbar 179 €, Glas-Whiteboard 99 €."
+      },
+      "redemittel": [
+        "Bürobedarf …, mein Name ist …, was kann ich für Sie tun?",
+        "Für wie viele Arbeitsplätze brauchen Sie das?",
+        "Darf es etwas Hochwertigeres sein?",
+        "Bei dieser Menge kann ich Ihnen … % entgegenkommen.",
+        "Ich fasse zusammen: Sie bestellen … Die Lieferung erfolgt in …"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Bürobedarf: Sprachschule „Lingua“",
+      "situation": "Frau Petrova (Sprachschule „Lingua“) richtet ein Büro ein und ruft beim Bürobedarf-Händler SparBüro an. Budget: 600 €.",
+      "rolleA": {
+        "name": "Kund:in (Frau Petrova)",
+        "aufgabe": "Mehrere Whiteboards für Unterricht. Günstige, viele Stühle. Sparsam einkaufen. Bedarf: 6× Bürostuhl (Basic), 2× Whiteboard, 2× Schreibtisch, Kopierpapier (viel), Kugelschreiber. Bleiben Sie im Budget von 600 € und verhandeln Sie über Rabatt und Lieferung."
+      },
+      "rolleB": {
+        "name": "Verkäufer:in (SparBüro)",
+        "aufgabe": "Beraten Sie die Kundin / den Kunden und machen Sie ein Angebot. Ihr Handlungsspielraum: SparBüro (günstig: ab 200 € Bestellwert 5 % Rabatt, Versand kostenlos ab 150 €, keine Verhandlung über Einzelpreise, Lieferzeit 5–7 Tage, keine 2-Jahres-Garantie auf Möbel). Beispiele: Bürostuhl „Basic“ 39 €, Bürostuhl „Komfort“ 79 €, Schreibtisch 120×60 cm 59 €, Aktenregal 49 €, Whiteboard 24 €, Kopierpapier 4 €."
+      },
+      "redemittel": [
+        "Bürobedarf …, mein Name ist …, was kann ich für Sie tun?",
+        "Für wie viele Arbeitsplätze brauchen Sie das?",
+        "Darf es etwas Hochwertigeres sein?",
+        "Bei dieser Menge kann ich Ihnen … % entgegenkommen.",
+        "Ich fasse zusammen: Sie bestellen … Die Lieferung erfolgt in …"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Bürobedarf: Architekturbüro Wagner",
+      "situation": "Herr Wagner (Architekturbüro Wagner) richtet ein Büro ein und ruft beim Bürobedarf-Händler KontorPlus an. Budget: 1800 €.",
+      "rolleA": {
+        "name": "Kund:in (Herr Wagner)",
+        "aufgabe": "Hochwertig & repräsentativ – Premium erlaubt. Große Schreibtische für Pläne. NICHT am Stuhl sparen. Bedarf: 4× ergonomischer Stuhl, 3× großer Schreibtisch (Massivholz), 1× Glas-Whiteboard, Design-Lampen. Bleiben Sie im Budget von 1800 € und verhandeln Sie über Rabatt und Lieferung."
+      },
+      "rolleB": {
+        "name": "Verkäufer:in (KontorPlus)",
+        "aufgabe": "Beraten Sie die Kundin / den Kunden und machen Sie ein Angebot. Ihr Handlungsspielraum: KontorPlus (Qualität: bis 10 % Rabatt ab 500 €, bis 15 % ab 1000 €, Express-Lieferung 48 h gegen Aufpreis, 5 Jahre Garantie auf Möbel, Beratung & Aufbau-Service ab 800 €). Beispiele: Ergonomischer Bürostuhl „Profi“ 189 €, Chefsessel Leder 349 €, höhenverstellbarer Schreibtisch 399 €, Massivholz-Schreibtisch 229 €, Design-Aktenschrank abschließbar 179 €, Glas-Whiteboard 99 €."
+      },
+      "redemittel": [
+        "Bürobedarf …, mein Name ist …, was kann ich für Sie tun?",
+        "Für wie viele Arbeitsplätze brauchen Sie das?",
+        "Darf es etwas Hochwertigeres sein?",
+        "Bei dieser Menge kann ich Ihnen … % entgegenkommen.",
+        "Ich fasse zusammen: Sie bestellen … Die Lieferung erfolgt in …"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Bürobedarf: Online-Shop „DemirTex“",
+      "situation": "Frau Demir (Online-Shop „DemirTex“) richtet ein Büro ein und ruft beim Bürobedarf-Händler SparBüro an. Budget: 800 €.",
+      "rolleA": {
+        "name": "Kund:in (Frau Demir)",
+        "aufgabe": "Mischung ok: wo nötig sparen, wo wichtig investieren. Drucker läuft viel – Patronen wichtig. 3 Arbeitsplätze. Bedarf: 3× Bürostuhl, 3× Schreibtisch, Druckerpatronen (Original), Kopierpapier, Rollcontainer. Bleiben Sie im Budget von 800 € und verhandeln Sie über Rabatt und Lieferung."
+      },
+      "rolleB": {
+        "name": "Verkäufer:in (SparBüro)",
+        "aufgabe": "Beraten Sie die Kundin / den Kunden und machen Sie ein Angebot. Ihr Handlungsspielraum: SparBüro (günstig: ab 200 € Bestellwert 5 % Rabatt, Versand kostenlos ab 150 €, keine Verhandlung über Einzelpreise, Lieferzeit 5–7 Tage, keine 2-Jahres-Garantie auf Möbel). Beispiele: Bürostuhl „Basic“ 39 €, Bürostuhl „Komfort“ 79 €, Schreibtisch 120×60 cm 59 €, Aktenregal 49 €, Whiteboard 24 €, Kopierpapier 4 €, Druckerpatronen-Set (kompatibel) 19 €, Rollcontainer 34 €."
+      },
+      "redemittel": [
+        "Bürobedarf …, mein Name ist …, was kann ich für Sie tun?",
+        "Für wie viele Arbeitsplätze brauchen Sie das?",
+        "Darf es etwas Hochwertigeres sein?",
+        "Bei dieser Menge kann ich Ihnen … % entgegenkommen.",
+        "Ich fasse zusammen: Sie bestellen … Die Lieferung erfolgt in …"
+      ],
+      "dauer": 300
+    }
+  ]
+}

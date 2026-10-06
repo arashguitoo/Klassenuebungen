@@ -1,0 +1,1107 @@
+{
+ "version": 1,
+ "erstellt": "2026-10-06",
+ "pakete": [
+  {
+   "id": "aa-telefon-karten",
+   "titel": "Am Apparat – Telefonberatung Agentur für Arbeit",
+   "beschreibung": "20 Kunden-Rollenkarten (nicht-akademische Berufe, junge Menschen/Azubis) für das Telefongespräch mit der Agentur für Arbeit.",
+   "art": "karten",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Beruf & Bewerbung"
+   },
+   "anzahl": 20,
+   "typen": {
+    "karten": 20
+   },
+   "datei": "material/aa-telefon-karten.json"
+  },
+  {
+   "id": "aa-telefon-redemittel",
+   "titel": "Am Apparat – Redemittel am Telefon",
+   "beschreibung": "Sprachbausteine für das Telefongespräch mit der Agentur für Arbeit (beide Seiten).",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen",
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Beruf & Bewerbung"
+   },
+   "anzahl": 12,
+   "typen": {
+    "mc": 4,
+    "luecke": 8
+   },
+   "datei": "material/aa-telefon-redemittel.json"
+  },
+  {
+   "id": "aspekte-b2-l1-quiz",
+   "titel": "Aspekte Beruf B2 · L1 · Berufsalltag",
+   "beschreibung": "Quizfragen (Wortschatz, Grammatik, Redemittel) zu Lektion 1 aus „Wer wird Millionär · Aspekte Beruf B2“.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz",
+     "Grammatik",
+     "Sprechen"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "1",
+    "grammatik": [
+     "Negation"
+    ]
+   },
+   "anzahl": 6,
+   "typen": {
+    "mc": 6
+   },
+   "datei": "material/aspekte-b2-l1-quiz.json"
+  },
+  {
+   "id": "aspekte-b2-l2-quiz",
+   "titel": "Aspekte Beruf B2 · L2 · Bewerbung & Ausbildung",
+   "beschreibung": "Quizfragen (Wortschatz, Grammatik, Redemittel) zu Lektion 2 aus „Wer wird Millionär · Aspekte Beruf B2“.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz",
+     "Grammatik"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "2",
+    "grammatik": [
+     "Konnektoren",
+     "Finalsätze",
+     "Infinitivsätze",
+     "je … desto"
+    ]
+   },
+   "anzahl": 11,
+   "typen": {
+    "mc": 6,
+    "luecke": 5
+   },
+   "datei": "material/aspekte-b2-l2-quiz.json"
+  },
+  {
+   "id": "aspekte-b2-l3-quiz",
+   "titel": "Aspekte Beruf B2 · L3 · Kollegen & Small Talk",
+   "beschreibung": "Quizfragen (Wortschatz, Grammatik, Redemittel) zu Lektion 3 aus „Wer wird Millionär · Aspekte Beruf B2“.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz",
+     "Grammatik",
+     "Sprechen"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Kommunikation",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "3",
+    "grammatik": [
+     "Komparativ",
+     "Pronomen „es“"
+    ]
+   },
+   "anzahl": 7,
+   "typen": {
+    "mc": 4,
+    "luecke": 3
+   },
+   "datei": "material/aspekte-b2-l3-quiz.json"
+  },
+  {
+   "id": "aspekte-b2-l4-quiz",
+   "titel": "Aspekte Beruf B2 · L4 · Besprechungen",
+   "beschreibung": "Quizfragen (Wortschatz, Grammatik, Redemittel) zu Lektion 4 aus „Wer wird Millionär · Aspekte Beruf B2“.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz",
+     "Grammatik",
+     "Sprechen"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "4",
+    "grammatik": [
+     "Relativsätze mit wer/wen/wem",
+     "Nomen-Verb-Verbindungen"
+    ]
+   },
+   "anzahl": 13,
+   "typen": {
+    "mc": 9,
+    "luecke": 4
+   },
+   "datei": "material/aspekte-b2-l4-quiz.json"
+  },
+  {
+   "id": "aspekte-b2-l5-quiz",
+   "titel": "Aspekte Beruf B2 · L5 · Firmen & Messen",
+   "beschreibung": "Quizfragen (Wortschatz, Grammatik, Redemittel) zu Lektion 5 aus „Wer wird Millionär · Aspekte Beruf B2“.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz",
+     "Grammatik"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "5",
+    "grammatik": [
+     "Passiv",
+     "Indefinitpronomen"
+    ]
+   },
+   "anzahl": 6,
+   "typen": {
+    "mc": 3,
+    "luecke": 3
+   },
+   "datei": "material/aspekte-b2-l5-quiz.json"
+  },
+  {
+   "id": "aspekte-b2-l6-quiz",
+   "titel": "Aspekte Beruf B2 · L6 · Telefon & Kundenkontakt",
+   "beschreibung": "Quizfragen (Wortschatz, Grammatik, Redemittel) zu Lektion 6 aus „Wer wird Millionär · Aspekte Beruf B2“.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz",
+     "Grammatik",
+     "Sprechen"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Kommunikation",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "6",
+    "grammatik": [
+     "Passiv",
+     "Zustandspassiv",
+     "Irreale Vergleichssätze"
+    ]
+   },
+   "anzahl": 9,
+   "typen": {
+    "mc": 7,
+    "luecke": 2
+   },
+   "datei": "material/aspekte-b2-l6-quiz.json"
+  },
+  {
+   "id": "beratungsgespraech-agentur-karten",
+   "titel": "Beratung bei der Agentur für Arbeit",
+   "beschreibung": "12 Situationen: Kund:in und Berater:in haben unterschiedliche Ziele (Umschulung, Weiterbildung, Stelle) – argumentieren und Kompromiss finden. Situation 1 und 2 aus dem Lehrbuch.",
+   "art": "karten",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Beruf & Bewerbung"
+   },
+   "anzahl": 12,
+   "typen": {
+    "karten": 12
+   },
+   "datei": "material/beratungsgespraech-agentur-karten.json"
+  },
+  {
+   "id": "beratungsgespraech-agentur-redemittel",
+   "titel": "Beratung bei der Agentur für Arbeit – Redemittel",
+   "beschreibung": "Redemittel für Vorschläge, Argumente, Einwände und Kompromisse im Beratungsgespräch.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen",
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Beruf & Bewerbung"
+   },
+   "anzahl": 13,
+   "typen": {
+    "mc": 3,
+    "luecke": 10
+   },
+   "datei": "material/beratungsgespraech-agentur-redemittel.json"
+  },
+  {
+   "id": "bewerbungsgespraeche-karten",
+   "titel": "Bewerbungsgespräche",
+   "beschreibung": "12 Stellen mit Unternehmens- und Bewerberkarte: Vorstellungsgespräch in 7 Phasen, inkl. Verhandlung über Gehalt, Arbeitszeit und Starttermin.",
+   "art": "karten",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2"
+   },
+   "anzahl": 12,
+   "typen": {
+    "karten": 12
+   },
+   "datei": "material/bewerbungsgespraeche-karten.json"
+  },
+  {
+   "id": "bewerbungsgespraeche-redemittel",
+   "titel": "Bewerbungsgespräche – Redemittel",
+   "beschreibung": "Höfliche Berufssprache und Redemittel aus den 7 Phasen des Vorstellungsgesprächs.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen",
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2"
+   },
+   "anzahl": 14,
+   "typen": {
+    "mc": 7,
+    "luecke": 7
+   },
+   "datei": "material/bewerbungsgespraeche-redemittel.json"
+  },
+  {
+   "id": "bewerbungsspiel-karten",
+   "titel": "Bewerbungsspiel · Vorstellungsgespräche",
+   "beschreibung": "Rollenkarten Firma ↔ Bewerber:in aus dem Bewerbungsspiel: Profile, Angebot und je eine Frage im Gespräch.",
+   "art": "karten",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen"
+    ],
+    "niveau": [
+     "B1"
+    ],
+    "thema": "Beruf & Bewerbung"
+   },
+   "anzahl": 15,
+   "typen": {
+    "karten": 15
+   },
+   "datei": "material/bewerbungsspiel-karten.json"
+  },
+  {
+   "id": "bewerbungsspiel-quiz",
+   "titel": "Bewerbungsspiel · Wer passt zu wem?",
+   "beschreibung": "Bewerberprofile und Stellenangebote aus dem Bewerbungsspiel zuordnen.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Lesen",
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B1"
+    ],
+    "thema": "Beruf & Bewerbung"
+   },
+   "anzahl": 21,
+   "typen": {
+    "mc": 19,
+    "paare": 2
+   },
+   "datei": "material/bewerbungsspiel-quiz.json"
+  },
+  {
+   "id": "buerobedarf-verkaufsgespraeche",
+   "titel": "Bürobedarf bestellen – Verkaufsgespräche",
+   "beschreibung": "Kund:innen mit Budget und Anforderungen verhandeln mit einem Discount- (SparBüro) oder Premium-Händler (KontorPlus).",
+   "art": "karten",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Arbeitswelt"
+   },
+   "anzahl": 10,
+   "typen": {
+    "karten": 10
+   },
+   "datei": "material/buerobedarf-verkaufsgespraeche.json"
+  },
+  {
+   "id": "buerobedarf-wortschatz",
+   "titel": "Bürobedarf bestellen – Wortschatz und Redemittel",
+   "beschreibung": "Büromöbel und -material, Produkteigenschaften und Redemittel für das Verkaufsgespräch.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Arbeitswelt"
+   },
+   "anzahl": 14,
+   "typen": {
+    "mc": 6,
+    "luecke": 5,
+    "paare": 1,
+    "reihenfolge": 2
+   },
+   "datei": "material/buerobedarf-wortschatz.json"
+  },
+  {
+   "id": "forum-struktur-quiz",
+   "titel": "Forumsbeitrag-Werkstatt · Struktur & Argumente",
+   "beschreibung": "Aufbau, Redemittel und Pro-/Contra-Argumente eines Forumsbeitrags (Themen: Homeoffice frei wählen, Vier-Tage-Woche).",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Schreiben",
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "grammatik": [
+     "Konnektoren"
+    ]
+   },
+   "anzahl": 24,
+   "typen": {
+    "reihenfolge": 2,
+    "mc": 17,
+    "paare": 1,
+    "luecke": 4
+   },
+   "datei": "material/forum-struktur-quiz.json"
+  },
+  {
+   "id": "forum-themen-karten",
+   "titel": "Forumsbeitrag-Werkstatt · Pro & Contra",
+   "beschreibung": "Sprechkarten zu den Forumsthemen „Homeoffice-Tage frei wählen“ und „Vier-Tage-Woche“ – als Vorbereitung auf den Forumsbeitrag.",
+   "art": "karten",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen",
+     "Schreiben"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Arbeitswelt"
+   },
+   "anzahl": 4,
+   "typen": {
+    "karten": 4
+   },
+   "datei": "material/forum-themen-karten.json"
+  },
+  {
+   "id": "geschaeftstag-gespraeche",
+   "titel": "Der Geschäftstag – Termine, Anfragen, Kooperationen",
+   "beschreibung": "Rollenkarten aus der Wirtschaftssimulation mit FrischKost GmbH (Catering), TechnoWerk AG (Konferenztechnik) und MöbelMeister KG (Büromöbel).",
+   "art": "karten",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Kommunikation"
+   },
+   "anzahl": 8,
+   "typen": {
+    "karten": 8
+   },
+   "datei": "material/geschaeftstag-gespraeche.json"
+  },
+  {
+   "id": "geschaeftstag-redemittel",
+   "titel": "Der Geschäftstag – Meetings, Termine, E-Mails",
+   "beschreibung": "Redemittel zum Leiten von Meetings, Abstimmen von Terminen, Zu- und Absagen und für formelle E-Mails.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Kommunikation"
+   },
+   "anzahl": 16,
+   "typen": {
+    "mc": 7,
+    "luecke": 5,
+    "reihenfolge": 2,
+    "paare": 2
+   },
+   "datei": "material/geschaeftstag-redemittel.json"
+  },
+  {
+   "id": "lieferung-reklamation",
+   "titel": "Lieferung mit Problemen – Bestellung und Reklamation",
+   "beschreibung": "Redemittel und Wortschatz für Bestellungen am Telefon und Reklamationen (mündlich und schriftlich).",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Kommunikation"
+   },
+   "anzahl": 17,
+   "typen": {
+    "mc": 8,
+    "luecke": 5,
+    "paare": 2,
+    "reihenfolge": 2
+   },
+   "datei": "material/lieferung-reklamation.json"
+  },
+  {
+   "id": "lieferung-telefonate",
+   "titel": "Lieferung mit Problemen – Bestellen und reklamieren",
+   "beschreibung": "Gastro-B2B-Rollenspiel: Gastronomie bestellt telefonisch beim Großhandel und reklamiert Lieferprobleme.",
+   "art": "karten",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Kommunikation"
+   },
+   "anzahl": 10,
+   "typen": {
+    "karten": 10
+   },
+   "datei": "material/lieferung-telefonate.json"
+  },
+  {
+   "id": "mein-beruf-mitmach",
+   "titel": "Mein Beruf · Mitmach-Runden",
+   "beschreibung": "Mündliche Mitmach-Runden: jedes Teammitglied ist einzeln dran (Aspekte Beruf B2, L1 + 2).",
+   "art": "karten",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2"
+   },
+   "anzahl": 4,
+   "typen": {
+    "karten": 4
+   },
+   "datei": "material/mein-beruf-mitmach.json"
+  },
+  {
+   "id": "mein-beruf-quiz",
+   "titel": "Mein Beruf",
+   "beschreibung": "Team-Quiz zu Aspekte Beruf B2, Lektion 1 + 2: Bewerbung, Soft Skills, Konnektoren, um … zu / damit, Negation, Wortstellung.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz",
+     "Grammatik"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2",
+    "grammatik": [
+     "Konnektoren",
+     "Finalsätze",
+     "Negation",
+     "Wortstellung",
+     "Relativsätze"
+    ]
+   },
+   "anzahl": 53,
+   "typen": {
+    "mc": 32,
+    "paare": 4,
+    "reihenfolge": 8,
+    "luecke": 9
+   },
+   "datei": "material/mein-beruf-quiz.json"
+  },
+  {
+   "id": "messe-redemittel",
+   "titel": "Die große Messe – Redemittel am Stand",
+   "beschreibung": "Produkte präsentieren, nach Preis und Rabatt fragen, sich höflich verabschieden.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Kommunikation"
+   },
+   "anzahl": 16,
+   "typen": {
+    "mc": 7,
+    "luecke": 6,
+    "paare": 1,
+    "reihenfolge": 2
+   },
+   "datei": "material/messe-redemittel.json"
+  },
+  {
+   "id": "messe-standgespraeche",
+   "titel": "Die große Messe – Standgespräche",
+   "beschreibung": "Rollenkarten für Gespräche zwischen Aussteller:in und Besucher:in auf einer Fachmesse (erfundene Produkte).",
+   "art": "karten",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Kommunikation"
+   },
+   "anzahl": 8,
+   "typen": {
+    "karten": 8
+   },
+   "datei": "material/messe-standgespraeche.json"
+  },
+  {
+   "id": "mitarbeitergespraeche-karten",
+   "titel": "Mitarbeitergespräche",
+   "beschreibung": "12 Rollenpaare Chef:in / Mitarbeiter:in mit Wunsch, Ziel und geheimer Information – verhandeln und einen Kompromiss finden.",
+   "art": "karten",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Kommunikation"
+   },
+   "anzahl": 12,
+   "typen": {
+    "karten": 12
+   },
+   "datei": "material/mitarbeitergespraeche-karten.json"
+  },
+  {
+   "id": "mitarbeitergespraeche-redemittel",
+   "titel": "Mitarbeitergespräche – Redemittel",
+   "beschreibung": "Redemittel für Chef:in und Mitarbeiter:in: Gespräch eröffnen, Wünsche äußern, begründen, verhandeln.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen",
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Kommunikation"
+   },
+   "anzahl": 13,
+   "typen": {
+    "luecke": 10,
+    "mc": 3
+   },
+   "datei": "material/mitarbeitergespraeche-redemittel.json"
+  },
+  {
+   "id": "neu-in-der-firma-abteilungen",
+   "titel": "Neu in der Firma – Abteilungen und Zuständigkeiten",
+   "beschreibung": "Welche Abteilung ist zuständig? Aufgabenbereiche und Redemittel zum Vorstellen im Betrieb.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Kommunikation",
+    "lehrwerk": "Aspekte Beruf B2"
+   },
+   "anzahl": 21,
+   "typen": {
+    "mc": 13,
+    "paare": 2,
+    "luecke": 4,
+    "reihenfolge": 2
+   },
+   "datei": "material/neu-in-der-firma-abteilungen.json"
+  },
+  {
+   "id": "neu-in-der-firma-gespraeche",
+   "titel": "Neu in der Firma – Abteilungen kennenlernen",
+   "beschreibung": "Rollenkarten: Neue Mitarbeitende fragen Kolleg:innen nach Aufgaben und Zuständigkeiten (nach Aspekte Beruf B2, S. 40).",
+   "art": "karten",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Kommunikation",
+    "lehrwerk": "Aspekte Beruf B2"
+   },
+   "anzahl": 9,
+   "typen": {
+    "karten": 9
+   },
+   "datei": "material/neu-in-der-firma-gespraeche.json"
+  },
+  {
+   "id": "neu-in-der-firma-tabu",
+   "titel": "Neu in der Firma – Abteilungen erklären (Tabu)",
+   "beschreibung": "Abteilungen eines Unternehmens umschreiben, ohne die Tabu-Wörter zu benutzen.",
+   "art": "begriffe",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2"
+   },
+   "anzahl": 13,
+   "typen": {
+    "begriffe": 13
+   },
+   "datei": "material/neu-in-der-firma-tabu.json"
+  },
+  {
+   "id": "pruefung-sprechen-b2-teil1a-redemittel",
+   "titel": "Prüfungstraining Sprechen B2 Teil 1A – Redemittel",
+   "beschreibung": "Redemittel zum Anfangen für die 8 Themen aus Sprechen Teil 1A.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen",
+     "Prüfung"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Beruf & Bewerbung"
+   },
+   "anzahl": 13,
+   "typen": {
+    "luecke": 10,
+    "mc": 3
+   },
+   "datei": "material/pruefung-sprechen-b2-teil1a-redemittel.json"
+  },
+  {
+   "id": "pruefung-sprechen-b2-teil1a",
+   "titel": "Prüfungstraining Sprechen B2 – Teil 1A",
+   "beschreibung": "8 Prüfungsthemen (telc B2 Beruf, Teil 1A: über ein Thema sprechen) mit Redemitteln zum Anfangen. Ca. 30 Sek. überlegen, dann 90 Sek. sprechen.",
+   "art": "karten",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen",
+     "Prüfung"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Beruf & Bewerbung"
+   },
+   "anzahl": 8,
+   "typen": {
+    "karten": 8
+   },
+   "datei": "material/pruefung-sprechen-b2-teil1a.json"
+  },
+  {
+   "id": "team-puzzle-falsche-lieferung-karten",
+   "titel": "Team-Puzzle · Die falsche Lieferung (Rollen)",
+   "beschreibung": "Rollen- und Impulskarten zum Fall „Die falsche Lieferung“: klären, nachfragen, widersprechen, entscheiden.",
+   "art": "karten",
+   "etiketten": {
+    "fertigkeit": [
+     "Sprechen"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Kommunikation"
+   },
+   "anzahl": 5,
+   "typen": {
+    "karten": 5
+   },
+   "datei": "material/team-puzzle-falsche-lieferung-karten.json"
+  },
+  {
+   "id": "team-puzzle-falsche-lieferung-quiz",
+   "titel": "Team-Puzzle · Die falsche Lieferung",
+   "beschreibung": "Fragen zum Fall „Die falsche Lieferung“ (Nordlicht Büromöbel) und zu Redemitteln für die Teamarbeit.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Lesen",
+     "Sprechen"
+    ],
+    "niveau": [
+     "B1",
+     "B2"
+    ],
+    "thema": "Arbeitswelt"
+   },
+   "anzahl": 25,
+   "typen": {
+    "wf": 8,
+    "mc": 16,
+    "paare": 1
+   },
+   "datei": "material/team-puzzle-falsche-lieferung-quiz.json"
+  },
+  {
+   "id": "wortschatz-arena-l1-quiz",
+   "titel": "Wortschatz-Arena · L1 · Mein Beruf",
+   "beschreibung": "Definition → Wort: Wortschatz aus Lektion 1 (Aspekte Beruf B2), aus der Wortschatz-Arena.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "1"
+   },
+   "anzahl": 17,
+   "typen": {
+    "mc": 17
+   },
+   "datei": "material/wortschatz-arena-l1-quiz.json"
+  },
+  {
+   "id": "wortschatz-arena-l1-tabu",
+   "titel": "Wortschatz-Arena · L1 · Mein Beruf (Tabu)",
+   "beschreibung": "Tabu-Begriffe zum Wortschatz aus Lektion 1 (Aspekte Beruf B2).",
+   "art": "begriffe",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz",
+     "Sprechen"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "1"
+   },
+   "anzahl": 17,
+   "typen": {
+    "begriffe": 17
+   },
+   "datei": "material/wortschatz-arena-l1-tabu.json"
+  },
+  {
+   "id": "wortschatz-arena-l2-quiz",
+   "titel": "Wortschatz-Arena · L2 · Mein Weg in den Beruf",
+   "beschreibung": "Definition → Wort: Wortschatz aus Lektion 2 (Aspekte Beruf B2), aus der Wortschatz-Arena.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "2"
+   },
+   "anzahl": 15,
+   "typen": {
+    "mc": 15
+   },
+   "datei": "material/wortschatz-arena-l2-quiz.json"
+  },
+  {
+   "id": "wortschatz-arena-l2-tabu",
+   "titel": "Wortschatz-Arena · L2 · Mein Weg in den Beruf (Tabu)",
+   "beschreibung": "Tabu-Begriffe zum Wortschatz aus Lektion 2 (Aspekte Beruf B2).",
+   "art": "begriffe",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz",
+     "Sprechen"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "2"
+   },
+   "anzahl": 15,
+   "typen": {
+    "begriffe": 15
+   },
+   "datei": "material/wortschatz-arena-l2-tabu.json"
+  },
+  {
+   "id": "wortschatz-arena-l3-quiz",
+   "titel": "Wortschatz-Arena · L3 · Neu in der Firma",
+   "beschreibung": "Definition → Wort: Wortschatz aus Lektion 3 (Aspekte Beruf B2), aus der Wortschatz-Arena.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "3"
+   },
+   "anzahl": 17,
+   "typen": {
+    "mc": 17
+   },
+   "datei": "material/wortschatz-arena-l3-quiz.json"
+  },
+  {
+   "id": "wortschatz-arena-l3-tabu",
+   "titel": "Wortschatz-Arena · L3 · Neu in der Firma (Tabu)",
+   "beschreibung": "Tabu-Begriffe zum Wortschatz aus Lektion 3 (Aspekte Beruf B2).",
+   "art": "begriffe",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz",
+     "Sprechen"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "3"
+   },
+   "anzahl": 17,
+   "typen": {
+    "begriffe": 17
+   },
+   "datei": "material/wortschatz-arena-l3-tabu.json"
+  },
+  {
+   "id": "wortschatz-arena-l4-quiz",
+   "titel": "Wortschatz-Arena · L4 · Zusammenarbeiten",
+   "beschreibung": "Definition → Wort: Wortschatz aus Lektion 4 (Aspekte Beruf B2), aus der Wortschatz-Arena.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "4"
+   },
+   "anzahl": 15,
+   "typen": {
+    "mc": 15
+   },
+   "datei": "material/wortschatz-arena-l4-quiz.json"
+  },
+  {
+   "id": "wortschatz-arena-l4-tabu",
+   "titel": "Wortschatz-Arena · L4 · Zusammenarbeiten (Tabu)",
+   "beschreibung": "Tabu-Begriffe zum Wortschatz aus Lektion 4 (Aspekte Beruf B2).",
+   "art": "begriffe",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz",
+     "Sprechen"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "4"
+   },
+   "anzahl": 15,
+   "typen": {
+    "begriffe": 15
+   },
+   "datei": "material/wortschatz-arena-l4-tabu.json"
+  },
+  {
+   "id": "wortschatz-arena-l5-quiz",
+   "titel": "Wortschatz-Arena · L5 · Kennen Sie schon ...?",
+   "beschreibung": "Definition → Wort: Wortschatz aus Lektion 5 (Aspekte Beruf B2), aus der Wortschatz-Arena.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "5"
+   },
+   "anzahl": 10,
+   "typen": {
+    "mc": 10
+   },
+   "datei": "material/wortschatz-arena-l5-quiz.json"
+  },
+  {
+   "id": "wortschatz-arena-l5-tabu",
+   "titel": "Wortschatz-Arena · L5 · Kennen Sie schon ...? (Tabu)",
+   "beschreibung": "Tabu-Begriffe zum Wortschatz aus Lektion 5 (Aspekte Beruf B2).",
+   "art": "begriffe",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz",
+     "Sprechen"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "5"
+   },
+   "anzahl": 10,
+   "typen": {
+    "begriffe": 10
+   },
+   "datei": "material/wortschatz-arena-l5-tabu.json"
+  },
+  {
+   "id": "wortschatz-arena-l6-quiz",
+   "titel": "Wortschatz-Arena · L6 · Kommunikation ist alles",
+   "beschreibung": "Definition → Wort: Wortschatz aus Lektion 6 (Aspekte Beruf B2), aus der Wortschatz-Arena.",
+   "art": "quiz",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Kommunikation",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "6"
+   },
+   "anzahl": 12,
+   "typen": {
+    "mc": 12
+   },
+   "datei": "material/wortschatz-arena-l6-quiz.json"
+  },
+  {
+   "id": "wortschatz-arena-l6-tabu",
+   "titel": "Wortschatz-Arena · L6 · Kommunikation ist alles (Tabu)",
+   "beschreibung": "Tabu-Begriffe zum Wortschatz aus Lektion 6 (Aspekte Beruf B2).",
+   "art": "begriffe",
+   "etiketten": {
+    "fertigkeit": [
+     "Wortschatz",
+     "Sprechen"
+    ],
+    "niveau": [
+     "B2"
+    ],
+    "thema": "Kommunikation",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "6"
+   },
+   "anzahl": 12,
+   "typen": {
+    "begriffe": 12
+   },
+   "datei": "material/wortschatz-arena-l6-tabu.json"
+  }
+ ]
+}

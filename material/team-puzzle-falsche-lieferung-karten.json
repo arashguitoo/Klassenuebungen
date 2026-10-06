@@ -1,0 +1,105 @@
+{
+  "id": "team-puzzle-falsche-lieferung-karten",
+  "titel": "Team-Puzzle · Die falsche Lieferung (Rollen)",
+  "beschreibung": "Rollen- und Impulskarten zum Fall „Die falsche Lieferung“: klären, nachfragen, widersprechen, entscheiden.",
+  "art": "karten",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Kommunikation"
+  },
+  "inhalt": [
+    {
+      "titel": "Die falsche Lieferung – Fall lösen",
+      "impuls": "Die Firma Nordlicht Büromöbel hat am Montag eine große Lieferung an einen Kunden geschickt – aber es kamen die falschen Möbel an. Der Kunde ist wütend. Die Geschäftsleitung will wissen: Wer hat den Fehler verursacht, und wie konnte das passieren? Sammelt alle Infos und beantwortet gemeinsam: Wer hat den Fehler verursacht? An welchem Tag ist der Fehler passiert? Was war der eigentliche Grund? Was muss die Firma ändern, damit es nicht wieder passiert?",
+      "redemittel": [
+        "Auf meiner Karte steht, dass …",
+        "Habe ich richtig verstanden, dass …?",
+        "Fassen wir mal zusammen: …",
+        "Sind wir uns einig, dass …?"
+      ],
+      "dauer": 300
+    },
+    {
+      "titel": "Gespräch mit der Geschäftsleitung",
+      "situation": "Die Firma Nordlicht Büromöbel hat am Montag eine große Lieferung an einen Kunden geschickt – aber es kamen die falschen Möbel an. Der Kunde ist wütend. Die Geschäftsleitung will wissen: Wer hat den Fehler verursacht, und wie konnte das passieren?",
+      "rolleA": {
+        "name": "Geschäftsleitung",
+        "aufgabe": "Fragen Sie Frau Bergmann nach dem Telefonat am Donnerstag. Finden Sie heraus, warum die Änderung nicht im System war."
+      },
+      "rolleB": {
+        "name": "Frau Bergmann (Vertrieb)",
+        "aufgabe": "Die Kundin hat am Donnerstag angerufen: graue statt schwarze Stühle. Sie haben die Änderung auf einen gelben Zettel geschrieben und am Donnerstagnachmittag Ihren Urlaub begonnen. Erklären Sie die Situation: „Ich hatte es mir doch aufgeschrieben.“"
+      },
+      "redemittel": [
+        "Habe ich richtig verstanden, dass …?",
+        "Was genau meinen Sie mit …?",
+        "Das sehe ich anders, weil …",
+        "Können wir das so festhalten?"
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Wer war es? Lager oder Vertrieb?",
+      "situation": "Der Kunde hat 30 schwarze statt graue Bürostühle bekommen. Frau Bergmann (Vertrieb) und Herr Sander (Lager) klären, wie das passieren konnte.",
+      "rolleA": {
+        "name": "Herr Sander (Lager)",
+        "aufgabe": "Sie haben am Freitag genau nach der Liste im System gepackt. Am Donnerstag waren Sie beim Arzt, niemand hat Ihnen von dem Telefonat erzählt. Verteidigen Sie sich sachlich."
+      },
+      "rolleB": {
+        "name": "Frau Bergmann (Vertrieb)",
+        "aufgabe": "Sie haben die Änderung nur auf einen gelben Zettel geschrieben. Geben Sie Ihren Teil des Fehlers zu und schlagen Sie gemeinsam eine Lösung vor."
+      },
+      "redemittel": [
+        "Habe ich richtig verstanden, dass …?",
+        "Das sehe ich anders, weil …",
+        "Vielleicht, aber wie erklärst du dann …?",
+        "Ich schlage vor, …"
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Die Kundin beschwert sich",
+      "situation": "Die Kundin hat am Montag 30 schwarze Bürostühle bekommen. Am Donnerstag hatte sie am Telefon deutlich gesagt, dass sie graue Stühle möchte. Sie ruft bei Nordlicht Büromöbel an.",
+      "rolleA": {
+        "name": "Kundin",
+        "aufgabe": "Sie sind verärgert. Beschreiben Sie das Problem und verlangen Sie eine schnelle Lösung."
+      },
+      "rolleB": {
+        "name": "Mitarbeiter:in im Vertrieb",
+        "aufgabe": "Frau Bergmann ist im Urlaub. Entschuldigen Sie sich, fragen Sie genau nach und bieten Sie eine Lösung an (z. B. Umtausch, schnelle Neulieferung)."
+      },
+      "redemittel": [
+        "Das tut mir sehr leid.",
+        "Habe ich richtig verstanden, dass …?",
+        "Wir kümmern uns sofort darum.",
+        "Ich schlage vor, dass …"
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Was muss sich ändern?",
+      "situation": "Nach der falschen Lieferung will Nordlicht Büromöbel die Abläufe verbessern. Bisher gibt es keine feste Regel für die Übergabe vor dem Urlaub, und der Fahrer prüft nur die Anzahl der Kartons.",
+      "rolleA": {
+        "name": "Leitung Vertrieb",
+        "aufgabe": "Schlagen Sie vor: Änderungen sofort ins System eintragen, feste Übergabe-Regel vor dem Urlaub."
+      },
+      "rolleB": {
+        "name": "Leitung Lager",
+        "aufgabe": "Schlagen Sie vor, dass Lager oder Fahrer stichprobenartig den Inhalt prüfen. Diskutieren Sie, was realistisch ist, und einigen Sie sich."
+      },
+      "redemittel": [
+        "Ich schlage vor, wir …",
+        "Das sehe ich anders, weil …",
+        "Sind wir uns einig, dass …?",
+        "Können wir das so festhalten?"
+      ],
+      "dauer": 180
+    }
+  ]
+}

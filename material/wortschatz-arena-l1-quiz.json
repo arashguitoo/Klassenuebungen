@@ -1,0 +1,240 @@
+{
+  "id": "wortschatz-arena-l1-quiz",
+  "titel": "Wortschatz-Arena · L1 · Mein Beruf",
+  "beschreibung": "Definition → Wort: Wortschatz aus Lektion 1 (Aspekte Beruf B2), aus der Wortschatz-Arena.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "1"
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „regelmäßig eine längere Strecke zur Arbeit fahren“",
+      "optionen": [
+        "erforderlich",
+        "pendeln",
+        "einen Antrag einreichen",
+        "die Behörde"
+      ],
+      "richtig": 1,
+      "erklaerung": "pendeln = regelmäßig eine längere Strecke zur Arbeit fahren",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „von zu Hause aus arbeiten“",
+      "optionen": [
+        "erforderlich",
+        "im Homeoffice arbeiten",
+        "die Kompetenz",
+        "vermitteln"
+      ],
+      "richtig": 1,
+      "erklaerung": "im Homeoffice arbeiten = von zu Hause aus arbeiten",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „auf der Suche nach einer Stelle“",
+      "optionen": [
+        "das Netzwerk",
+        "arbeitssuchend",
+        "im Homeoffice arbeiten",
+        "die Unterlagen"
+      ],
+      "richtig": 1,
+      "erklaerung": "arbeitssuchend = auf der Suche nach einer Stelle",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „wichtige Dokumente und Papiere“",
+      "optionen": [
+        "die Unterlagen",
+        "die Entfernung",
+        "die Kompetenz",
+        "erforderlich"
+      ],
+      "richtig": 0,
+      "erklaerung": "die Unterlagen = wichtige Dokumente und Papiere",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „das Land, aus dem man kommt“",
+      "optionen": [
+        "die Teamfähigkeit",
+        "befristet",
+        "das Herkunftsland",
+        "pendeln"
+      ],
+      "richtig": 2,
+      "erklaerung": "das Herkunftsland = das Land, aus dem man kommt",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „ein Dokument über Noten oder Leistungen“",
+      "optionen": [
+        "im Homeoffice arbeiten",
+        "das Zeugnis",
+        "arbeitssuchend",
+        "die Behörde"
+      ],
+      "richtig": 1,
+      "erklaerung": "das Zeugnis = ein Dokument über Noten oder Leistungen",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „der Abstand zwischen zwei Orten“",
+      "optionen": [
+        "befristet",
+        "die Entfernung",
+        "im Homeoffice arbeiten",
+        "die Eigenverantwortung"
+      ],
+      "richtig": 1,
+      "erklaerung": "die Entfernung = der Abstand zwischen zwei Orten",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „Kontakte, die beruflich nützlich sind“",
+      "optionen": [
+        "das Netzwerk",
+        "vermitteln",
+        "erforderlich",
+        "befristet"
+      ],
+      "richtig": 0,
+      "erklaerung": "das Netzwerk = Kontakte, die beruflich nützlich sind",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine staatliche Stelle, z. B. das Amt“",
+      "optionen": [
+        "pendeln",
+        "die Behörde",
+        "die Anerkennung",
+        "die Teamfähigkeit"
+      ],
+      "richtig": 1,
+      "erklaerung": "die Behörde = eine staatliche Stelle, z. B. das Amt",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „nur für eine bestimmte Zeit gültig“",
+      "optionen": [
+        "die Eigenverantwortung",
+        "die Kompetenz",
+        "pendeln",
+        "befristet"
+      ],
+      "richtig": 3,
+      "erklaerung": "befristet = nur für eine bestimmte Zeit gültig",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „die Fähigkeit, gut mit anderen zusammenzuarbeiten“",
+      "optionen": [
+        "die Teamfähigkeit",
+        "arbeitssuchend",
+        "die Entfernung",
+        "die Behörde"
+      ],
+      "richtig": 0,
+      "erklaerung": "die Teamfähigkeit = die Fähigkeit, gut mit anderen zusammenzuarbeiten",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine Fähigkeit oder ein Können in einem Bereich“",
+      "optionen": [
+        "die Entfernung",
+        "das Zeugnis",
+        "das Herkunftsland",
+        "die Kompetenz"
+      ],
+      "richtig": 3,
+      "erklaerung": "die Kompetenz = eine Fähigkeit oder ein Können in einem Bereich",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „ein Formular offiziell abgeben“",
+      "optionen": [
+        "die Behörde",
+        "einen Antrag einreichen",
+        "arbeitssuchend",
+        "befristet"
+      ],
+      "richtig": 1,
+      "erklaerung": "einen Antrag einreichen = ein Formular offiziell abgeben",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „selbst für die eigene Arbeit verantwortlich sein“",
+      "optionen": [
+        "die Eigenverantwortung",
+        "das Zeugnis",
+        "pendeln",
+        "befristet"
+      ],
+      "richtig": 0,
+      "erklaerung": "die Eigenverantwortung = selbst für die eigene Arbeit verantwortlich sein",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „jemandem etwas beibringen oder weitergeben“",
+      "optionen": [
+        "die Entfernung",
+        "pendeln",
+        "befristet",
+        "vermitteln"
+      ],
+      "richtig": 3,
+      "erklaerung": "vermitteln = jemandem etwas beibringen oder weitergeben",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „die offizielle Bestätigung eines Abschlusses“",
+      "optionen": [
+        "die Teamfähigkeit",
+        "die Anerkennung",
+        "die Eigenverantwortung",
+        "einen Antrag einreichen"
+      ],
+      "richtig": 1,
+      "erklaerung": "die Anerkennung = die offizielle Bestätigung eines Abschlusses",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „notwendig, unbedingt nötig“",
+      "optionen": [
+        "das Zeugnis",
+        "erforderlich",
+        "die Eigenverantwortung",
+        "die Anerkennung"
+      ],
+      "richtig": 1,
+      "erklaerung": "erforderlich = notwendig, unbedingt nötig",
+      "stufe": 3
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "id": "wortschatz-arena-l5-quiz",
+  "titel": "Wortschatz-Arena · L5 · Kennen Sie schon ...?",
+  "beschreibung": "Definition → Wort: Wortschatz aus Lektion 5 (Aspekte Beruf B2), aus der Wortschatz-Arena.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "5"
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „der Platz einer Firma auf einer Messe“",
+      "optionen": [
+        "der Messestand",
+        "sich spezialisieren auf",
+        "die Kundenanfrage",
+        "herstellen"
+      ],
+      "richtig": 0,
+      "erklaerung": "der Messestand = der Platz einer Firma auf einer Messe",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „das Vorstellen eines Produkts“",
+      "optionen": [
+        "die Produktpräsentation",
+        "die Leidenschaft",
+        "sich spezialisieren auf",
+        "beraten"
+      ],
+      "richtig": 0,
+      "erklaerung": "die Produktpräsentation = das Vorstellen eines Produkts",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine Frage eines Kunden an die Firma“",
+      "optionen": [
+        "die Kundenanfrage",
+        "die Produktpräsentation",
+        "die Leidenschaft",
+        "herstellen"
+      ],
+      "richtig": 0,
+      "erklaerung": "die Kundenanfrage = eine Frage eines Kunden an die Firma",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine Beschreibung, was eine Firma macht“",
+      "optionen": [
+        "die Durchsage",
+        "der Messestand",
+        "die Kundschaft",
+        "das Firmenporträt"
+      ],
+      "richtig": 3,
+      "erklaerung": "das Firmenporträt = eine Beschreibung, was eine Firma macht",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine öffentliche Ansage, z. B. per Lautsprecher“",
+      "optionen": [
+        "die Kundenanfrage",
+        "beraten",
+        "herstellen",
+        "die Durchsage"
+      ],
+      "richtig": 3,
+      "erklaerung": "die Durchsage = eine öffentliche Ansage, z. B. per Lautsprecher",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „jemandem mit Rat und Information helfen“",
+      "optionen": [
+        "herstellen",
+        "sich spezialisieren auf",
+        "beraten",
+        "die Kundschaft"
+      ],
+      "richtig": 2,
+      "erklaerung": "beraten = jemandem mit Rat und Information helfen",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „etwas produzieren, anfertigen“",
+      "optionen": [
+        "die Durchsage",
+        "die Kundschaft",
+        "der Messestand",
+        "herstellen"
+      ],
+      "richtig": 3,
+      "erklaerung": "herstellen = etwas produzieren, anfertigen",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine starke Begeisterung für etwas“",
+      "optionen": [
+        "die Kundschaft",
+        "die Kundenanfrage",
+        "die Durchsage",
+        "die Leidenschaft"
+      ],
+      "richtig": 3,
+      "erklaerung": "die Leidenschaft = eine starke Begeisterung für etwas",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „alle Kunden einer Firma zusammen“",
+      "optionen": [
+        "die Kundschaft",
+        "beraten",
+        "der Messestand",
+        "die Durchsage"
+      ],
+      "richtig": 0,
+      "erklaerung": "die Kundschaft = alle Kunden einer Firma zusammen",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „sich auf einen bestimmten Bereich konzentrieren“",
+      "optionen": [
+        "sich spezialisieren auf",
+        "das Firmenporträt",
+        "beraten",
+        "die Kundschaft"
+      ],
+      "richtig": 0,
+      "erklaerung": "sich spezialisieren auf = sich auf einen bestimmten Bereich konzentrieren",
+      "stufe": 3
+    }
+  ]
+}

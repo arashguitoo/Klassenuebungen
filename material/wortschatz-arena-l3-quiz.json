@@ -1,0 +1,240 @@
+{
+  "id": "wortschatz-arena-l3-quiz",
+  "titel": "Wortschatz-Arena · L3 · Neu in der Firma",
+  "beschreibung": "Definition → Wort: Wortschatz aus Lektion 3 (Aspekte Beruf B2), aus der Wortschatz-Arena.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "3"
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „ein Bereich innerhalb einer Firma“",
+      "optionen": [
+        "zeitnah",
+        "vermeiden",
+        "einheitlich",
+        "die Abteilung"
+      ],
+      "richtig": 3,
+      "erklaerung": "die Abteilung = ein Bereich innerhalb einer Firma",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „der Ort, wo Besucher zuerst hinkommen“",
+      "optionen": [
+        "der Empfang",
+        "gestattet",
+        "die Krankmeldung",
+        "die Teamsitzung"
+      ],
+      "richtig": 0,
+      "erklaerung": "der Empfang = der Ort, wo Besucher zuerst hinkommen",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „die Mitteilung, dass man krank ist“",
+      "optionen": [
+        "zeitnah",
+        "die Krankmeldung",
+        "der Dienstplan",
+        "die Formalität"
+      ],
+      "richtig": 1,
+      "erklaerung": "die Krankmeldung = die Mitteilung, dass man krank ist",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „ein lockeres Gespräch über einfache Themen“",
+      "optionen": [
+        "die Tagesordnung",
+        "der Dienstplan",
+        "einheitlich",
+        "der Small Talk"
+      ],
+      "richtig": 3,
+      "erklaerung": "der Small Talk = ein lockeres Gespräch über einfache Themen",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „ein Treffen des Teams zur Besprechung“",
+      "optionen": [
+        "gestattet",
+        "die Teamsitzung",
+        "der Blickkontakt",
+        "die Rücksprache"
+      ],
+      "richtig": 1,
+      "erklaerung": "die Teamsitzung = ein Treffen des Teams zur Besprechung",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „die Abteilung für Finanzen und Rechnungen“",
+      "optionen": [
+        "die Teamsitzung",
+        "der Vertrieb",
+        "vermeiden",
+        "die Buchhaltung"
+      ],
+      "richtig": 3,
+      "erklaerung": "die Buchhaltung = die Abteilung für Finanzen und Rechnungen",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „die Abteilung, die Produkte verkauft“",
+      "optionen": [
+        "der Small Talk",
+        "der Empfang",
+        "der Blickkontakt",
+        "der Vertrieb"
+      ],
+      "richtig": 3,
+      "erklaerung": "der Vertrieb = die Abteilung, die Produkte verkauft",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine Karte, z. B. zur Arbeitszeiterfassung“",
+      "optionen": [
+        "gestattet",
+        "die Rücksprache",
+        "die Chipkarte",
+        "zeitnah"
+      ],
+      "richtig": 2,
+      "erklaerung": "die Chipkarte = eine Karte, z. B. zur Arbeitszeiterfassung",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „sich beim Sprechen in die Augen sehen“",
+      "optionen": [
+        "vermeiden",
+        "die Abteilung",
+        "der Blickkontakt",
+        "der Dienstplan"
+      ],
+      "richtig": 2,
+      "erklaerung": "der Blickkontakt = sich beim Sprechen in die Augen sehen",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „etwas nicht tun, aus dem Weg gehen“",
+      "optionen": [
+        "die Tagesordnung",
+        "die Krankmeldung",
+        "die Rücksprache",
+        "vermeiden"
+      ],
+      "richtig": 3,
+      "erklaerung": "vermeiden = etwas nicht tun, aus dem Weg gehen",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „die Liste der Themen einer Besprechung“",
+      "optionen": [
+        "zeitnah",
+        "die Chipkarte",
+        "die Rücksprache",
+        "die Tagesordnung"
+      ],
+      "richtig": 3,
+      "erklaerung": "die Tagesordnung = die Liste der Themen einer Besprechung",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „ein Plan, wer wann arbeitet“",
+      "optionen": [
+        "der Dienstplan",
+        "die Abteilung",
+        "die Tagesordnung",
+        "der Blickkontakt"
+      ],
+      "richtig": 0,
+      "erklaerung": "der Dienstplan = ein Plan, wer wann arbeitet",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine offizielle, organisatorische Sache“",
+      "optionen": [
+        "die Tagesordnung",
+        "die Abteilung",
+        "die Formalität",
+        "die Krankmeldung"
+      ],
+      "richtig": 2,
+      "erklaerung": "die Formalität = eine offizielle, organisatorische Sache",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „erlaubt“",
+      "optionen": [
+        "der Vertrieb",
+        "gestattet",
+        "die Tagesordnung",
+        "die Krankmeldung"
+      ],
+      "richtig": 1,
+      "erklaerung": "gestattet = erlaubt",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „das Nachfragen bei einer anderen Person“",
+      "optionen": [
+        "der Vertrieb",
+        "die Krankmeldung",
+        "einheitlich",
+        "die Rücksprache"
+      ],
+      "richtig": 3,
+      "erklaerung": "die Rücksprache = das Nachfragen bei einer anderen Person",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „bald, in kurzer Zeit“",
+      "optionen": [
+        "zeitnah",
+        "der Dienstplan",
+        "die Chipkarte",
+        "die Buchhaltung"
+      ],
+      "richtig": 0,
+      "erklaerung": "zeitnah = bald, in kurzer Zeit",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „überall gleich, im selben Format“",
+      "optionen": [
+        "die Chipkarte",
+        "der Blickkontakt",
+        "einheitlich",
+        "die Krankmeldung"
+      ],
+      "richtig": 2,
+      "erklaerung": "einheitlich = überall gleich, im selben Format",
+      "stufe": 3
+    }
+  ]
+}

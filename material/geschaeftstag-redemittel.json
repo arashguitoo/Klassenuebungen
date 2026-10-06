@@ -1,0 +1,224 @@
+{
+  "id": "geschaeftstag-redemittel",
+  "titel": "Der Geschäftstag – Meetings, Termine, E-Mails",
+  "beschreibung": "Redemittel zum Leiten von Meetings, Abstimmen von Terminen, Zu- und Absagen und für formelle E-Mails.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Kommunikation"
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Sie eröffnen ein Team-Meeting. Was sagen Sie?",
+      "optionen": [
+        "Fangen wir an. Heute müssen wir entscheiden, …",
+        "Mit freundlichen Grüßen",
+        "Da habe ich leider schon einen Termin.",
+        "Vielen Dank für Ihre Nachricht."
+      ],
+      "richtig": 0,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Sie möchten am Ende eines Meetings prüfen, ob alle zustimmen.",
+      "optionen": [
+        "Was kostet das?",
+        "Sind wir uns einig?",
+        "Geht es auch etwas später?",
+        "Das klingt interessant."
+      ],
+      "richtig": 1,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Ein Termin passt Ihnen nicht. Welche Antwort ist höflich und passend?",
+      "optionen": [
+        "Gern nehmen wir Ihr Angebot an.",
+        "Der erste Punkt ist …",
+        "Da habe ich leider schon einen Termin. Geht es auch etwas später?",
+        "Ich möchte Ihnen unser Produkt vorstellen."
+      ],
+      "richtig": 2,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Sie möchten ein Angebot höflich ablehnen.",
+      "optionen": [
+        "Gern bestätige ich Ihnen den Termin.",
+        "Der größte Vorteil ist, dass …",
+        "Ich schlage 11:00 Uhr vor.",
+        "Vielen Dank, aber im Moment passt es leider nicht."
+      ],
+      "richtig": 3,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Sie brauchen noch Zeit für die Entscheidung. Was sagen Sie?",
+      "optionen": [
+        "Über Ihr Angebot müssen wir noch nachdenken.",
+        "Sind wir uns einig?",
+        "Der Preis liegt bei 500 Euro.",
+        "Fangen wir an."
+      ],
+      "richtig": 0,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welche Anrede passt in eine formelle E-Mail an Herrn Berger?",
+      "optionen": [
+        "Hallo Berger,",
+        "Sehr geehrter Herr Berger,",
+        "Lieber Herr,",
+        "Sehr geehrte Herr Berger,"
+      ],
+      "richtig": 1,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Was bedeutet „Vorlauf“ in „Wir brauchen drei Tage Vorlauf.“?",
+      "optionen": [
+        "Wir liefern drei Tage zu früh.",
+        "Die Lieferung dauert drei Tage länger.",
+        "Man muss mindestens drei Tage vorher bestellen.",
+        "Wir haben drei Tage geschlossen."
+      ],
+      "richtig": 2,
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Gern ___ ich Ihnen den Termin am Freitag um 10:30 Uhr.",
+      "optionen": [
+        "bestätige",
+        "bestelle",
+        "beantworte",
+        "bekomme"
+      ],
+      "richtig": 0,
+      "stufe": 1
+    },
+    {
+      "typ": "luecke",
+      "frage": "Leider müssen wir den Termin ___.",
+      "optionen": [
+        "verschieben",
+        "verschoben",
+        "verschiebt",
+        "zu verschieben"
+      ],
+      "richtig": 0,
+      "erklaerung": "Modalverb + Infinitiv am Satzende",
+      "stufe": 1
+    },
+    {
+      "typ": "luecke",
+      "frage": "Dann verschieben wir es ___ 11:00 Uhr.",
+      "optionen": [
+        "an",
+        "auf",
+        "um",
+        "zu"
+      ],
+      "richtig": 1,
+      "erklaerung": "etwas verschieben auf + Akkusativ",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Wir melden uns ___ morgen bei Ihnen.",
+      "optionen": [
+        "seit",
+        "bis",
+        "ab",
+        "vor"
+      ],
+      "richtig": 1,
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "___ Ihnen 10:30 Uhr?",
+      "optionen": [
+        "Passt",
+        "Gefällt",
+        "Geht",
+        "Stimmt"
+      ],
+      "richtig": 0,
+      "stufe": 2
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Bringe die Teile einer formellen E-Mail in die richtige Reihenfolge.",
+      "teile": [
+        "Sehr geehrte Frau Weber,",
+        "vielen Dank für Ihre Nachricht.",
+        "Gern bestätige ich Ihnen den Termin am Freitag.",
+        "Mit freundlichen Grüßen"
+      ]
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Bilde den Satz.",
+      "teile": [
+        "Ich möchte Ihnen",
+        "unser neues Konferenzsystem",
+        "„MeetEasy“",
+        "vorstellen."
+      ]
+    },
+    {
+      "typ": "paare",
+      "frage": "Ordne die Firma ihrem Produkt zu.",
+      "paare": [
+        [
+          "FrischKost GmbH",
+          "Bio-Mittagsservice „LunchBox Grün“"
+        ],
+        [
+          "TechnoWerk AG",
+          "Smart-Konferenzsystem „MeetEasy“"
+        ],
+        [
+          "MöbelMeister KG",
+          "höhenverstellbarer Schreibtisch „FlexDesk“"
+        ]
+      ]
+    },
+    {
+      "typ": "paare",
+      "frage": "Welche Abteilung erledigt was?",
+      "paare": [
+        [
+          "Assistenz",
+          "Termine koordinieren und bestätigen"
+        ],
+        [
+          "Vertrieb",
+          "das Produkt präsentieren und Angebote schreiben"
+        ],
+        [
+          "Marketing",
+          "einen Werbeslogan entwickeln"
+        ],
+        [
+          "Geschäftsleitung",
+          "über Zusammenarbeit entscheiden"
+        ]
+      ]
+    }
+  ]
+}

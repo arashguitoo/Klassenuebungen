@@ -1,0 +1,40 @@
+{
+  "id": "mein-beruf-mitmach",
+  "titel": "Mein Beruf · Mitmach-Runden",
+  "beschreibung": "Mündliche Mitmach-Runden: jedes Teammitglied ist einzeln dran (Aspekte Beruf B2, L1 + 2).",
+  "art": "karten",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2"
+  },
+  "inhalt": [
+    {
+      "titel": "Kettenrunde",
+      "impuls": "Jedes Teammitglied nennt ein anderes Wort zum Thema Beruf. Nenne ein deutsches Wort rund um Arbeit/Beruf (jede Person ein NEUES Wort). Tipp: Kein Wort darf doppelt sein."
+    },
+    {
+      "titel": "Blitzrunde",
+      "impuls": "Jede Person bildet einen Satz mit „weil“. Bilde einen Satz mit „weil“ zum Thema Bewerbung (jede Person ein eigener Satz). Tipp: Nebensatz: Verb am Ende."
+    },
+    {
+      "titel": "Reihum",
+      "impuls": "Jede Person nennt einen Soft Skill und begründet kurz. Nenne einen Soft Skill und sage in einem Satz, warum er wichtig ist. Tipp: z. B. Teamfähigkeit, Pünktlichkeit, Geduld."
+    },
+    {
+      "titel": "Staffel",
+      "impuls": "Gemeinsam einen formellen Brief mündlich aufbauen. Jede Person sagt EINEN Teil: Anrede → Grund → Bitte → Gruß (in dieser Reihenfolge).",
+      "redemittel": [
+        "Sehr geehrte …",
+        "Ich schreibe Ihnen, weil …",
+        "Könnten Sie …",
+        "Mit freundlichen Grüßen."
+      ]
+    }
+  ]
+}

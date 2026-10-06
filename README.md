@@ -100,3 +100,12 @@ Zuordnung und Mitmach-Runden (jedes Mitglied einzeln).
 | Bewerbungsspiel | Beruf & Bewerbung | B1 | Gruppe (online) |
 | Am Apparat (Agentur für Arbeit) | Beruf & Bewerbung | B1/B2 | Paare / Rotation |
 | Bürobedarf bestellen | Beruf & Bewerbung | B1/B2 | Teams |
+
+## 🎛️ Live-Konsole (neu)
+
+- **konsole.html** – Lehrkraft: Material wählen, Format starten, Teams/Paare steuern (passwortgeschützt)
+- **beamer.html?c=CODE** – Anzeige für Beamer/Tafel
+- **spielen.html** – Teilnehmende: Spielcode + Name
+- Formate: Millionär, Blitz-Quiz, Team-Match, Team-Rallye, Sprechduell, Tabu
+- Material: JSON-Pakete in `material/` (Schema in `MATERIAL.md`) oder direkt in der Konsole einfügen
+- Testmodus ohne Internet: `?mock=1` an alle Seiten anhängen (mehrere Tabs simulieren die Klasse)

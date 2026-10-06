@@ -1,0 +1,297 @@
+{
+  "id": "neu-in-der-firma-abteilungen",
+  "titel": "Neu in der Firma – Abteilungen und Zuständigkeiten",
+  "beschreibung": "Welche Abteilung ist zuständig? Aufgabenbereiche und Redemittel zum Vorstellen im Betrieb.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Kommunikation",
+    "lehrwerk": "Aspekte Beruf B2"
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Wen fragen Sie, wenn Sie Fragen zu Vertrag, Urlaub, Arbeitszeit oder Gehalt haben?",
+      "optionen": [
+        "die Personalabteilung",
+        "die Buchhaltung",
+        "das Controlling",
+        "die Rechtsabteilung"
+      ],
+      "richtig": 0,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Ihr Computer, Login, E-Mail oder Drucker funktioniert nicht. Wer hilft?",
+      "optionen": [
+        "die Produktion",
+        "die IT-Abteilung",
+        "die Logistik",
+        "der Kundenservice"
+      ],
+      "richtig": 1,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Es geht um Rechnungen, Belege oder Zahlungen. Welche Abteilung ist zuständig?",
+      "optionen": [
+        "der Vertrieb",
+        "das Controlling",
+        "die Buchhaltung",
+        "die Geschäftsleitung"
+      ],
+      "richtig": 2,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Sie brauchen ein Angebot für einen neuen Kunden. An wen wenden Sie sich?",
+      "optionen": [
+        "das Lager",
+        "das Marketing",
+        "die Rechtsabteilung",
+        "der Vertrieb"
+      ],
+      "richtig": 3,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Sie wollen wissen, ob eine Ware da ist oder abgeholt werden kann.",
+      "optionen": [
+        "das Lager",
+        "die Produktion",
+        "die Forschung und Entwicklung",
+        "die Buchhaltung"
+      ],
+      "richtig": 0,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Es geht um Werbung, die Website oder den Auftritt nach außen.",
+      "optionen": [
+        "der Kundenservice",
+        "das Marketing",
+        "die Geschäftsleitung",
+        "die IT-Abteilung"
+      ],
+      "richtig": 1,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Sie möchten einen Vertrag prüfen lassen oder haben eine rechtliche Frage.",
+      "optionen": [
+        "die Personalabteilung",
+        "das Controlling",
+        "die Rechtsabteilung",
+        "der Vertrieb"
+      ],
+      "richtig": 2,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Es geht um Lieferungen, Transport oder Liefertermine.",
+      "optionen": [
+        "das Lager",
+        "die Produktion",
+        "der Kundenservice",
+        "die Logistik"
+      ],
+      "richtig": 3,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Sie müssen Zahlen, Budgets oder Kostenfragen klären.",
+      "optionen": [
+        "das Controlling",
+        "die Buchhaltung",
+        "die Geschäftsleitung",
+        "das Marketing"
+      ],
+      "richtig": 0,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welche Abteilung entwickelt neue Produkte und Ideen, testet Ideen und baut Prototypen?",
+      "optionen": [
+        "die Produktion",
+        "die Forschung und Entwicklung",
+        "das Marketing",
+        "die IT-Abteilung"
+      ],
+      "richtig": 1,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Wer legt die Strategie fest, setzt Ziele und leitet das Team?",
+      "optionen": [
+        "das Controlling",
+        "die Personalabteilung",
+        "die Geschäftsleitung",
+        "der Vertrieb"
+      ],
+      "richtig": 2,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welche Abteilung bearbeitet Beschwerden und beantwortet Anrufe und E-Mails von Kunden?",
+      "optionen": [
+        "der Vertrieb",
+        "die Rechtsabteilung",
+        "das Marketing",
+        "der Kundenservice"
+      ],
+      "richtig": 3,
+      "stufe": 2
+    },
+    {
+      "typ": "paare",
+      "frage": "Ordne die Abteilung ihrem Aufgabenbereich zu.",
+      "paare": [
+        [
+          "die Produktion",
+          "die Produkte herstellen"
+        ],
+        [
+          "die Logistik",
+          "den Transport und die Lieferung der Waren organisieren"
+        ],
+        [
+          "das Controlling",
+          "dafür sorgen, dass das Unternehmen wirtschaftlich arbeitet"
+        ],
+        [
+          "die Rechtsabteilung",
+          "das Unternehmen rechtlich absichern"
+        ],
+        [
+          "die Personalabteilung",
+          "sich um die Mitarbeiterinnen und Mitarbeiter kümmern"
+        ]
+      ]
+    },
+    {
+      "typ": "paare",
+      "frage": "Ordne die typischen Tätigkeiten zu.",
+      "paare": [
+        [
+          "die Buchhaltung",
+          "Belege buchen"
+        ],
+        [
+          "das Marketing",
+          "Social Media betreuen"
+        ],
+        [
+          "das Lager",
+          "Bestände prüfen"
+        ],
+        [
+          "die IT-Abteilung",
+          "Zugänge einrichten"
+        ],
+        [
+          "der Vertrieb",
+          "Kundenkontakte pflegen"
+        ]
+      ]
+    },
+    {
+      "typ": "luecke",
+      "frage": "Zu meinen Aufgaben ___ die Planung der Lieferwege.",
+      "optionen": [
+        "gehört",
+        "gehören",
+        "umfasst",
+        "kümmert"
+      ],
+      "richtig": 0,
+      "erklaerung": "Zu meinen Aufgaben gehört … (Subjekt: die Planung → Singular)",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Mein Aufgabengebiet ___ die Prüfung von Verträgen.",
+      "optionen": [
+        "gehört",
+        "umfasst",
+        "besteht",
+        "zuständig"
+      ],
+      "richtig": 1,
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Dafür ist eher die Buchhaltung ___.",
+      "optionen": [
+        "verantwortlich für",
+        "zuständig",
+        "gekümmert",
+        "beantwortet"
+      ],
+      "richtig": 1,
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "___ wen wende ich mich, wenn mein Drucker nicht funktioniert?",
+      "optionen": [
+        "An",
+        "Für",
+        "Bei",
+        "Zu"
+      ],
+      "richtig": 0,
+      "erklaerung": "sich wenden an + Akkusativ",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Sie möchten Ihr Verständnis sichern. Was sagen Sie?",
+      "optionen": [
+        "Habe ich Sie richtig verstanden, dass …?",
+        "Freut mich, Sie kennenzulernen.",
+        "Wir sehen uns sicher noch.",
+        "Ich bin verantwortlich für …"
+      ],
+      "richtig": 0,
+      "stufe": 1
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Bilde den Satz.",
+      "teile": [
+        "Ich bleibe lieber",
+        "beim „Sie“,",
+        "wenn das",
+        "in Ordnung ist."
+      ]
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Bilde den Satz.",
+      "teile": [
+        "Guten Tag,",
+        "ich bin neu hier.",
+        "Darf ich mich",
+        "kurz vorstellen?"
+      ]
+    }
+  ]
+}

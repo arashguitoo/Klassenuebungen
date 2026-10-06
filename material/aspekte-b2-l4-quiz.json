@@ -1,0 +1,194 @@
+{
+  "id": "aspekte-b2-l4-quiz",
+  "titel": "Aspekte Beruf B2 · L4 · Besprechungen",
+  "beschreibung": "Quizfragen (Wortschatz, Grammatik, Redemittel) zu Lektion 4 aus „Wer wird Millionär · Aspekte Beruf B2“.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz",
+      "Grammatik",
+      "Sprechen"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "4",
+    "grammatik": [
+      "Relativsätze mit wer/wen/wem",
+      "Nomen-Verb-Verbindungen"
+    ]
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Was ist ein „Meeting“?",
+      "optionen": [
+        "eine Pause",
+        "eine Besprechung",
+        "ein Urlaub",
+        "eine Kantine"
+      ],
+      "richtig": 1,
+      "erklaerung": "Ein Meeting ist eine Besprechung.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Was ist ein „Protokoll“?",
+      "optionen": [
+        "eine Speisekarte",
+        "eine Zusammenfassung einer Besprechung",
+        "ein Vertrag",
+        "ein Stadtplan"
+      ],
+      "richtig": 1,
+      "erklaerung": "Ein Protokoll fasst eine Besprechung schriftlich zusammen.",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Was bedeutet „unter Druck stehen“?",
+      "optionen": [
+        "etwas drücken",
+        "gestresst sein",
+        "Sport machen",
+        "warten"
+      ],
+      "richtig": 1,
+      "erklaerung": "unter Druck stehen = gestresst sein.",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "„Die Leitung hat gestern eine ___ getroffen.“",
+      "optionen": [
+        "Entscheidung",
+        "Frage",
+        "Sorge",
+        "Rolle"
+      ],
+      "richtig": 0,
+      "erklaerung": "„eine Entscheidung treffen“ = entscheiden.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welche Reaktion zeigt Zustimmung in einer Besprechung?",
+      "optionen": [
+        "Da bin ich anderer Meinung.",
+        "Das sehe ich genauso.",
+        "Ich habe Zweifel.",
+        "Das halte ich für problematisch."
+      ],
+      "richtig": 1,
+      "erklaerung": "„Das sehe ich genauso.“ ist Zustimmung.",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Was bedeutet „adressatengerecht schreiben“?",
+      "optionen": [
+        "schnell schreiben",
+        "den Stil an den Empfänger anpassen",
+        "kurz schreiben",
+        "laut schreiben"
+      ],
+      "richtig": 1,
+      "erklaerung": "An Vorgesetzte schreibt man anders als an Kollegen.",
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "„___ ein Meeting organisiert, der plant die Agenda.“",
+      "optionen": [
+        "Wer",
+        "Wen",
+        "Wem",
+        "Was"
+      ],
+      "richtig": 0,
+      "erklaerung": "Nominativ (er organisiert) → „Wer“.",
+      "stufe": 3
+    },
+    {
+      "typ": "luecke",
+      "frage": "„___ das Thema nicht betrifft, dem nutzt die Teilnahme nicht.“",
+      "optionen": [
+        "Wer",
+        "Wen",
+        "Wem",
+        "Was"
+      ],
+      "richtig": 1,
+      "erklaerung": "Akkusativ (es betrifft ihn) → „Wen“.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "„eine Rolle spielen“ bedeutet …",
+      "optionen": [
+        "Theater spielen",
+        "wichtig sein",
+        "gestresst sein",
+        "sich kümmern"
+      ],
+      "richtig": 1,
+      "erklaerung": "„eine Rolle spielen“ = wichtig/relevant sein.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "„etwas in Angriff nehmen“ bedeutet …",
+      "optionen": [
+        "kämpfen",
+        "sich um etwas kümmern / anfangen",
+        "weglaufen",
+        "warten"
+      ],
+      "richtig": 1,
+      "erklaerung": "in Angriff nehmen = sich kümmern, anpacken.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "„Beachtung finden“ ist ein Passiv und bedeutet …",
+      "optionen": [
+        "beachtet werden",
+        "fragen",
+        "entscheiden",
+        "sich sorgen"
+      ],
+      "richtig": 0,
+      "erklaerung": "„Beachtung finden“ = beachtet werden.",
+      "stufe": 3
+    },
+    {
+      "typ": "luecke",
+      "frage": "„Wem eine Aufgabe übertragen wird, ___ findet die Infos im Protokoll.“",
+      "optionen": [
+        "der",
+        "den",
+        "dem",
+        "wer"
+      ],
+      "richtig": 0,
+      "erklaerung": "Hauptsatz Nominativ → „der“.",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "„zur Verfügung stehen“ bedeutet …",
+      "optionen": [
+        "verkauft sein",
+        "vorhanden/verfügbar sein",
+        "kaputt sein",
+        "reserviert sein"
+      ],
+      "richtig": 1,
+      "erklaerung": "„zur Verfügung stehen“ = vorhanden/da sein.",
+      "stufe": 3
+    }
+  ]
+}

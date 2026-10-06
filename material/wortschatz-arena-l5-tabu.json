@@ -1,0 +1,110 @@
+{
+  "id": "wortschatz-arena-l5-tabu",
+  "titel": "Wortschatz-Arena · L5 · Kennen Sie schon ...? (Tabu)",
+  "beschreibung": "Tabu-Begriffe zum Wortschatz aus Lektion 5 (Aspekte Beruf B2).",
+  "art": "begriffe",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz",
+      "Sprechen"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "5"
+  },
+  "inhalt": [
+    {
+      "wort": "das Firmenporträt",
+      "tabu": [
+        "Firma",
+        "Beschreibung",
+        "vorstellen",
+        "Unternehmen"
+      ]
+    },
+    {
+      "wort": "der Messestand",
+      "tabu": [
+        "Messe",
+        "Firma",
+        "Platz",
+        "Stand"
+      ]
+    },
+    {
+      "wort": "die Durchsage",
+      "tabu": [
+        "Lautsprecher",
+        "Ansage",
+        "Bahnhof",
+        "hören"
+      ]
+    },
+    {
+      "wort": "die Produktpräsentation",
+      "tabu": [
+        "Produkt",
+        "vorstellen",
+        "zeigen",
+        "Kunden"
+      ]
+    },
+    {
+      "wort": "die Kundenanfrage",
+      "tabu": [
+        "Kunde",
+        "Frage",
+        "Firma",
+        "E-Mail"
+      ]
+    },
+    {
+      "wort": "beraten",
+      "tabu": [
+        "Rat",
+        "helfen",
+        "Tipp",
+        "Information"
+      ]
+    },
+    {
+      "wort": "herstellen",
+      "tabu": [
+        "produzieren",
+        "machen",
+        "Fabrik",
+        "Produkt"
+      ]
+    },
+    {
+      "wort": "die Kundschaft",
+      "tabu": [
+        "Kunden",
+        "alle",
+        "Firma",
+        "kaufen"
+      ]
+    },
+    {
+      "wort": "die Leidenschaft",
+      "tabu": [
+        "Begeisterung",
+        "lieben",
+        "Hobby",
+        "stark"
+      ]
+    },
+    {
+      "wort": "sich spezialisieren auf",
+      "tabu": [
+        "Bereich",
+        "konzentrieren",
+        "Experte",
+        "speziell"
+      ]
+    }
+  ]
+}

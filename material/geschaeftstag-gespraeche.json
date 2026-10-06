@@ -1,0 +1,174 @@
+{
+  "id": "geschaeftstag-gespraeche",
+  "titel": "Der Geschäftstag – Termine, Anfragen, Kooperationen",
+  "beschreibung": "Rollenkarten aus der Wirtschaftssimulation mit FrischKost GmbH (Catering), TechnoWerk AG (Konferenztechnik) und MöbelMeister KG (Büromöbel).",
+  "art": "karten",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Kommunikation"
+  },
+  "inhalt": [
+    {
+      "titel": "Zwei Termine gleichzeitig",
+      "situation": "Die Assistenz von MöbelMeister KG möchte um 10:30 Uhr zu FrischKost kommen. Aber der Vertrieb von FrischKost wollte zur gleichen Zeit zu MöbelMeister.",
+      "rolleA": {
+        "name": "Assistenz (FrischKost GmbH)",
+        "aufgabe": "Prüfen Sie den Kalender: 10:15–11:00 Präsentation bei TechnoWerk, 11:00–11:45 Gespräch mit MöbelMeister. Handeln Sie aus, wer wann wohin kommt."
+      },
+      "rolleB": {
+        "name": "Assistenz (MöbelMeister KG)",
+        "aufgabe": "Ihr Vertrieb präsentiert 10:15–11:00 bei FrischKost. Lösen Sie den Konflikt und fassen Sie das Ergebnis zusammen."
+      },
+      "redemittel": [
+        "Passt Ihnen 10:30 Uhr?",
+        "Da habe ich leider schon einen Termin.",
+        "Geht es auch etwas später?",
+        "Dann verschieben wir es auf …",
+        "Ich schlage 11:00 Uhr vor."
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Anfrage: 40 Essen am Freitag",
+      "situation": "TechnoWerk AG plant eine Firmenfeier und braucht 40 Portionen vom Bio-Mittagsservice „LunchBox Grün“ der FrischKost GmbH.",
+      "rolleA": {
+        "name": "Assistenz (TechnoWerk AG)",
+        "aufgabe": "Fragen Sie, ob 40 Portionen am Freitag machbar sind, was es kostet und bis wann Sie bestellen müssen."
+      },
+      "rolleB": {
+        "name": "Produktion / Küche (FrischKost GmbH)",
+        "aufgabe": "Sagen Sie, wie viele Tage Vorlauf Sie brauchen, und nennen Sie eine konkrete Frist und einen Preis."
+      },
+      "redemittel": [
+        "Was kostet das?",
+        "Wie lange dauert die Lieferung?",
+        "Der Preis liegt bei …",
+        "Wir melden uns bis morgen bei Ihnen."
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Präsentation: „LunchBox Grün“",
+      "situation": "Der Vertrieb von FrischKost präsentiert bei TechnoWerk den Bio-Mittagsservice „LunchBox Grün“ – frisch gekochtes Essen ins Büro, in Mehrwegboxen.",
+      "rolleA": {
+        "name": "Vertrieb (FrischKost GmbH)",
+        "aufgabe": "Stellen Sie das Produkt vor: regional, umweltfreundlich, flexible Mengen. Nennen Sie 3 Vorteile und einen Preis."
+      },
+      "rolleB": {
+        "name": "Geschäftsleitung (TechnoWerk AG)",
+        "aufgabe": "Sie suchen einen Catering-Partner für Ihre Firmenfeier. Fragen Sie nach Details und sagen Sie zu oder höflich ab."
+      },
+      "redemittel": [
+        "Ich möchte Ihnen … vorstellen.",
+        "Das Besondere an unserem Produkt ist …",
+        "Können Sie das genauer erklären?",
+        "Gern nehmen wir Ihr Angebot an.",
+        "Über Ihr Angebot müssen wir noch nachdenken."
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Präsentation: „MeetEasy“",
+      "situation": "MöbelMeister KG richtet neue Besprechungsräume ein. TechnoWerk AG stellt das Smart-Konferenzsystem „MeetEasy“ vor – Mikrofon, Kamera und Bildschirm in einem, per App steuerbar.",
+      "rolleA": {
+        "name": "Vertrieb (TechnoWerk AG)",
+        "aufgabe": "Präsentieren Sie „MeetEasy“: einfache Einrichtung, guter Ton, für große Räume. Nennen Sie einen Preis."
+      },
+      "rolleB": {
+        "name": "Geschäftsleitung (MöbelMeister KG)",
+        "aufgabe": "Fragen Sie nach Preis und Lieferzeit. Entscheiden Sie am Ende: Zusage, Absage oder Bedenkzeit."
+      },
+      "redemittel": [
+        "Ich möchte Ihnen … vorstellen.",
+        "Der größte Vorteil ist, dass …",
+        "Was kostet das?",
+        "Vielen Dank, aber im Moment passt es leider nicht.",
+        "Gern nehmen wir Ihr Angebot an."
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Frage zur Installation",
+      "situation": "Die Technik von MöbelMeister KG interessiert sich für das Konferenzsystem „MeetEasy“ von TechnoWerk AG.",
+      "rolleA": {
+        "name": "Technik (MöbelMeister KG)",
+        "aufgabe": "Fragen Sie: Braucht das Konferenzsystem eine besondere Internetverbindung? Wie lange dauert der Aufbau?"
+      },
+      "rolleB": {
+        "name": "Technik / Support (TechnoWerk AG)",
+        "aufgabe": "Beantworten Sie beide Fragen genau und bieten Sie Hilfe beim Aufbau an."
+      },
+      "redemittel": [
+        "Können Sie das genauer erklären?",
+        "Wie lange dauert …?",
+        "Das klingt interessant.",
+        "Wir melden uns bis morgen bei Ihnen."
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Lieferung von 20 Tischen",
+      "situation": "TechnoWerk AG möchte 20 höhenverstellbare Schreibtische „FlexDesk“ von MöbelMeister KG bestellen.",
+      "rolleA": {
+        "name": "Geschäftsleitung (TechnoWerk AG)",
+        "aufgabe": "Fragen Sie nach Lieferzeit, Aufbau und einem Preis für 20 Tische."
+      },
+      "rolleB": {
+        "name": "Technik / Montage (MöbelMeister KG)",
+        "aufgabe": "Nennen Sie eine Lieferzeit und sagen Sie, ob Sie den Aufbau übernehmen. Vorteile: gesund, leise Motoren, 5 Jahre Garantie."
+      },
+      "redemittel": [
+        "Wie lange dauert die Lieferung?",
+        "Der Preis liegt bei …",
+        "Das Besondere an unserem Produkt ist …",
+        "Gern bestätige ich Ihnen den Termin am …"
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Gemeinsame Aktion: Gesunde Büros",
+      "situation": "Gesundes Essen + gesunde Tische: Das Marketing von FrischKost und MöbelMeister möchte zusammen werben.",
+      "rolleA": {
+        "name": "Marketing (FrischKost GmbH)",
+        "aufgabe": "Schlagen Sie eine gemeinsame Aktion für gesunde Büros vor. Sammeln Sie zusammen zwei Ideen."
+      },
+      "rolleB": {
+        "name": "Marketing (MöbelMeister KG)",
+        "aufgabe": "Reagieren Sie auf die Vorschläge, bringen Sie eigene Ideen ein und einigen Sie sich auf eine Idee."
+      },
+      "redemittel": [
+        "Was meint ihr dazu?",
+        "Ich schlage … vor.",
+        "Das klingt interessant.",
+        "Sind wir uns einig?"
+      ],
+      "dauer": 180
+    },
+    {
+      "titel": "Termin verschieben",
+      "situation": "Der Vertrieb von MöbelMeister KG möchte TechnoWerk um 10:15 Uhr eine Präsentation halten. Danach hat er leider einen anderen Termin.",
+      "rolleA": {
+        "name": "Vertrieb (MöbelMeister KG)",
+        "aufgabe": "Schlagen Sie 10:15 Uhr vor und erklären Sie, warum es nicht später geht."
+      },
+      "rolleB": {
+        "name": "Vertrieb (TechnoWerk AG)",
+        "aufgabe": "Um 10:15 Uhr präsentieren Sie selbst bei MöbelMeister. Schlagen Sie eine andere Zeit vor und bestätigen Sie den neuen Termin."
+      },
+      "redemittel": [
+        "Passt Ihnen 10:30 Uhr?",
+        "Da habe ich leider schon einen Termin.",
+        "Leider müssen wir den Termin verschieben.",
+        "Ich schlage 11:00 Uhr vor.",
+        "Gern bestätige ich Ihnen den Termin am …"
+      ],
+      "dauer": 180
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "id": "beratungsgespraech-agentur-redemittel",
+  "titel": "Beratung bei der Agentur für Arbeit – Redemittel",
+  "beschreibung": "Redemittel für Vorschläge, Argumente, Einwände und Kompromisse im Beratungsgespräch.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen",
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Beruf & Bewerbung"
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Die Beraterin beginnt das Gespräch. Was sagt sie?",
+      "optionen": [
+        "Was kann ich für Sie tun?",
+        "Bis wann bekomme ich eine Antwort?",
+        "Ich wäre bereit, …, wenn …",
+        "Mein Ziel ist es, …"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Was halten Sie ___, wenn Sie zuerst ein Praktikum machen?",
+      "optionen": [
+        "davon",
+        "darüber",
+        "dafür",
+        "daran"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Haben Sie schon einmal ___ eine Umschulung gedacht?",
+      "optionen": [
+        "an",
+        "über",
+        "von",
+        "auf"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich bin ___ überzeugt, dass mir die Weiterbildung hilft.",
+      "optionen": [
+        "davon",
+        "darauf",
+        "damit",
+        "dafür"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "___ Sie bitte, dass eine Umschulung zwei Jahre dauert.",
+      "optionen": [
+        "Bedenken",
+        "Denken",
+        "Bemerken",
+        "Gedenken"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Das stimmt ___, aber die Anerkennung dauert lange.",
+      "optionen": [
+        "zwar",
+        "sogar",
+        "nur",
+        "erst"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Wäre es nicht ___, zuerst einen Kurs zu machen?",
+      "optionen": [
+        "sinnvoller",
+        "sinnlich",
+        "sinngemäß",
+        "besinnlich"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich wäre ___, einen Deutschkurs am Abend zu machen.",
+      "optionen": [
+        "bereit",
+        "fertig",
+        "bereits",
+        "gern"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Könnten wir uns ___ einigen, dass ich zuerst den Staplerschein mache?",
+      "optionen": [
+        "darauf",
+        "daran",
+        "dabei",
+        "damit"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Wären Sie ___ einverstanden, dass wir zuerst das Training machen?",
+      "optionen": [
+        "damit",
+        "dafür",
+        "davon",
+        "daran"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Dann halten wir ___: Sie machen zuerst den Kurs.",
+      "optionen": [
+        "fest",
+        "an",
+        "auf",
+        "ab"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Person A erkennt ein Argument an und widerspricht dann. Was passt?",
+      "optionen": [
+        "Da haben Sie recht, aber …",
+        "Was kann ich für Sie tun?",
+        "Ich schicke Ihnen die Unterlagen zu.",
+        "Guten Tag, ich habe einen Termin bei Ihnen."
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Welcher Satz ist ein Kompromissvorschlag?",
+      "optionen": [
+        "Wir könnten zuerst … und danach …",
+        "Das Argument überzeugt mich nicht, denn …",
+        "Auf dem Arbeitsmarkt sieht es so aus: …",
+        "Erzählen Sie doch mal: Wie ist Ihre Situation?"
+      ],
+      "richtig": 0
+    }
+  ]
+}

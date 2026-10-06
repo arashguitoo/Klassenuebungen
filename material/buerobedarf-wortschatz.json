@@ -1,0 +1,197 @@
+{
+  "id": "buerobedarf-wortschatz",
+  "titel": "Bürobedarf bestellen – Wortschatz und Redemittel",
+  "beschreibung": "Büromöbel und -material, Produkteigenschaften und Redemittel für das Verkaufsgespräch.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Arbeitswelt"
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Ein Bürostuhl ist „ergonomisch“. Das heißt:",
+      "optionen": [
+        "Er ist besonders günstig.",
+        "Er ist gut für den Körper und den Rücken.",
+        "Er ist aus Leder.",
+        "Er hat keine Armlehne."
+      ],
+      "richtig": 1,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Ein Rollcontainer ist „abschließbar“. Das heißt:",
+      "optionen": [
+        "Man kann ihn mit einem Schlüssel zumachen.",
+        "Man kann ihn zusammenklappen.",
+        "Er hat Rollen.",
+        "Er ist sehr leise."
+      ],
+      "richtig": 0,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Eine Lampe ist „dimmbar“. Das heißt:",
+      "optionen": [
+        "Sie spart viel Strom.",
+        "Sie hat ein modernes Design.",
+        "Man kann die Helligkeit einstellen.",
+        "Sie hat einen Akku."
+      ],
+      "richtig": 2,
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Warum braucht eine Steuerkanzlei einen abschließbaren Aktenschrank?",
+      "optionen": [
+        "wegen des Images",
+        "wegen der Lieferzeit",
+        "wegen der Garantie",
+        "wegen des Datenschutzes"
+      ],
+      "richtig": 3,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Was bedeutet „Express-Lieferung 48 h gegen Aufpreis“?",
+      "optionen": [
+        "Die Lieferung in zwei Tagen kostet extra.",
+        "Die Lieferung ist nach 48 Stunden kostenlos.",
+        "Man bekommt 48 % Rabatt.",
+        "Die Ware kommt erst in 48 Tagen."
+      ],
+      "richtig": 0,
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Die Kundin hat wenig Geld. Welcher Satz passt NICHT zu ihr?",
+      "optionen": [
+        "Jeder Euro zählt.",
+        "Funktional, kein Luxus.",
+        "Premium ist erlaubt.",
+        "Bitte möglichst günstig."
+      ],
+      "richtig": 2,
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Bei dieser Menge kann ich Ihnen 5 % ___.",
+      "optionen": [
+        "entgegenkommen",
+        "entgegennehmen",
+        "entsprechen",
+        "entscheiden"
+      ],
+      "richtig": 0,
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Darf es etwas ___ sein?",
+      "optionen": [
+        "Hochwertiges",
+        "Hochwertigeres",
+        "Hochwertigste",
+        "Hochwertiger"
+      ],
+      "richtig": 1,
+      "erklaerung": "etwas + Komparativ als Nomen: etwas Hochwertigeres",
+      "stufe": 3
+    },
+    {
+      "typ": "luecke",
+      "frage": "Für wie viele Arbeitsplätze ___ Sie das?",
+      "optionen": [
+        "gebraucht",
+        "brauchte",
+        "braucht",
+        "brauchen"
+      ],
+      "richtig": 3,
+      "stufe": 1
+    },
+    {
+      "typ": "luecke",
+      "frage": "Die Lieferung ___ in 5–7 Tagen.",
+      "optionen": [
+        "erfüllt",
+        "erhält",
+        "erfolgt",
+        "erreicht"
+      ],
+      "richtig": 2,
+      "stufe": 2
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ab 150 € Bestellwert ist der Versand ___.",
+      "optionen": [
+        "kostenpflichtig",
+        "kostenlos",
+        "teuer",
+        "verhandelbar"
+      ],
+      "richtig": 1,
+      "stufe": 1
+    },
+    {
+      "typ": "paare",
+      "frage": "Ordne das Produkt der passenden Eigenschaft zu.",
+      "paare": [
+        [
+          "der Schreibtisch",
+          "höhenverstellbar"
+        ],
+        [
+          "der Rollcontainer",
+          "abschließbar"
+        ],
+        [
+          "die Schreibtischlampe",
+          "dimmbar"
+        ],
+        [
+          "das Glas-Whiteboard",
+          "magnetisch"
+        ],
+        [
+          "der Bürostuhl",
+          "ergonomisch"
+        ]
+      ]
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Bilde den Satz.",
+      "teile": [
+        "Ich fasse zusammen:",
+        "Sie bestellen",
+        "fünf Bürostühle",
+        "und drei Schreibtische."
+      ]
+    },
+    {
+      "typ": "reihenfolge",
+      "frage": "Bilde den Satz.",
+      "teile": [
+        "Bürobedarf SparBüro,",
+        "mein Name ist Weber,",
+        "was kann ich",
+        "für Sie tun?"
+      ]
+    }
+  ]
+}

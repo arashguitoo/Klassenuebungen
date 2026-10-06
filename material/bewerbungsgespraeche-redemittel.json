@@ -1,0 +1,176 @@
+{
+  "id": "bewerbungsgespraeche-redemittel",
+  "titel": "Bewerbungsgespräche – Redemittel",
+  "beschreibung": "Höfliche Berufssprache und Redemittel aus den 7 Phasen des Vorstellungsgesprächs.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen",
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Beruf & Bewerbung",
+    "lehrwerk": "Aspekte Beruf B2"
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Sagen Sie es höflicher: „Setzen Sie sich.“",
+      "optionen": [
+        "Nehmen Sie doch bitte Platz.",
+        "Sitzen Sie jetzt!",
+        "Setzen Sie sich hin.",
+        "Platz da, bitte."
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Sagen Sie es höflicher: „Trinken Sie etwas?“",
+      "optionen": [
+        "Darf ich Ihnen etwas zu trinken anbieten?",
+        "Wollen Sie trinken?",
+        "Was trinken Sie jetzt?",
+        "Trinken Sie oder nicht?"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Sagen Sie es höflicher: „Wann können Sie anfangen?“",
+      "optionen": [
+        "Wann wäre es Ihnen möglich anzufangen?",
+        "Wann fangen Sie endlich an?",
+        "Sie fangen morgen an, oder?",
+        "Anfangen – wann?"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Sagen Sie es höflicher: „Wie viel verdiene ich?“",
+      "optionen": [
+        "Könnten Sie noch etwas über die Höhe meines Gehalts sagen?",
+        "Was bekomme ich an Geld?",
+        "Sagen Sie mir mein Gehalt.",
+        "Wie viel Geld gibt es?"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Sagen Sie es höflicher: „Ich habe noch eine Frage: …“",
+      "optionen": [
+        "Könnten Sie mir noch eine Frage beantworten: …",
+        "Jetzt frage ich: …",
+        "Antworten Sie mir: …",
+        "Noch eine Frage, schnell: …"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Die Firma fragt: „Haben Sie gut hergefunden?“ Was antworten Sie?",
+      "optionen": [
+        "Ja, danke, problemlos.",
+        "Ein Glas Wasser, gerne.",
+        "Meine Stärken sind …",
+        "Wir melden uns Ende nächster Woche."
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich bewerbe mich, weil die Stelle perfekt zu meiner Berufserfahrung ___.",
+      "optionen": [
+        "passt",
+        "gefällt",
+        "steht",
+        "liegt"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich habe mich schon auf Ihrer Website ___.",
+      "optionen": [
+        "informiert",
+        "gefragt",
+        "erzählt",
+        "gesucht"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Ich könnte ___ am 1. Dezember anfangen.",
+      "optionen": [
+        "frühestens",
+        "früh",
+        "früheste",
+        "frühe"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Meine Gehaltsvorstellung ___ bei 3.500 € brutto.",
+      "optionen": [
+        "liegt",
+        "steht",
+        "macht",
+        "kostet"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Die Probezeit ___ sechs Monate.",
+      "optionen": [
+        "beträgt",
+        "bezahlt",
+        "verdient",
+        "liegt"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "luecke",
+      "frage": "Wann darf ich ___ einer Entscheidung rechnen?",
+      "optionen": [
+        "mit",
+        "auf",
+        "für",
+        "an"
+      ],
+      "richtig": 0
+    },
+    {
+      "typ": "mc",
+      "frage": "Welche Frage müssen Sie im Vorstellungsgespräch nicht beantworten?",
+      "optionen": [
+        "Sind Sie schwanger?",
+        "Was sind Ihre Stärken?",
+        "Wann wäre es Ihnen möglich anzufangen?",
+        "Wie kommen Sie zur Arbeit?"
+      ],
+      "richtig": 0,
+      "erklaerung": "Fragen zu Religion, Schwangerschaft oder Gesundheit muss man nicht beantworten: „Darauf möchte ich lieber nicht antworten.“"
+    },
+    {
+      "typ": "luecke",
+      "frage": "Darauf möchte ich lieber nicht ___.",
+      "optionen": [
+        "antworten",
+        "beantworten",
+        "fragen",
+        "erzählen"
+      ],
+      "richtig": 0,
+      "erklaerung": "auf etwas antworten – aber: etwas beantworten (ohne „darauf“)."
+    }
+  ]
+}

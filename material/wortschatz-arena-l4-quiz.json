@@ -1,0 +1,214 @@
+{
+  "id": "wortschatz-arena-l4-quiz",
+  "titel": "Wortschatz-Arena · L4 · Zusammenarbeiten",
+  "beschreibung": "Definition → Wort: Wortschatz aus Lektion 4 (Aspekte Beruf B2), aus der Wortschatz-Arena.",
+  "art": "quiz",
+  "etiketten": {
+    "fertigkeit": [
+      "Wortschatz"
+    ],
+    "niveau": [
+      "B2"
+    ],
+    "thema": "Arbeitswelt",
+    "lehrwerk": "Aspekte Beruf B2",
+    "lektion": "4"
+  },
+  "inhalt": [
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine Besprechung, ein Treffen zur Arbeit“",
+      "optionen": [
+        "die Übergabe",
+        "konstruktiv",
+        "das Meeting",
+        "zur Verfügung stehen"
+      ],
+      "richtig": 2,
+      "erklaerung": "das Meeting = eine Besprechung, ein Treffen zur Arbeit",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „ein Meeting online über Kamera“",
+      "optionen": [
+        "die Videokonferenz",
+        "das Protokoll",
+        "die Übergabe",
+        "die Wertschätzung"
+      ],
+      "richtig": 0,
+      "erklaerung": "die Videokonferenz = ein Meeting online über Kamera",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „sich für etwas entscheiden“",
+      "optionen": [
+        "die Transparenz",
+        "unter Druck stehen",
+        "eine Entscheidung treffen",
+        "die Wertschätzung"
+      ],
+      "richtig": 2,
+      "erklaerung": "eine Entscheidung treffen = sich für etwas entscheiden",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „gestresst sein“",
+      "optionen": [
+        "stichpunktartig",
+        "die Videokonferenz",
+        "unter Druck stehen",
+        "konstruktiv"
+      ],
+      "richtig": 2,
+      "erklaerung": "unter Druck stehen = gestresst sein",
+      "stufe": 1
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „die Liste der Themen einer Besprechung“",
+      "optionen": [
+        "konstruktiv",
+        "die Agenda",
+        "die Transparenz",
+        "stichpunktartig"
+      ],
+      "richtig": 1,
+      "erklaerung": "die Agenda = die Liste der Themen einer Besprechung",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „man kann sich auf jemanden verlassen“",
+      "optionen": [
+        "das Meeting",
+        "die Wertschätzung",
+        "konstruktiv",
+        "die Zuverlässigkeit"
+      ],
+      "richtig": 3,
+      "erklaerung": "die Zuverlässigkeit = man kann sich auf jemanden verlassen",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine Lösung, bei der beide Seiten nachgeben“",
+      "optionen": [
+        "das Protokoll",
+        "eine Rolle spielen",
+        "die Videokonferenz",
+        "der Kompromiss"
+      ],
+      "richtig": 3,
+      "erklaerung": "der Kompromiss = eine Lösung, bei der beide Seiten nachgeben",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „das Weitergeben von Aufgaben, z. B. vor dem Urlaub“",
+      "optionen": [
+        "das Meeting",
+        "zur Verfügung stehen",
+        "die Übergabe",
+        "eine Rolle spielen"
+      ],
+      "richtig": 2,
+      "erklaerung": "die Übergabe = das Weitergeben von Aufgaben, z. B. vor dem Urlaub",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „eine schriftliche Zusammenfassung einer Besprechung“",
+      "optionen": [
+        "die Wertschätzung",
+        "die Übergabe",
+        "das Protokoll",
+        "die Zuverlässigkeit"
+      ],
+      "richtig": 2,
+      "erklaerung": "das Protokoll = eine schriftliche Zusammenfassung einer Besprechung",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „wichtig oder relevant sein“",
+      "optionen": [
+        "die Agenda",
+        "eine Rolle spielen",
+        "eine Entscheidung treffen",
+        "konstruktiv"
+      ],
+      "richtig": 1,
+      "erklaerung": "eine Rolle spielen = wichtig oder relevant sein",
+      "stufe": 2
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „in kurzen Stichwörtern, nicht in ganzen Sätzen“",
+      "optionen": [
+        "unter Druck stehen",
+        "eine Rolle spielen",
+        "das Meeting",
+        "stichpunktartig"
+      ],
+      "richtig": 3,
+      "erklaerung": "stichpunktartig = in kurzen Stichwörtern, nicht in ganzen Sätzen",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „Klarheit und Offenheit, alles ist nachvollziehbar“",
+      "optionen": [
+        "die Übergabe",
+        "konstruktiv",
+        "die Transparenz",
+        "die Agenda"
+      ],
+      "richtig": 2,
+      "erklaerung": "die Transparenz = Klarheit und Offenheit, alles ist nachvollziehbar",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „die Anerkennung für die Leistung eines anderen“",
+      "optionen": [
+        "konstruktiv",
+        "unter Druck stehen",
+        "der Kompromiss",
+        "die Wertschätzung"
+      ],
+      "richtig": 3,
+      "erklaerung": "die Wertschätzung = die Anerkennung für die Leistung eines anderen",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „aufbauend und hilfreich, mit dem Ziel einer Lösung“",
+      "optionen": [
+        "die Agenda",
+        "konstruktiv",
+        "unter Druck stehen",
+        "zur Verfügung stehen"
+      ],
+      "richtig": 1,
+      "erklaerung": "konstruktiv = aufbauend und hilfreich, mit dem Ziel einer Lösung",
+      "stufe": 3
+    },
+    {
+      "typ": "mc",
+      "frage": "Welches Wort passt? „vorhanden und verfügbar sein“",
+      "optionen": [
+        "die Wertschätzung",
+        "das Protokoll",
+        "eine Rolle spielen",
+        "zur Verfügung stehen"
+      ],
+      "richtig": 3,
+      "erklaerung": "zur Verfügung stehen = vorhanden und verfügbar sein",
+      "stufe": 3
+    }
+  ]
+}

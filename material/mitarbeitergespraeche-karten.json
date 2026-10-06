@@ -1,0 +1,258 @@
+{
+  "id": "mitarbeitergespraeche-karten",
+  "titel": "Mitarbeitergespräche",
+  "beschreibung": "12 Rollenpaare Chef:in / Mitarbeiter:in mit Wunsch, Ziel und geheimer Information – verhandeln und einen Kompromiss finden.",
+  "art": "karten",
+  "etiketten": {
+    "fertigkeit": [
+      "Sprechen"
+    ],
+    "niveau": [
+      "B1",
+      "B2"
+    ],
+    "thema": "Kommunikation"
+  },
+  "inhalt": [
+    {
+      "titel": "Gehaltserhöhung",
+      "situation": "Der/die Mitarbeiter:in bittet um ein Gespräch über eine Gehaltserhöhung. Beide treffen sich im Büro.",
+      "rolleA": {
+        "name": "Mitarbeiter:in – Frau/Herr Klein",
+        "aufgabe": "Du arbeitest seit 3 Jahren gut und willst mehr Geld. Ziel: Du möchtest 300 € mehr im Monat. Geheim: Du hast ein Angebot von einer anderen Firma. Das kannst du andeuten, um Druck zu machen."
+      },
+      "rolleB": {
+        "name": "Chef:in – Frau/Herr Berger",
+        "aufgabe": "Du willst gute Mitarbeitende halten, aber das Budget ist knapp. Ziel: Wenn möglich keine Gehaltserhöhung – oder nur eine kleine. Geheim: Du weißt: Wenn die Person kündigt, findest du schwer Ersatz. Bei starkem Druck kannst du bis 150 € mehr anbieten."
+      },
+      "redemittel": [
+        "Ich würde gern mit Ihnen über … sprechen.",
+        "Ich arbeite jetzt seit … und …",
+        "Ich verstehe Ihren Standpunkt, aber …",
+        "Als Kompromiss könnte ich Ihnen … anbieten.",
+        "Können wir uns in der Mitte treffen?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Urlaub zur gleichen Zeit",
+      "situation": "Zwei Mitarbeitende wollen im Sommer gleichzeitig Urlaub. Der/die Mitarbeiter:in spricht mit dem/der Chef:in.",
+      "rolleA": {
+        "name": "Mitarbeiter:in – Frau/Herr Sahin",
+        "aufgabe": "Du hast schon eine Reise gebucht und willst im Juli frei. Ziel: Du willst deinen Urlaub im Juli bekommen. Geheim: Die Reise ist noch nicht bezahlt – du könntest zur Not auch im August fahren, willst das aber nicht sagen."
+      },
+      "rolleB": {
+        "name": "Chef:in – Frau/Herr Wolf",
+        "aufgabe": "Im Sommer ist viel zu tun. Es können nicht alle gleichzeitig frei haben. Ziel: Der/die Mitarbeiter:in soll den Urlaub verschieben. Geheim: Wenn die Person triftige Gründe nennt (Familie, gebuchte Reise), darfst du zustimmen."
+      },
+      "redemittel": [
+        "Ich habe eine Bitte / einen Wunsch: …",
+        "Der Grund dafür ist …",
+        "Wir brauchen hier eine Lösung, weil …",
+        "Das kann ich leider nicht versprechen.",
+        "Ich wäre einverstanden, wenn …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Zu oft zu spät",
+      "situation": "Der/die Chef:in hat bemerkt, dass der/die Mitarbeiter:in in letzter Zeit oft zu spät kommt.",
+      "rolleA": {
+        "name": "Mitarbeiter:in – Frau/Herr Yilmaz",
+        "aufgabe": "Du kommst zu spät, weil der Bus morgens oft unzuverlässig ist. Ziel: Du möchtest eine Lösung, ohne Ärger zu bekommen. Geheim: Du könntest einen Bus früher nehmen, müsstest dann aber 40 Minuten warten. Vielleicht wären flexible Zeiten besser."
+      },
+      "rolleB": {
+        "name": "Chef:in – Frau/Herr Meier",
+        "aufgabe": "Du willst, dass alle pünktlich sind – es fällt dem Team auf. Ziel: Die Person soll ab jetzt pünktlich kommen. Geheim: Du magst die Person und ihre Arbeit. Du suchst eine Lösung, keine Strafe."
+      },
+      "redemittel": [
+        "Mir ist aufgefallen, dass …",
+        "Ich erwarte von Ihnen, dass …",
+        "Der Grund dafür ist …",
+        "Wäre es möglich, dass …?",
+        "Ich schlage vor, dass wir …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Mehr Verantwortung",
+      "situation": "Der/die Mitarbeiter:in möchte anspruchsvollere Aufgaben übernehmen und bittet um ein Gespräch.",
+      "rolleA": {
+        "name": "Mitarbeiter:in – Frau/Herr Novak",
+        "aufgabe": "Du langweilst dich und willst mehr Verantwortung. Ziel: Du möchtest eine neue, wichtigere Aufgabe bekommen. Geheim: Du willst eigentlich Teamleiter:in werden, traust dich aber noch nicht, das zu sagen."
+      },
+      "rolleB": {
+        "name": "Chef:in – Frau/Herr Braun",
+        "aufgabe": "Du bist zufrieden, aber nicht sicher, ob die Person bereit ist. Ziel: Du willst erst sehen, ob die Person die neue Aufgabe schafft. Geheim: Du suchst tatsächlich jemanden für ein neues Projekt – aber das sagst du noch nicht direkt."
+      },
+      "redemittel": [
+        "Ich würde gern mit Ihnen über … sprechen.",
+        "Ich arbeite jetzt seit … und …",
+        "Ich verstehe Ihren Standpunkt, aber …",
+        "Das kann ich leider nicht versprechen.",
+        "Wäre es möglich, dass …?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Weiterbildung bezahlen",
+      "situation": "Der/die Mitarbeiter:in möchte einen Kurs machen und fragt, ob die Firma die Kosten übernimmt.",
+      "rolleA": {
+        "name": "Mitarbeiter:in – Frau/Herr Ali",
+        "aufgabe": "Du willst einen Computerkurs machen, der 800 € kostet. Ziel: Die Firma soll den Kurs bezahlen und dich freistellen. Geheim: Du würdest den Kurs auch in deiner Freizeit machen – wenn die Firma wenigstens die Hälfte zahlt."
+      },
+      "rolleB": {
+        "name": "Chef:in – Frau/Herr Fischer",
+        "aufgabe": "Weiterbildung ist gut, aber teuer und kostet Arbeitszeit. Ziel: Du willst die Kosten möglichst nicht (allein) übernehmen. Geheim: Für einen Kurs, der der Firma direkt nützt, hast du ein kleines Budget – das gibst du nur bei guten Argumenten frei."
+      },
+      "redemittel": [
+        "Ich habe eine Bitte / einen Wunsch: …",
+        "Für mich ist das wichtig, weil …",
+        "Als Kompromiss könnte ich Ihnen … anbieten.",
+        "Können wir uns in der Mitte treffen?",
+        "Ich wäre einverstanden, wenn …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Konflikt im Team",
+      "situation": "Es gibt Streit zwischen zwei Kolleg:innen. Der/die Chef:in spricht mit einer/einem der beiden.",
+      "rolleA": {
+        "name": "Mitarbeiter:in – Frau/Herr Costa",
+        "aufgabe": "Du fühlst dich von einer Kollegin/einem Kollegen ungerecht behandelt. Ziel: Du willst, dass der/die Chef:in dein Problem ernst nimmt. Geheim: Du hast selbst auch einen Fehler gemacht, gibst das aber nur zu, wenn man dich freundlich behandelt."
+      },
+      "rolleB": {
+        "name": "Chef:in – Frau/Herr Schulz",
+        "aufgabe": "Der Streit stört die Arbeit. Du willst Frieden im Team. Ziel: Die beiden sollen wieder normal zusammenarbeiten. Geheim: Du weißt nicht genau, wer angefangen hat. Du willst zuhören, nicht sofort urteilen."
+      },
+      "redemittel": [
+        "Ich wollte mit Ihnen über … sprechen.",
+        "Wir brauchen hier eine Lösung, weil …",
+        "Es geht mir um Folgendes: …",
+        "Das verstehe ich, aber für mich ist …",
+        "Ich schlage vor, dass wir …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Wechsel ins Homeoffice",
+      "situation": "Der/die Mitarbeiter:in möchte an zwei Tagen pro Woche von zu Hause arbeiten.",
+      "rolleA": {
+        "name": "Mitarbeiter:in – Frau/Herr Petrov",
+        "aufgabe": "Der Weg zur Arbeit ist lang; zu Hause arbeitest du konzentrierter. Ziel: Du möchtest 2 Tage Homeoffice pro Woche. Geheim: Ein Tag würde dir auch reichen – aber du fragst erst nach zwei, um zu verhandeln."
+      },
+      "rolleB": {
+        "name": "Chef:in – Frau/Herr Krüger",
+        "aufgabe": "Du hast Sorge, dass die Arbeit im Homeoffice leidet. Ziel: Du willst, dass alle im Büro sind – oder klare Regeln. Geheim: Andere im Team wollen das auch. Wenn es gut läuft, könntest du es für alle erlauben."
+      },
+      "redemittel": [
+        "Ich habe eine Bitte / einen Wunsch: …",
+        "Für mich ist das wichtig, weil …",
+        "Ich erwarte von Ihnen, dass …",
+        "Ich verstehe Ihren Standpunkt, aber …",
+        "Können wir uns in der Mitte treffen?"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Kritik an der Arbeit",
+      "situation": "Der/die Chef:in ist mit der Qualität einer Arbeit nicht zufrieden und spricht die Person darauf an.",
+      "rolleA": {
+        "name": "Mitarbeiter:in – Frau/Herr Demir",
+        "aufgabe": "Du hast dir Mühe gegeben und findest die Kritik zu hart. Ziel: Du willst erklären, warum es passiert ist, ohne dich nur zu entschuldigen. Geheim: Die Aufgabe war dir nicht ganz klar – du hast dich aber nicht getraut, nachzufragen."
+      },
+      "rolleB": {
+        "name": "Chef:in – Frau/Herr Hoffmann",
+        "aufgabe": "Die letzte Aufgabe hatte viele Fehler. Das darf nicht wieder passieren. Ziel: Die Person soll die Fehler verstehen und es besser machen. Geheim: Du hast die Anweisungen selbst etwas unklar gegeben – das gibst du nur zu, wenn es fair ist."
+      },
+      "redemittel": [
+        "Mir ist aufgefallen, dass …",
+        "Ich erwarte von Ihnen, dass …",
+        "Der Grund dafür ist …",
+        "Das verstehe ich, aber für mich ist …",
+        "Ich verstehe Ihren Standpunkt, aber …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Neue Aufgaben ohne mehr Geld",
+      "situation": "Der/die Chef:in möchte der Person zusätzliche Aufgaben geben – vorerst ohne mehr Gehalt.",
+      "rolleA": {
+        "name": "Mitarbeiter:in – Frau/Herr Bauer",
+        "aufgabe": "Du hast schon viel zu tun und willst nicht noch mehr – nicht ohne Gegenleistung. Ziel: Wenn mehr Arbeit, dann auch etwas dafür (Geld, Zeit, Urlaub). Geheim: Die Aufgaben interessieren dich eigentlich – du willst sie, aber nicht umsonst."
+      },
+      "rolleB": {
+        "name": "Chef:in – Frau/Herr Lange",
+        "aufgabe": "Eine Kollegin ist ausgefallen; die Arbeit muss verteilt werden. Ziel: Die Person soll die Aufgaben übernehmen. Geheim: Du könntest als Ausgleich extra Urlaubstage oder flexible Zeiten anbieten."
+      },
+      "redemittel": [
+        "Ich wollte mit Ihnen über … sprechen.",
+        "Wir brauchen hier eine Lösung, weil …",
+        "Das verstehe ich, aber für mich ist …",
+        "Ich wäre einverstanden, wenn …",
+        "Als Kompromiss könnte ich Ihnen … anbieten."
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Rückkehr nach langer Krankheit",
+      "situation": "Der/die Mitarbeiter:in kommt nach mehreren Wochen Krankheit zurück. Erstes Gespräch mit dem/der Chef:in.",
+      "rolleA": {
+        "name": "Mitarbeiter:in – Frau/Herr Ivanova",
+        "aufgabe": "Du bist zurück, aber noch nicht ganz bei 100 %. Ziel: Du möchtest langsam wieder anfangen (weniger Stunden am Anfang). Geheim: Du hast Angst, deinen Job zu verlieren – deshalb sagst du vielleicht, dass mehr geht, als wirklich geht."
+      },
+      "rolleB": {
+        "name": "Chef:in – Frau/Herr Wagner",
+        "aufgabe": "Du freust dich über die Rückkehr, brauchst die Person aber wieder voll. Ziel: Du willst wissen, ob die Person wieder voll arbeiten kann. Geheim: Du darfst nicht nach der Krankheit fragen. Du musst freundlich einen Wiedereinstieg planen."
+      },
+      "redemittel": [
+        "Schön, dass Sie da sind. Setzen Sie sich.",
+        "Für mich ist wichtig, dass …",
+        "Es geht mir um Folgendes: …",
+        "Wäre es möglich, dass …?",
+        "Ich schlage vor, dass wir …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Schichttausch",
+      "situation": "Der/die Mitarbeiter:in möchte nicht mehr in der Spätschicht arbeiten und spricht mit dem/der Chef:in.",
+      "rolleA": {
+        "name": "Mitarbeiter:in – Frau/Herr Haddad",
+        "aufgabe": "Die Spätschicht passt nicht mehr, weil du abends dein Kind betreuen musst. Ziel: Du möchtest nur noch Frühschicht arbeiten. Geheim: Ein oder zwei Spätschichten im Monat gingen zur Not – aber nicht mehr."
+      },
+      "rolleB": {
+        "name": "Chef:in – Frau/Herr Richter",
+        "aufgabe": "Die Spätschicht muss besetzt sein. Nicht alle wollen sie machen. Ziel: Du willst, dass die Person weiter Spätschicht macht – zumindest manchmal. Geheim: Ein:e neue:r Mitarbeiter:in fängt bald an und macht gern Spätschicht. Das könnte die Lösung sein."
+      },
+      "redemittel": [
+        "Ich würde gern mit Ihnen über … sprechen.",
+        "Für mich ist das wichtig, weil …",
+        "Wir brauchen hier eine Lösung, weil …",
+        "Als Kompromiss könnte ich Ihnen … anbieten.",
+        "Ich wäre einverstanden, wenn …"
+      ],
+      "dauer": 240
+    },
+    {
+      "titel": "Handy am Arbeitsplatz",
+      "situation": "Dem/der Chef:in ist aufgefallen, dass die Person während der Arbeit oft privat das Handy benutzt.",
+      "rolleA": {
+        "name": "Mitarbeiter:in – Frau/Herr Kaya",
+        "aufgabe": "Du schaust manchmal aufs Handy, weil du wegen deiner Familie erreichbar sein willst. Ziel: Du möchtest in Notfällen erreichbar bleiben. Geheim: Oft ist es aber auch nur Langeweile – das gibst du nicht offen zu."
+      },
+      "rolleB": {
+        "name": "Chef:in – Frau/Herr Neumann",
+        "aufgabe": "Privates Handy stört die Arbeit und andere sehen es auch. Ziel: Die Person soll das Handy während der Arbeit weglegen. Geheim: Eine feste Handy-Pause pro Schicht wäre für dich ein akzeptabler Kompromiss."
+      },
+      "redemittel": [
+        "Mir ist aufgefallen, dass …",
+        "Ich erwarte von Ihnen, dass …",
+        "Der Grund dafür ist …",
+        "Wäre es möglich, dass …?",
+        "Als Kompromiss könnte ich Ihnen … anbieten."
+      ],
+      "dauer": 240
+    }
+  ]
+}

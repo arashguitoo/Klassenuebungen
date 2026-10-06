@@ -72,6 +72,10 @@ function resolveTS(v, now){
   return v;
 }
 
+function strict(v, path){
+  if (v === undefined) throw new Error("set failed: value argument contains undefined in property '" + path + "'");
+  if (v && typeof v === "object") Object.keys(v).forEach(function(k){ strict(v[k], path + "." + k); });
+}
 function mockAdapter(){
   var KEY = "kx.mock.db", listeners = [], discs = [];
   function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; } }
@@ -89,10 +93,10 @@ function mockAdapter(){
   return {
     mock:true, TS:{".sv":"timestamp"},
     get:function(p){ return Promise.resolve(KX.clone(getAt(load(), splitPath(p)))); },
-    set:function(p, v){ write(p, v); return Promise.resolve(); },
-    update:function(p, o){ var root = load(); Object.keys(o).forEach(function(k){ setAt(root, splitPath(p).concat(splitPath(k)), resolveTS(KX.clone(o[k]), Date.now())); }); store(root); return Promise.resolve(); },
+    set:function(p, v){ strict(v, p); write(p, v); return Promise.resolve(); },
+    update:function(p, o){ strict(o, p); var root = load(); Object.keys(o).forEach(function(k){ setAt(root, splitPath(p).concat(splitPath(k)), resolveTS(KX.clone(o[k]), Date.now())); }); store(root); return Promise.resolve(); },
     remove:function(p){ write(p, null); return Promise.resolve(); },
-    push:function(p, v){ var k = Date.now().toString(36) + KX.uid(4); write(p + "/" + k, v); return k; },
+    push:function(p, v){ strict(v, p); var k = Date.now().toString(36) + KX.uid(4); write(p + "/" + k, v); return k; },
     on:function(p, cb){ var l = {path:p, cb:cb, last:undefined}; listeners.push(l); setTimeout(notify, 0); return function(){ listeners = listeners.filter(function(x){ return x !== l; }); }; },
     tx:function(p, fn){
       var root = load(), cur = KX.clone(getAt(root, splitPath(p))), nv = fn(cur);
@@ -106,6 +110,15 @@ function mockAdapter(){
   };
 }
 
+/* Firebase verbietet undefined – leere Felder vor dem Schreiben entfernen */
+function clean(v){
+  if (v === undefined) return null;
+  if (v === null || typeof v !== "object") return (typeof v === "number" && !isFinite(v)) ? null : v;
+  if (Array.isArray(v)) return v.map(function(x){ var c = clean(x); return c === undefined ? null : c; });
+  var o = {}; Object.keys(v).forEach(function(k){ if (v[k] !== undefined) { var c = clean(v[k]); if (c !== null || v[k] === null) o[k] = c; } });
+  return o;
+}
+KX.clean = clean;
 function firebaseAdapter(){
   if (!window.firebase) throw new Error("Firebase nicht geladen");
   if (!firebase.apps.length) firebase.initializeApp(KX.FB);
@@ -114,13 +127,13 @@ function firebaseAdapter(){
   return {
     mock:false, TS:firebase.database.ServerValue.TIMESTAMP,
     get:function(p){ return db.ref(p).once("value").then(function(s){ return s.val(); }); },
-    set:function(p, v){ return db.ref(p).set(v); },
-    update:function(p, o){ return db.ref(p).update(o); },
+    set:function(p, v){ return db.ref(p).set(clean(v)); },
+    update:function(p, o){ return db.ref(p).update(clean(o)); },
     remove:function(p){ return db.ref(p).remove(); },
-    push:function(p, v){ var r = db.ref(p).push(); r.set(v); return r.key; },
+    push:function(p, v){ var r = db.ref(p).push(); r.set(clean(v)); return r.key; },
     on:function(p, cb){ var r = db.ref(p), h = function(s){ cb(s.val()); }; r.on("value", h); return function(){ r.off("value", h); }; },
-    tx:function(p, fn){ return db.ref(p).transaction(function(c){ return fn(c); }).then(function(r){ return {committed:r.committed, value:r.snapshot.val()}; }); },
-    onDisconnect:function(p){ var od = db.ref(p).onDisconnect(); return { set:function(v){ od.set(v); }, remove:function(){ od.remove(); }, cancel:function(){ od.cancel(); } }; },
+    tx:function(p, fn){ return db.ref(p).transaction(function(c){ var n = fn(c); return n === undefined ? undefined : clean(n); }).then(function(r){ return {committed:r.committed, value:r.snapshot.val()}; }); },
+    onDisconnect:function(p){ var od = db.ref(p).onDisconnect(); return { set:function(v){ od.set(clean(v)); }, remove:function(){ od.remove(); }, cancel:function(){ od.cancel(); } }; },
     now:function(){ return Date.now() + off; },
     connected:function(cb){ db.ref(".info/connected").on("value", function(s){ cb(!!s.val()); }); }
   };

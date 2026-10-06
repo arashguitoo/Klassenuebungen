@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎛️</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="kern.css">
+<link rel="stylesheet" href="kern.css?v=2">
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <style>
@@ -234,8 +234,8 @@ dialog::backdrop{background:rgba(10,12,25,.5)}
 
 <div class="full hide" id="full"><button class="btn cl" id="fullClose">✕ schließen</button><iframe id="fullFrame" title="Beamer"></iframe></div>
 
-<script src="kern.js"></script>
-<script src="formate.js"></script>
+<script src="kern.js?v=2"></script>
+<script src="formate.js?v=2"></script>
 <script>
 (function(){
 "use strict";
@@ -434,7 +434,7 @@ $("sdGo").onclick = function(){
     var items = []; ms.forEach(function(m){ items = items.concat(m.inhalt || []); });
     var x = F[SD.fmt], prepared = x.prepare(items, SD.st);
     if (!prepared.length) throw new Error("Keine passenden Aufgaben für dieses Format.");
-    var et = {fertigkeit:[], niveau:[]}; ms.forEach(function(m){ var e = m.etiketten || {}; (e.fertigkeit || []).forEach(function(f){ if (et.fertigkeit.indexOf(f) < 0) et.fertigkeit.push(f); }); (e.niveau || []).forEach(function(n){ if (et.niveau.indexOf(n) < 0) et.niveau.push(n); }); if (!et.thema) et.thema = e.thema; if (!et.lehrwerk) { et.lehrwerk = e.lehrwerk; et.lektion = e.lektion; } });
+    var et = {fertigkeit:[], niveau:[]}; ms.forEach(function(m){ var e = m.etiketten || {}; (e.fertigkeit || []).forEach(function(f){ if (et.fertigkeit.indexOf(f) < 0) et.fertigkeit.push(f); }); (e.niveau || []).forEach(function(n){ if (et.niveau.indexOf(n) < 0) et.niveau.push(n); }); if (!et.thema && e.thema) et.thema = e.thema; if (!et.lehrwerk && e.lehrwerk) { et.lehrwerk = e.lehrwerk; if (e.lektion) et.lektion = e.lektion; } });
     if (SD.kurs) { try { var ks = JSON.parse(localStorage.getItem("kx.kurse") || "[]"); if (ks.indexOf(SD.kurs) < 0) ks.unshift(SD.kurs); localStorage.setItem("kx.kurse", JSON.stringify(ks.slice(0, 20))); } catch(e){} }
     var teamCount = SD.modus === "gruppen" ? (SD.fmt === "sprechduell" ? 0 : SD.teams) : 0;
     return KX.createSession({format:SD.fmt, titel:SD.pakete.length > 1 ? SD.pakete.map(function(p){ return p.titel; }).join(" + ") : SD.pakete[0].titel,

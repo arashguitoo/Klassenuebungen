@@ -23,7 +23,8 @@ mit Filter nach Thema und Niveau.
 ├─ lieferung-problem.html          ← Lieferung mit Problemen (Gastro-B2B-Rollenspiel/online)
 ├─ mitarbeitergespraeche.html      ← Mitarbeitergespräche (Chef:in/Mitarbeiter:in Rollenpaare/online)
 ├─ bewerbungsgespraeche.html       ← Bewerbungsgespräche (Unternehmen/Bewerber:in, anonyme Bewertung/online)
-└─ beratungsgespraech-agentur.html ← Beratung bei der Agentur für Arbeit (Kund:in/Berater:in/online)
+├─ beratungsgespraech-agentur.html ← Beratung bei der Agentur für Arbeit (Kund:in/Berater:in/online)
+└─ activity-a2.html                ← Erklären, Zeigen, Malen (Team-Ratespiel A2/online)
 ```
 
 Jedes Spiel ist eine eigenständige HTML-Datei (kein Build, kein Server, keine
@@ -92,6 +93,7 @@ Zuordnung und Mitmach-Runden (jedes Mitglied einzeln).
 | Mitarbeitergespräche | Kommunikation | B1/B2 | Paare (online) |
 | Bewerbungsgespräche | Beruf & Bewerbung | B1/B2 | Paare (online) |
 | Beratung bei der Agentur für Arbeit | Beruf & Bewerbung | B1/B2 | Paare (online) |
+| Erklären, Zeigen, Malen | Spiel & Quiz | A2 | Teams (online) |
 | Mitarbeitergespräche | Kommunikation | B1/B2 | Paare (online) |
 | Bewerbungsgespräche | Beruf & Bewerbung | B1/B2 | Paare (online) |
 | Beratung bei der Agentur für Arbeit | Beruf & Bewerbung | B1/B2 | Paare (online) |

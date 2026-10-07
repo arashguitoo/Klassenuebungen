@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Erklären, Zeigen, Malen – Lern Deutsch mit Arash</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<style>
+:root{
+  --bg:#0f1b2b; --bg2:#14243a; --card:#182b44; --card2:#1f3554;
+  --ink:#edf2f8; --ink-soft:#97a9be; --line:#2c4668;
+  --gold:#e3a83a; --gold2:#b98219; --teal:#2fa389; --rose:#e0654a;
+  --e:#3f7cc4; --p:#d06a3b; --z:#8a6fd6;
+  --radius:16px; --shadow:0 1px 2px rgba(0,0,0,.2),0 12px 30px rgba(0,0,0,.32);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Calibri,'Segoe UI',system-ui,sans-serif;color:var(--ink);line-height:1.5;
+  background:radial-gradient(circle at 50% -10%,#1d3657 0%,transparent 55%),var(--bg);-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:16px 16px 60px}
+.wrap.beamer{max-width:1200px}
+.hidden{display:none!important}
+h1,h2,h3{margin:0}
+button{font-family:inherit}
+header.top{display:flex;align-items:center;gap:14px;padding:16px 0 18px}
+.logo{flex:0 0 auto;width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));display:grid;place-items:center;font-size:1.55rem}
+header.top h1{font-size:1.45rem;letter-spacing:-.3px;line-height:1.1}
+header.top .tag{color:var(--ink-soft);font-size:.88rem;margin-top:2px}
+header.top .home{margin-left:auto;text-decoration:none;color:var(--ink-soft);font-size:.84rem;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:7px 13px;background:var(--card);white-space:nowrap}
+.card{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:16px;box-shadow:var(--shadow)}
+.card h2{font-size:1.15rem;margin-bottom:6px}
+.muted{color:var(--ink-soft);font-size:.94rem}
+.center{text-align:center}
+.btn{border:none;border-radius:12px;padding:12px 18px;font-size:1rem;font-weight:800;cursor:pointer;color:#fff;transition:.12s}
+.btn:hover{filter:brightness(1.07)}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.4;cursor:not-allowed;filter:none;transform:none}
+.btn-gold{background:linear-gradient(180deg,var(--gold),var(--gold2));color:#3a2800}
+.btn-teal{background:linear-gradient(180deg,var(--teal),#1f7d68)}
+.btn-ghost{background:var(--card2);color:var(--ink-soft);border:1px solid var(--line)}
+.btn-ghost:hover{color:var(--ink)}
+.btn-danger{background:#7a2520;border:1px solid #a23}
+.btn.small{padding:7px 12px;font-size:.86rem;border-radius:10px}
+.btn.big{padding:16px 26px;font-size:1.2rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input,select{padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--card2);color:var(--ink);font-family:inherit}
+input:focus,select:focus{outline:2px solid var(--gold);border-color:var(--gold)}
+.notice{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:.94rem;margin-top:10px}
+.notice.err{border-color:var(--rose);color:#f7cbc0}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.role-grid{grid-template-columns:1fr}}
+.role-pick{border:1px solid var(--line);background:var(--card2);border-radius:var(--radius);padding:20px;cursor:pointer;text-align:left;color:var(--ink);transition:.15s}
+.role-pick:hover{border-color:var(--gold);transform:translateY(-2px)}
+.role-pick .ic{font-size:2rem;margin-bottom:6px}
+.role-pick h3{font-size:1.1rem;margin-bottom:4px}
+.role-pick p{color:var(--ink-soft);font-size:.9rem;margin:0}
+.modes3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.mode-tile{border-radius:12px;padding:12px;text-align:center;color:#fff;font-weight:800}
+.mode-tile .mi{font-size:1.7rem}
+.mode-tile .ms{font-weight:400;font-size:.84rem;opacity:.92;margin-top:2px}
+.m-e{background:linear-gradient(135deg,var(--e),#2b5c96)}
+.m-p{background:linear-gradient(135deg,var(--p),#a44f27)}
+.m-z{background:linear-gradient(135deg,var(--z),#6650ad)}
+
+/* Konsole */
+.codebar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.bigcode{font-size:2.8rem;font-weight:900;letter-spacing:7px;color:var(--gold)}
+.teams{display:grid;gap:12px;margin-top:10px}
+.team{border-radius:14px;padding:14px;background:var(--card2);border:2px solid var(--line)}
+.team.turn{box-shadow:0 0 0 3px rgba(227,168,58,.6)}
+.team .th{display:flex;align-items:center;gap:8px}
+.team .tn{font-weight:900;font-size:1.15rem}
+.team .ts{margin-left:auto;font-size:2.2rem;font-weight:900;line-height:1}
+.team .tm{margin-top:8px;display:flex;flex-wrap:wrap;gap:5px}
+.team .tm span{background:rgba(255,255,255,.08);border-radius:999px;padding:2px 9px;font-size:.88rem}
+.team .tb{display:flex;gap:6px;margin-top:10px}
+.stagebox{border:2px solid var(--gold);background:linear-gradient(180deg,#2a2210,#18181a)}
+.turnline{font-size:1.5rem;font-weight:900;margin:2px 0 4px}
+.modebadge{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px;font-weight:800;color:#fff;font-size:1.05rem}
+.clock{font-size:5rem;font-weight:900;font-variant-numeric:tabular-nums;line-height:1;margin:10px 0}
+.clock.warn{color:var(--gold)}.clock.over{color:var(--rose)}
+.okcount{font-size:1.3rem;font-weight:800;color:#a6e0b0}
+.reslist{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.reslist span{border-radius:9px;padding:5px 11px;font-weight:700;font-size:1.02rem}
+.r-ok{background:#173a1f;color:#a6e0b0}.r-skip{background:#3a2424;color:#f0b0a6;text-decoration:line-through}
+.setgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:8px}
+.setgrid label{font-size:.84rem;color:var(--ink-soft);display:block;margin-bottom:4px}
+.setgrid select{width:100%;padding:9px 10px;font-size:.95rem}
+.list{display:flex;flex-direction:column;gap:7px;margin-top:10px}
+.list-item{display:flex;align-items:center;gap:10px;background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:8px 11px;flex-wrap:wrap}
+.list-item .nm{font-weight:700;flex:1;min-width:110px}
+.list-item select{padding:7px 9px;font-size:.9rem}
+.pill{display:inline-block;font-size:.78rem;font-weight:800;padding:4px 10px;border-radius:999px}
+.pill.frei{background:#3a2412;color:#f2c48a}
+
+/* Spieler */
+.teambadge{border-radius:14px;padding:12px 16px;color:#fff;font-weight:800;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.myturn{border-radius:18px;padding:22px 18px;text-align:center;margin-bottom:14px}
+.word{font-size:2.5rem;font-weight:900;line-height:1.1;margin:8px 0 6px;word-break:break-word}
+.tabu{background:#2d1616;border:1px solid #6a2b25;border-radius:12px;padding:12px;margin-top:12px;text-align:left}
+.tabu .tl{color:#f0a9a0;font-weight:800;font-size:.85rem;text-transform:uppercase;letter-spacing:.5px}
+.tabu ul{margin:6px 0 0;padding-left:0;list-style:none;display:flex;gap:7px;flex-wrap:wrap}
+.tabu li{background:#4a1f1b;color:#ffd5cd;border-radius:8px;padding:5px 11px;font-weight:800;font-size:1.05rem}
+.actbtns{display:grid;grid-template-columns:2fr 1fr;gap:10px;margin-top:16px}
+.actbtns .btn{padding:20px 10px;font-size:1.2rem}
+.hint{font-size:.9rem;color:var(--ink-soft);margin-top:10px}
+.score-mini{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+.score-mini span{border-radius:999px;padding:4px 12px;font-weight:800;color:#fff;font-size:.95rem}
+footer{text-align:center;color:var(--ink-soft);font-size:.82rem;margin-top:30px}
+</style>
+</head>
+<body>
+
+<!-- START -->
+<div id="screen-home" class="wrap">
+  <header class="top"><div class="logo">🎲</div>
+    <div><h1>Erklären, Zeigen, Malen</h1><div class="tag">Team-Ratespiel · Niveau A2</div></div>
+    <a href="index.html" class="home">🏠 Index</a></header>
+  <div class="card">
+    <h2>Wie spielt man?</h2>
+    <p class="muted">Die Klasse spielt in Teams. Eine Person bekommt einen Begriff aufs Handy – nur sie sieht ihn. Sie <b>erklärt</b> ihn, <b>zeigt</b> ihn als Pantomime oder <b>malt</b> ihn an die Tafel. Ihr Team rät. Jeder richtige Begriff bringt einen Punkt.</p>
+    <div class="modes3">
+      <div class="mode-tile m-e"><div class="mi">💬</div>Erklären<div class="ms">ohne die verbotenen Wörter</div></div>
+      <div class="mode-tile m-p"><div class="mi">🎭</div>Pantomime<div class="ms">ohne Wörter, nur mit dem Körper</div></div>
+      <div class="mode-tile m-z"><div class="mi">✏️</div>Malen<div class="ms">an der Tafel, ohne Buchstaben</div></div>
+    </div>
+  </div>
+  <div class="role-grid">
+    <button class="role-pick" onclick="showConsoleLogin()"><div class="ic">🎛️</div><h3>Spielleitung (Beamer)</h3>
+      <p>Kurs-Code, Teams einteilen, Runden starten, Punkte zeigen.</p></button>
+    <button class="role-pick" onclick="showJoin()"><div class="ic">📱</div><h3>Mitspielen</h3>
+      <p>Mit Kurs-Code und Vornamen anmelden.</p></button>
+  </div>
+</div>
+
+<!-- BEITRETEN -->
+<div id="screen-join" class="wrap hidden">
+  <header class="top"><div class="logo">🎲</div>
+    <div><h1>Anmelden</h1><div class="tag">Kurs-Code und Vorname</div></div>
+    <a href="#" class="home" onclick="goHome();return false;">← zurück</a></header>
+  <div class="card">
+    <div class="row" style="margin-bottom:12px">
+      <input id="join-code" placeholder="Kurs-Code" inputmode="numeric" maxlength="4" style="flex:1 1 140px">
+      <input id="join-name" placeholder="Dein Vorname" maxlength="20" style="flex:1 1 170px">
+    </div>
+    <button class="btn btn-gold" onclick="joinGame()">Anmelden</button>
+    <div id="join-msg"></div>
+  </div>
+</div>
+
+<!-- KONSOLE LOGIN -->
+<div id="screen-console-login" class="wrap hidden">
+  <header class="top"><div class="logo">🎲</div>
+    <div><h1>Spielleitung</h1><div class="tag">Kurs-Code festlegen oder Spiel wieder öffnen</div></div>
+    <a href="#" class="home" onclick="goHome();return false;">← zurück</a></header>
+  <div class="card">
+    <h2>Spiel starten</h2>
+    <p class="muted">Eigenen Kurs-Code eingeben (4 Ziffern, z. B. immer derselbe für deinen Kurs) – oder leer lassen, dann wird ein Code erzeugt. Gibt es den Code schon, öffnet sich das laufende Spiel.</p>
+    <div class="row" style="margin-top:12px">
+      <input id="wish-code" placeholder="Kurs-Code (optional)" inputmode="numeric" maxlength="4" style="flex:0 1 210px">
+      <button class="btn btn-gold" onclick="startGame()">🎬 Spiel starten</button>
+    </div>
+    <div id="console-login-msg"></div>
+  </div>
+</div>
+
+<div id="screen-console" class="wrap beamer hidden"></div>
+<div id="screen-player" class="wrap hidden"></div>
+<footer>Lern Deutsch mit Arash · Erklären, Zeigen, Malen</footer>
+
+<script data-goatcounter="https://aguitoo.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+/* ======================================================================
+   BEGRIFFE (A2): [Begriff, Modi, verbotene Wörter]
+   Modi: e = Erklären, p = Pantomime, z = Malen
+   ====================================================================== */
+const RAW = [
+ /* Wohnen und Haushalt */
+ ["der Kühlschrank","ez","kalt|Küche|Milch"],
+ ["das Bett","ezp","schlafen|Schlafzimmer|müde"],
+ ["die Waschmaschine","ezp","Kleidung|Bad|schmutzig"],
+ ["der Schlüssel","ezp","Tür|Haus|aufmachen"],
+ ["das Fenster","ezp","Glas|Wand|aufmachen"],
+ ["die Treppe","ezp","oben|unten|gehen"],
+ ["der Staubsauger","ezp","sauber|Boden|putzen"],
+ ["die Lampe","ez","Licht|hell|dunkel"],
+ ["das Sofa","ez","sitzen|Wohnzimmer|bequem"],
+ ["die Dusche","ezp","Wasser|Bad|waschen"],
+ ["der Regenschirm","ezp","nass|Wetter|aufmachen"],
+ ["die Uhr","ez","Zeit|Stunde|Minute"],
+ ["der Wecker","ezp","morgens|aufstehen|klingeln"],
+ ["die Tasse","ez","Kaffee|Tee|trinken"],
+ ["der Löffel","ez","Suppe|essen|Gabel"],
+ ["die Schere","ezp","schneiden|Papier|scharf"],
+ ["die Kerze","ezp","Licht|Feuer|Geburtstag"],
+ ["der Fernseher","ez","Film|Wohnzimmer|Nachrichten"],
+ ["der Briefkasten","ez","Post|Haus|Zeitung"],
+ /* Essen und Trinken */
+ ["die Banane","ezp","gelb|Obst|Affe"],
+ ["der Apfel","ez","Obst|rot|Baum"],
+ ["die Pizza","ezp","Italien|Käse|rund"],
+ ["das Ei","ez","Huhn|Frühstück|kochen"],
+ ["der Kaffee","ezp","trinken|Tasse|morgens"],
+ ["die Suppe","ezp","Löffel|warm|Teller"],
+ ["das Brot","ez","Bäcker|essen|Butter"],
+ ["der Kuchen","ez","Geburtstag|süß|backen"],
+ ["das Eis","ezp","kalt|Sommer|süß"],
+ ["die Zwiebel","ezp","weinen|Gemüse|schneiden"],
+ ["der Käse","ez","Milch|gelb|Brot"],
+ ["die Kartoffel","ez","Gemüse|Pommes|Erde"],
+ /* Körper und Gesundheit */
+ ["der Zahnarzt / die Zahnärztin","ezp","Praxis|Schmerzen|Mund"],
+ ["die Zahnbürste","ezp","putzen|Bad|Mund"],
+ ["die Brille","ezp","Augen|sehen|Glas"],
+ ["das Fieber","ep","krank|heiß|Grad"],
+ ["die Apotheke","e","Medikamente|Tabletten|kaufen"],
+ ["die Kopfschmerzen","ep","wehtun|Tablette|krank"],
+ ["das Krankenhaus","ez","Arzt|Bett|Notfall"],
+ ["niesen","ep","Nase|Erkältung|Gesundheit"],
+ ["Hände waschen","ep","Wasser|Seife|sauber"],
+ /* Arbeit und Berufe */
+ ["der Koch / die Köchin","ezp","Küche|Essen|Restaurant"],
+ ["der Polizist / die Polizistin","ezp","Auto|Uniform|Dieb"],
+ ["der Friseur / die Friseurin","ezp","Haare|schneiden|Salon"],
+ ["der Busfahrer / die Busfahrerin","ezp","Haltestelle|Fahrkarte|Straße"],
+ ["der Lehrer / die Lehrerin","ezp","Schule|Kinder|unterrichten"],
+ ["der Arzt / die Ärztin","ezp","krank|Praxis|Patient"],
+ ["der Bäcker / die Bäckerin","ezp","Brot|Brötchen|früh"],
+ ["der Feuerwehrmann / die Feuerwehrfrau","ezp","brennen|Wasser|rot"],
+ ["der Kellner / die Kellnerin","ezp","Restaurant|bringen|Essen"],
+ ["der Chef / die Chefin","ep","Firma|Arbeit|Boss"],
+ ["der Computer","ez","Internet|Bildschirm|arbeiten"],
+ ["das Bewerbungsgespräch","e","Arbeit|Chef|Stelle"],
+ /* Verkehr und Reisen */
+ ["der Bahnhof","ez","Zug|Gleis|Fahrkarte"],
+ ["das Flugzeug","ezp","Urlaub|Pilot|Himmel"],
+ ["das Fahrrad","ezp","Helm|Klingel|Sport"],
+ ["die Ampel","ezp","rot|grün|Straße"],
+ ["der Koffer","ezp","Reise|packen|Urlaub"],
+ ["die Fahrkarte","ez","Bus|Zug|kaufen"],
+ ["das Taxi","ezp","fahren|bezahlen|Auto"],
+ ["der Stau","ep","Auto|Straße|warten"],
+ ["der Zug","ezp","Bahnhof|Gleis|fahren"],
+ ["das Schiff","ez","Meer|Wasser|fahren"],
+ ["die Brücke","ez","Fluss|über|Straße"],
+ /* Freizeit */
+ ["Fußball spielen","ezp","Tor|Mannschaft|Sport"],
+ ["schwimmen","ep","Wasser|Meer|Badehose"],
+ ["tanzen","ep","Musik|Disco|Party"],
+ ["fotografieren","ezp","Kamera|Handy|Bild"],
+ ["die Gitarre","ezp","Musik|spielen|Instrument"],
+ ["das Kino","ez","Film|sehen|Popcorn"],
+ ["lesen","ep","Buch|Zeitung|Buchstaben"],
+ ["der Geburtstag","ezp","Kuchen|Party|Geschenk"],
+ ["das Geschenk","ezp","Geburtstag|Weihnachten|Paket"],
+ ["kochen","ep","Topf|Herd|Essen"],
+ ["joggen","ep","laufen|Sport|Park"],
+ ["das Handy","ezp","telefonieren|anrufen|Smartphone"],
+ ["fernsehen","ep","Film|Sofa|Programm"],
+ ["der Urlaub","ez","Reise|frei|Sommer"],
+ ["Ski fahren","ezp","Schnee|Winter|Berg"],
+ ["angeln","ezp","Fisch|Wasser|See"],
+ /* Einkaufen und Kleidung */
+ ["der Supermarkt","ez","einkaufen|Kasse|Lebensmittel"],
+ ["die Kasse","ezp","bezahlen|Geld|Supermarkt"],
+ ["die Jacke","ezp","anziehen|kalt|Winter"],
+ ["die Schuhe","ezp","Füße|laufen|anziehen"],
+ ["die Mütze","ezp","Kopf|Winter|warm"],
+ ["das Geld","ez","Euro|bezahlen|Bank"],
+ ["anprobieren","ep","Kleidung|Größe|Kabine"],
+ ["der Einkaufswagen","ezp","Supermarkt|schieben|Kasse"],
+ ["der Rucksack","ezp","Schule|Tasche|wandern"],
+ /* Natur, Wetter, Tiere */
+ ["die Sonne","ez","warm|Himmel|gelb"],
+ ["der Schnee","ezp","weiß|Winter|kalt"],
+ ["das Gewitter","ezp","Blitz|Donner|Regen"],
+ ["der Baum","ez","Wald|grün|Blatt"],
+ ["die Blume","ez","Garten|Rose|schön"],
+ ["der Berg","ez","hoch|wandern|Alpen"],
+ ["der Wind","ep","wehen|Wetter|kalt"],
+ ["der Schneemann","ezp","Winter|Karotte|kalt"],
+ ["der Hund","ezp","Tier|bellen|Katze"],
+ ["die Katze","ezp","Tier|Miau|Maus"],
+ ["der Elefant","ezp","groß|grau|Tier"],
+ ["der Fisch","ezp","Wasser|schwimmen|Meer"],
+ ["der Vogel","ezp","fliegen|Federn|singen"],
+ ["die Biene","ezp","Honig|gelb|fliegen"],
+ ["die Spinne","ezp","acht|Beine|Netz"],
+ ["der Schmetterling","ezp","fliegen|bunt|Flügel"],
+ ["die Ente","ezp","Vogel|Wasser|quaken"],
+ ["das Pferd","ezp","reiten|Tier|schnell"],
+ /* Familie, Gefühle, Alltag */
+ ["das Baby","ezp","klein|Kind|weinen"],
+ ["die Hochzeit","ezp","heiraten|Braut|Ring"],
+ ["die Oma","ezp","alt|Großmutter|Familie"],
+ ["müde sein","ep","schlafen|Bett|Abend"],
+ ["Angst haben","ep","Gefahr|Hilfe|Horrorfilm"],
+ ["sich freuen","ep","glücklich|froh|lachen"],
+ ["wütend sein","ep","böse|Ärger|schreien"],
+ ["aufstehen","ep","morgens|Bett|Wecker"],
+ ["telefonieren","ep","Handy|anrufen|sprechen"],
+ ["putzen","ep","sauber|Wohnung|Staub"],
+ ["warten","ep","Zeit|Bus|lange"],
+ ["das Auto waschen","ep","Wasser|sauber|Schwamm"],
+ ["Schlange stehen","ep","warten|Kasse|Leute"],
+ ["die Post","e","Brief|Paket|schicken"]
+];
+const TERMS = RAW.map((r,i)=>({id:i, w:r[0], m:r[1], t:r[2].split("|")}));
+
+const MODES = {
+  e:{n:"Erklären", ic:"💬", cls:"m-e", color:"#3f7cc4", verb:"erklärt",
+     rule:"Erkläre den Begriff mit Wörtern. Die roten Wörter und Teile vom Begriff sind verboten!",
+     help:["Das ist ein Ding / ein Tier / eine Person …","Man braucht das, wenn …","Das macht man, wenn …","Das Gegenteil von … ist …"]},
+  p:{n:"Pantomime", ic:"🎭", cls:"m-p", color:"#d06a3b", verb:"spielt Pantomime",
+     rule:"Zeige den Begriff nur mit dem Körper. Du darfst nicht sprechen und keine Geräusche machen!"},
+  z:{n:"Malen", ic:"✏️", cls:"m-z", color:"#8a6fd6", verb:"malt an die Tafel",
+     rule:"Male den Begriff an die Tafel. Keine Buchstaben, keine Zahlen – und nicht sprechen!"}
+};
+const TEAMS = {
+  1:{n:"Team Sonne", ic:"☀️", c:"#c98a1a"},
+  2:{n:"Team Mond",  ic:"🌙", c:"#3f6fb0"},
+  3:{n:"Team Stern", ic:"⭐", c:"#8a6fd6"},
+  4:{n:"Team Blitz", ic:"⚡", c:"#2f9a7a"}
+};
+</script>
+<script>
+/* ======================================================================
+   ENGINE
+   ====================================================================== */
+const firebaseConfig = {
+  apiKey: "AIzaSyBDChXlm34Kr7Gg0Dw458GiiwoLnWJAnxM",
+  authDomain: "lern-deutsch-arash.firebaseapp.com",
+  databaseURL: "https://lern-deutsch-arash-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "lern-deutsch-arash",
+  storageBucket: "lern-deutsch-arash.firebasestorage.app",
+  messagingSenderId: "845503292114",
+  appId: "1:845503292114:web:f76ab5fcde1e978d00c30b"
+};
+let db=null, fbReady=false, timeOffset=0;
+try{ firebase.initializeApp(firebaseConfig); db=firebase.database(); fbReady=true;
+  db.ref(".info/serverTimeOffset").on("value",s=>{ timeOffset=Number(s.val())||0; }); }
+catch(e){ console.warn("Firebase nicht verfügbar:",e); }
+
+const ROOT="games_act/";
+let mode=null, gameCode=null, gameRef=null, myId=null, G={}, consolePending=false, actLock="";
+const S=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const now=()=>Date.now()+timeOffset;
+function rand4(){return String(Math.floor(1000+Math.random()*9000));}
+function uid(){return "u"+Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+function setMsg(id,t,c){const e=S(id);if(e)e.innerHTML=`<div class="notice ${c||''}">${t}</div>`;}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function hideAll(){["screen-home","screen-join","screen-player","screen-console-login","screen-console"].forEach(s=>S(s).classList.add("hidden"));}
+function goHome(){ if(gameRef)gameRef.off(); hideAll(); S("screen-home").classList.remove("hidden"); mode=null;gameCode=null;gameRef=null;myId=null;G={}; }
+function showJoin(){ hideAll(); S("screen-join").classList.remove("hidden");
+  try{ const q=new URLSearchParams(location.search).get("code"); if(q) S("join-code").value=q; }catch(e){}
+  try{ if(!S("join-code").value){ const c=localStorage.getItem("act_lastcode"); if(c) S("join-code").value=c; }
+       const n=localStorage.getItem("act_lastname"); if(n&&!S("join-name").value) S("join-name").value=n; }catch(e){} }
+function showConsoleLogin(){ hideAll(); S("screen-console-login").classList.remove("hidden");
+  try{ const c=localStorage.getItem("act_console_code"); if(c&&!S("wish-code").value) S("wish-code").value=c; }catch(e){}
+  if(!fbReady) setMsg("console-login-msg","⚠️ Keine Verbindung zu Firebase. Bitte Internet prüfen.","err"); }
+function getDeviceId(code){ const k="act_pid_"+code;
+  try{ let v=localStorage.getItem(k); if(!v){v=uid();localStorage.setItem(k,v);} return v; }catch(e){ return uid(); } }
+
+function plist(){ return Object.entries(G.players||{}).map(([id,p])=>({id,...(p||{})})).filter(p=>p.name)
+  .sort((a,b)=>(a.joinedAt||0)-(b.joinedAt||0)); }
+function teamCount(){ return Math.min(4,Math.max(2,Number(G.teamCount)||2)); }
+function teamIds(){ return Array.from({length:teamCount()},(_,i)=>i+1); }
+function members(t){ return plist().filter(p=>Number(p.team)===t); }
+function score(t){ return Number((G.scores||{})[t])||0; }
+function remaining(){ const tr=G.turn; if(!tr||tr.status!=="running") return null;
+  return Math.max(0, Math.ceil(((tr.startedAt||0)+(tr.dur||60)*1000-now())/1000)); }
+function fmtClock(s){ return Math.floor(s/60)+":"+String(s%60).padStart(2,"0"); }
+function okCount(tr){ return Object.values((tr&&tr.res)||{}).filter(x=>x==="ok").length; }
+
+/* ============================ KONSOLE ============================ */
+function startGame(){
+  if(!fbReady){setMsg("console-login-msg","⚠️ Keine Verbindung zu Firebase.","err");return;}
+  const wish=S("wish-code").value.trim();
+  if(wish && !/^\d{4}$/.test(wish)){setMsg("console-login-msg","Der Kurs-Code muss aus 4 Ziffern bestehen.","err");return;}
+  const code=wish||rand4();
+  db.ref(ROOT+code).get().then(s=>{
+    if(s.exists()){ if(wish) return enterConsole(code); return startGame(); }
+    return db.ref(ROOT+code).set({createdAt:Date.now(),teamCount:2,dur:60,modeSel:"mix"}).then(()=>enterConsole(code));
+  });
+}
+function enterConsole(code){
+  gameCode=code; mode="console";
+  try{ localStorage.setItem("act_console_code",code); }catch(e){}
+  hideAll(); S("screen-console").classList.remove("hidden");
+  gameRef=db.ref(ROOT+code);
+  gameRef.on("value",snap=>{ G=snap.val()||{}; renderConsole(); });
+}
+document.addEventListener("focusout",()=>{ if(consolePending) setTimeout(renderConsole,60); });
+
+function renderConsole(){
+  const root=S("screen-console");
+  const ae=document.activeElement;
+  if(ae && ae.tagName==="SELECT" && root.contains(ae)){ consolePending=true; return; }
+  consolePending=false;
+  const ps=plist(); const tr=G.turn; const tc=teamCount();
+  const noTeam=ps.filter(p=>!p.team||Number(p.team)>tc);
+
+  let h=`<header class="top"><div class="logo">🎲</div>
+    <div><h1>Erklären, Zeigen, Malen</h1><div class="tag">${ps.length} angemeldet · ${tc} Teams · Niveau A2</div></div>
+    <a href="#" class="home" onclick="if(confirm('Konsole schließen? Das Spiel bleibt gespeichert.'))goHome();return false;">← schließen</a></header>`;
+
+  h+=`<div class="card"><div class="codebar">
+    <div><div class="muted">Kurs-Code – am Handy „Mitspielen“ wählen</div><div class="bigcode">${esc(gameCode)}</div></div>
+    <div class="muted" style="text-align:right">${ps.length} Teilnehmende<br>${noTeam.length?`<span class="pill frei">${noTeam.length} ohne Team</span>`:(ps.length?'alle sind in einem Team ✓':'')}</div>
+  </div></div>`;
+
+  /* --- Spielfeld --- */
+  h+=`<div class="card stagebox">`;
+  if(tr && (tr.status==="ready"||tr.status==="running")){
+    const md=MODES[tr.mode]; const T=TEAMS[tr.team];
+    h+=`<div class="row" style="justify-content:space-between">
+        <span class="modebadge" style="background:${md.color}">${md.ic} ${md.n}</span>
+        <span class="modebadge" style="background:${T.c}">${T.ic} ${T.n}</span></div>
+      <div class="turnline">${esc(tr.name)} ${md.verb}.</div>
+      <div class="muted">Nur ${T.n} darf raten. Der Begriff steht nur auf dem Handy von ${esc(tr.name)}.</div>`;
+    if(tr.status==="ready"){
+      h+=`<div class="center" style="margin:16px 0 4px">
+          <div class="muted">Bereit? ${esc(tr.name)} startet am Handy – oder du startest hier.</div>
+          <div class="row" style="justify-content:center;margin-top:12px">
+            <button class="btn btn-gold big" onclick="startTurn()">▶ Start (${tr.dur} Sek.)</button></div>
+          <div class="row" style="justify-content:center;margin-top:12px">
+            ${["e","p","z"].map(k=>`<button class="btn small ${tr.mode===k?'btn-gold':'btn-ghost'}" onclick="changeMode('${k}')">${MODES[k].ic} ${MODES[k].n}</button>`).join("")}
+            <button class="btn btn-ghost small" onclick="otherPerson()">⟳ andere Person</button>
+            <button class="btn btn-ghost small" onclick="cancelTurn()">✕ abbrechen</button></div></div>`;
+    } else {
+      const rem=remaining();
+      h+=`<div class="center"><div class="clock ${rem<=10?'over':rem<=20?'warn':''}" data-cd="1">${fmtClock(rem)}</div>
+          <div class="okcount">✓ ${okCount(tr)} erraten</div>
+          <div class="row" style="justify-content:center;margin-top:12px"><button class="btn btn-ghost small" onclick="endTurn()">⏹ Runde beenden</button></div></div>`;
+    }
+  } else {
+    if(tr && tr.status==="done"){
+      const md=MODES[tr.mode]; const T=TEAMS[tr.team];
+      const items=(tr.deck||[]).slice(0,(tr.idx||0)).map((id,i)=>({t:TERMS[id],r:(tr.res||{})[i]}));
+      h+=`<div class="row" style="justify-content:space-between"><span class="modebadge" style="background:${md.color}">${md.ic} ${md.n}</span>
+          <span class="modebadge" style="background:${T.c}">${T.ic} ${T.n}</span></div>
+        <div class="turnline">⏱ Zeit vorbei! ${esc(tr.name)}: ${okCount(tr)} ${okCount(tr)===1?'Begriff':'Begriffe'} erraten.</div>
+        ${items.length?`<div class="muted">Diese Begriffe waren dran:</div><div class="reslist">${items.map(x=>`<span class="${x.r==='ok'?'r-ok':'r-skip'}">${x.r==='ok'?'✓':'⏭'} ${esc(x.t.w)}</span>`).join("")}</div>`:''}`;
+    } else {
+      h+=`<div class="turnline">Bereit für die erste Runde?</div>
+        <p class="muted">1. Teams einteilen &nbsp;·&nbsp; 2. „Nächste Runde“ drücken &nbsp;·&nbsp; 3. Die Person mit dem Begriff startet am Handy.</p>`;
+    }
+    const can=teamIds().some(t=>members(t).length);
+    h+=`<div class="row" style="margin-top:14px"><button class="btn btn-gold big" ${can?'':'disabled'} onclick="nextTurn()">▶ Nächste Runde</button>
+      ${can?'':'<span class="muted">Zuerst Teams einteilen.</span>'}</div>`;
+  }
+  h+=`</div>`;
+
+  /* --- Teams --- */
+  const turnTeam=tr&&tr.status!=="done"?Number(tr.team):0;
+  h+=`<div class="card"><h2>Punkte</h2>
+    <div class="teams" style="grid-template-columns:repeat(${tc},1fr)">
+    ${teamIds().map(t=>{ const T=TEAMS[t]; const ms=members(t);
+      return `<div class="team ${turnTeam===t?'turn':''}" style="border-color:${T.c}">
+        <div class="th"><span style="font-size:1.4rem">${T.ic}</span><span class="tn">${T.n}</span><span class="ts" style="color:${T.c}">${score(t)}</span></div>
+        <div class="tm">${ms.length?ms.map(p=>`<span>${esc(p.name)}</span>`).join(""):'<span class="muted">noch niemand</span>'}</div>
+        <div class="tb"><button class="btn btn-ghost small" onclick="addPoint(${t},1)">+1</button><button class="btn btn-ghost small" onclick="addPoint(${t},-1)">−1</button></div>
+      </div>`;}).join("")}
+    </div></div>`;
+
+  /* --- Einstellungen --- */
+  h+=`<div class="card"><h2>Einstellungen</h2><div class="setgrid">
+      <div><label>Anzahl Teams</label><select onchange="setVal('teamCount',Number(this.value));this.blur()">${[2,3,4].map(n=>`<option value="${n}" ${tc===n?'selected':''}>${n} Teams</option>`).join("")}</select></div>
+      <div><label>Zeit pro Runde</label><select onchange="setVal('dur',Number(this.value));this.blur()">${[45,60,90,120].map(n=>`<option value="${n}" ${Number(G.dur||60)===n?'selected':''}>${n} Sekunden</option>`).join("")}</select></div>
+      <div><label>Spielart</label><select onchange="setVal('modeSel',this.value);this.blur()">${[["mix","🎲 Zufall (alle drei)"],["seq","🔁 Der Reihe nach"],["e","💬 Nur Erklären"],["p","🎭 Nur Pantomime"],["z","✏️ Nur Malen"]].map(([v,l])=>`<option value="${v}" ${(G.modeSel||"mix")===v?'selected':''}>${l}</option>`).join("")}</select></div>
+    </div>
+    <div class="row" style="margin-top:14px">
+      <button class="btn btn-teal" ${ps.length<2?'disabled':''} onclick="autoTeams()">🎲 Teams auslosen</button>
+      <button class="btn btn-ghost" ${!noTeam.length?'disabled':''} onclick="assignNew()">➕ Neue in Teams verteilen (${noTeam.length})</button>
+      <button class="btn btn-ghost" onclick="resetScores()">Punkte auf 0</button>
+    </div></div>`;
+
+  /* --- Angemeldet --- */
+  h+=`<div class="card"><div class="row" style="justify-content:space-between"><h2>Angemeldet (${ps.length})</h2>
+      ${ps.length?`<button class="btn btn-danger small" onclick="clearAll()">Alle entfernen</button>`:''}</div>
+    <p class="muted" style="margin:0">Team per Auswahlfeld ändern. ✕ entfernt eine Person (z. B. doppelt angemeldet).</p>
+    <div class="list">${ps.length?ps.map(p=>`<div class="list-item"><span class="nm">${esc(p.name)}</span>
+      ${(!p.team||Number(p.team)>tc)?'<span class="pill frei">ohne Team</span>':''}
+      <select onchange="setTeam('${p.id}',this.value);this.blur()"><option value="">— kein Team —</option>${teamIds().map(t=>`<option value="${t}" ${Number(p.team)===t?'selected':''}>${TEAMS[t].ic} ${TEAMS[t].n}</option>`).join("")}</select>
+      <button class="btn btn-danger small" onclick="removePlayer('${p.id}')">✕</button></div>`).join(""):'<p class="muted">Noch niemand angemeldet. Kurs-Code am Beamer zeigen!</p>'}</div></div>`;
+  root.innerHTML=h;
+}
+
+/* --- Konsole: Aktionen --- */
+function setVal(k,v){ gameRef.child(k).set(v); }
+function setTeam(id,v){ gameRef.child("players/"+id+"/team").set(v?Number(v):null); }
+function removePlayer(id){ gameRef.child("players/"+id).remove(); }
+function clearAll(){ if(!confirm("Wirklich ALLE Teilnehmenden entfernen?"))return; gameRef.update({players:null,turn:null,scores:null,rot:null,lastTeam:0}); }
+function resetScores(){ if(!confirm("Alle Punkte auf 0 setzen?"))return; gameRef.update({scores:null,used:null}); }
+function addPoint(t,d){ gameRef.child("scores/"+t).set(Math.max(0,score(t)+d)); }
+function autoTeams(){
+  const ps=plist(); if(ps.some(p=>p.team)&&!confirm("Alle Teams neu auslosen?"))return;
+  const ids=shuffle(ps.map(p=>p.id)); const tc=teamCount(); const up={};
+  ids.forEach((id,i)=>{ up[`players/${id}/team`]=(i%tc)+1; });
+  up.rot=null; up.lastTeam=0; gameRef.update(up);
+}
+function assignNew(){
+  const tc=teamCount(); const up={}; const cnt={}; teamIds().forEach(t=>cnt[t]=members(t).length);
+  shuffle(plist().filter(p=>!p.team||Number(p.team)>tc)).forEach(p=>{
+    const t=teamIds().sort((a,b)=>cnt[a]-cnt[b])[0]; cnt[t]++; up[`players/${p.id}/team`]=t; });
+  gameRef.update(up);
+}
+function pickMode(){
+  const sel=G.modeSel||"mix";
+  if(sel==="e"||sel==="p"||sel==="z") return sel;
+  if(sel==="seq"){ const order=["e","p","z"]; return order[(Number(G.modeIdx)||0)%3]; }
+  return ["e","p","z"][Math.floor(Math.random()*3)];
+}
+function buildDeck(m){
+  const used=G.used||{};
+  let pool=TERMS.filter(t=>t.m.includes(m)&&!used[t.id]);
+  if(pool.length<15) pool=TERMS.filter(t=>t.m.includes(m));
+  return shuffle(pool.map(t=>t.id)).slice(0,30);
+}
+function nextTurn(){
+  const ts=teamIds().filter(t=>members(t).length); if(!ts.length){alert("Bitte zuerst Teams einteilen.");return;}
+  const last=Number(G.lastTeam)||0;
+  const t=ts.find(x=>x>last)||ts[0];
+  const ms=members(t); const r=Number((G.rot||{})[t])||0; const p=ms[r%ms.length];
+  const m=pickMode();
+  const up={turn:{pid:p.id,name:p.name,team:t,mode:m,deck:buildDeck(m),idx:0,status:"ready",dur:Number(G.dur)||60}, lastTeam:t};
+  up["rot/"+t]=r+1; if((G.modeSel||"mix")==="seq") up.modeIdx=(Number(G.modeIdx)||0)+1;
+  gameRef.update(up);
+}
+function otherPerson(){
+  const tr=G.turn; if(!tr||tr.status!=="ready")return;
+  const ms=members(Number(tr.team)); if(ms.length<2)return;
+  const r=Number((G.rot||{})[tr.team])||0; const p=ms[r%ms.length];
+  const up={}; up["rot/"+tr.team]=r+1; up["turn/pid"]=p.id; up["turn/name"]=p.name; gameRef.update(up);
+}
+function changeMode(m){ const tr=G.turn; if(!tr||tr.status!=="ready")return;
+  gameRef.update({"turn/mode":m,"turn/deck":buildDeck(m),"turn/idx":0}); }
+function startTurn(){ const tr=G.turn; if(!tr||tr.status!=="ready")return;
+  gameRef.update({"turn/status":"running","turn/startedAt":now()}); }
+function endTurn(){ const tr=G.turn; if(!tr||tr.status!=="running")return; gameRef.child("turn/status").set("done"); }
+function cancelTurn(){ gameRef.child("turn").remove(); }
+
+/* ============================ SPIELER ============================ */
+function joinGame(){
+  if(!fbReady){setMsg("join-msg","⚠️ Keine Verbindung zu Firebase. Bitte Internet prüfen.","err");return;}
+  const code=S("join-code").value.trim(); const name=S("join-name").value.trim();
+  if(!/^\d{4}$/.test(code)){setMsg("join-msg","Bitte den vierstelligen Kurs-Code eingeben.","err");return;}
+  if(!name){setMsg("join-msg","Bitte deinen Vornamen eingeben.","err");return;}
+  db.ref(ROOT+code).get().then(s=>{
+    if(!s.exists()){setMsg("join-msg","Kein Spiel mit diesem Code. Ist die Spielleitung schon gestartet?","err");return;}
+    gameCode=code; mode="player"; myId=getDeviceId(code);
+    try{ localStorage.setItem("act_lastname",name); localStorage.setItem("act_lastcode",code); }catch(e){}
+    const ex=((s.val().players)||{})[myId]||{};
+    db.ref(`${ROOT}${code}/players/${myId}`).update({name,joinedAt:ex.joinedAt||Date.now()}).then(enterPlayer);
+  });
+}
+function enterPlayer(){
+  hideAll(); S("screen-player").classList.remove("hidden");
+  gameRef=db.ref(ROOT+gameCode);
+  gameRef.on("value",snap=>{ G=snap.val()||{}; renderPlayer(); });
+}
+function rejoin(){ let n=""; try{ n=localStorage.getItem("act_lastname")||""; }catch(e){}
+  if(!n){ goHome(); showJoin(); return; } gameRef.child("players/"+myId).update({name:n,joinedAt:Date.now()}); }
+
+function renderPlayer(){
+  const me=(G.players||{})[myId];
+  let h=`<header class="top"><div class="logo">🎲</div>
+    <div><h1>${esc(me&&me.name?me.name:"Mitspielen")}</h1><div class="tag">Kurs-Code ${esc(gameCode)}</div></div>
+    <a href="#" class="home" onclick="if(confirm('Spiel verlassen?'))goHome();return false;">←</a></header>`;
+  if(!me||!me.name){
+    h+=`<div class="card center"><h2>Du bist nicht (mehr) angemeldet</h2><p class="muted">Die Spielleitung hat dich entfernt oder die Verbindung war weg.</p>
+      <button class="btn btn-gold" onclick="rejoin()">Wieder anmelden</button></div>`;
+    S("screen-player").innerHTML=h; return;
+  }
+  const tc=teamCount(); const myT=Number(me.team); const T=TEAMS[myT];
+  if(!myT||myT>tc){
+    h+=`<div class="card center"><h2>Du bist angemeldet ✓</h2><p class="muted">Warte, bis die Lehrkraft die Teams einteilt.</p></div>`;
+    S("screen-player").innerHTML=h; return;
+  }
+  h+=`<div class="teambadge" style="background:${T.c}"><span style="font-size:1.5rem">${T.ic}</span><span>Du bist in ${T.n}</span>
+      <span style="margin-left:auto;font-size:1.4rem">${score(myT)} P.</span></div>`;
+
+  const tr=G.turn;
+  if(tr && tr.pid===myId && (tr.status==="ready"||tr.status==="running")){
+    const md=MODES[tr.mode];
+    if(tr.status==="ready"){
+      h+=`<div class="myturn ${md.cls}"><div style="font-size:3rem">${md.ic}</div>
+          <div class="word" style="font-size:2rem">Du bist dran!</div>
+          <div style="font-size:1.2rem;font-weight:800">${md.n}</div>
+          <p style="margin:10px 0 0">${esc(md.rule)}</p>
+          <p style="margin:8px 0 0;opacity:.92">Dein Team hat ${tr.dur} Sekunden. Halte das Handy so, dass niemand den Begriff sieht.</p></div>
+        <button class="btn btn-gold big" style="width:100%" onclick="startTurn()">▶ Start</button>`;
+    } else {
+      const deck=tr.deck||[]; const idx=Number(tr.idx)||0; const term=TERMS[deck[idx]];
+      if(!term){
+        h+=`<div class="card center"><h2>Keine Begriffe mehr 🎉</h2><p class="muted">Super! Warte auf die Lehrkraft.</p></div>`;
+      } else {
+        const rem=remaining();
+        h+=`<div class="myturn ${md.cls}">
+            <div class="row" style="justify-content:space-between"><span style="font-weight:800">${md.ic} ${md.n}</span>
+              <span class="clock ${rem<=10?'over':rem<=20?'warn':''}" data-cd="1" style="font-size:1.8rem;margin:0;color:#fff">${fmtClock(rem)}</span></div>
+            <div class="word">${esc(term.w)}</div>
+            ${tr.mode==="e"?`<div class="tabu"><div class="tl">🚫 Verboten</div><ul>${term.t.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:
+              `<p style="margin:6px 0 0;opacity:.95">${esc(md.rule)}</p>`}
+          </div>
+          <div class="actbtns">
+            <button class="btn btn-teal" ${actLock===lockKey(tr)?'disabled':''} onclick="act('ok')">✓ Erraten</button>
+            <button class="btn btn-ghost" ${actLock===lockKey(tr)?'disabled':''} onclick="act('skip')">⏭ Weiter</button></div>
+          <div class="center hint">✓ ${okCount(tr)} erraten</div>
+          ${tr.mode==="e"?`<div class="card" style="margin-top:12px"><div class="muted" style="font-weight:800;margin-bottom:4px">Hilfe zum Erklären</div>${md.help.map(x=>`<div>${esc(x)}</div>`).join("")}</div>`:''}`;
+      }
+    }
+  } else if(tr && (tr.status==="ready"||tr.status==="running")){
+    const md=MODES[tr.mode]; const TT=TEAMS[tr.team]; const mine=Number(tr.team)===myT;
+    const rem=tr.status==="running"?remaining():null;
+    h+=`<div class="card center">
+        <div class="row" style="justify-content:center"><span class="modebadge" style="background:${md.color}">${md.ic} ${md.n}</span></div>
+        <h2 style="margin-top:12px">${esc(tr.name)} ${md.verb}.</h2>
+        ${rem!=null?`<div class="clock ${rem<=10?'over':rem<=20?'warn':''}" data-cd="1" style="font-size:3.2rem">${fmtClock(rem)}</div>`:'<p class="muted">Gleich geht es los …</p>'}
+        <p style="font-size:1.15rem;font-weight:800;margin:6px 0 0">${mine?'🙋 Dein Team ist dran – rate laut mit!':`🤫 ${TT.ic} ${TT.n} ist dran. Nur ${TT.n} darf raten.`}</p>
+      </div>`;
+  } else if(tr && tr.status==="done"){
+    const TT=TEAMS[tr.team];
+    h+=`<div class="card center"><h2>⏱ Zeit vorbei!</h2><p class="muted">${TT.ic} ${TT.n} hat ${okCount(tr)} ${okCount(tr)===1?'Begriff':'Begriffe'} erraten. Die Begriffe stehen jetzt am Beamer.</p></div>`;
+  } else {
+    h+=`<div class="card center"><h2>Gleich geht es los …</h2><p class="muted">Warte auf die nächste Runde. Wenn du dran bist, erscheint dein Begriff hier.</p></div>`;
+  }
+  h+=`<div class="score-mini">${teamIds().map(t=>`<span style="background:${TEAMS[t].c}">${TEAMS[t].ic} ${score(t)}</span>`).join("")}</div>`;
+  S("screen-player").innerHTML=h;
+}
+function lockKey(tr){ return (tr.startedAt||0)+":"+(Number(tr.idx)||0); }
+function act(kind){
+  const tr=G.turn; if(!tr||tr.pid!==myId||tr.status!=="running")return;
+  const idx=Number(tr.idx)||0; if(actLock===lockKey(tr))return; actLock=lockKey(tr);
+  const id=(tr.deck||[])[idx]; const up={"turn/idx":idx+1}; up["turn/res/"+idx]=kind; if(id!=null) up["used/"+id]=true;
+  if(kind==="ok") up["scores/"+tr.team]=score(Number(tr.team))+1;
+  gameRef.update(up);
+}
+
+/* Countdown: Anzeige aktualisieren und Runde beenden, wenn die Zeit um ist */
+setInterval(()=>{
+  const tr=G.turn; if(!tr||tr.status!=="running")return;
+  const rem=remaining();
+  document.querySelectorAll("[data-cd]").forEach(el=>{ el.textContent=fmtClock(rem);
+    el.classList.toggle("over",rem<=10); el.classList.toggle("warn",rem>10&&rem<=20); });
+  if(rem<=0 && gameRef && (mode==="console" || tr.pid===myId)) gameRef.child("turn/status").set("done");
+},250);
+
+goHome();
+</script>
+</body>
+</html>

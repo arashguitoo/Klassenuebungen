@@ -114,6 +114,7 @@ footer{text-align:center;color:var(--muted);font-size:.76rem;margin-top:34px}
 .toast.show{opacity:1}
 .statusline{font-size:.8rem;color:var(--muted);margin-top:8px;text-align:center}
 </style>
+<script>/* Code-Eingabe: persische, arabische und chinesische (breite) Ziffern sowie Leerzeichen erlauben */function normCode(v){return String(v==null?"":v).replace(/[٠-٩]/g,function(d){return String(d.charCodeAt(0)-0x660);}).replace(/[۰-۹]/g,function(d){return String(d.charCodeAt(0)-0x6F0);}).replace(/[０-９]/g,function(d){return String(d.charCodeAt(0)-0xFF10);}).replace(/\s+/g,"").toUpperCase();}</script>
 </head>
 <body>
 <header>
@@ -543,7 +544,7 @@ function renderScore(arr){
 function getDeviceId(c){const k="fbw_pid_"+c;try{let v=localStorage.getItem(k);if(!v){v="p_"+Date.now()+"_"+Math.floor(Math.random()*9999);localStorage.setItem(k,v);}return v;}catch(e){return "p_"+Date.now()+"_"+Math.floor(Math.random()*9999);}}
 function joinGame(){
   if(!fbOK){ toast("Firebase nicht erreichbar"); return; }
-  const c=(document.getElementById("joincode").value||"").trim().toUpperCase();
+  const c=normCode(document.getElementById("joincode").value);
   const nm=(document.getElementById("joinname").value||"").trim();
   if(c.length!==4){ document.getElementById("joinmsg").textContent="Bitte 4-stelligen Code eingeben."; return; }
   if(!nm){ document.getElementById("joinmsg").textContent="Bitte Namen eingeben."; return; }

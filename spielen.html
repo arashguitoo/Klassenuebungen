@@ -8,16 +8,17 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="kern.css?v=2">
+<link rel="stylesheet" href="kern.css?v=3">
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 <style>
 .join{min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:20px}
-.join .box{width:min(400px,100%);background:var(--card);border-radius:24px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.join .box{width:min(400px,100%);background:var(--card);color:var(--ink);border-radius:24px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
 .join h1{margin:0 0 4px;font-size:1.6rem;font-weight:900}
 .join .codein{text-align:center;font-size:2rem;font-weight:900;letter-spacing:.3em;height:64px}
 .err{color:var(--bad);font-size:.9rem;min-height:1.2em;margin-top:8px;text-align:center}
 </style>
+<script>/* Code-Eingabe: persische, arabische und chinesische (breite) Ziffern sowie Leerzeichen erlauben */function normCode(v){return String(v==null?"":v).replace(/[٠-٩]/g,function(d){return String(d.charCodeAt(0)-0x660);}).replace(/[۰-۹]/g,function(d){return String(d.charCodeAt(0)-0x6F0);}).replace(/[０-９]/g,function(d){return String(d.charCodeAt(0)-0xFF10);}).replace(/\s+/g,"").toUpperCase();}</script>
 </head>
 <body>
 <div class="join stage" id="join">
@@ -25,8 +26,8 @@
     <div style="font-size:2.4rem">🎮</div>
     <h1>Mitspielen</h1>
     <div class="muted" style="margin-bottom:16px">Spielcode von der Tafel und dein Name</div>
-    <label class="fld"><span>Spielcode</span><input class="inp codein" id="jCode" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" required></label>
-    <label class="fld"><span>Dein Name</span><input class="inp" id="jName" maxlength="24" required style="height:52px;font-size:1.15rem;font-weight:700"></label>
+    <label class="fld"><span>Spielcode</span><input class="inp codein" id="jCode" type="text" inputmode="numeric" maxlength="4" pattern="[0-9]*" autocomplete="off" autocorrect="off" spellcheck="false" required></label>
+    <label class="fld"><span>Dein Name</span><input class="inp" id="jName" type="text" maxlength="24" autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false" required style="height:52px;font-size:1.15rem;font-weight:700"></label>
     <button class="btn primary big" style="width:100%" type="submit">Los geht’s ▶</button>
     <div class="err" id="jErr"></div>
   </form>
@@ -35,8 +36,8 @@
   <div class="pl-head"><span class="t" id="hTitle"></span><span id="hTeam"></span><span class="conn" id="conn"><i></i></span></div>
   <div class="pl-body" id="body"></div>
 </div>
-<script src="kern.js?v=2"></script>
-<script src="formate.js?v=2"></script>
+<script src="kern.js?v=3"></script>
+<script src="formate.js?v=3"></script>
 <script>
 (function(){
 var $ = KX.$, DB = KX.init(), code = KX.param("c") || "", pid = null, off = null, last = null, wake = null;
@@ -64,7 +65,7 @@ function draw(){
 }
 setInterval(function(){ if (last) draw(); }, 1000);
 $("joinForm").addEventListener("submit", function(e){
-  e.preventDefault(); var c = $("jCode").value.trim(), n = $("jName").value.trim();
+  e.preventDefault(); var c = normCode($("jCode").value), n = $("jName").value.trim();
   if (!/^\d{4}$/.test(c)) { $("jErr").textContent = "Der Spielcode hat 4 Ziffern."; return; }
   $("jErr").textContent = "";
   try { localStorage.setItem("kx.name", n); } catch(e2){}

@@ -155,6 +155,7 @@ input:focus,select:focus{outline:2px solid var(--gold);border-color:var(--gold)}
 .sdot{width:8px;height:8px;border-radius:50%;background:var(--teal)}
 footer{text-align:center;color:var(--ink-soft);font-size:.82rem;margin-top:34px}
 </style>
+<script>/* Code-Eingabe: persische, arabische und chinesische (breite) Ziffern sowie Leerzeichen erlauben */function normCode(v){return String(v==null?"":v).replace(/[٠-٩]/g,function(d){return String(d.charCodeAt(0)-0x660);}).replace(/[۰-۹]/g,function(d){return String(d.charCodeAt(0)-0x6F0);}).replace(/[０-９]/g,function(d){return String(d.charCodeAt(0)-0xFF10);}).replace(/\s+/g,"").toUpperCase();}</script>
 </head>
 <body>
 
@@ -733,7 +734,7 @@ function clearAll(){ if(!confirm("Wirklich ALLE Teilnehmenden entfernen?"))retur
 /* ============================ SPIELER ============================ */
 function joinGame(){
   if(!fbReady){setMsg("join-msg","⚠️ Keine Verbindung zu Firebase. Bitte Internet prüfen.","err");return;}
-  const code=S("join-code").value.trim(); const name=S("join-name").value.trim();
+  const code=normCode(S("join-code").value); const name=S("join-name").value.trim();
   if(!/^\d{4}$/.test(code)){setMsg("join-msg","Bitte den vierstelligen Kurs-Code eingeben.","err");return;}
   if(!name){setMsg("join-msg","Bitte deinen Vornamen eingeben.","err");return;}
   db.ref(ROOT+code).get().then(s=>{

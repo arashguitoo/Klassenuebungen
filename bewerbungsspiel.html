@@ -68,6 +68,7 @@
   .flex-between{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
   @media(max-width:640px){.wrap{padding:12px}.code-big{font-size:34px}}
 </style>
+<script>/* Code-Eingabe: persische, arabische und chinesische (breite) Ziffern sowie Leerzeichen erlauben */function normCode(v){return String(v==null?"":v).replace(/[٠-٩]/g,function(d){return String(d.charCodeAt(0)-0x660);}).replace(/[۰-۹]/g,function(d){return String(d.charCodeAt(0)-0x6F0);}).replace(/[０-９]/g,function(d){return String(d.charCodeAt(0)-0xFF10);}).replace(/\s+/g,"").toUpperCase();}</script>
 </head>
 <body>
 <header style="position:relative">
@@ -478,7 +479,7 @@ function switchTab(t){
    ============================================================ */
 function joinGame(){
   if(!fbReady){setMsg("join-msg","⚠️ Firebase ist nicht konfiguriert.","err");return;}
-  const code=S("join-code").value.trim().toUpperCase();
+  const code=normCode(S("join-code").value);
   const name=S("join-name").value.trim();
   if(!code||!name){setMsg("join-msg","Bitte Code und Name eingeben.","err");return;}
   db.ref("games/"+code).get().then(s=>{

@@ -118,6 +118,7 @@ table.ware th{background:var(--card2);color:var(--ink-soft);font-size:.78rem;tex
 .msg-in .txt{font-size:.95rem;margin-top:3px;white-space:pre-wrap}
 footer{text-align:center;color:var(--ink-soft);font-size:.8rem;margin-top:34px}
 </style>
+<script>/* Code-Eingabe: persische, arabische und chinesische (breite) Ziffern sowie Leerzeichen erlauben */function normCode(v){return String(v==null?"":v).replace(/[٠-٩]/g,function(d){return String(d.charCodeAt(0)-0x660);}).replace(/[۰-۹]/g,function(d){return String(d.charCodeAt(0)-0x6F0);}).replace(/[０-９]/g,function(d){return String(d.charCodeAt(0)-0xFF10);}).replace(/\s+/g,"").toUpperCase();}</script>
 </head>
 <body>
 
@@ -471,7 +472,7 @@ function autoAssign(){
 /* -------- PLAYER -------- */
 function joinGame(){
   if(!fbReady){setMsg("join-msg","⚠️ Firebase ist nicht konfiguriert.","err");return;}
-  const code=S("join-code").value.trim().toUpperCase();
+  const code=normCode(S("join-code").value);
   const name=S("join-name").value.trim();
   if(!code||!name){setMsg("join-msg","Bitte Spielcode und Namen eingeben.","err");return;}
   db.ref("games_lmp/"+code).get().then(s=>{

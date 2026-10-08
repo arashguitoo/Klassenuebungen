@@ -36,7 +36,8 @@ a{color:inherit}
 .btn[disabled]{opacity:.45;pointer-events:none}
 .ib{border:0;background:none;cursor:pointer;min-width:32px;height:32px;border-radius:8px;color:var(--muted);display:inline-flex;align-items:center;justify-content:center}
 .ib:hover{background:var(--hover);color:var(--ink)}
-.inp{height:40px;border:1px solid var(--line);border-radius:10px;background:var(--card);padding:0 12px;outline:none;width:100%}
+.inp{height:40px;border:1px solid var(--line);border-radius:10px;background:var(--card);padding:0 12px;outline:none;width:100%;color:var(--ink);-webkit-text-fill-color:var(--ink);caret-color:var(--accent);opacity:1}
+.inp::placeholder{color:var(--muted);-webkit-text-fill-color:var(--muted);opacity:1}
 .inp:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 16%,transparent)}
 textarea.inp{height:auto;min-height:160px;padding:10px 12px;font-family:ui-monospace,Consolas,monospace;font-size:.85rem}
 label.fld{display:block;margin-bottom:12px}

@@ -99,6 +99,7 @@ label{font-size:.85rem;color:var(--muted);font-weight:600;display:block;margin:1
 .toast.show{opacity:1}
 footer{text-align:center;color:var(--muted);font-size:.76rem;margin-top:30px}
 </style>
+<script>/* Code-Eingabe: persische, arabische und chinesische (breite) Ziffern sowie Leerzeichen erlauben */function normCode(v){return String(v==null?"":v).replace(/[٠-٩]/g,function(d){return String(d.charCodeAt(0)-0x660);}).replace(/[۰-۹]/g,function(d){return String(d.charCodeAt(0)-0x6F0);}).replace(/[０-９]/g,function(d){return String(d.charCodeAt(0)-0xFF10);}).replace(/\s+/g,"").toUpperCase();}</script>
 </head>
 <body>
 <header>
@@ -392,7 +393,7 @@ function renderScore(arr){
 /* ===================== PARTICIPANT ===================== */
 function joinGame(){
   if(!fbOK){toast("Firebase nicht erreichbar");return;}
-  const c=(document.getElementById("joincode").value||"").trim().toUpperCase();
+  const c=normCode(document.getElementById("joincode").value);
   const nm=(document.getElementById("joinname").value||"").trim();
   if(c.length!==4){document.getElementById("joinmsg").textContent="Bitte 4-stelligen Code.";return;}
   if(!nm){document.getElementById("joinmsg").textContent="Bitte Namen eingeben.";return;}
